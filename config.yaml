@@ -1,0 +1,5 @@
+adb_path: D:\YXArkNights-12.0\shell\adb.exe
+addr: ''
+log_path: log
+record_path: '#record.txt'
+save_interval: 3000
