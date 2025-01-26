@@ -1,0 +1,75 @@
+[INFO][2025.01.25 17:13:34][line 115]
+启动adb server
+
+[INFO][2025.01.25 17:13:34][line 115]
+连接设备: 127.0.0.1:7555
+
+[ERROR][2025.01.25 17:13:36][line 115]
+连接失败: Command '['D:\\YXArkNights-12.0\\shell\\adb.exe', '-s', '127.0.0.1:7555', 'shell', 'wm size']' returned non-zero exit status 1.
+
+[ERROR][2025.01.25 17:13:36][line 115]
+设备连接失败: 无法连接到设备
+
+[INFO][2025.01.25 17:13:36][line 115]
+设备连接成功
+
+[INFO][2025.01.25 17:14:58][line 115]
+开始干员寻访操作，参数: 1
+
+[INFO][2025.01.25 17:14:58][line 115]
+开始第1次寻访
+
+[INFO][2025.01.25 17:14:58][line 115]
+正在进行：开始执行抽卡
+即将进行：等待结果
+
+[ERROR][2025.01.25 17:14:58][line 115]
+发生未预期的错误: 'MUMU' object has no attribute 'draw'
+
+[ERROR][2025.01.25 17:14:58][line 115]
+抽卡失败: 'MUMU' object has no attribute 'draw'
+
+[WARNING][2025.01.25 17:14:58][line 115]
+连续失败次数: 1
+
+[INFO][2025.01.25 17:14:58][line 115]
+开始第2次寻访
+
+[INFO][2025.01.25 17:14:58][line 115]
+正在进行：开始执行抽卡
+即将进行：等待结果
+
+[ERROR][2025.01.25 17:14:58][line 115]
+发生未预期的错误: 'MUMU' object has no attribute 'draw'
+
+[ERROR][2025.01.25 17:14:58][line 115]
+抽卡失败: 'MUMU' object has no attribute 'draw'
+
+[WARNING][2025.01.25 17:14:58][line 115]
+连续失败次数: 2
+
+[INFO][2025.01.25 17:14:58][line 115]
+开始第3次寻访
+
+[INFO][2025.01.25 17:14:58][line 115]
+正在进行：开始执行抽卡
+即将进行：等待结果
+
+[ERROR][2025.01.25 17:14:58][line 115]
+发生未预期的错误: 'MUMU' object has no attribute 'draw'
+
+[ERROR][2025.01.25 17:14:58][line 115]
+抽卡失败: 'MUMU' object has no attribute 'draw'
+
+[WARNING][2025.01.25 17:14:58][line 115]
+连续失败次数: 3
+
+[ERROR][2025.01.25 17:14:58][line 115]
+连续失败次数过多，停止操作
+
+[INFO][2025.01.25 17:14:58][line 115]
+正在进行：操作已停止
+
+[INFO][2025.01.25 17:14:58][line 115]
+操作已重置
+

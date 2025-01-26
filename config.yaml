@@ -1,5 +1,26 @@
 adb_path: D:\YXArkNights-12.0\shell\adb.exe
 addr: ''
+data:
+  auto_save: false
+  auto_save_interval: 10
+  data_file: '#record.txt'
+log:
+  cleanup_days: 30
+  console_enabled: true
+  console_level: 10
+  file_enabled: false
+  file_level: 10
+  image_enabled: false
+  log_dir: log
 log_path: log
+plot:
+  line_width: 1
+  point_size: 3
+  show_grid: true
+  show_points: true
+  smooth_factor: 0.5
 record_path: '#record.txt'
 save_interval: 3000
+simulator:
+  adb_path: D:\YXArkNights-12.0\shell\adb.exe
+  port: 7555

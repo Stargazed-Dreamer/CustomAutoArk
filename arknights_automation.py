@@ -1,26 +1,22 @@
 #pip install paddlepaddle paddleocr opencv-python numpy pywin32
 # 会在需要时导入  from paddleocr import PaddleOCR
 #==============================
-import time
-from pathlib import Path as CreatPath
-import json
-import logging
-import subprocess
-from typing import Optional, Tuple
-from datetime import datetime
-import socket
-import winreg
-#==============================
+from typing import Optional, List, Tuple, Union
 import cv2
 import numpy as np
 import os
+import time
+import subprocess
+import socket
+from dataclasses import dataclass
+#==============================
 from paddleocr import PaddleOCR
 #==============================
 ADB_PATH = "D:\\YXArkNights-12.0\\shell\\adb.exe"
 region_tag = (0.30,0.47,0.66,0.70)
 region_agent = (0.45, 0.67, 0.87, 0.85)
 #==============================
-from data import l_tag1, l_tag2, l_tag3, l_tagSpecial, d_agents
+from data import l_tag0, l_tag1, l_tag2, l_tag3, l_tag4, d_agents
 #==============================
 class CantFindNameError(Exception):
     pass
@@ -28,59 +24,10 @@ class CantFindNameError(Exception):
 class MouseMoveError(Exception):
     pass
 #==============================
-class Log:
-    def __init__(self, dir="log", file="info.log"):
-        """
-        定义两种handler，一个用来控制台debug，一个打算用来作日志级文件存储
-        """
-        self.dir = dir
-        self.file = file
-        self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.DEBUG)
-        #
-        fh = logging.FileHandler(f"{dir}/{file}")
-        fh.setLevel(logging.INFO)
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.DEBUG)
-        f_formatter = logging.Formatter("[%(levelname)s][%(asctime)s][line %(lineno)d]\n%(message)s\n", datefmt = "%Y.%m.%d %H:%M:%S")
-        c_formatter = logging.Formatter("[%(levelname)s][line %(lineno)d]\n%(message)s\n")
-        fh.setFormatter(f_formatter)
-        ch.setFormatter(c_formatter)
-        self.logger.addHandler(fh)
-        self.logger.addHandler(ch)
-        """
-        self.logger.debug("debug message")
-        self.logger.info("info message")
-        self.logger.warning("warn message")
-        self.logger.error("error message")
-        self.logger.critical("critical message")
-        """
-    def img(self, img):
-        """
-        cv2.imshow("img", img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-        """
-        #时间命名精确到毫秒
-        formatted_time = f"{time.strftime('%Y%m%d%H%M%S')}{int((time.time() % 1) * 1000):03d}"
-        cv2.imwrite(f"{self.dir}\\{formatted_time}.png", img)
+from log import log_manager
 
-    def debug(self, log):
-        self.logger.debug(log)
-
-    def info(self, log):
-        self.logger.info(log)
-
-    def warning(self, log):
-        self.logger.warning(log)
-    
-    def error(self, log):
-        self.logger.error(log)
-
-    def critical(self, log):
-        self.logger.critical(log)
-
-log = Log()
+# 使用全局日志管理器
+log = log_manager
 #==============================
 class Tool:
     def __init__(self):
@@ -116,13 +63,13 @@ class Tool:
         # l_agents -> [(zh, en), (zh, en), ...]
         self.l_agents = [(zh, d_agents[zh]["en"]) for zh in d_agents]
         # l_tags -> ["支援", "辅助干员", ...]
-        self.l_tags = l_tag1 + l_tag2 + l_tag3 + l_tagSpecial
+        self.l_tags = l_tag0 + l_tag1 + l_tag2 + l_tag3 + l_tag4
 
     def ocr(self, cvImg):
         if not self.ocrUseable:
             self.init_ocr()
         result = self.ocr_ch.ocr(cvImg, cls=True)
-        #"""
+        """
         for l in result:
             if l is None:
                 continue
@@ -246,7 +193,7 @@ class Tool:
         scaled_w = int(w * self.scaling_factor)
         scaled_h = int(h * self.scaling_factor)
         """
-        log.debug(f"裁剪区域: {x}, {y}, {w}, {h}")
+        #log.debug(f"裁剪区域: {x}, {y}, {w}, {h}")
         log.img(cvImg[y:h, x:w])
         return cvImg[y:h, x:w]
 
@@ -370,11 +317,11 @@ class Tool:
             l_result = self.ocr(img)
             for tag in self.l_tags:
                 t_result = self.find_nameOnResult(l_result, tag, sameOnly=False, includeSimilarity=True)
-                log.logger.debug(f"{tag}匹配ocr的结果: {t_result}")
+                #log.debug(f"{tag}匹配ocr的结果: {t_result}")
                 if t_result is not None:
                     l_tags.append(t_result)
         #"""
-        log.logger.info(f"所有匹配的ocr结果: {l_tags}")
+        log.info(f"所有匹配的ocr结果: {l_tags}")
         #取相似度最高的5个
         return [t_result[0][1][0] for t_result in sorted(l_tags, key=lambda x: x[1], reverse=True)[:5]]
 
@@ -411,10 +358,9 @@ class Tool:
         return None
 #==============================
 class Simulator:
-    def __init__(self, log_dir: str = "log", resource_dir: str = "."):
+    def __init__(self, resource_dir: str = "resource"):
         """
         初始化
-        :param log_dir: 日志目录
         :param resource_dir: 资源目录
         """
         self.adb_path = None
@@ -427,22 +373,6 @@ class Simulator:
         self.resource_dir = resource_dir
         self._setup_resource_dir()
         
-        # 设置日志
-        self.log_dir = log_dir
-        os.makedirs(log_dir, exist_ok=True)
-        
-        # 设置日志格式
-        log_file = os.path.join(log_dir, f"core_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
-        logging.basicConfig(
-            level=logging.DEBUG,
-            format='%(asctime)s [%(levelname)s] %(message)s',
-            handlers=[
-                logging.FileHandler(log_file, encoding='utf-8'),
-                logging.StreamHandler()
-            ]
-        )
-        self.logger = logging.getLogger(__name__)
-        
     def _setup_resource_dir(self):
         """设置资源目录结构"""
         # 创建minitouch目录
@@ -454,56 +384,57 @@ class Simulator:
         for arch in archs:
             os.makedirs(os.path.join(minitouch_dir, arch), exist_ok=True)
         
-    def find_adb_path(self) -> Optional[str]:
+    def find_adb_path(self):
         """
         查找adb路径
         :return: adb路径或None
         """
+        """
         try:
             # 1. 首先尝试从MUMU模拟器注册表项查找
-            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\NetEase\MuMuPlayer") as key:
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\NetEase\\MuMuPlayer") as key:
                 mumu_path = winreg.QueryValueEx(key, "InstallDir")[0]
                 adb_path = os.path.join(mumu_path, "emulator", "nemu", "vmonitor", "bin", "adb.exe")
                 if os.path.exists(adb_path):
-                    self.logger.info(f"在MUMU模拟器注册表中找到adb: {adb_path}")
+                    log.info(f"在MUMU模拟器注册表中找到adb: {adb_path}")
                     return adb_path
         except WindowsError:
-            self.logger.debug("未在注册表中找到MUMU模拟器")
+            log.debug("未在注册表中找到MUMU模拟器")
             
         try:
             # 2. 尝试从Android SDK注册表项查找
-            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\Android SDK Tools") as key:
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Android SDK Tools") as key:
                 sdk_path = winreg.QueryValueEx(key, "Path")[0]
                 adb_path = os.path.join(sdk_path, "platform-tools", "adb.exe")
                 if os.path.exists(adb_path):
-                    self.logger.info(f"在Android SDK注册表中找到adb: {adb_path}")
+                    log.info(f"在Android SDK注册表中找到adb: {adb_path}")
                     return adb_path
         except WindowsError:
-            self.logger.debug("未在注册表中找到Android SDK")
+            log.debug("未在注册表中找到Android SDK")
             
         # 3. 尝试从环境变量查找
         for path in os.environ["PATH"].split(os.pathsep):
             adb_path = os.path.join(path, "adb.exe")
             if os.path.exists(adb_path):
-                self.logger.info(f"在环境变量中找到adb: {adb_path}")
+                log.info(f"在环境变量中找到adb: {adb_path}")
                 return adb_path
                 
         # 4. 尝试常见安装路径
         common_paths = [
-            r"C:\Program Files\Microvirt\MEmu\adb.exe",  # MEmu
-            r"C:\Program Files\Nox\bin\nox_adb.exe",     # Nox
-            r"C:\Program Files\BlueStacks_nxt\HD-Adb.exe",  # BlueStacks
-            r"D:\Program Files\Microvirt\MEmu\adb.exe",
-            r"D:\Program Files\Nox\bin\nox_adb.exe",
-            r"D:\Program Files\BlueStacks_nxt\HD-Adb.exe",
+            "C:\\Program Files\\Microvirt\\MEmu\\adb.exe",  # MEmu
+            "C:Program FilesNox\\bin\\nox_adb.exe",     # Nox
+            "C:Program FilesBlueStacks_nxt\\HD-Adb.exe",  # BlueStacks
+            "D:Program FilesMicrovirt\\MEmu\\adb.exe",
+            "D:Program FilesNox\\bin\\nox_adb.exe",
+            "D:Program FilesBlueStacks_nxt\\HD-Adb.exe",
         ]
         
         for path in common_paths:
             if os.path.exists(path):
-                self.logger.info(f"在常见路径中找到adb: {path}")
+                log.info(f"在常见路径中找到adb: {path}")
                 return path
-                
-        self.logger.error("未找到adb路径")
+        """
+        log.error("未找到adb路径")
         return None
         
     def connect(self, adb_path: Optional[str] = None) -> bool:
@@ -516,16 +447,16 @@ class Simulator:
             # 获取adb路径
             self.adb_path = adb_path or self.find_adb_path()
             if not self.adb_path:
-                self.logger.error("未找到adb路径")
+                log.error("未找到adb路径")
                 return False
                 
             # 启动adb server
-            self.logger.info("启动adb server")
+            log.info("启动adb server")
             subprocess.run([self.adb_path, "start-server"], check=True)
             
             # 连接设备
             self.device_addr = "127.0.0.1:7555"  # MUMU模拟器默认端口
-            self.logger.info(f"连接设备: {self.device_addr}")
+            log.info(f"连接设备: {self.device_addr}")
             subprocess.run([self.adb_path, "connect", self.device_addr], check=True)
             
             # 获取屏幕大小
@@ -537,7 +468,7 @@ class Simulator:
             )
             size = result.stdout.strip().split()[-1].split("x")
             self.screen_size = (int(size[0]), int(size[1]))
-            self.logger.info(f"屏幕大小: {self.screen_size}")
+            log.info(f"屏幕大小: {self.screen_size}")
             
             # 获取屏幕方向
             result = subprocess.run(
@@ -549,7 +480,7 @@ class Simulator:
             self.orientation = 0  # 默认为0度
             if "SurfaceOrientation" in result.stdout:
                 self.orientation = int(result.stdout.strip().split()[-1])
-            self.logger.info(f"屏幕方向: {self.orientation}度")
+            log.info(f"屏幕方向: {self.orientation}度")
             
             # 获取CPU架构
             result = subprocess.run(
@@ -559,14 +490,14 @@ class Simulator:
                 check=True
             )
             cpu_abi = result.stdout.strip()
-            self.logger.info(f"设备CPU架构: {cpu_abi}")
+            log.info(f"设备CPU架构: {cpu_abi}")
             
             # 设置minitouch
             minitouch_dir = os.path.join(self.resource_dir, "minitouch")
             minitouch_path = os.path.join(minitouch_dir, cpu_abi, "minitouch")
             
             if not os.path.exists(minitouch_path):
-                self.logger.error(f"找不到minitouch文件: {minitouch_path}")
+                log.error(f"找不到minitouch文件: {minitouch_path}")
                 return True  # 即使minitouch不存在也返回True，因为可以使用input命令
                 
             try:
@@ -597,19 +528,19 @@ class Simulator:
                 time.sleep(1)  # 等待minitouch启动
                 
                 if self.minitouch_proc.poll() is not None:
-                    self.logger.error("minitouch启动失败")
+                    log.error("minitouch启动失败")
                 else:
-                    self.logger.info("minitouch启动成功")
+                    log.info("minitouch启动成功")
                     
             except Exception as e:
-                self.logger.error(f"设置minitouch失败: {e}")
+                log.error(f"设置minitouch失败: {e}")
                 # 清理minitouch相关资源
                 self.cleanup()
                 
             return True
             
         except Exception as e:
-            self.logger.error(f"连接失败: {e}")
+            log.error(f"连接失败: {e}")
             return False
             
     def _convert_coordinates(self, x: int, y: int) -> Tuple[int, int]:
@@ -643,7 +574,7 @@ class Simulator:
         try:
             # 转换坐标
             conv_x, conv_y = self._convert_coordinates(x, y)
-            self.logger.debug(f"点击坐标: ({x}, {y}) -> ({conv_x}, {conv_y}), 按下时间: {press_time}ms")
+            log.debug(f"点击坐标: ({x}, {y}) -> ({conv_x}, {conv_y}), 按下时间: {press_time}ms")
             
             if self.minitouch_proc and self.minitouch_proc.poll() is None:
                 # 使用minitouch进行点击
@@ -659,7 +590,7 @@ class Simulator:
                     return True
             else:
                 # 回退到input命令
-                self.logger.debug("minitouch未启动，使用input命令")
+                log.debug("minitouch未启动，使用input命令")
                 subprocess.run([
                     self.adb_path, "-s", self.device_addr, "shell",
                     f"input swipe {conv_x} {conv_y} {conv_x} {conv_y} {press_time}"  # 使用swipe模拟长按
@@ -667,7 +598,7 @@ class Simulator:
                 time.sleep(0.05)  # 额外延迟
                 return True
         except Exception as e:
-            self.logger.error(f"点击失败: {e}")
+            log.error(f"点击失败: {e}")
             return False
             
     def swipe(self, start_x: int, start_y: int, end_x: int, end_y: int, duration: int = 500) -> bool:
@@ -684,7 +615,7 @@ class Simulator:
             # 转换坐标
             conv_start_x, conv_start_y = self._convert_coordinates(start_x, start_y)
             conv_end_x, conv_end_y = self._convert_coordinates(end_x, end_y)
-            self.logger.debug(f"滑动: ({start_x}, {start_y}) -> ({end_x}, {end_y}) => ({conv_start_x}, {conv_start_y}) -> ({conv_end_x}, {conv_end_y}), 持续时间: {duration}ms")
+            log.debug(f"滑动: ({start_x}, {start_y}) -> ({end_x}, {end_y}) => ({conv_start_x}, {conv_start_y}) -> ({conv_end_x}, {conv_end_y}), 持续时间: {duration}ms")
             
             if self.minitouch_proc and self.minitouch_proc.poll() is None:
                 # 使用minitouch进行滑动
@@ -720,7 +651,7 @@ class Simulator:
                     return True
             else:
                 # 回退到input命令
-                self.logger.debug("minitouch未启动，使用input命令")
+                log.debug("minitouch未启动，使用input命令")
                 subprocess.run([
                     self.adb_path, "-s", self.device_addr, "shell",
                     f"input swipe {conv_start_x} {conv_start_y} {conv_end_x} {conv_end_y} {duration}"
@@ -728,7 +659,7 @@ class Simulator:
                 time.sleep(0.05)  # 额外延迟
                 return True
         except Exception as e:
-            self.logger.error(f"滑动失败: {e}")
+            log.error(f"滑动失败: {e}")
             return False
             
     def screenshot(self, retries: int = 3) -> Optional[np.ndarray]:
@@ -737,7 +668,7 @@ class Simulator:
         :param retries: 重试次数
         :return: 截图数据或None
         """
-        self.logger.debug("开始截图")
+        log.debug("开始截图")
         
         for i in range(retries):
             try:
@@ -754,37 +685,36 @@ class Simulator:
                 img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
                 
                 if img is not None:
-                    self.logger.debug("截图成功")
+                    log.debug("截图成功")
                     return img
                 else:
-                    self.logger.warning(f"截图解码失败，重试 {i+1}/{retries}")
+                    log.warning(f"截图解码失败，重试 {i+1}/{retries}")
             except subprocess.CalledProcessError as e:
-                self.logger.error(f"截图失败: {e}")
+                log.error(f"截图失败: {e}")
                 if i < retries - 1:
                     time.sleep(1)  # 等待1秒后重试
                 continue
             except Exception as e:
-                self.logger.error(f"截图时发生未知错误: {e}")
+                log.error(f"截图时发生未知错误: {e}")
                 if i < retries - 1:
                     time.sleep(1)
                 continue
         
-        self.logger.error("截图失败，已达到最大重试次数")
+        log.error("截图失败，已达到最大重试次数")
         return None
 
     def cleanup(self):
         """清理资源"""
         try:
-            if self.minitouch_socket:
+            if hasattr(self, "minitouch_socket") and self.minitouch_socket:
                 self.minitouch_socket.close()
                 self.minitouch_socket = None
             
-            if self.minitouch_proc:
+            if hasattr(self, "minitouch_proc") and self.minitouch_proc:
                 self.minitouch_proc.terminate()
                 self.minitouch_proc = None
             
-            if self.device_addr:
-                # 忽略清理错误，因为可能本来就不存在
+            if hasattr(self, "device_addr") and self.device_addr:
                 subprocess.run(
                     [self.adb_path, "-s", self.device_addr, "forward", "--remove", "tcp:1111"],
                     capture_output=True
@@ -794,32 +724,90 @@ class Simulator:
                     capture_output=True
                 )
         except Exception as e:
-            self.logger.debug(f"清理时发生错误: {e}")
+            log.debug(f"清理时发生错误: {e}")
 
     def __del__(self):
         """析构函数"""
         self.cleanup() 
 #==============================
-class MUMU(Simulator):
-    def __init__(self):
-        """初始化MUMU模拟器操作类"""
-        super().__init__(log_dir="log", resource_dir=".")
-        
-        # 连接设备
-        if not self.connect(adb_path=ADB_PATH):
-            raise ConnectionError("无法连接到设备")
+@dataclass
+class PredictionResult:
+    """AI预测结果"""
+    recommended_action: str  # 'recruit' 或 'draw'
+    confidence_score: float  # 0-1之间的置信度
+    expected_value: float    # 预期收益
+    reasoning: str          # 预测理由
 
-    def find_nameOnScreen(self, name):
+class AIPredictor:
+    """AI预测器接口"""
+    def __init__(self, model_path: str = None):
+        self.model_path = model_path
+        self._model = None
+    
+    @property
+    def model(self):
+        """懒加载模型"""
+        if self._model is None and self.model_path:
+            # TODO: 实现LSTM模型加载
+            pass
+        return self._model
+    
+    def predict(self, history_data: List[dict]) -> PredictionResult:
+        """
+        根据历史数据预测下一步操作
+        :param history_data: 历史操作数据
+        :return: 预测结果
+        """
+        if not self.model:
+            return PredictionResult(
+                recommended_action="recruit",
+                confidence_score=0.0,
+                expected_value=0.0,
+                reasoning="AI模型未加载"
+            )
+        # TODO: 实现预测逻辑
+        pass
+
+class MUMU(Simulator):
+    def __init__(self, adb_path = ADB_PATH):
+        """初始化MUMU模拟器操作类"""
+        super().__init__(resource_dir=".")
+        self._connected = False
+        self._ai_predictor = None
+        self.adb_path = adb_path
+
+        if not self.ensure_connected():
+            raise ConnectionError("无法连接到设备")
+    
+    @property
+    def ai_predictor(self):
+        """懒加载AI预测器"""
+        if self._ai_predictor is None:
+            self._ai_predictor = AIPredictor()
+        return self._ai_predictor
+    
+    def ensure_connected(self):
+        """确保设备已连接"""
+        if not self._connected:
+            try:
+                if not self.connect(adb_path=self.adb_path):
+                    raise ConnectionError("无法连接到设备")
+                self._connected = True
+                return True
+            except Exception as e:
+                log.error(f"设备连接失败: {str(e)}")
+                return False
+    
+    def find_nameOnScreen(self, name: str) -> List[Tuple]:
         """
         在屏幕上查找指定文字
         :param name: 要查找的文字
         :return: OCR识别结果
         """
+        self.ensure_connected()
         log.info(f"在窗口内查找: {name}")
         img = self.screenshot()
-        # 使用MAA的OCR功能
         results = tool.ocr(img)
-        # 过滤并格式化结果
         filtered_results = []
         for text, score, rect in results:
             if name in text:
@@ -827,12 +815,13 @@ class MUMU(Simulator):
                 filtered_results.append(((y, y+h), (x, x+w), text, score))
         return filtered_results
     
-    def click_text(self, name=None, retry=3):
+    def click_text(self, name: Optional[str] = None, retry: int = 3):
         """
         点击指定文字位置
         :param name: 要点击的文字
         :param retry: 重试次数
         """
+        self.ensure_connected()
         log.debug(f"点击: {name}, 剩余重试次数: {retry}")
         try:
             if name == "开始招募":
@@ -840,23 +829,20 @@ class MUMU(Simulator):
                 r2 = self.find_nameOnScreen("招募预算")
                 if not r1 or not r2:
                     raise Exception("找不到目标文字")
-                x = r1[0][1][0]  # 第一个匹配结果的x坐标
-                y = r2[0][0][1]  # 第二个匹配结果的y坐标
+                x = r1[0][1][0]
+                y = r2[0][0][1]
                 self.click(x, y)
                 return
             
             if name is None:
-                # 点击屏幕中心
                 left, top, right, bottom = self.screen_size
                 self.click((left+right)//2, (top+bottom)//2)
                 return
             
-            # 查找文字位置
             results = self.find_nameOnScreen(name)
             if not results:
                 raise Exception(f"找不到文字: {name}")
             
-            # 计算中心点坐标
             center = tool.find_centerOnResult(results)
             self.click(*center)
             
@@ -868,7 +854,8 @@ class MUMU(Simulator):
     
     def to_rightPage(self):
         """向右翻页"""
-        log.debug(f"向右翻页")
+        self.ensure_connected()
+        log.debug("向右翻页")
         left, top, right, bottom = self.screen_size
         x = right - left
         y = bottom - top
@@ -878,7 +865,8 @@ class MUMU(Simulator):
     
     def to_leftPage(self):
         """向左翻页"""
-        log.debug(f"向左翻页")
+        self.ensure_connected()
+        log.debug("向左翻页")
         left, top, right, bottom = self.screen_size
         x = right - left
         y = bottom - top
@@ -886,15 +874,16 @@ class MUMU(Simulator):
         y_2 = y/2
         self.swipe(x1, y_2, x1*2, y_2)
 
-    def getTag(self):
-        #截屏
+    def getTag(self) -> List[str]:
+        """获取标签"""
+        self.ensure_connected()
         img = self.screenshot()
         l_tags = tool.getTag(img)
         if len(l_tags) == 5:
             return l_tags
-        #找不到Tag
+            
         while True:
-            name = input(f"找不到tag,需要人工协助,请输入tag,逗号分隔:")
+            name = input("找不到tag,需要人工协助,请输入tag,逗号分隔:")
             l_tags = name.split(",")
             admit = input(f"请确认:{l_tags} 任意输入取消,Enter确认:")
             if admit == "":
@@ -902,187 +891,86 @@ class MUMU(Simulator):
         log.info(f"找到的tag: {l_tags}")
         return l_tags
 
-    def getAgent(self):
-        #截屏
+    def getAgent(self) -> Optional[str]:
+        """获取干员"""
+        self.ensure_connected()
         img = self.screenshot()
         agent = tool.getAgent(img)
         if agent is not None:
             return agent
-        #找不到干员
+            
         while True:
-            name = input(f"找不到干员,需要人工协助,请输入干员中文名称:")
+            name = input("找不到干员,需要人工协助,请输入干员中文名称:")
             admit = input(f"请确认:{name} 任意输入取消,Enter确认:")
             if admit == "":
                 break
         log.info(f"找到的干员: {name}")
         return name
-#==============================
-class Main:
-    def __init__(self):
-        self.mumu = MUMU()
-
-    def record(self, item, file=None):
-        log.debug(f"录入: {item}")
-        if file is None:
-            file = "#record.txt"
-        if not CreatPath(file).exists():
-            open(file, "w").close()
-        if isinstance(item, list):
-            s_record = "!".join(item)
-        if isinstance(item, str):
-            s_record = item
-        with open(file, 'a', encoding='utf-8') as f:
-            f.write(s_record + "\n")
     
-    def load(self, file=None):
-        if file is None:
-            file = "#record.txt"
-        with open(file, 'r', encoding='utf-8') as f:
-            record = f.read()
-        l_record = record.split("\n")
-        l_output = []
-        for record in l_record:
-            if "!" in record:
-                l_output.append(record.split("!"))
-            else:
-                l_output.append(record)
-        log.debug(f"加载结果: {l_output}")
-        return l_output
-
-    #招募
-    def recruit(self):
-        log.debug(f"招募一次开始")
-        # 点击加号
-        self.mumu.click("开始招募干员")
-        # 收集数据
-        time.sleep(0.5)
-        l_tag = self.mumu.getTag()
-        # 点击开始公招
-        self.mumu.click("开始招募")
-        time.sleep(0.5)
-        # 点击停止招募
-        self.mumu.click("停止招募")
-        time.sleep(0.5)
-        # 再次点击停止招募
-        self.mumu.click("停止招募")
-        time.sleep(0.5)
-        log.debug(f"招募一次结束")
-        return l_tag
-
-    #寻访
-    def draw(self):
-        log.debug(f"寻访一次开始")
-        # 点击单抽
-        time.sleep(0.7)
-        self.mumu.click("寻访一次")
-        time.sleep(0.6)
-        # 点击确认
-        self.mumu.click("确认")
-        time.sleep(1.2)
-        # 点击skip
-        self.mumu.click("SKIP")
-        time.sleep(1)
-        # 收集数据
-        agent = self.mumu.getAgent()
-        time.sleep(1)
-        # 点击任意位置回到抽卡界面
-        self.mumu.click("凭证")
-        log.debug(f"寻访一次结束")
-        return agent
-
-    #垫卡模式
-    def mode_pad(self):
-        pass
-        """
-        print('请输入目标卡池为第几个卡池（如：1，2等）并划至公招界面')
-        num = int(input('输入：'))
+    def recruit(self) -> List[str]:
+        """执行一次公开招募"""
+        log.debug("招募一次开始")
         try:
-            while True:
-                self.recruit()
-                for i in range(num):
-                    self.mumu.to_rightPage()
-                self.draw()
-                for i in range(num):
-                    self.mumu.to_leftPage()
+            # 点击加号
+            self.click_text("开始招募干员")
+            # 收集数据
+            time.sleep(0.5)
+            l_tag = self.getTag()
+            # 点击开始公招
+            self.click_text("开始招募")
+            time.sleep(0.5)
+            # 点击停止招募
+            self.click_text("停止招募")
+            time.sleep(0.5)
+            # 再次点击停止招募
+            self.click_text("停止招募")
+            time.sleep(0.5)
+            
+            log.debug("招募一次结束")
+            return l_tag
+        except Exception as e:
+            log.error(f"招募失败: {str(e)}")
+            raise
+    
+    def draw(self) -> Optional[str]:
+        """执行一次寻访"""
+        log.debug("寻访一次开始")
+        try:
+            # 点击单抽
+            time.sleep(0.7)
+            self.click_text("寻访一次")
+            time.sleep(0.6)
+            # 点击确认
+            self.click_text("确认")
+            time.sleep(1.2)
+            # 点击skip
+            self.click_text("SKIP")
+            time.sleep(1)
+            # 收集数据
+            agent = self.getAgent()
+            time.sleep(1)
+            # 点击任意位置回到抽卡界面
+            self.click_text("凭证")
+            
+            log.debug("寻访一次结束")
+            return agent
+        except Exception as e:
+            log.error(f"寻访失败: {str(e)}")
+            raise
+
+    def get_ai_recommendation(self, history_data: List[dict]) -> PredictionResult:
         """
-
-    def mode_recruit(self):
-        log.debug(f"招募模式开始")
-        while True:
-            l_tag = self.recruit()
-            self.record(l_tag)
-
-    def mode_draw(self):
-        log.debug(f"抽卡模式开始")
-        while True:
-            agent = self.draw()
-            self.record(agent)
-
-    def record_fromDir(self, dir, func_sortKey=None):
-        log.debug(f"从目录{dir}中录入")
-        if func_sortKey is None:
-            def func_sortKey(x):
-                s_output = "".join([char for char in x.stem if char.isdigit()])
-                return int(s_output)
-        l_file = [file for file in CreatPath(dir).iterdir() if file.is_file()]
-        l_file.sort(key=func_sortKey)
-        for file in l_file:
-            if file.suffix == "json":
-                self.record_fromJson(str(file))
-            else:
-                try:
-                    img = cv2.imread(str(file))
-                except Exception as e:
-                    log.info(f"文件{file}既不是json也不是图片！")
-                    log.info(e)
-                    continue
-                self.record_fromImage(img, str(file))
-
-    def record_fromImage(self, img, file):
-        log.debug(f"从图片{file}中录入")
-        #log.img(img)
-        l_tags = tool.getTag(img)
-        agent = tool.getAgent(img)
-        if agent is not None:
-            self.record(agent)
-        elif len(l_tags) == 5:
-            self.record(l_tags)
-        else:
-            log.info(f"图片{file}无法匹配！")
-
-    def record_fromJson(self, jsonFile):
-        log.debug(f"从json文件{jsonFile}中录入")
-        with open(jsonFile, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        l_agents = []
-        for entry in data['data']['list']:
-            for char in entry['chars']:
-                l_agents.append(char['name'])
-        for agent in l_agents[::-1]:
-            self.record(agent)
-
-    def main(self):
-        print('''请选择模式并输入相应的选项:
-        1.公招模式
-        2.抽卡模式
-        3.垫卡模式（暂未开放）
-        ''')
-
-        option = int(input('输入：'))
-        if option == 1:
-            self.mode_recruit()
-
-        elif option == 2:
-            self.mode_draw()
-
-        elif option == 3:
-            self.mode_pad()
+        获取AI推荐的操作
+        :param history_data: 历史操作数据
+        :return: AI预测结果
+        """
+        return self.ai_predictor.predict(history_data)
 
 
 tool = Tool()
 #tool = Tool(b_ocr=False)
 
-main = Main()
+#main = Main()
 #main.record_fromDir("0")
 print("到底了")
 #main.main()

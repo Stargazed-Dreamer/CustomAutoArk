@@ -40,19 +40,21 @@ import numpy as np
 from typing import List, Tuple, Optional
 import json
 import os
+from data import l_tag0, l_tag1, l_tag2, l_tag3, l_tag4, d_agents
 
 class DataManager:
     def __init__(self):
-        self.data: List[float] = []
+        self.data = []
         self.file_path: Optional[str] = None
-        self.history: List[List[float]] = []
+        self.history = []
         self.history_index: int = -1
         
     def load_data(self, file_path: str) -> bool:
         """加载数据文件"""
         try:
             with open(file_path, 'r') as f:
-                self.data = [float(line.strip()) for line in f if line.strip()]
+                self.real_data = [x for x in f.read().split("\n") if x != ""]
+            self.data = [x for x in self.data_convert(self.real_data).split("\n")]
             self.file_path = file_path
             self._add_to_history()
             return True
@@ -68,13 +70,42 @@ class DataManager:
                 return False
                 
             with open(save_path, 'w') as f:
-                for value in self.data:
-                    f.write(f"{value}\n")
+                f.write("\n".join(self.real_data))
             return True
         except Exception as e:
             print(f"保存数据失败: {e}")
             return False
-            
+    
+    def data_convert(self, l_data):
+        output = []
+        for data in l_data:
+            if data == "":
+                continue
+            if "!" in data:
+                l_tag = data.split("!")
+                sum = 0
+                for tag in l_tag:
+                    if tag in l_tag0:
+                        sum += 0
+                    elif tag in l_tag1:
+                        sum += 1
+                    elif tag in l_tag2:
+                        sum += 2
+                    elif tag in l_tag3:
+                        sum += 3
+                    elif tag in l_tag4:
+                        sum += 4
+                    else:
+                        raise ValueError(f"无效数据: {tag}")
+                output.append(sum)
+            elif data in d_agents:
+                output.append(int(d_agents[data]['star']))
+            elif data.isdigit():
+                output.append(int(data))
+            else:
+                raise ValueError(f"无效数据: {data}")
+        return output
+
     def export_png(self, file_path: str) -> bool:
         """导出为PNG图片"""
         try:
@@ -89,9 +120,10 @@ class DataManager:
             print(f"导出PNG失败: {e}")
             return False
             
-    def update_data(self, data: List[float]) -> None:
+    def update_data(self, data) -> None:
         """更新数据"""
-        self.data = data.copy()
+        self.real_data.append(data)
+        self.data = self.data_convert(self.real_data)
         self._add_to_history()
         
     def modify_points(self, indices: List[int], values: List[float]) -> None:
@@ -134,8 +166,7 @@ class DataManager:
                 valleys.append(i)
         return valleys
         
-    def find_similar_patterns(self, pattern: List[float], 
-                            threshold: float = 0.1) -> List[int]:
+    def find_similar_patterns(self, pattern: List[float], threshold: float = 0.1) -> List[int]:
         """查找相似模式"""
         if not pattern or len(pattern) > len(self.data):
             return []
