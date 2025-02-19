@@ -8,14 +8,17 @@ import cv2
 
 class LogManager(QObject):
     # 信号定义
-    log_message = Signal(str)  # 日志消息信号
-    step_message = Signal(str, bool)  # 步骤消息信号，bool表示是否为错误
+    log_message = Signal(str, str)  # 日志消息信号
+    step_updated = Signal(str, str)  # 当前步骤, 下一步骤
     log_settings_changed = Signal(dict)  # 日志设置变更信号
     
     def __init__(self):
         super().__init__()
         self.logger = logging.getLogger('ArknightsLogger')
         self.logger.setLevel(logging.DEBUG)
+        
+        # 日期分隔符相关
+        self.last_date = None
         
         # 加载配置
         self.config_file = 'config.yaml'
@@ -34,6 +37,11 @@ class LogManager(QObject):
         # 设置日志格式化器
         self.formatter = logging.Formatter(
             '[%(levelname)s][%(asctime)s][%(filename)s:%(lineno)d]%(message)s',
+            datefmt='%Y.%m.%d %H:%M:%S'
+        )
+
+        self.public_formatter = logging.Formatter(
+            '[%(asctime)s]%(message)s',
             datefmt='%Y.%m.%d %H:%M:%S'
         )
         
@@ -96,21 +104,24 @@ class LogManager(QObject):
         config = self.load_config()
         config['log'] = self.settings
         self.save_config(config)
-        
+            
         # 发送设置变更信号
         self.log_settings_changed.emit(self.settings)
-    
-    def _log(self, level: int, message: str, is_step: bool = False):
+        
+    def _log(self, level: int, message: str, is_step: bool = False, filename: str = None, lineno: int = None):
         """
         记录日志
         :param level: 日志级别
         :param message: 日志消息
         :param is_step: 是否为步骤信息
         """
+        
         # 获取调用者信息
         caller = inspect.currentframe().f_back.f_back
-        filename = os.path.basename(caller.f_code.co_filename)
-        lineno = caller.f_lineno
+        if filename is None:
+            filename = os.path.basename(caller.f_code.co_filename)
+        if lineno is None:
+            lineno = caller.f_lineno
         
         # 创建日志记录
         record = logging.LogRecord(
@@ -125,30 +136,35 @@ class LogManager(QObject):
         
         # 格式化消息
         formatted_msg = self.formatter.format(record)
-        
-        # 根据日志级别确定是否为错误消息
-        is_error = level >= logging.ERROR
-        
-        # 发送到UI
-        if is_step:
-            # 步骤信息发送到步骤栏
-            timestamp = datetime.now().strftime('%H:%M:%S')
-            step_msg = f"[{timestamp}] {message}"
-            self.step_message.emit(step_msg, is_error)
+
+        if level >= logging.ERROR:
+            s_level = "ERROR"
         else:
-            # 日志信息发送到日志栏
-            self.log_message.emit(formatted_msg)
+            s_level = "INFO"
+        self.log_message.emit(formatted_msg, s_level)
         
         # 处理控制台输出
         if self.settings.get('console_enabled', True) and level >= self.settings.get('console_level', logging.INFO):
             print(formatted_msg)
-        
+    
         # 处理文件输出
         if self.settings.get('file_enabled', True) and level >= self.settings.get('file_level', logging.DEBUG):
             log_file = os.path.join(self.log_dir, f'{datetime.now().strftime("%Y%m%d")}.log')
             with open(log_file, 'a', encoding='utf-8') as f:
                 f.write(formatted_msg + '\n')
-    
+
+    def format(self, message):
+        record = logging.LogRecord(
+            name=self.logger.name,
+            level=1,
+            pathname="",
+            lineno=0,
+            msg=message,
+            args=(),
+            exc_info=None
+        )
+        return self.public_formatter.format(record)
+
     def debug(self, message: str, is_step: bool = False):
         self._log(logging.DEBUG, message, is_step)
     
@@ -197,7 +213,7 @@ class LogManager(QObject):
                             os.remove(os.path.join(self.log_dir, filename))
                     except ValueError:
                         continue
-            
+    
             # 清理图片日志
             img_dir = os.path.join(self.log_dir, 'img')
             for filename in os.listdir(img_dir):
@@ -213,6 +229,33 @@ class LogManager(QObject):
         except Exception as e:
             self.error(f"清理日志失败: {str(e)}")
             return False
+
+    def update_step(self, current_step: str, next_step: str = None):
+        """更新步骤信息"""
+        self.step_updated.emit(current_step, next_step)
+        self.info(current_step, True)
+
+    def log(self, message: str, level: str = "INFO", filename: str = None, lineno: int = None):
+        """直接记录日志"""
+        # 检查日期分隔
+        current_date = datetime.now().date()
+        if self.last_date is None or current_date != self.last_date:
+            self.last_date = current_date
+            separator = f"\n--{current_date.strftime('%Y.%m.%d')}--"
+            self.log_message.emit(separator, "INFO")
+        
+        # 转换日志级别
+        level_map = {
+            "DEBUG": logging.DEBUG,
+            "INFO": logging.INFO,
+            "WARNING": logging.WARNING,
+            "ERROR": logging.ERROR,
+            "CRITICAL": logging.CRITICAL
+        }
+        level_num = level_map.get(level.upper(), logging.INFO)
+        
+        # 记录日志
+        self._log(level_num, message, False, filename, lineno)
 
 # 创建全局日志管理器实例
 log_manager = LogManager() 

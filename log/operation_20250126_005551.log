@@ -1,3 +1,0 @@
-[ERROR][2025.01.26 00:55:58][line 115]
-连接失败: Simulator.__init__() got an unexpected keyword argument 'log_dir'
-

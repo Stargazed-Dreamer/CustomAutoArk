@@ -1,44 +1,68 @@
-l_tag0 = [
-    '机械支援',
-]
-l_tag1 = [
-    '先锋干员',
-    '近卫干员',
-    '狙击干员',
-    '重装干员',
-    '医疗干员',
-    '辅助干员',
-    '术士干员',
-    '近战位',
-    '远程位',
-    '新手',
-]
-l_tag2 = [
-    '治疗',
-    '输出',
-    '群攻',
-    '减速',
-    '生存',
-    '防护',
-    '费用回复'
-]
-l_tag3 = [
-    '特种干员',
-    '支援',
-    '削弱',
-    '位移',
-    '快速复活',
-    '爆发',
-    '控场',
-]
-l_tag4 = [
-    '元素',
-    '召唤',
-    '资深干员',
-    '高级资深干员',
-]
+class Data:
+    def __init__(self):
+        self.init_data()
+        # l_agents -> [(zh, en), (zh, en), ...]
+        self.l_agent = [(zh, self.d_agent[zh]["en"]) for zh in self.d_agent]
+        # l_tags -> ["支援", "辅助干员", ...]
+        self.l_tag = []
+        for num in self.d_tag:
+            self.l_tag += self.d_tag[num]
 
-d_agents = {
+    def is_special(self, tag):
+        if tag in self.d_tag[4]:
+            return True
+        return False
+
+    def getTagPriority(self, tag):
+        for num in self.d_tag:
+            if tag in self.d_tag[num]:
+                return num
+        raise ValueError(f"{tag}不是合法的值")
+
+    def init_data(self):
+        self.d_tag = {
+            0: [
+                '支援机械',
+            ],
+            1: [
+                '先锋干员',
+                '近卫干员',
+                '狙击干员',
+                '重装干员',
+                '医疗干员',
+                '辅助干员',
+                '术士干员',
+                '近战位',
+                '远程位',
+                '新手',
+            ],
+            2: [
+                '治疗',
+                '输出',
+                '群攻',
+                '减速',
+                '生存',
+                '防护',
+                '费用回复'
+            ],
+            3: [
+                '特种干员',
+                '支援',
+                '削弱',
+                '位移',
+                '快速复活',
+                '爆发',
+                '控场',
+            ],
+            4: [
+                '元素',
+                '召唤',
+                '资深干员',
+                '高级资深干员',
+            ],
+        }
+
+        self.d_agent = {
 'W':{'en': 'W', 'star': '5', 'tag': ['狙击干员', '远程位', '输出', '控场'], 'subprofession': '炮手'},
 '万顷':{'en': 'Wanqing', 'star': '4', 'tag': ['先锋干员', '近战位', '费用回复', '支援'], 'subprofession': '执旗手'},
 '临光':{'en': 'Nearl', 'star': '4', 'tag': ['重装干员', '近战位', '防护', '治疗'], 'subprofession': '守护者'},
@@ -389,3 +413,5 @@ d_agents = {
 '齐尔查克':{'en': 'Chilchuck', 'star': '4', 'tag': ['先锋干员', '近战位', '费用回复', '快速复活'], 'subprofession': '情报官'},
 '龙舌兰':{'en': 'Tequila', 'star': '4', 'tag': ['近卫干员', '近战位', '爆发'], 'subprofession': '解放者'},
 }
+
+data = Data()

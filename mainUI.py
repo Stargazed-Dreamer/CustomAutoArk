@@ -1,32 +1,30 @@
-import sys
-import os
+import logging
 import platform
-import matplotlib
-matplotlib.use('Qt5Agg')
+import sys
 
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                              QHBoxLayout, QLabel, QPushButton, QComboBox, 
                              QSpinBox, QCheckBox, QTabWidget, QTextEdit,
                              QFileDialog, QMessageBox, QScrollArea, QFrame,
-                             QSplitter, QLineEdit, QToolBar, QPlainTextEdit,
-                             QInputDialog, QGroupBox)
+                             QSplitter, QLineEdit, QPlainTextEdit,
+                             QInputDialog, QGroupBox, QGridLayout, QDialog,
+                             QDialogButtonBox)
 from PySide6.QtCore import Qt, QTimer, Signal, Slot
-from PySide6.QtGui import QPainter, QColor, QAction, QFont, QTextCursor, QTextCharFormat
+from PySide6.QtGui import QColor, QAction, QFont, QTextCursor, QTextCharFormat, QImage, QPixmap
+
+import matplotlib
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
-import numpy as np
-import json
-from datetime import datetime
-import logging
 
-from utils.plot_utils import (create_smooth_line, create_zoom_animation,
-                            highlight_similar_points, add_annotations,
-                            create_gradient_line, add_grid)
-from utils.data_manager import DataManager
-from game_manager import GameManager
+import numpy as np
+
+from data import data as DATA
+from data_manager import data_manager
+from game_manager import GameManager, OperationMode, GachaMode, RecruitMode
 from log import log_manager
 
+matplotlib.use('Qt5Agg')
 # 设置matplotlib的默认字体
 plt.rcParams['font.family'] = ['sans-serif']
 if platform.system() == 'Windows':
@@ -41,7 +39,13 @@ plt.rcParams['axes.unicode_minus'] = False  # 正确显示负号
 plt.rcParams['font.size'] = 9
 plt.rcParams['figure.dpi'] = 100
 
-# 工具组件
+# 全局变量保存
+class Global:
+    def __init__(self):
+        self.mainWindow = None
+g = Global()
+
+# 控制台组件
 class ConsoleWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -50,138 +54,129 @@ class ConsoleWidget(QWidget):
     def initUI(self):
         layout = QHBoxLayout(self)
         layout.setContentsMargins(5, 5, 5, 5)
-        layout.setSpacing(5)  # 减小组件间距
+        layout.setSpacing(5)
         
-        # 左侧控制台输出
-        console_container = QWidget()
-        console_container.setMinimumWidth(100)  # 最小宽度
-        console_container.setMaximumWidth(400)  # 最大宽度
-        console_layout = QVBoxLayout(console_container)
-        console_layout.setContentsMargins(0, 0, 0, 0)
+        # 左侧日志区域
+        log_container = QWidget()
+        log_container.setMinimumWidth(100)
+        log_layout = QVBoxLayout(log_container)
+        log_layout.setContentsMargins(0, 0, 0, 0)
         
-        self.console_text = QTextEdit()
-        self.console_text.setReadOnly(True)
-        font = QFont('Microsoft YaHei', 9)
-        self.console_text.setFont(font)
-        console_layout.addWidget(self.console_text)
+        log_label = QLabel("日志")
+        log_label.setStyleSheet("font-weight: bold;")
+        log_layout.addWidget(log_label)
         
-        # 右侧状态显示
-        status_container = QWidget()
-        status_container.setMinimumWidth(100)  # 最小宽度
-        status_container.setMaximumWidth(400)  # 最大宽度
-        status_layout = QVBoxLayout(status_container)
-        status_layout.setContentsMargins(0, 0, 0, 0)
+        self.log_text = QTextEdit()
+        self.log_text.setReadOnly(True)
+        self.log_text.setStyleSheet("""
+            QTextEdit {
+                background-color: #f5f5f5;
+                font-family: Consolas, Monaco, monospace;
+                font-size: 12px;
+            }
+        """)
+        log_layout.addWidget(self.log_text)
         
-        self.status_text = QTextEdit()
-        self.status_text.setReadOnly(True)
-        self.status_text.setFont(font)
-        status_layout.addWidget(self.status_text)
+        # 右侧步骤区域
+        step_container = QWidget()
+        step_container.setMinimumWidth(100)
+        step_layout = QVBoxLayout(step_container)
+        step_layout.setContentsMargins(0, 0, 0, 0)
         
-        # 添加到布局（先左后右）
-        layout.addWidget(console_container, 1)  # 设置为相等的伸缩比例
-        layout.addWidget(status_container, 1)  # 设置为相等的伸缩比例
+        step_label = QLabel("步骤")
+        step_label.setStyleSheet("font-weight: bold;")
+        step_layout.addWidget(step_label)
         
-        # 初始化颜色格式
-        self.time_format = QTextCharFormat()
-        self.time_format.setForeground(QColor("#666666"))
+        # 添加步骤显示区域
+        status_frame = QFrame()
+        status_frame.setFrameStyle(QFrame.Panel | QFrame.Sunken)
+        status_layout = QVBoxLayout(status_frame)
+        status_layout.setContentsMargins(5, 5, 5, 5)
+        status_layout.setSpacing(2)
         
-        self.step_format = QTextCharFormat()
-        self.step_format.setForeground(QColor("#2196F3"))
+        self.current_step = QLabel("正在进行：")
+        self.next_step = QLabel("即将进行：")
+        status_layout.addWidget(self.current_step)
+        status_layout.addWidget(self.next_step)
         
-        self.next_step_format = QTextCharFormat()
-        self.next_step_format.setForeground(QColor("#4CAF50"))
+        step_layout.addWidget(status_frame)
         
-        self.count_format = QTextCharFormat()
-        self.count_format.setForeground(QColor("#FF9800"))
+        # 宏观步骤记录区域
+        self.step_text = QTextEdit()
+        self.step_text.setReadOnly(True)
+        self.step_text.setStyleSheet("""
+            QTextEdit {
+                background-color: #f5f5f5;
+                font-family: Consolas, Monaco, monospace;
+                font-size: 12px;
+            }
+        """)
+        step_layout.addWidget(self.step_text)
+        
+        # 添加分隔线
+        splitter = QSplitter(Qt.Horizontal)
+        splitter.addWidget(log_container)
+        splitter.addWidget(step_container)
+        splitter.setStretchFactor(0, 1)
+        splitter.setStretchFactor(1, 1)
+        
+        layout.addWidget(splitter)
     
-    def append_status(self, message: str, message_type: str = "normal"):
-        cursor = self.status_text.textCursor()
-        cursor.movePosition(QTextCursor.End)
+    def append_message(self, message: str, level: str = "INFO"):
+        """添加消息到日志区域"""
+        # 根据日志级别设置颜色
+        color = {
+            "DEBUG": "#808080",    # 灰色
+            "INFO": "#000000",     # 黑色
+            "WARNING": "#FFA500",  # 橙色
+            "ERROR": "#FF0000",    # 红色
+            "CRITICAL": "#8B0000"  # 深红色
+        }.get(level.upper(), "#000000")
         
-        # 添加时间戳
-        time_str = f"[{datetime.now().strftime('%H:%M:%S')}]"
-        cursor.insertText(time_str, self.time_format)
+        # 格式化消息
+        formatted_message = f'<span style="color: {color};">{message}</span><br>'
         
-        # 根据消息类型设置颜色
-        if message_type == "step":
-            cursor.insertText(message + "\n", self.step_format)
-        elif message_type == "next_step":
-            cursor.insertText(message + "\n", self.next_step_format)
-        elif message_type == "count":
-            cursor.insertText(message + "\n", self.count_format)
-        else:
-            cursor.insertText(message + "\n")
-        
-        self.status_text.setTextCursor(cursor)
-    
-    def append_date_separator(self):
-        cursor = self.status_text.textCursor()
-        cursor.movePosition(QTextCursor.End)
-        
-        # 添加日期分隔符
-        date_str = f"\n--{datetime.now().strftime('%Y.%m.%d')}--\n"
-        cursor.insertText(date_str)
-        
-        self.status_text.setTextCursor(cursor)
-    
-    def append_message(self, message: str):
-        self.console_text.append(message)
-    
-    def update_current_next_step(self, current: str, next: str = None):
-        cursor = self.status_text.textCursor()
-        cursor.movePosition(QTextCursor.End)
-        
-        cursor.insertText("\n正在进行：", self.step_format)
-        cursor.insertText(current, self.step_format)
-        
-        if next:
-            cursor.insertText("\n即将进行：", self.next_step_format)
-            cursor.insertText(next, self.next_step_format)
-        
-        cursor.insertText("\n")
-        self.status_text.setTextCursor(cursor)
+        # 添加到日志区域
+        self.log_text.moveCursor(QTextCursor.End)
+        self.log_text.insertHtml(formatted_message)
+        self.log_text.ensureCursorVisible()
 
-class StatusBarWidget(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.initUI()
+        if level in ["WARNING", "ERROR", "CRITICAL"]:
+            self.append_macro_step(message, level, True)
     
-    def initUI(self):
-        layout = QHBoxLayout(self)
-        layout.setContentsMargins(5, 0, 5, 0)
+    def update_step(self, current_step: str, next_step: str = None):
+        """更新步骤信息"""
+        # 更新步骤显示区域
+        self.current_step.setText(f"正在进行：{current_step}")
+        self.next_step.setText(f"即将进行：{next_step if next_step else ''}")
         
-        # 当前模式
-        self.mode_label = QLabel("当前模式：暂停")
-        layout.addWidget(self.mode_label)
-        
-        # 执行步骤
-        self.step_label = QLabel("执行步骤：-")
-        layout.addWidget(self.step_label)
-        
-        # 抽卡计数
-        self.gacha_count = QLabel("已执行0次抽卡")
-        layout.addWidget(self.gacha_count)
-        
-        # 公招计数
-        self.recruit_count = QLabel("已执行0次公招")
-        layout.addWidget(self.recruit_count)
-        
-        layout.addStretch()
+        # 添加到日志记录
+        self.append_message(current_step, "INFO")
     
-    def update_mode(self, mode: str):
-        self.mode_label.setText(f"当前模式：{mode}")
-    
-    def update_step(self, current: str, next: str = None):
-        text = f"执行步骤：{current}"
-        if next:
-            text += f" -> {next}"
-        self.step_label.setText(text)
-    
-    def update_gacha_count(self, count: int):
-        self.gacha_count.setText(f"已执行{count}次抽卡")
-    
-    def update_recruit_count(self, count: int):
-        self.recruit_count.setText(f"已执行{count}次公招")
+    def append_macro_step(self, macro_step, level = "INFO", formated = False):
+        """添加消息到宏观步骤区域"""
+        if formated:
+            formatted_message = macro_step + "<br>"
+        else:
+            # 添加时间戳
+            macro_step = log_manager.format(macro_step)
+
+            # 根据级别设置颜色
+            color = {
+                "DEBUG": "#808080",    # 灰色
+                "INFO": "#000000",     # 黑色
+                "WARNING": "#FFA500",  # 橙色
+                "ERROR": "#FF0000",    # 红色
+                "CRITICAL": "#8B0000"  # 深红色
+            }.get(level.upper(), "#000000")
+            
+            # 格式化消息
+            formatted_message = f'<span style="color: {color};">{macro_step}</span><br>'
+        
+        # 添加到宏观步骤区域
+        self.step_text.moveCursor(QTextCursor.End)
+        self.step_text.insertHtml(formatted_message)
+        self.step_text.ensureCursorVisible()
 
 # 数据展示组件
 class PlotWidget(QWidget):
@@ -192,20 +187,10 @@ class PlotWidget(QWidget):
     
     def __init__(self, parent=None):
         super().__init__(parent)
+        self._updating = False  # 防止循环更新
         self.initUI()
         self.setup_plot()
         self.setup_interactions()
-
-        # 数据相关
-        self.data = []
-        self.selected_indices = []
-        self.hover_index = -1
-        
-        # 交互状态
-        self.is_selecting = False
-        self.is_panning = False
-        self.selection_start = None
-        self.pan_start = None
         
     def initUI(self):
         layout = QVBoxLayout(self)
@@ -216,120 +201,190 @@ class PlotWidget(QWidget):
         self.canvas = FigureCanvas(self.figure)
         layout.addWidget(self.canvas)
         
-    def setup_plot(self):
+        # 创建绘图区
         self.ax = self.figure.add_subplot(111)
         self.ax.grid(True, linestyle='--', alpha=0.7)
+        
+        # 设置标签
+        self.ax.set_xlabel('时间点')
+        self.ax.set_ylabel('数值')
+        
+    def setup_plot(self):
+        # 初始化所有图形元素为None
+        self.data = []
+        self.x_data = []
         self.line = None
         self.scatter = None
+        self.peak_scatter = None  # 确保所有图形元素属性初始化
         self.selection_rect = None
         self.hover_annotation = None
+        
+        # 初始化视图状态
+        self.current_xlim = None
+        self.current_ylim = None
+        self.show_points = True
+        self.grid_on = True
+        
+        # 初始化交互状态
+        self.selected_indices = []
+        self.is_selecting = False
+        self.is_panning = False
+        self.selection_start = None
+        self.hover_index = -1
+        self.pan_start = None
         
     def setup_interactions(self):
         self.canvas.mpl_connect('button_press_event', self.on_mouse_press)
         self.canvas.mpl_connect('button_release_event', self.on_mouse_release)
         self.canvas.mpl_connect('motion_notify_event', self.on_mouse_move)
         self.canvas.mpl_connect('scroll_event', self.on_scroll)
-        self.canvas.mpl_connect('key_press_event', self.on_key_press)
         
     def set_data(self, data):
-        self.data = data
-        self._update_plot()
-
-    def loadSettings(self):
-        """加载图表设置"""
-        if not hasattr(self, 'ax'):
+        if not data or self._updating:
             return
             
-        config = log_manager.load_config()
-        plot_settings = config.get('plot', {})
+        self._updating = True
+        try:
+            self.data = data
+            self.x_data = list(range(len(data)))
+            self._update_plot()
+            self.data_modified.emit(self.data)
+            
+            # 更新全局统计信息
+            stats = data_manager.get_statistics()
+            if hasattr(g.mainWindow, 'global_stats'):
+                g.mainWindow.global_stats.setText("\n".join(f"{k}: {v:.2f}" if isinstance(v, float) else f"{k}: {v}" for k, v in stats.items()))
+        finally:
+            self._updating = False
+
+    def _update_plot(self):
+        self.ax.clear()
+        # 清除所有图形元素的引用
+        self._safe_remove(self.line)
+        self.line = None
+        self._safe_remove(self.scatter)
+        self.scatter = None
+        self._safe_remove(self.peak_scatter)
+        self.peak_scatter = None
+        self._safe_remove(self.selection_rect)
+        self.selection_rect = None
+        self._safe_remove(self.hover_annotation)
+        self.hover_annotation = None
         
-        # 更新网格显示
-        self.ax.grid(plot_settings.get('show_grid', True))
+        # 重新绘制逻辑
+        if not self.data:
+            return
         
-        # 更新点显示和大小
-        if self.scatter is not None:
-            self.scatter.set_visible(plot_settings.get('show_points', True))
-            self.scatter.set_sizes([plot_settings.get('point_size', 3)])
+        # 计算数据范围
+        data_min = min(self.data)
+        data_max = max(self.data)
+        x_min = 0
+        x_max = len(self.data) - 1
         
-        # 更新线宽
-        if self.line is not None:
-            self.line.set_linewidth(plot_settings.get('line_width', 1))
+        # 设置合适的边距
+        y_margin = max((data_max - data_min) * 0.05, 1)
+        x_margin = max(len(self.data) * 0.02, 1)
+        
+        # 计算默认视图范围
+        default_xlim = (x_min - x_margin, x_max + x_margin)
+        default_ylim = (data_min - y_margin, data_max + y_margin)
+        
+        # 保存当前视图范围
+        xlim = self.ax.get_xlim()
+        ylim = self.ax.get_ylim()
+        if xlim == (0, 1) or ylim == (0, 1):
+            xlim = default_xlim
+            ylim = default_ylim
+        
+        # 绘制主线
+        self.line, = self.ax.plot(self.x_data, self.data, '-', lw=1)
+        
+        # 绘制数据点
+        if self.show_points:
+            self.scatter = self.ax.scatter(self.x_data, self.data, s=20)
+        
+        # 绘制选中的点
+        if self.selected_indices:
+            selected_x = [self.x_data[i] for i in self.selected_indices]
+            selected_y = [self.data[i] for i in self.selected_indices]
+            self.ax.scatter(selected_x, selected_y, color='red', s=50, zorder=3)
+        
+        # 设置网格
+        self.ax.grid(self.grid_on, linestyle='--', alpha=0.7)
+        
+        # 设置范围
+        self.ax.set_xlim(xlim)
+        self.ax.set_ylim(ylim)
+        
+        # 设置标签
+        self.ax.set_xlabel('时间点')
+        self.ax.set_ylabel('数值')
         
         # 刷新画布
         self.canvas.draw()
     
-    def saveSettings(self):
-        """保存图表设置"""
-        if not hasattr(self, 'ax'):
-            return
-            
-        config = log_manager.load_config()
-        
-        plot_settings = {
-            'show_grid': bool(self.ax.get_gridlines()),
-            'show_points': bool(self.scatter.get_visible()) if self.scatter is not None else True,
-            'line_width': float(self.line.get_linewidth()) if self.line is not None else 1,
-            'point_size': float(self.scatter.get_sizes()[0]) if self.scatter is not None else 3,
-            'smooth_factor': 0.5  # 默认平滑因子
-        }
-        
-        config['plot'] = plot_settings
-        log_manager.save_config(config)
+    def _safe_remove(self, artist):
+        """安全移除元素，避免NotImplementedError"""
+        if artist is not None:
+            try:
+                artist.remove()
+            except (NotImplementedError, ValueError):
+                pass
 
-    def _update_plot(self):
-        self.ax.clear()
-        if not self.data:
-            return
-        
-        x = list(range(len(self.data)))
-        
-        # 绘制主线
-        self.line, = self.ax.plot(x, self.data, '-', lw=1)
-        
-        # 绘制数据点
-        if self.scatter:
-            self.scatter.remove()
-        self.scatter = self.ax.scatter(x, self.data, s=20)
-        
-        # 绘制网格
-        self.ax.grid(True, linestyle='--', alpha=0.7)
-        
-        # 更新画布
-        self.canvas.draw()
-    
     def on_mouse_press(self, event):
         if event.inaxes != self.ax:
             return
             
-        if event.button == 1:  # 左键
+        if event.button == 1:
+            # 单击左键时清除已有选择
+            self.selected_indices = []
+            if hasattr(g.mainWindow, 'data_view'):
+                g.mainWindow.data_view.highlight_lines([])
+            
             self.is_selecting = True
             self.selection_start = (event.xdata, event.ydata)
-            if self.selection_rect:
-                self.selection_rect.remove()
-                self.selection_rect = None
+            # 安全移除选择框和悬停标注
+            self._safe_remove(self.selection_rect)
+            self.selection_rect = None
+            self._safe_remove(self.hover_annotation)
+            self.hover_annotation = None
+            self.canvas.draw()
         elif event.button == 3:  # 右键
             self.is_panning = True
             self.pan_start = (event.xdata, event.ydata)
-            self.ax.set_cursor(plt.Cursor(self.ax, useblit=True, color='red', linewidth=1))
+            QApplication.setOverrideCursor(Qt.ClosedHandCursor)
         
     def on_mouse_release(self, event):
-        if event.inaxes != self.ax:
-            return
-        
         if event.button == 1 and self.is_selecting:  # 左键释放
             self.is_selecting = False
+            if hasattr(self, 'hover_annotation') and self.hover_annotation in self.ax.texts:
+                self.ax.texts.remove(self.hover_annotation)
             if self.selection_start and event.xdata:
                 x_start = min(self.selection_start[0], event.xdata)
                 x_end = max(self.selection_start[0], event.xdata)
-                selected = [i for i, x in enumerate(range(len(self.data)))
-                          if x_start <= x <= x_end]
-                self.selected_indices = selected
-                self.data_selected.emit(selected)
+                self.selected_indices = [i for i, x in enumerate(self.x_data)
+                                      if x_start <= x <= x_end]
+                self.data_selected.emit(self.selected_indices)
+                
+                # 更新选中区域统计信息
+                if self.selected_indices:
+                    start_idx = min(self.selected_indices)
+                    end_idx = max(self.selected_indices) + 1
+                    stats = data_manager.get_statistics(start_idx, end_idx)
+                    if hasattr(g.mainWindow, 'selection_stats'):
+                        g.mainWindow.selection_stats.setText("\n".join(f"{k}: {v:.2f}" if isinstance(v, float) else f"{k}: {v}" for k, v in stats.items()))
+                    g.mainWindow.data_view.highlight_lines(list(range(start_idx, end_idx)))
         
         elif event.button == 3 and self.is_panning:  # 右键释放
             self.is_panning = False
-            self.ax.set_cursor(None)
+            QApplication.restoreOverrideCursor()
         
+        # 保持当前视图范围
+        current_xlim = self.ax.get_xlim()
+        current_ylim = self.ax.get_ylim()
+        self._update_plot()
+        self.ax.set_xlim(current_xlim)
+        self.ax.set_ylim(current_ylim)
         self.canvas.draw()
     
     def on_mouse_move(self, event):
@@ -337,14 +392,15 @@ class PlotWidget(QWidget):
             return
             
         if self.is_selecting and self.selection_start:
-            # 更新选择框
-            if self.selection_rect:
-                self.selection_rect.remove()
+            # 移除旧的选择框
+            self._safe_remove(self.selection_rect)
+            # 创建新的选择框
             width = event.xdata - self.selection_start[0]
             height = self.ax.get_ylim()[1] - self.ax.get_ylim()[0]
             self.selection_rect = plt.Rectangle(
                 (min(self.selection_start[0], event.xdata), self.ax.get_ylim()[0]),
-                abs(width), height, alpha=0.2, color='yellow')
+                abs(width), height, alpha=0.2, color='yellow'
+            )
             self.ax.add_patch(self.selection_rect)
             
         elif self.is_panning and self.pan_start:
@@ -354,23 +410,27 @@ class PlotWidget(QWidget):
             self.ax.set_xlim(self.ax.get_xlim() + dx)
             self.ax.set_ylim(self.ax.get_ylim() + dy)
         
-        else:
-            # 处理悬停
+        # 处理悬停标注，只在没有选中区域时响应
+        elif not self.is_selecting and not self.is_panning and not self.selected_indices:
+            self._safe_remove(self.hover_annotation)
+            self.hover_annotation = None
             if event.xdata is not None:
                 index = int(round(event.xdata))
                 if 0 <= index < len(self.data):
-                    if index != self.hover_index:
-                        self.hover_index = index
-                        self.hover_point_changed.emit(index)
-                        if self.hover_annotation:
-                            self.hover_annotation.remove()
-                        self.hover_annotation = self.ax.annotate(
-                            f'({index}, {self.data[index]:.2f})',
-                            (index, self.data[index]),
-                            xytext=(10, 10), textcoords='offset points',
-                            bbox=dict(boxstyle='round,pad=0.5', fc='yellow', alpha=0.5),
-                            arrowprops=dict(arrowstyle='->'))
-        
+                    self.hover_index = index
+                    self.hover_point_changed.emit(index)
+                    # 创建新标注
+                    self.hover_annotation = self.ax.annotate(
+                        f'({index}, {self.data[index]})',
+                        (index, self.data[index]),
+                        xytext=(10, 10), textcoords='offset points',
+                        bbox=dict(boxstyle='round,pad=0.5', fc='yellow', alpha=0.5),
+                        arrowprops=dict(arrowstyle='->')
+                    )
+                    # 同步到数据视图
+                    if hasattr(g.mainWindow, 'data_view'):
+                        g.mainWindow.data_view.highlight_hover_point(index)
+                        g.mainWindow.data_view.scroll_to_line(index)
         self.canvas.draw()
 
     def on_scroll(self, event):
@@ -379,11 +439,9 @@ class PlotWidget(QWidget):
             
         # 获取当前视图范围
         cur_xlim = self.ax.get_xlim()
-        #cur_ylim = self.ax.get_ylim()
         
         # 计算缩放中心（鼠标位置）
         x_data = event.xdata
-        #y_data = event.ydata
         
         # 设置缩放因子
         base_scale = 1.1
@@ -394,34 +452,138 @@ class PlotWidget(QWidget):
         
         # 计算新的视图范围
         new_width = (cur_xlim[1] - cur_xlim[0]) * scale_factor
-        #new_height = (cur_ylim[1] - cur_ylim[0]) * scale_factor
         
         # 设置新的视图范围（保持鼠标位置不变）
         rel_x = (x_data - cur_xlim[0]) / (cur_xlim[1] - cur_xlim[0])
-        #rel_y = (y_data - cur_ylim[0]) / (cur_ylim[1] - cur_ylim[0])
         
         self.ax.set_xlim([x_data - rel_x * new_width,
                          x_data + (1-rel_x) * new_width])
-        #self.ax.set_ylim([y_data - rel_y * new_height,
-        #                 y_data + (1-rel_y) * new_height])
         
         self.canvas.draw()
     
-    def on_key_press(self, event):
-        if event.key == 'g':
-            self.ax.grid(not self.ax.get_gridlines())
-            self.canvas.draw()
-        elif event.key == 'p':
-            self.scatter.set_visible(not self.scatter.get_visible())
-            self.canvas.draw()
-    
     def toggle_grid(self):
-        self.ax.grid(not self.ax.get_gridlines())
-        self.canvas.draw()
+        self.grid_on = not self.grid_on
+        self._update_plot()
     
     def toggle_points(self):
-        self.scatter.set_visible(not self.scatter.get_visible())
+        self.show_points = not self.show_points
+        self._update_plot()
+
+    def loadSettings(self):
+        """加载图表设置"""
+        if not hasattr(self, 'ax'):
+            return
+            
+        config = log_manager.load_config()
+        plot_settings = config.get('plot', {})
+        
+        self.grid_on = plot_settings.get('show_grid', True)
+        self.show_points = plot_settings.get('show_points', True)
+        
+        if self.line is not None:
+            self.line.set_linewidth(plot_settings.get('line_width', 1))
+        
+        self._update_plot()
+    
+    def saveSettings(self):
+        """保存图表设置"""
+        if not hasattr(self, 'ax'):
+            return
+            
+        config = log_manager.load_config()
+        
+        plot_settings = {
+            'show_grid': self.grid_on,
+            'show_points': self.show_points,
+            'line_width': float(self.line.get_linewidth()) if self.line is not None else 1,
+            'point_size': 20,
+        }
+        
+        config['plot'] = plot_settings
+        log_manager.save_config(config)
+
+    def analyze_peaks(self):
+        """波峰波谷分析"""
+        if not self.data:
+            QMessageBox.warning(self, "警告", "没有数据可供分析")
+            return
+            
+        peaks, valleys = data_manager.find_peaks()
+        
+        # 清除之前的标记
+        if hasattr(self, 'peak_scatter'):
+            if self.peak_scatter in self.ax.collections:
+                self.ax.collections.remove(self.peak_scatter)
+        if hasattr(self, 'valley_scatter'):
+            if self.valley_scatter in self.ax.collections:
+                self.ax.collections.remove(self.valley_scatter)
+        
+        # 标记波峰
+        peak_x = [self.x_data[i] for i in peaks]
+        peak_y = [self.data[i] for i in peaks]
+        self.peak_scatter = self.ax.scatter(peak_x, peak_y, color='red', 
+                                          s=100, label='波峰', zorder=5)
+        
+        # 标记波谷
+        valley_x = [self.x_data[i] for i in valleys]
+        valley_y = [self.data[i] for i in valleys]
+        self.valley_scatter = self.ax.scatter(valley_x, valley_y, color='blue',
+                                            s=100, label='波谷', zorder=5)
+        
+        self.ax.legend()
         self.canvas.draw()
+        
+        # 显示统计信息
+        msg = f"找到 {len(peaks)} 个波峰，{len(valleys)} 个波谷"
+        QMessageBox.information(self, "分析结果", msg)
+    
+    def find_patterns(self):
+        """相似模式查找"""
+        if not self.data:
+            QMessageBox.warning(self, "警告", "没有数据可供分析")
+            return
+            
+        # 获取查找参数
+        threshold, ok = QInputDialog.getDouble(
+            self, "设置参数", "请输入相似度阈值 (0-1):",
+            0.8, 0.1, 1.0, 2)
+            
+        if not ok:
+            return
+            
+        # 使用选中区域的长度作为模式长度
+        if not self.selected_indices:
+            QMessageBox.warning(self, "警告", "请先选择一段数据作为模式")
+            return
+            
+        pattern_length = len(self.selected_indices)
+            
+        # 执行查找
+        patterns = data_manager.find_patterns(pattern_length, threshold)
+        
+        if not patterns:
+            QMessageBox.information(self, "查找结果", "未找到相似模式")
+            return
+            
+        # 高亮显示所有相似模式
+        colors = ['r', 'g', 'b', 'c', 'm', 'y']  # 循环使用的颜色
+        for i, (start1, start2) in enumerate(patterns):
+            end1 = start1 + pattern_length
+            end2 = start2 + pattern_length
+            
+            x1 = list(range(start1, end1))
+            x2 = list(range(start2, end2))
+            y1 = self.data[start1:end1]
+            y2 = self.data[start2:end2]
+            
+            color = colors[i % len(colors)]
+            self.ax.plot(x1, y1, f'{color}-', linewidth=2, alpha=0.5)
+            self.ax.plot(x2, y2, f'{color}-', linewidth=2, alpha=0.5)
+        
+        self.canvas.draw()        
+        # 显示结果
+        msg = f"找到 {len(patterns)} 组相似模式\n已在图表中全部标记"
+        QMessageBox.information(self, "查找结果", msg)
 
 class StatisticsWidget(QWidget):
     def __init__(self, parent=None):
@@ -486,7 +648,6 @@ class DataViewWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.initUI()
-        self.setup_actions()
     
     def initUI(self):
         layout = QVBoxLayout(self)
@@ -496,132 +657,157 @@ class DataViewWidget(QWidget):
         self.tab_widget = QTabWidget()
         
         # 数值数据页
+        numeric_widget = QWidget()
+        numeric_layout = QVBoxLayout(numeric_widget)
         self.numeric_editor = QPlainTextEdit()
         self.numeric_editor.setFont(QFont('Consolas', 9))
         self.numeric_editor.setLineWrapMode(QPlainTextEdit.NoWrap)
-        self.numeric_editor.textChanged.connect(self.on_text_changed)
-        self.tab_widget.addTab(self.numeric_editor, "数值数据")
+        self.numeric_editor.setReadOnly(True)  # 设为只读
+        numeric_layout.addWidget(self.numeric_editor)
+        self.tab_widget.addTab(numeric_widget, "数值数据")
         
         # 干员/tag数据页
+        info_widget = QWidget()
+        info_layout = QVBoxLayout(info_widget)
         self.info_editor = QPlainTextEdit()
         self.info_editor.setFont(QFont('Microsoft YaHei', 9))
-        self.info_editor.setReadOnly(True)
-        self.tab_widget.addTab(self.info_editor, "干员/Tag信息")
+        info_layout.addWidget(self.info_editor)
+        
+        # 添加保存按钮
+        self.save_button = QPushButton("应用修改")
+        self.save_button.clicked.connect(self.save_changes)
+        info_layout.addWidget(self.save_button)
+        
+        self.tab_widget.addTab(info_widget, "干员/Tag信息")
         
         layout.addWidget(self.tab_widget)
-    
-    def setup_actions(self):
-        pass  # 移除所有动作，因为已经移到图表操作区
-    
-    def set_data(self, data: list, info: str = None):
+
+        # 保存当前高亮的行
+        self.current_highlights = []
+        self.editor = self.numeric_editor
+
+        # 连接标签页切换信号
+        self.tab_widget.currentChanged.connect(self.on_tab_changed)
+        
+        # 连接文本编辑信号
+        self.info_editor.textChanged.connect(self.on_info_text_changed)
+
+    def highlight_lines(self, line_numbers):
+        """高亮显示指定行"""
+        self.current_highlights = line_numbers
+        
+        # 清除现有选择
+        extra_selections = []
+        
+        # 为每一行创建新的选择
+        for line_number in line_numbers:
+            selection = QTextEdit.ExtraSelection()
+            
+            # 设置格式
+            format = QTextCharFormat()
+            format.setBackground(QColor(255, 255, 0, 100))
+            format.setForeground(QColor(0, 0, 0))
+            selection.format = format
+            
+            # 设置光标位置
+            cursor = self.editor.textCursor()
+            cursor.movePosition(QTextCursor.Start)
+            for _ in range(line_number):
+                cursor.movePosition(QTextCursor.NextBlock)
+            cursor.select(QTextCursor.BlockUnderCursor)
+            selection.cursor = cursor
+            
+            extra_selections.append(selection)
+        
+        self.editor.setExtraSelections(extra_selections)
+        
+        # 确保第一个选中的行可见
+        if line_numbers:
+            self.scroll_to_line(line_numbers[0])
+            
+    def highlight_hover_point(self, point_index):
+        """高亮显示悬停点"""
+        if point_index >= 0:
+            self.highlight_lines([point_index])
+        
+    def scroll_to_line(self, line):
+        """滚动到指定行并使其居中显示"""
+        cursor = self.editor.textCursor()
+        cursor.movePosition(QTextCursor.Start)
+        cursor.movePosition(QTextCursor.Down, QTextCursor.MoveAnchor, line)
+        self.editor.setTextCursor(cursor)
+        self.editor.centerCursor() 
+
+    def set_data(self, numeric_data = None, info_data = None):
+        """设置数据"""
         # 设置数值数据
-        text = "\n".join(str(x) for x in data)
-        self.numeric_editor.setPlainText(text)
+        if isinstance(numeric_data, list):
+            text = "\n".join(str(x) for x in numeric_data)
+            self.numeric_editor.setPlainText(text)
+        elif isinstance(numeric_data, str):
+            self.numeric_editor.setPlainText(numeric_data)
+        elif numeric_data is False:
+            self.numeric_editor.clear()
+        elif numeric_data is not None:
+            raise RuntimeError("未定义行为")
         
         # 设置信息数据
-        if info:
-            self.info_editor.setPlainText(info)
+        if isinstance(numeric_data, list):
+            text = "\n".join(str(x) for x in info_data)
+            self.info_editor.setPlainText(text)
+        elif isinstance(numeric_data, str):
+            self.info_editor.setPlainText(info_data)
+        elif numeric_data is False:
+            self.info_editor.clear()
+        elif numeric_data is not None:
+            raise RuntimeError("未定义行为")
     
     def get_data(self) -> list:
+        """获取数值数据"""
         try:
             text = self.numeric_editor.toPlainText()
-            return [float(x) for x in text.split('\n') if x.strip()]
+            return [int(x) for x in text.split('\n') if x.strip()]
         except:
             return []
     
-    @Slot()
-    def on_text_changed(self):
-        data = self.get_data()
-        self.data_changed.emit(data)
+    def get_info_data(self) -> list:
+        """获取干员/Tag信息数据"""
+        return [x for x in self.info_editor.toPlainText().split('\n') if x.strip()]
     
-    @Slot()
-    def find_peaks(self):
-        data = self.get_data()
-        if not data:
-            return
-            
-        threshold, ok = QInputDialog.getDouble(
-            self, "波峰分析", "请输入阈值（0-1之间）：",
-            value=0.5, min=0.0, max=1.0, decimals=2)
-            
-        if ok:
-            # 使用scipy的find_peaks函数
-            from scipy.signal import find_peaks
-            peaks, _ = find_peaks(data, height=max(data)*threshold)
-            valleys, _ = find_peaks([-x for x in data], height=max(data)*threshold)
-            
-            # 在info_editor中显示结果
-            result = "波峰位置：\n"
-            for i, peak in enumerate(peaks):
-                result += f"{peak}: {data[peak]:.2f}\n"
-            
-            result += "\n波谷位置：\n"
-            for i, valley in enumerate(valleys):
-                result += f"{valley}: {data[valley]:.2f}\n"
-                
-            self.info_editor.setPlainText(result)
+    def on_tab_changed(self, index):
+        """标签页切换处理"""
+        # 如果切换到数值数据页，禁用保存按钮
+        self.save_button.setEnabled(index == 1)
+        if index == 0:
+            self.editor = self.numeric_editor
+        elif index == 1:
+            self.editor = self.info_editor
     
-    @Slot()
-    def find_patterns(self):
-        data = self.get_data()
-        if not data:
-            return
+    def on_info_text_changed(self):
+        """信息文本改变处理"""
+        # 启用保存按钮
+        self.save_button.setEnabled(True)
+    
+    def save_changes(self):
+        """保存修改"""
+        try:
+            # 获取当前编辑的数据
+            info_data = self.get_info_data()
+            log_manager.debug(f"准备应用数据修改，数据条数：{len(info_data)}")
             
-        # 获取选中的数据作为模式
-        if not hasattr(self, 'selected_indices') or not self.selected_indices:
-            QMessageBox.warning(self, "错误", "请先在图表中选择一段数据作为模式！")
-            return
+            # 通知主窗口保存更改
+            if hasattr(g.mainWindow, 'on_user_changed_data'):
+                g.mainWindow.on_user_changed_data(info_data)
+                log_manager.info("数据修改已应用")
+            else:
+                log_manager.error("找不到保存数据的方法")
             
-        threshold, ok = QInputDialog.getDouble(
-            self, "模式查找", "请输入相似度阈值（0-1之间）：",
-            value=0.8, min=0.0, max=1.0, decimals=2)
+            # 禁用保存按钮
+            self.save_button.setEnabled(False)
             
-        if ok:
-            pattern = [data[i] for i in self.selected_indices]
-            pattern_len = len(pattern)
-            
-            # 计算相似度（使用相关系数）
-            similar_positions = []
-            for i in range(len(data) - pattern_len + 1):
-                segment = data[i:i+pattern_len]
-                correlation = np.corrcoef(pattern, segment)[0, 1]
-                if correlation > threshold:
-                    similar_positions.append((i, correlation))
-            
-            # 在info_editor中显示结果
-            result = "相似模式位置：\n"
-            for pos, corr in similar_positions:
-                result += f"位置 {pos}: 相似度 {corr:.2f}\n"
-                
-            self.info_editor.setPlainText(result)
-
-    def plot_data(self):
-        """绘制数据"""
-        if not hasattr(self, 'canvas'):
-            return
-        
-        self.figure.clear()
-        ax = self.figure.add_subplot(111)
-        
-        # 设置更小的边距
-        self.figure.subplots_adjust(left=0.05, right=0.98, top=0.95, bottom=0.05)
-        
-        # 绘制数据
-        data = self.get_data()
-        if data:
-            ax.plot(data, '-o', markersize=3)
-            
-            # 如果有选中的点，高亮显示
-            if hasattr(self, 'selected_indices') and self.selected_indices:
-                selected_x = self.selected_indices
-                selected_y = [data[i] for i in self.selected_indices]
-                ax.plot(selected_x, selected_y, 'ro', markersize=5)
-        
-        # 设置网格
-        ax.grid(True, linestyle='--', alpha=0.7)
-        
-        # 刷新画布
-        self.canvas.draw()
+        except Exception as e:
+            log_manager.error(f"保存失败：{str(e)}")
+            QMessageBox.warning(self, "错误", f"保存失败：{str(e)}")
 
 # 控制组件
 class SettingsWidget(QWidget):
@@ -821,9 +1007,9 @@ class SettingsWidget(QWidget):
         
         # 保存配置
         if log_manager.save_config(config):
-            self.parent().parent().parent().statusBar().showMessage("设置已保存", 3000)
+            g.mainWindow.statusBar().showMessage("设置已保存", 3000)
         else:
-            self.parent().parent().parent().statusBar().showMessage("设置保存失败", 3000)
+            g.mainWindow.statusBar().showMessage("设置保存失败", 3000)
     
     def on_log_settings_changed(self, settings: dict):
         """处理日志设置变更"""
@@ -879,19 +1065,9 @@ class SettingsWidget(QWidget):
 class ControlWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.data_manager = DataManager()
-        self.game_manager = GameManager()
-        
-        # 连接信号
-        self.game_manager.device_connected.connect(self.on_device_connection_changed)
-        self.game_manager.operation_started.connect(self.on_operation_started)
-        self.game_manager.operation_stopped.connect(self.on_operation_stopped)
-        self.game_manager.operation_paused.connect(self.on_operation_paused)
-        self.game_manager.operation_resumed.connect(self.on_operation_resumed)
-        self.game_manager.log_message.connect(self.on_log_message)
-        
+        self.game_manager = None
         self.initUI()
-    
+
     def initUI(self):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(5, 5, 5, 5)
@@ -902,34 +1078,79 @@ class ControlWidget(QWidget):
         device_group.setFrameStyle(QFrame.Panel | QFrame.Raised)
         device_layout = QVBoxLayout(device_group)
         
+        # 小面板按钮
+        self.btn_mini_panel = QPushButton("打开小面板")
+        self.btn_mini_panel.clicked.connect(self.show_mini_panel)
+        self.btn_mini_panel.setEnabled(False)
+        device_layout.addWidget(self.btn_mini_panel)
+        
         # 连接按钮
-        self.connect_btn = QPushButton("连接设备")
-        self.connect_btn.clicked.connect(self.on_connect_clicked)
-        device_layout.addWidget(self.connect_btn)
+        self.btn_connect = QPushButton("连接设备")
+        self.btn_connect.clicked.connect(self.on_connect_clicked)
+        device_layout.addWidget(self.btn_connect)
+        
+        # 记录画面按钮
+        self.btn_record = QPushButton("记录画面")
+        font = self.btn_record.font()
+        font.setPointSize(9)
+        self.btn_record.setFont(font)
+        self.btn_record.clicked.connect(self.do_record_screen)
+        self.btn_record.setEnabled(False)
+        device_layout.addWidget(self.btn_record)
         
         layout.addWidget(device_group)
         
-        # 单次操作组（上）
-        single_group = QFrame()
-        single_group.setFrameStyle(QFrame.Panel | QFrame.Raised)
-        single_layout = QVBoxLayout(single_group)
+        # 模式设置区域
+        mode_group = QFrame()
+        mode_group.setFrameStyle(QFrame.Panel | QFrame.Raised)
+        mode_layout = QVBoxLayout(mode_group)
+        mode_layout.addWidget(QLabel("<b>模式设置</b>"))
         
-        single_layout.addWidget(QLabel("<b>单次操作</b>"))
+        # 公招模式选择
+        recruit_layout = QGridLayout()
+        recruit_layout.addWidget(QLabel("公招模式:"), 0, 0)
+        self.recruit_mode = QComboBox()
+        self.recruit_mode.addItems([mode.value for mode in RecruitMode])
+        self.recruit_mode.setEnabled(False)
+        self.recruit_mode.currentTextChanged.connect(self.on_recruit_mode_changed)
+        recruit_layout.addWidget(self.recruit_mode, 0, 1)
         
-        self.btn_gacha = QPushButton("抽卡一次")
-        self.btn_recruit = QPushButton("公招一次")
-        self.btn_record = QPushButton("记录画面")
+        # 公招栏位选择
+        recruit_layout.addWidget(QLabel("选择栏位:"), 1, 0)
+        self.recruit_slot_select = QSpinBox()
+        self.recruit_slot_select.setRange(1, 4)
+        self.recruit_slot_select.setEnabled(False)
+        self.recruit_slot_select.valueChanged.connect(self.on_recruit_slot_changed)
+        recruit_layout.addWidget(self.recruit_slot_select, 1, 1)
+        mode_layout.addLayout(recruit_layout)
         
-        # 初始状态禁用，需要连接设备后启用
-        self.btn_gacha.setEnabled(False)
-        self.btn_recruit.setEnabled(False)
-        self.btn_record.setEnabled(False)
+        # 抽卡模式选择
+        gacha_layout = QGridLayout()
+        gacha_layout.addWidget(QLabel("抽卡模式:"), 0, 0)
+        self.gacha_mode = QComboBox()
+        self.gacha_mode.addItems([mode.value for mode in GachaMode])
+        self.gacha_mode.setEnabled(False)
+        self.gacha_mode.currentTextChanged.connect(self.on_gacha_mode_changed)
+        gacha_layout.addWidget(self.gacha_mode, 0, 1)
+
+        # 卡池选择
+        gacha_layout.addWidget(QLabel("选择卡池:"), 1, 0)
+        self.gacha_pool_select = QSpinBox()
+        self.gacha_pool_select.setRange(1, 10)
+        self.gacha_pool_select.setEnabled(False)
+        self.gacha_pool_select.valueChanged.connect(self.on_gacha_pool_changed)
+        gacha_layout.addWidget(self.gacha_pool_select, 1, 1)
+        # 源石消耗选项
+        self.use_originite = QCheckBox("使用源石")
+        self.use_originite.setEnabled(False)
+        self.use_originite.stateChanged.connect(self.on_use_originite_changed)
+        gacha_layout.addWidget(self.use_originite, 1, 2, 1, 2)
         
-        single_layout.addWidget(self.btn_gacha)
-        single_layout.addWidget(self.btn_recruit)
-        single_layout.addWidget(self.btn_record)
+        mode_layout.addLayout(gacha_layout)
         
-        # 循环操作组（下）
+        layout.addWidget(mode_group)
+        
+        # 循环操作组
         loop_group = QFrame()
         loop_group.setFrameStyle(QFrame.Panel | QFrame.Raised)
         loop_layout = QVBoxLayout(loop_group)
@@ -940,21 +1161,34 @@ class ControlWidget(QWidget):
         mode_layout = QHBoxLayout()
         mode_layout.addWidget(QLabel("模式:"))
         self.mode_combo = QComboBox()
-        self.mode_combo.addItems(["干员寻访", "公开招募", "自动规划"])
+        self.mode_combo.addItems([mode.value for mode in OperationMode])
         self.mode_combo.currentIndexChanged.connect(self.on_mode_changed)
-        self.mode_combo.setEnabled(False)  # 初始禁用
+        self.mode_combo.setEnabled(False)
         mode_layout.addWidget(self.mode_combo)
         loop_layout.addLayout(mode_layout)
         
-        # 参数设置
-        param_layout = QHBoxLayout()
-        self.param_label = QLabel("选择卡池:")
-        param_layout.addWidget(self.param_label)
-        self.param_spin = QSpinBox()
-        self.param_spin.setRange(1, 10)
-        self.param_spin.setEnabled(False)  # 初始禁用
-        param_layout.addWidget(self.param_spin)
-        loop_layout.addLayout(param_layout)
+        # 停止条件设置
+        stop_layout = QHBoxLayout()
+        self.stop_condition = QCheckBox()
+        self.stop_condition.setEnabled(False)
+        self.stop_condition.stateChanged.connect(self.on_stop_condition_changed)
+        stop_layout.addWidget(self.stop_condition)
+        self.stop_condition_label = QLabel("在遇见六星干员时停止")  # 默认显示
+        stop_layout.addWidget(self.stop_condition_label)
+        stop_layout.addStretch()
+        loop_layout.addLayout(stop_layout)
+        
+        # 循环次数设置
+        count_layout = QHBoxLayout()
+        count_layout.addWidget(QLabel("执行次数:"))
+        self.count_input = QSpinBox()
+        self.count_input.setRange(0, 999999)
+        self.count_input.setValue(0)
+        self.count_input.setEnabled(False)
+        count_layout.addWidget(self.count_input)
+        count_layout.addWidget(QLabel("(0表示无限循环)"))
+        count_layout.addStretch()
+        loop_layout.addLayout(count_layout)
         
         # 启停控制
         control_layout = QHBoxLayout()
@@ -966,7 +1200,7 @@ class ControlWidget(QWidget):
         self.btn_start_pause.setFont(font)
         self.btn_start_pause.setMinimumHeight(50)
         self.btn_start_pause.clicked.connect(self.toggle_operation)
-        self.btn_start_pause.setEnabled(False)  # 初始禁用
+        self.btn_start_pause.setEnabled(False)
         control_layout.addWidget(self.btn_start_pause)
         
         # 继续按钮（初始隐藏）
@@ -986,83 +1220,78 @@ class ControlWidget(QWidget):
         control_layout.addWidget(self.btn_reset)
         
         loop_layout.addLayout(control_layout)
-        
-        # 连接按钮事件
-        self.btn_gacha.clicked.connect(self.game_manager.do_single_gacha)
-        self.btn_recruit.clicked.connect(self.game_manager.do_single_recruit)
-        self.btn_record.clicked.connect(self.game_manager.do_record_screen)
-        
-        # 添加到主布局
-        layout.addWidget(single_group)
-        layout.addWidget(loop_group)
+        layout.addWidget(loop_group)        
         layout.addStretch()
     
+    def on_recruit_mode_changed(self, mode_text: str):
+        """公招模式改变处理"""
+        mode = RecruitMode(mode_text)
+        self.game_manager.set_recruit_mode(mode)
+    
+    def on_gacha_mode_changed(self, mode_text: str):
+        """抽卡模式改变处理"""
+        mode = GachaMode(mode_text)
+        self.game_manager.set_gacha_mode(mode)
+    
+    def on_use_originite_changed(self, state):
+        """源石消耗选项改变处理"""
+        self.game_manager.set_use_originite(state)
+    
+    def on_recruit_slot_changed(self, value: int):
+        """公招栏位改变处理"""
+        self.game_manager.set_recruit_slot(value)
+    
+    def on_gacha_pool_changed(self, value: int):
+        """卡池改变处理"""
+        self.game_manager.set_gacha_pool(value)
+    
     def on_mode_changed(self, index):
-        # 更新参数提示
+        """模式切换处理"""
+        # 启用停止条件设置
+        self.stop_condition.setEnabled(True)
+        
+        # 根据模式调整UI状态
         if index == 0:  # 干员寻访
-            self.param_label.setText("选择卡池:")
+            self.stop_condition_label.setText("在遇见六星干员时停止")
         elif index == 1:  # 公开招募
-            self.param_label.setText("选择栏位:")
+            self.stop_condition_label.setText("在遇见罕见tag时停止")
         else:  # 自动规划
-            self.param_label.setText("目标6星:")
+            self.stop_condition_label.setText("在遇见六星干员/罕见tag时停止")
     
-    def on_connect_clicked(self):
-        adb_path = self.parent().parent().parent().settings_widget.adb_path.text().strip()
-        if not adb_path:
-            QMessageBox.warning(self, "警告", "请先设置ADB路径")
-            return
-            
-        # 初始化Core并连接设备
-        self.game_manager.connect_device(adb_path)
-    
-    def on_device_connection_changed(self, connected: bool):
-        """设备连接状态改变时的处理"""
-        self.enable_controls(connected)
-        if connected:
-            self.connect_btn.setText("已连接")
-            self.connect_btn.setEnabled(False)
-        else:
-            self.connect_btn.setText("连接设备")
-            self.connect_btn.setEnabled(True)
+    def on_stop_condition_changed(self, state):
+        """停止条件改变时的处理"""
+        self.count_input.setEnabled(not state)
     
     def enable_controls(self, enabled: bool):
         """启用或禁用所有控件"""
-        self.btn_gacha.setEnabled(enabled)
-        self.btn_recruit.setEnabled(enabled)
+        # 记录按钮
         self.btn_record.setEnabled(enabled)
+        self.btn_mini_panel.setEnabled(enabled and not self.btn_start_pause.text() == "暂停")
+        
+        # 循环操作控件
         self.mode_combo.setEnabled(enabled)
-        self.param_spin.setEnabled(enabled)
-        self.btn_start_pause.setEnabled(enabled)
+        self.stop_condition.setEnabled(enabled)
+        self.count_input.setEnabled(enabled and not self.stop_condition.isChecked())
+        self.btn_start_pause.setEnabled(enabled and not hasattr(self, 'mini_panel'))
+        
+        # 模式设置控件
+        self.recruit_mode.setEnabled(enabled)
+        self.gacha_mode.setEnabled(enabled)
+        self.recruit_slot_select.setEnabled(enabled)
+        self.gacha_pool_select.setEnabled(enabled)
+        self.use_originite.setEnabled(enabled)
     
-    def on_operation_started(self):
-        """操作开始时的处理"""
-        self.btn_start_pause.setText("暂停")
-        self.btn_start_pause.setStyleSheet("background-color: #ff9800;")  # 橙色
-        self.btn_resume.hide()
-        self.btn_reset.hide()
-    
-    def on_operation_stopped(self):
-        """操作停止时的处理"""
-        self.btn_start_pause.setText("开始")
-        self.btn_start_pause.setStyleSheet("")
-        self.btn_resume.hide()
-        self.btn_reset.hide()
-    
-    def on_operation_paused(self):
-        """操作暂停时的处理"""
-        self.btn_start_pause.hide()
-        self.btn_resume.show()
-        self.btn_reset.show()
-        self.btn_resume.setStyleSheet("background-color: #4caf50;")  # 绿色
-        self.btn_reset.setStyleSheet("background-color: #f44336;")   # 红色
-    
-    def on_operation_resumed(self):
-        """操作恢复时的处理"""
-        self.btn_resume.hide()
-        self.btn_reset.hide()
-        self.btn_start_pause.show()
-        self.btn_start_pause.setText("暂停")
-        self.btn_start_pause.setStyleSheet("background-color: #ff9800;")  # 橙色
+    def disable_settings(self):
+        """禁用所有设置项"""
+        self.recruit_mode.setEnabled(False)
+        self.gacha_mode.setEnabled(False)
+        self.recruit_slot_select.setEnabled(False)
+        self.gacha_pool_select.setEnabled(False)
+        self.use_originite.setEnabled(False)
+        self.mode_combo.setEnabled(False)
+        self.stop_condition.setEnabled(False)
+        self.count_input.setEnabled(False)
+        self.btn_record.setEnabled(False)
     
     def toggle_operation(self):
         """切换操作状态"""
@@ -1075,8 +1304,11 @@ class ControlWidget(QWidget):
                 
             if reply == QMessageBox.Yes:
                 mode = self.mode_combo.currentText()
-                param = self.param_spin.value()
-                self.game_manager.start_operation(mode, param)
+                if self.stop_condition.isChecked():
+                    param = -1  # 遇到特定条件时停止
+                else:
+                    param = self.count_input.value()  # 使用用户设置的循环次数
+                self.game_manager.start_operation(OperationMode(mode), param)
         else:  # 暂停
             self.game_manager.pause_operation()
     
@@ -1095,39 +1327,258 @@ class ControlWidget(QWidget):
         if reply == QMessageBox.Yes:
             self.game_manager.reset_operation()
     
-    def on_log_message(self, message: str):
-        """处理日志消息"""
-        # 如果父窗口有console，则发送日志
-        if hasattr(self.parent().parent().parent(), "console"):
-            self.parent().parent().parent().console.append_message(message)
+    def on_connect_clicked(self):
+        """连接设备"""
+        adb_path = g.mainWindow.settings_widget.adb_path.text().strip()
+        if not adb_path:
+            QMessageBox.warning(self, "警告", "请先设置ADB路径")
+            return
+            
+        # 初始化游戏管理器
+        self.game_manager = g.mainWindow.game_manager
+        
+        # 连接游戏管理器信号
+        self.game_manager.device_connected.connect(self.on_device_connection_changed)
+        self.game_manager.operation_started.connect(self.on_operation_started)
+        self.game_manager.operation_stopped.connect(self.on_operation_stopped)
+        self.game_manager.operation_paused.connect(self.on_operation_paused)
+        self.game_manager.operation_resumed.connect(self.on_operation_resumed)
+        
+        # 连接设备
+        self.game_manager.connect_device(adb_path)
+    
+    def do_record_screen(self):
+        """记录画面"""
+        if self.game_manager:
+            self.game_manager.taskAdd_recordScreen()
+    
+    def on_device_connection_changed(self, connected: bool):
+        """设备连接状态改变时的处理"""
+        # 启用/禁用所有控件
+        self.enable_controls(connected)
+        
+        # 更新连接按钮状态
+        if connected:
+            self.btn_connect.setText("已连接")
+            self.btn_connect.setEnabled(False)
+        else:
+            self.btn_connect.setText("连接设备")
+            self.btn_connect.setEnabled(True)
+    
+    def on_operation_started(self):
+        """操作开始时的处理"""
+        self.btn_start_pause.setText("暂停")
+        self.btn_start_pause.setStyleSheet("background-color: #ff9800;")  # 橙色
+        self.btn_resume.hide()
+        self.btn_reset.hide()
+        self.disable_settings()  # 禁用设置
+        self.btn_mini_panel.setEnabled(False)  # 禁用小面板按钮
+    
+    def on_operation_stopped(self):
+        """操作停止时的处理"""
+        self.btn_start_pause.setText("开始")
+        self.btn_start_pause.setStyleSheet("")
+        self.btn_start_pause.show()
+        self.btn_resume.hide()
+        self.btn_reset.hide()
+        self.enable_settings()  # 启用设置
+    
+    def on_operation_paused(self):
+        """操作暂停时的处理"""
+        self.btn_start_pause.hide()
+        self.btn_resume.show()
+        self.btn_reset.show()
+        self.btn_resume.setStyleSheet("background-color: #4caf50;")  # 绿色
+        self.btn_reset.setStyleSheet("background-color: #f44336;")   # 红色
+        # 暂停时不改变设置状态
+    
+    def on_operation_resumed(self):
+        """操作恢复时的处理"""
+        self.btn_resume.hide()
+        self.btn_reset.hide()
+        self.btn_start_pause.show()
+        self.btn_start_pause.setText("暂停")
+        self.btn_start_pause.setStyleSheet("background-color: #ff9800;")  # 橙色
+        self.disable_settings()  # 重新禁用设置
+
+    def enable_settings(self):
+        """启用所有设置项"""
+        enabled = self.btn_start_pause.isEnabled()  # 根据当前连接状态决定是否启用
+        self.btn_mini_panel.setEnabled(enabled)
+        self.recruit_mode.setEnabled(enabled)
+        self.gacha_mode.setEnabled(enabled)
+        self.recruit_slot_select.setEnabled(enabled)
+        self.gacha_pool_select.setEnabled(enabled)
+        self.use_originite.setEnabled(enabled)
+        self.mode_combo.setEnabled(enabled)
+        self.stop_condition.setEnabled(enabled)
+        self.count_input.setEnabled(enabled and not self.stop_condition.isChecked())
+        self.btn_record.setEnabled(enabled)
+
+    def show_mini_panel(self):
+        """显示小面板"""
+        if not hasattr(self, 'mini_panel'):
+            self.mini_panel = MiniPanel(self.game_manager, self)
+            self.mini_panel.show()
+            # 禁用循环模式的启动按钮
+            self.btn_start_pause.setEnabled(False)
+        else:
+            self.mini_panel.show()
+            self.mini_panel.raise_()
+
+class MiniPanel(QWidget):
+    def __init__(self, game_manager, control_widget):
+        super().__init__()
+        self.game_manager = game_manager
+        self.control_widget = control_widget
+        self.initUI()
+        self.setWindowFlags(Qt.Window)  # 设置为独立窗口
+
+    def initUI(self):
+        self.setWindowTitle('小面板')
+        layout = QVBoxLayout(self)
+        
+        # 获取GameManager中所有以taskAdd开头的方法
+        task_methods = [method for method in dir(self.game_manager) 
+                       if method.startswith('taskAdd_')]
+        
+        # 创建按钮
+        for method_name in task_methods:
+            # 将方法名转换为中文显示文本
+            display_name = {
+                'taskAdd_tenModeEndUp': '结束操作并记录十连结果',
+                'taskAdd_endUp': '结束操作',
+                'taskAdd_recordScreen': '记录画面',
+                'taskAdd_recruit_enter': '进入公招栏',
+                'taskAdd_recruit_break': '公招终止模式',
+                'taskAdd_recruit_accelerate': '公招加速模式',
+                'taskAdd_gacha_once': '单抽',
+                'taskAdd_gacha_ten': '十连',
+                'taskAdd_gacha_tenWithRecord': '十连并记录'
+            }.get(method_name, method_name)
+            
+            btn = QPushButton(display_name)
+            btn.clicked.connect(lambda checked, m=method_name: self.execute_task(m))
+            layout.addWidget(btn)
+    
+    def execute_task(self, method_name):
+        method = getattr(self.game_manager, method_name)
+        method()
+
+    def closeEvent(self, event):
+        """关闭窗口时启用主界面的开始按钮"""
+        if self.control_widget:
+            self.control_widget.btn_start_pause.setEnabled(True)
+            self.control_widget.enable_settings()
+            delattr(self.control_widget, 'mini_panel')
+        event.accept()
+
+class InputWithImageDialog(QDialog):
+    def __init__(self, title, label, img, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle(title)
+        layout = QVBoxLayout(self)
+        
+        # 图片显示区域
+        img_label = QLabel()
+        h, w = img.shape[:2]
+        """
+        # 限制图片大小
+        max_size = 400
+        if h > max_size or w > max_size:
+            scale = min(max_size/h, max_size/w)
+            h, w = int(h*scale), int(w*scale)
+        """
+        
+        # 转换numpy数组为QImage
+        if len(img.shape) == 3:
+            # 确保数据是C连续的
+            img_c = np.ascontiguousarray(img)
+            height, width, channel = img_c.shape
+            bytes_per_line = 3 * width
+            q_img = QImage(img_c.data, width, height, bytes_per_line, QImage.Format_RGB888)
+        else:
+            # 确保数据是C连续的
+            img_c = np.ascontiguousarray(img)
+            height, width = img_c.shape
+            q_img = QImage(img_c.data, width, height, width, QImage.Format_Grayscale8)
+            
+        pixmap = QPixmap.fromImage(q_img)
+        img_label.setPixmap(pixmap.scaled(w, h, Qt.KeepAspectRatio))
+        layout.addWidget(img_label)
+        
+        # 输入区域
+        layout.addWidget(QLabel(label))
+        self.input_field = QLineEdit()
+        layout.addWidget(self.input_field)
+        
+        # 按钮
+        button_box = QDialogButtonBox(
+            QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+        )
+        button_box.accepted.connect(self.accept)
+        button_box.rejected.connect(self.reject)
+        layout.addWidget(button_box)
+    
+    def get_input(self):
+        return self.input_field.text()
+
+    def set_text(self, text):
+        self.input_field.setText(text)
 
 # 主窗口类
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.data_manager = DataManager()
+        g.mainWindow = self
+
+        self.game_manager = GameManager()
         self.auto_save_timer = QTimer()
         self.auto_save_timer.timeout.connect(self.auto_save)
         
-        # 初始化UI
+        # 设置游戏管理器的父对象
+        self.game_manager.setParent(self)
+        
+        # 连接游戏管理器信号
+        self.game_manager.log_message.connect(self.on_log_message)
+        self.game_manager.step_updated.connect(self.on_step_updated)
+        self.game_manager.data_updated.connect(self.on_data_updated)
+        self.game_manager.macro_step_updated.connect(self.on_macro_step_updated)
+        
+        # 连接日志管理器信号
+        log_manager.log_message.connect(self.on_log_message)
+        
         self.initUI()
-        self.setupMenuBar()
-        self.setupStatusBar()
-        self.setupStepPanel()
-        self.setupConnections()
-        
-        # 加载设置
         self.loadSettings()
+        self.setupMenuBar()
+
+    def setupMenuBar(self):
+        """设置菜单栏"""
+        menubar = self.menuBar()
         
-        # 连接游戏管理器的信号
-        self.game_manager = GameManager()
-        self.game_manager.step_updated.connect(self.update_step)
-        self.game_manager.log_message.connect(self.console.append_message)
+        # 文件菜单
+        file_menu = menubar.addMenu('文件')
         
-        # 连接日志管理器的信号
-        log_manager.log_message.connect(self.console.append_message)
-        log_manager.step_message.connect(self.append_step)
-    
+        # 打开文件动作
+        open_action = QAction('打开', self)
+        open_action.setShortcut('Ctrl+O')
+        open_action.triggered.connect(self.open_file)
+        file_menu.addAction(open_action)
+        
+        # 保存文件动作
+        save_action = QAction('保存', self)
+        save_action.setShortcut('Ctrl+S')
+        save_action.triggered.connect(self.save_file)
+        file_menu.addAction(save_action)
+        
+        file_menu.addSeparator()
+        
+        # 导出PNG动作
+        export_action = QAction('导出PNG', self)
+        export_action.setShortcut('Ctrl+E')
+        export_action.triggered.connect(self.export_png)
+        file_menu.addAction(export_action)
+
     def initUI(self):
         """初始化UI布局"""
         self.setWindowTitle('明日方舟助手')
@@ -1138,13 +1589,21 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(main_widget)
         main_layout = QVBoxLayout(main_widget)
         
+        # 创建垂直分隔器
+        main_splitter = QSplitter(Qt.Vertical)
+        
         # 上部数据展示区
         data_display = QWidget()
         data_layout = QHBoxLayout(data_display)
+        data_layout.setContentsMargins(0, 0, 0, 0)  # 移除边距
+        
+        # 创建水平分隔器
+        data_splitter = QSplitter(Qt.Horizontal)
         
         # 左侧图表区域
         plot_area = QWidget()
         plot_layout = QVBoxLayout(plot_area)
+        plot_layout.setContentsMargins(0, 0, 0, 0)  # 移除边距
         
         # 图表
         self.plot_widget = PlotWidget()
@@ -1184,13 +1643,7 @@ class MainWindow(QMainWindow):
         
         # 左侧设置区
         settings_layout = QVBoxLayout()
-        self.show_grid = QCheckBox("显示网格")
-        self.show_grid.setChecked(True)
-        self.show_points = QCheckBox("显示数据点")
-        self.show_points.setChecked(True)
         self.show_predict = QCheckBox("显示预测结果")
-        settings_layout.addWidget(self.show_grid)
-        settings_layout.addWidget(self.show_points)
         settings_layout.addWidget(self.show_predict)
         
         predict_layout = QVBoxLayout()
@@ -1212,10 +1665,13 @@ class MainWindow(QMainWindow):
         buttons_layout = QVBoxLayout()
         self.btn_peaks = QPushButton("波峰波谷分析")
         self.btn_patterns = QPushButton("相似模式查找")
-        self.btn_save = QPushButton("保存本页数据")
+        self.btn_save = QPushButton("保存右侧数据")
         buttons_layout.addWidget(self.btn_peaks)
         buttons_layout.addWidget(self.btn_patterns)
         buttons_layout.addWidget(self.btn_save)
+        self.btn_peaks.clicked.connect(self.plot_widget.analyze_peaks)
+        self.btn_patterns.clicked.connect(self.plot_widget.find_patterns)
+        self.btn_save.clicked.connect(self.save_current_data)
         buttons_layout.addStretch()
         
         ops_layout.addLayout(settings_layout)
@@ -1226,131 +1682,76 @@ class MainWindow(QMainWindow):
         
         plot_layout.addWidget(stats_ops, 1)
         
-        # 右侧数据视图
-        self.data_view = DataViewWidget()
-        self.data_view.setMinimumWidth(100)  # 设置最小宽度
-        self.data_view.setMaximumWidth(250)  # 设置最大宽度
+        # 将图表区域添加到水平分隔器
+        plot_area_container = QWidget()
+        plot_area_container.setLayout(plot_layout)
+        data_splitter.addWidget(plot_area_container)
         
-        data_layout.addWidget(plot_area, 4)
-        data_layout.addWidget(self.data_view, 1)
+        # 右侧数据视图添加到水平分隔器
+        self.data_view = DataViewWidget()
+        self.data_view.setMinimumWidth(100)
+        data_splitter.addWidget(self.data_view)
+
+        # 设置分隔器的初始比例
+        data_splitter.setStretchFactor(0, 4)  # 图表区域占80%
+        data_splitter.setStretchFactor(1, 1)  # 数据视图占20%
+        
+        data_layout.addWidget(data_splitter)
+        
+        # 将数据展示区添加到垂直分隔器
+        data_display_container = QWidget()
+        data_display_container.setLayout(data_layout)
+        main_splitter.addWidget(data_display_container)
         
         # 底部控制区域
         control_area = QWidget()
         control_layout = QHBoxLayout(control_area)
         control_layout.setContentsMargins(5, 5, 5, 5)
-        control_layout.setSpacing(5)  # 减小组件间距
+        control_layout.setSpacing(5)
         
-        # 设置区
+        # 创建水平分隔器
+        control_splitter = QSplitter(Qt.Horizontal)
+        
+        # 设置区（添加滚动区域）
+        settings_scroll = QScrollArea()
+        settings_scroll.setWidgetResizable(True)
         self.settings_widget = SettingsWidget()
-        self.settings_widget.setMinimumWidth(250)  # 设置最小宽度
+        settings_scroll.setWidget(self.settings_widget)
+        settings_scroll.setMinimumWidth(200)
+        control_splitter.addWidget(settings_scroll)
         
         # 控制台
         self.console = ConsoleWidget()
+        control_splitter.addWidget(self.console)
         
-        # 功能执行区
+        # 功能执行区（添加滚动区域）
+        control_scroll = QScrollArea()
+        control_scroll.setWidgetResizable(True)
         self.control_widget = ControlWidget()
-        self.control_widget.setMinimumWidth(200)  # 设置最小宽度
-        self.control_widget.setMaximumWidth(250)  # 设置最大宽度
+        control_scroll.setWidget(self.control_widget)
+        control_scroll.setMinimumWidth(200)
+        control_splitter.addWidget(control_scroll)
         
-        # 使用伸缩因子控制宽度分配
-        control_layout.addWidget(self.settings_widget, 2)  # 设置区占更多空间
-        control_layout.addWidget(self.console, 3)         # 控制台占中等空间
-        control_layout.addWidget(self.control_widget, 2)  # 功能区占更多空间
+        # 设置分隔器的初始大小比例
+        control_splitter.setStretchFactor(0, 2)  # 设置区占20%
+        control_splitter.setStretchFactor(1, 4)  # 控制台占40%
+        control_splitter.setStretchFactor(2, 4)  # 功能执行区占40%
         
-        main_layout.addWidget(data_display, 7)
-        main_layout.addWidget(control_area, 3)
+        control_layout.addWidget(control_splitter)
+        
+        # 将控制区域添加到主分隔器
+        control_area_container = QWidget()
+        control_area_container.setLayout(control_layout)
+        main_splitter.addWidget(control_area_container)
+        
+        # 设置主分隔器的初始大小比例
+        main_splitter.setStretchFactor(0, 3)  # 数据展示区占30%
+        main_splitter.setStretchFactor(1, 7)  # 控制区域占70%
+        
+        main_layout.addWidget(main_splitter)
         
         # 设置窗口最小尺寸
         self.setMinimumSize(1024, 768)
-    
-    def setupMenuBar(self):
-        """设置菜单栏"""
-        menubar = self.menuBar()
-        
-        # 文件菜单
-        file_menu = menubar.addMenu('文件')
-        
-        open_action = QAction('打开', self)
-        open_action.setShortcut('Ctrl+O')
-        open_action.triggered.connect(self.open_file)
-        file_menu.addAction(open_action)
-        
-        save_action = QAction('保存', self)
-        save_action.setShortcut('Ctrl+S')
-        save_action.triggered.connect(self.save_file)
-        file_menu.addAction(save_action)
-        
-        export_action = QAction('导出PNG', self)
-        export_action.setShortcut('Ctrl+E')
-        export_action.triggered.connect(self.export_png)
-        file_menu.addAction(export_action)
-    
-    def setupStatusBar(self):
-        """设置状态栏"""
-        self.statusBar().showMessage("就绪")
-    
-    def setupStepPanel(self):
-        """设置步骤面板"""
-        self.step_panel = QTextEdit()
-        self.step_panel.setReadOnly(True)
-        self.step_panel.setStyleSheet("""
-            QTextEdit {
-                background-color: #f5f5f5;
-                border: 1px solid #ddd;
-                font-family: Arial;
-                font-size: 12px;
-            }
-        """)
-    
-    def update_step(self, current_step: str, next_step: str = None):
-        """更新步骤信息"""
-        if not hasattr(self, 'step_panel'):
-            return
-        
-        if next_step:
-            text = f"当前步骤: {current_step}\n即将执行: {next_step}"
-        else:
-            text = f"当前步骤: {current_step}"
-        
-        self.step_panel.setPlainText(text)
-    
-    def append_step(self, message: str, is_error: bool = False):
-        """添加步骤信息"""
-        if not hasattr(self, 'step_panel'):
-            return
-        
-        cursor = self.step_panel.textCursor()
-        cursor.movePosition(QTextCursor.End)
-        
-        format = QTextCharFormat()
-        if is_error:
-            format.setForeground(QColor("#f44336"))  # 红色
-        
-        cursor.insertText(f"{message}\n", format)
-        self.step_panel.setTextCursor(cursor)
-        self.step_panel.ensureCursorVisible()
-    
-    def setupConnections(self):
-        """设置信号连接"""
-        # 连接设置变更信号
-        self.settings_widget.settings_changed.connect(self.on_settings_changed)
-        
-        # 连接日志消息信号
-        log_manager.log_message.connect(self.console.append_message)
-    
-    def on_settings_changed(self, settings: dict):
-        """处理设置变更"""
-        # 更新数据文件路径
-        if 'data_file' in settings:
-            self.data_manager.file_path = settings['data_file']
-        
-        # 更新自动保存设置
-        if 'auto_save' in settings and 'auto_save_interval' in settings:
-            if settings['auto_save']:
-                interval = settings['auto_save_interval'] * 60 * 1000  # 转换为毫秒
-                self.auto_save_timer.start(interval)
-            else:
-                self.auto_save_timer.stop()
     
     def loadSettings(self):
         """加载所有设置"""
@@ -1367,7 +1768,7 @@ class MainWindow(QMainWindow):
     def auto_save(self):
         """自动保存数据"""
         try:
-            if self.data_manager.save_data():
+            if data_manager.save_data():
                 log_manager.debug("数据自动保存成功")
             else:
                 log_manager.warning("数据自动保存失败")
@@ -1381,140 +1782,202 @@ class MainWindow(QMainWindow):
             self.auto_save_timer.stop()
             
             # 保存数据
-            if self.data_manager.save_data():
+            if data_manager.save_data():
                 log_manager.info("数据已保存")
             
             # 保存设置
             self.settings_widget.save_settings()
+
+            # 清理adb连接
+            self.game_manager.break_connection()
             
         except Exception as e:
             log_manager.error(f"关闭窗口时发生错误: {str(e)}")
         
         event.accept()
-    
-    @Slot()
-    def undo(self):
-        if self.data_manager.undo():
-            self.plot_widget.set_data(self.data_manager.data)
-            self.data_view.set_data(self.data_manager.data)
-    
-    @Slot()
-    def redo(self):
-        if self.data_manager.redo():
-            self.plot_widget.set_data(self.data_manager.data)
-            self.data_view.set_data(self.data_manager.data)
-    
-    @Slot()
-    def cut(self):
-        if hasattr(self, 'selected_indices') and self.selected_indices:
-            self.copy()
-            self.data_manager.delete_points(self.selected_indices)
-            self.plot_widget.set_data(self.data_manager.data)
-            self.data_view.set_data(self.data_manager.data)
-    
-    @Slot()
-    def copy(self):
-        if hasattr(self, 'selected_indices') and self.selected_indices:
-            data = [self.data_manager.data[i] for i in self.selected_indices]
-            QApplication.clipboard().setText('\n'.join(map(str, data)))
-    
-    @Slot()
-    def paste(self):
-        try:
-            text = QApplication.clipboard().text()
-            data = [float(x) for x in text.split() if x.strip()]
-            if data:
-                if hasattr(self, 'selected_indices') and self.selected_indices:
-                    # 替换选中的数据
-                    self.data_manager.modify_points(self.selected_indices, data)
-                else:
-                    # 追加到末尾
-                    self.data_manager.data.extend(data)
-                self.plot_widget.set_data(self.data_manager.data)
-                self.data_view.set_data(self.data_manager.data)
-        except ValueError:
-            QMessageBox.warning(self, "错误", "剪贴板中的数据格式不正确！")
 
     @Slot()
     def open_file(self):
+        """打开文件"""
         file_path, _ = QFileDialog.getOpenFileName(
             self, "打开数据文件", "", "文本文件 (*.txt)")
         if file_path:
-            if self.data_manager.load_data(file_path):
-                self.plot_widget.set_data(self.data_manager.data)
-                self.data_view.set_data(self.data_manager.data)
-                
-                # 更新全局统计信息
-                stats = {
-                    "数量": len(self.data_manager.data),
-                    "平均值": np.mean(self.data_manager.data),
-                    "最大值": max(self.data_manager.data),
-                    "最小值": min(self.data_manager.data)
-                }
-                self.global_stats.setText(text)
+            if data_manager.load_data(file_path):
+                self.plot_widget.set_data(data_manager.data)
+                self.data_view.set_data(data_manager.data, data_manager.real_data)
+                log_manager.info(f"成功加载文件：{file_path}")
+            else:
+                log_manager.error(f"加载文件失败：{file_path}")
 
     @Slot()
     def save_file(self):
-        if not self.data_manager.file_path:
+        """保存文件"""
+        if not data_manager.file_path:
             file_path, _ = QFileDialog.getSaveFileName(
                 self, "保存数据文件", "", "文本文件 (*.txt)")
             if not file_path:
                 return False
-            self.data_manager.file_path = file_path
-        return self.data_manager.save_data()
+            data_manager.file_path = file_path
+        
+        if data_manager.save_data():
+            log_manager.info(f"成功保存文件：{data_manager.file_path}")
+            return True
+        else:
+            log_manager.error(f"保存文件失败：{data_manager.file_path}")
+            return False
 
     @Slot()
     def export_png(self):
+        """导出PNG图片"""
         file_path, _ = QFileDialog.getSaveFileName(
             self, "导出PNG", "", "PNG图片 (*.png)")
         if file_path:
-            self.plot_widget.figure.savefig(file_path)
+            if data_manager.export_png(file_path):
+                log_manager.info(f"成功导出PNG：{file_path}")
+            else:
+                log_manager.error(f"导出PNG失败：{file_path}")
 
-    @Slot()
-    def toggle_grid(self):
-        self.plot_widget.toggle_grid()
+    def handle_missing_tag(self, img):
+        """处理找不到tag的情况"""
+        while True:
+            dialog = InputWithImageDialog(
+                "输入标签",
+                "请输入5个tag，用逗号分隔：",
+                img,
+                self
+            )
+            if dialog.exec_() != QDialog.Accepted:
+                return None
+                
+            text = dialog.get_input()
+            l_input = [t.strip() for t in text.split(",") if t.strip()]
+            if len(l_input) != 5:
+                QMessageBox.warning(self, "错误", "请输入5个tag")
+                continue
+                
+            # 验证tag是否合法
+            invalid_tags = [t for t in l_input if t not in DATA.l_tag]
+            if invalid_tags != []:
+                QMessageBox.warning(self, "错误", f"以下tag不合法：{invalid_tags}")
+                continue
+                
+            return l_input
 
-    @Slot()
-    def toggle_points(self):
-        self.plot_widget.toggle_points()
+    def handle_missing_agent(self, img):
+        """处理找不到干员的情况"""
+        while True:
+            dialog = InputWithImageDialog(
+                "输入干员",
+                "请输入干员中文名称：",
+                img,
+                self
+            )
+            if dialog.exec_() != QDialog.Accepted:
+                return None
+                
+            text = dialog.get_input().strip()
+            if not text:
+                QMessageBox.warning(self, "错误", "请输入干员名称")
+                continue
+                
+            # 验证干员是否存在
+            if text not in DATA.l_agent:
+                QMessageBox.warning(self, "错误", "干员不存在")
+                continue
+                
+            return text
 
-    @Slot()
-    def analyze_peaks(self):
-        self.data_view.find_peaks()
+    def handle_missing_agent(self, errorTuple):
+        """处理无法识别记录的情况"""
+        img, l_result = errorTuple
+        while True:
+            dialog = InputWithImageDialog(
+                "输入干员",
+                "无法识别记录，请输入所有干员中文名称，空格分隔：",
+                img,
+                self
+            )
+            dialog.set_text(" ".join(l_result))
+            if dialog.exec_() != QDialog.Accepted:
+                return None
+                
+            text = dialog.get_input().strip()
+            if not text:
+                QMessageBox.warning(self, "错误", "请输入所有干员名称")
+                continue
+                
+            # 验证干员是否存在
+            invalid_agent = [agent for agent in text.split(" ") if agent not in DATA.l_agent]
+            if invalid_agent:
+                QMessageBox.warning(self, "错误", f"{invalid_agent} 不存在")
+                continue
+                
+            return text
 
-    @Slot()
-    def find_patterns(self):
-        self.data_view.find_patterns()
-
-    @Slot()
-    def on_data_modified(self, data):
-        self.data_manager.update_data(data)
-        self.plot_widget.set_data(data)
-        
-        # 更新全局统计信息
-        stats = {
-            "数量": len(data),
-            "平均值": np.mean(data) if data else 0,
-            "最大值": max(data) if data else 0,
-            "最小值": min(data) if data else 0
-        }
-        self.global_stats.setText(text)
+    def on_step_updated(self, current_step: str, next_step: str):
+        """处理步骤更新"""
+        if hasattr(self, "console"):
+            self.console.update_step(current_step, next_step)
     
-    @Slot()
-    def on_data_selected(self, indices):
-        self.selected_indices = indices
-        # 更新统计信息
-        if indices:
-            selected_data = [self.data_manager.data[i] for i in indices]
-            stats = {
-                "数量": len(selected_data),
-                "平均值": np.mean(selected_data),
-                "最大值": max(selected_data),
-                "最小值": min(selected_data)
-            }
-            self.selection_stats.setText(text)
-        else:
-            self.selection_stats.setText("")
+    def on_macro_step_updated(self, macro_step, level):
+        """处理宏观步骤更新"""
+        if hasattr(self, "console"):
+            self.console.append_macro_step(macro_step, level)
+
+    def on_log_message(self, message: str, level: str = "INFO"):
+        """处理日志消息"""
+        if hasattr(self, "console"):
+            self.console.append_message(message, level)
+
+    def on_user_changed_data(self, info_data: list):
+        """用户应用数据的修改"""
+        data_manager.update_data("\n".join(info_data))
+        self.plot_widget.set_data(data_manager.data)
+        self.data_view.set_data(numeric_data=data_manager.data)
+
+    def on_data_updated(self):
+        self.plot_widget.set_data(data_manager.data)
+        self.data_view.set_data(numeric_data=data_manager.data, info_data=data_manager.real_data)
+    
+    def save_current_data(self):
+        """保存核心数据"""
+        try:
+            config = log_manager.load_config()
+            data_settings = config.get('data', {})
+            file_path = data_settings.get('file_path', '#record.txt')
+            
+            if data_manager.save_data(file_path):
+                log_manager.info(f"数据已保存到 {file_path}")
+            else:
+                log_manager.error("保存数据失败")
+        except Exception as e:
+            QMessageBox.warning(self, "错误", f"保存失败：{str(e)}")
+            log_manager.error(f"保存数据时发生错误：{str(e)}")
+
+    def dragEnterEvent(self, event):
+        """拖入事件处理"""
+        if event.mimeData().hasUrls():
+            for url in event.mimeData().urls():
+                if url.toLocalFile().endswith('.txt'):
+                    event.acceptProposedAction()
+                    return
+                    
+    def dropEvent(self, event):
+        """放下事件处理"""
+        for url in event.mimeData().urls():
+            file_path = url.toLocalFile()
+            if file_path.endswith('.txt'):
+                if data_manager.load_data(file_path):
+                    self.plot_widget.set_data(data_manager.data)
+                    self.data_view.set_data(
+                        data_manager.data,
+                        data_manager.real_data
+                    )
+                    self.statusBar().showMessage(f"已导入文件：{file_path}", 3000)
+                else:
+                    self.statusBar().showMessage("导入失败", 3000)
+                event.acceptProposedAction()
+                return
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
