@@ -3,24 +3,26 @@ import os
 import socket
 import subprocess
 import time
+from datetime import datetime
 import threading
 from enum import Enum
 from typing import Optional, Tuple
 
 import cv2
 import numpy as np
-from paddleocr import PaddleOCR
 from PySide6.QtCore import QObject, Signal, Slot
 
+from data import data as DATA
 from data_manager import data_manager
 from log import log_manager
-from data import data as DATA
+from tool import tool, error_record
 #==============================
 ADB_PATH = "D:\\YXArkNights-12.0\\shell\\adb.exe"
 IMG_PATH = ".\\img"
 region_tag = (0.30,0.47,0.66,0.70)
 region_agent = (0.45, 0.67, 0.87, 0.85)
 region_history = (0.44, 0.27, 0.71, 0.91)
+region_certificate = (0.776, 0.363, 1, 0.9)
 #==============================
 class CantFindNameError(Exception):
     pass
@@ -41,515 +43,6 @@ class StopError(Exception):
 log = log_manager
 
 LOCK = threading.Lock()
-#======================================
-class Tool:
-    def __init__(self):
-        """
-        初始化工具类
-        """
-        self.ocrUseable = False
-
-    def init_ocr(self):
-        self.ocr_ch = PaddleOCR()
-        """
-        try:
-            # 首先尝试使用GPU
-            self.ocr_ch = PaddleOCR(use_gpu=True)
-            log.debug("使用GPU模式初始化OCR")
-        except RuntimeError as e:
-            if "cudnn64_8.dll" in str(e):
-                # CUDA/CUDNN加载失败，切换到CPU模式
-                log.warning("GPU初始化失败，切换到CPU模式")
-                self.ocr_ch = PaddleOCR(use_gpu=False)
-            else:
-                # 其他RuntimeError，继续抛出
-                raise
-        except Exception as e:
-            # 其他异常，继续抛出
-            raise
-        """
-        self.ocrUseable = True
-
-    def ocr(self, cvImg):
-        if not self.ocrUseable:
-            self.init_ocr()
-        retry = 3
-        b_ocrSuccess = False
-        while retry >= 0:
-            result = self.ocr_ch.ocr(cvImg, cls=True)
-            """
-            log.debug(f"ocr结果: {result}")
-            for l in result:
-                if l is None:
-                    continue
-                for x in l:
-                    log.debug(f"ocr结果: {x}")
-            #"""
-            if result[0] is not None:
-                b_ocrSuccess = True
-                break
-            log.debug(f"ocr失败, 剩余重试次数: {retry}")
-            retry -= 1
-        if b_ocrSuccess:
-            return result[0]
-        raise OcrError(f"ocr失败")
-
-    def find_smallRegionsOnImg(self, image):
-        """
-        找出并裁剪UI图片中的按钮区域，结合颜色识别和边缘检测
-        Args:
-            image: OpenCV格式的图片(BGR)
-        Returns:
-            list of dict: 包含裁剪图像和位置信息的字典列表
-        """
-        # 保存原始图像副本用于最终裁剪
-        # original = image.copy()
-        
-        # 1. 颜色识别部分
-        # 转换到HSV空间
-        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-        
-        # 定义目标颜色 #313131 的HSV范围
-        # 增大颜色容差范围
-        lower = np.array([0, 0, 30])  # 更宽松的下限
-        upper = np.array([180, 30, 80])  # 更宽松的上限
-        
-        # 创建颜色掩码
-        color_mask = cv2.inRange(hsv, lower, upper)
-        
-        # 2. 边缘检测部分
-        # 转换为灰度图
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        
-        # 高斯模糊减少噪声
-        blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-        
-        # Canny边缘检测（调整阈值）
-        edges = cv2.Canny(blurred, 30, 100)  # 降低阈值使边缘更容易被检测
-        
-        # 3. 组合颜色掩码和边缘
-        # 膨胀边缘使其更容易形成闭合区域
-        dilated_edges = cv2.dilate(edges, None, iterations=3)  # 增加膨胀次数
-        
-        # 合并颜色掩码和边缘
-        combined_mask = cv2.bitwise_or(color_mask, dilated_edges)  # 使用or而不是and
-        
-        # 4. 形态学处理
-        kernel = np.ones((3,3), np.uint8)  # 减小核的大小
-        mask = cv2.morphologyEx(combined_mask, cv2.MORPH_CLOSE, kernel, iterations=2)
-        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
-        
-        # 5. 查找轮廓
-        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        
-        # 存储裁剪后的图像信息
-        #cropped_regions = []
-        # 存储裁剪后的图像
-        l_output = []
-        
-        # 6. 处理每个轮廓
-        for contour in contours:
-            # 计算轮廓面积
-            area = cv2.contourArea(contour)
-            
-            # 获取最小外接矩形
-            rect = cv2.minAreaRect(contour)
-            box = cv2.boxPoints(rect)
-            box = np.intp(box)
-            
-            # 计算矩形的宽高比
-            width = rect[1][0]
-            height = rect[1][1]
-            aspect_ratio = max(width, height) / min(width, height)
-            
-            # 根据面积和宽高比筛选
-            #if area > 100 and aspect_ratio < 5:  # 根据实际情况调整阈值
-            if area > 0.05*image.shape[0]*image.shape[1]:  # 暂时只用面积过滤
-                x, y, w, h = cv2.boundingRect(contour)
-                
-                # 稍微扩大裁剪区域，确保不会裁掉边缘
-                padding = 2
-                x = max(0, x - padding)
-                y = max(0, y - padding)
-                w = min(image.shape[1] - x, w + 2*padding)
-                h = min(image.shape[0] - y, h + 2*padding)
-                
-                # 裁剪图像
-                l_output.append(self.cropping(image, (x,y,w,h), format="x, y, w, h"))
-                """
-                # 存储结果
-                cropped_regions.append({
-                    'image': cropped,
-                    'position': (x, y, w, h),
-                    'area': area,
-                    'aspect_ratio': aspect_ratio
-                })
-                """
-        return l_output
-
-    def find_imgOnImg(self, mainImg, template, match_threshold=0.7, scales=np.linspace(0.8, 1.2, 5), nms_threshold=0.4, b_needTemplate2GRAY = True):
-        """
-        图片匹配函数，支持多尺度和非极大值抑制
-        
-        参数:
-        mainImg: numpy.ndarray - BGR格式的屏幕截图（h, w, 3）
-        template: numpy.ndarray - BGR格式的模板图片（h, w, 3）
-        match_threshold: float - 匹配置信度阈值（默认0.7）
-        scales: list - 缩放比例列表（默认[0.8, 0.9, 1.0, 1.1, 1.2]）
-        nms_threshold: float - NMS重叠阈值（默认0.4）
-        
-        返回:
-        list - [([x1,y1,x2,y2], confidence), ...]
-        """
-        
-        # 转换为灰度图
-        mainImg_gray = cv2.cvtColor(mainImg, cv2.COLOR_BGR2GRAY)
-        if b_needTemplate2GRAY:
-            template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
-        else:
-            template_gray = template
-        
-        t_h, t_w = template_gray.shape
-        s_h, s_w = mainImg_gray.shape
-        
-        matches = []
-        
-        # 多尺度匹配
-        for scale in scales:
-            # 计算缩放后模板尺寸
-            scaled_w = int(t_w * scale)
-            scaled_h = int(t_h * scale)
-            
-            # 跳过无效尺寸
-            if scaled_w < 5 or scaled_h < 5 or scaled_w > s_w or scaled_h > s_h:
-                continue
-                
-            # 调整模板尺寸
-            resized = cv2.resize(template_gray, (scaled_w, scaled_h), 
-                               interpolation=cv2.INTER_AREA if scale < 1 else cv2.INTER_CUBIC)
-            
-            # 模板匹配
-            result = cv2.matchTemplate(mainImg_gray, resized, cv2.TM_CCOEFF_NORMED)
-            
-            # 获取匹配结果
-            loc = np.where(result >= match_threshold)
-            for pt in zip(*loc[::-1]):  # 交换x,y坐标
-                x1, y1 = pt
-                x2, y2 = x1 + scaled_w, y1 + scaled_h
-                confidence = result[y1, x1]  # 注意numpy数组的行列顺序
-                matches.append(([x1, y1, x2, y2], float(confidence)))
-        
-        # 非极大值抑制
-        if not matches:
-            return []
-        
-        boxes = np.array([m[0] for m in matches])
-        confidences = np.array([m[1] for m in matches])
-        
-        # 使用OpenCV的NMS实现
-        indices = cv2.dnn.NMSBoxes(
-            boxes.reshape(-1, 4).tolist(),
-            confidences.tolist(),
-            score_threshold=match_threshold,
-            nms_threshold=nms_threshold
-        )
-        
-        # 处理OpenCV版本差异
-        if len(indices) > 0:
-            indices = indices.flatten() if hasattr(indices, 'flatten') else indices[:, 0]
-        else:
-            return []
-        
-        final_matches = [matches[i] for i in indices]
-        # 返回排序后的结果（按置信度降序）
-        final_matches.sort(key=lambda x: -x[1])
-        
-        return final_matches
-
-    def cropping(self, cvImg, region, mode="pixel", format = "x1, y1, x2, y2"):
-        """
-        裁剪图片大小到指定区域，支持显示缩放
-        Args:
-            cvImg:  图片数组
-            region: 一个四元数组，内容取决于format参数，如：x, y, w, h -> (x, y, width【图片相对大小】, height【图片相对大小】) 相对于窗口的坐标和大小
-            mode: "pixel" 表示以像素为单位，"percent" 表示以百分比为单位
-            format: "x, y, w, h" | 1   或者   "x1, y1, x2, y2" | 2
-        """
-        a, b, c, d = region
-        if format == 1 or format == "x, y, w, h":
-            x1, y1, x2, y2 = a, b, a+c, b+d
-        elif format == 2 or format == "x1, y1, x2, y2":
-            x1, y1, x2, y2 = a, b, c, d
-        else:
-            ValueError(f"'{format}'格式不是合法的值")
-        if mode == "percent":
-            shape = cvImg.shape #(height, width, channels)
-            x1, y1, x2, y2 = shape[1]*a, shape[0]*b, shape[1]*c, shape[0]*d
-        elif mode == "pixel":
-            "Good"
-        else:
-            ValueError(f"'{mode}'处理模式不是合法的值")
-        x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
-        log.img(cvImg[y1:y2, x1:x2])
-        return cvImg[y1:y2, x1:x2]
-
-    def showImg(self, img):
-        cv2.imshow("picture", img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-
-    def cosine_similarity(self, s1, s2):
-        if s1 == "" or s2 == "":
-            return 0
-        s1 = s1.lower()
-        s2 = s2.lower()
-        if s1 == s2:
-            return 1
-        if s1[:3] == "new":
-            s1 = s1[3:]
-        if s2[:3] == "new":
-            s2 = s2[3:]
-        # 创建字符频率向量
-        chars = list(set(s1 + s2))
-        v1 = [s1.count(c) for c in chars]
-        v2 = [s2.count(c) for c in chars]
-        
-        # 计算点积和向量长度
-        dot_product = sum(a * b for a, b in zip(v1, v2))
-        norm1 = sum(a * a for a in v1) ** 0.5
-        norm2 = sum(b * b for b in v2) ** 0.5
-        result = dot_product / (norm1 * norm2) if norm1 * norm2 > 0 else 0.0
-        #log.debug(f"余弦相似度: {s1}, {s2}, {result}")
-        return result
-
-    def find_centerOnResult(self, result, mode=None):
-        """
-        mode 是输入坐标的表示方法
-        1: x1, x2, y1, y2
-        2: x1, y1, x2, y2
-        3: paddle [[左上, 右上, 右下, 左下], (name, threshold)]
-        4: x, y, w, h
-        """
-        if mode is None:
-            raise ValueError("必须填入mode！")
-        log.debug(f"找中心: {result}")
-        if result is None:
-            raise CantFindNameError(f"找不到None的中心!")
-        l_coordinate = result[0]
-
-        if mode == 1 or mode == "x1, x2, y1, y2":
-            x1, x2, y1, y2 = l_coordinate
-        elif mode == 2 or mode == "x1, y1, x2, y2":
-            x1, y1, x2, y2 = l_coordinate
-        elif mode == 3 or mode == "paddle":
-            x1, y1 = l_coordinate[0]
-            x2, y2 = l_coordinate[2]
-        elif mode == 4 or mode == "x, y, w, h":
-            x, y, w, h = l_coordinate
-            x1, y1 = x, y
-            x2, y2 = x + w, y + h
-        else:
-            raise ValueError("无效的mode值！")
-
-        # 计算中心点
-        center_x = (x1 + x2) // 2
-        center_y = (y1 + y2) // 2
-
-        return (center_x, center_y)
-
-    
-    def find_nameOnResult(self, l_result, t_name, mode="result", sameOnly=False, includeSimilarity=False):
-        #mode : result or name
-        def returnResult(result, similarity = 1):
-            if mode == "result":
-                output = result
-            else:
-                output = returnItem
-            if includeSimilarity:
-                output = (output, similarity)
-            log.debug(f"返回结果：{output}，相似度：{similarity}")
-            return output
-        returnItem = t_name
-        if isinstance(t_name, str):
-            t_name = (t_name,)
-        elif not isinstance(t_name, tuple):
-            raise ValueError(f"t_name必须是字符串或元组，当前类型为{type(t_name)}")
-        
-        #log.debug(f"开始查找名称：{t_name}，模式：{mode}，是否仅完全匹配：{sameOnly}")
-        
-        #全字匹配
-        #log.debug("开始进行全字匹配...")
-        for result in l_result:
-            for name in t_name:
-                if result[1][0] == name:
-                    #log.debug(f"找到完全匹配：{result} -> {name}")
-                    return returnResult(result)
-        
-        if sameOnly:
-            log.debug("仅完全匹配模式，未找到匹配项，返回None")
-            return None
-            
-        #余弦相似匹配
-        #log.debug("开始进行余弦相似度匹配...")
-        maxCosine = -1
-        bestResult = None
-        for result in l_result:
-            for name in t_name:
-                similarity = self.cosine_similarity(name, result[1][0])
-                #log.debug(f"计算余弦相似度：{name} 与 {result[1][0]} 的相似度为 {similarity}")
-                if similarity > maxCosine and similarity > 0.5:
-                    #log.debug(f"找到更好的匹配：{result[1][0]}，相似度：{similarity}")
-                    maxCosine = similarity
-                    bestResult = result
-                    returnItem = t_name
-        if maxCosine > 0.5 and bestResult is not None:
-            #log.debug(f"使用余弦相似度匹配结果：{bestResult[1][0]}，最终相似度：{maxCosine}")
-            return returnResult(bestResult, maxCosine)
-            
-        #不完全匹配
-        #log.debug("开始进行不完全匹配...")
-        for result in l_result:
-            for name in t_name:
-                if name in result[1][0]:
-                    #log.debug(f"找到子串匹配：{name} 在 {result[1][0]} 中")
-                    return returnResult(result, 0.01)
-                        
-        #log.debug(f"未找到任何匹配项：{t_name}")
-        return None
-
-    def getTag(self, img):
-        img = self.cropping(img, region_tag, mode="percent")
-        l_buttons = self.find_smallRegionsOnImg(img)
-        log.debug(f"找到的按钮: {len(l_buttons)}个")
-        l_tag = []
-        for img in l_buttons:
-            l_result = self.ocr(img)
-            for tag in DATA.l_tag:
-                t_result = self.find_nameOnResult(l_result, tag, sameOnly=False, includeSimilarity=True)
-                log.debug(f"{tag}匹配ocr的结果: {t_result}")
-                if t_result is not None:
-                    l_tag.append(t_result)
-        log.info(f"所有匹配的ocr结果: {l_tag}")
-        #取相似度最高的5个
-        return [t_result[0][1][0] for t_result in sorted(l_tag, key=lambda x: x[1], reverse=True)[:5]]
-
-    def getAgent(self, img):
-        img = self.cropping(img, region_agent, mode="percent")
-        l_result = self.ocr(img)
-        d_acceptName = {}
-        for t_agent in DATA.l_agent:
-            result = self.find_nameOnResult(l_result, t_agent)
-            if result is not None:
-                if result[1][0] not in d_acceptName:
-                    d_acceptName[result[1][0]] = 1
-                else:
-                    d_acceptName[result[1][0]] += 1
-        if d_acceptName == {}:
-            return None
-        possibleName = max(d_acceptName, key=d_acceptName.get)
-        maxSimilarity = -1
-        bestResult = None
-        for t_agent in DATA.l_agent:
-            for name in t_agent:
-                similarity = self.cosine_similarity(possibleName, name)
-                if similarity > maxSimilarity:
-                    maxSimilarity = similarity
-                    bestResult = t_agent
-        log.info(f"最大相似度: {maxSimilarity}, 最佳结果: {bestResult}")
-        if maxSimilarity > 0.5 and bestResult is not None:
-            l_zh = [t_name[0] for t_name in DATA.l_agent]
-            l_en = [t_name[1] for t_name in DATA.l_agent]
-            name = bestResult[0]
-            if name in l_en:
-                return l_zh[l_en.index(name)]
-            return name
-        return None
-
-    def getHistory(self, img):
-        """识别历史记录中的干员，返回列表及检查标志。"""
-        """
-        识别结果中的'NEW!'和' (6★)'内容需要及时去除
-        主要输出应当是一个列表，按图片从上到下的顺序排列所有干员
-        检查顺序排列后所有结果的垂直间距
-        在高度为1080 px的图片中（输入图片尺寸可能不同，但比例一致），上下两行的正常间距是60 px，由于识别误差，在处理时需要将纵坐标四舍五入到十位取整计算，并且允许多或者少10 px
-        有' (6★)'内容的干员应当在self.l_agents中检查名字和星级是否一致（DATA.l_agent[name]["star"]）
-        每个干员应当在self.l_agents中检查是否存在
-        以上所有检查只要有错误，输出标志就应当为False
-        结果列表元素最多十个，最少一个
-        输出示例：return ['芙蓉', '泡泡 ', '桃金娘', '米格鲁'], False
-        """
-        flag = True
-        height = img.shape[0]
-        log.debug(f"开始处理历史记录图片，图片高度: {height}")
-        
-        img = self.cropping(img, region_history, mode="percent")
-        # 获取OCR结果
-        l_result = self.ocr(img)
-        log.debug(f"OCR识别结果: {l_result}")
-        
-        processed_entries = []
-
-        # 遍历OCR结果中的每个识别区域
-        for line in l_result:
-            for word_info in line:
-                # 解析坐标和文本
-                box = word_info[0]
-                text = word_info[1][0]
-                # 提取左上角的y坐标作为垂直位置
-                y = box[0][1]
-                
-                # 去除'NEW!'和星级标记
-                name = text
-                for x in ["NEW!", " (6★)"]:
-                    name = name.strip(x)
-                if " (6★)" == text[-5:]:
-                    star = 6
-                else:
-                    star = None
-                
-                log.debug(f"处理文本: {text} -> {name}, y坐标: {y}, 星级: {star}")
-                
-                # 检查干员是否存在及星级匹配
-                if name not in DATA.d_agent:
-                    log.debug(f"干员不存在: {name}")
-                    flag = False
-                # 验证星级
-                if star is not None and star != DATA.d_agent[name]["star"]:
-                    log.debug(f"星级不匹配: {name} 标记为{star}星，实际为{DATA.d_agent[name]['star']}星")
-                    flag = False
-                
-                # 记录处理后的条目
-                processed_entries.append({'y': y, 'name': name})
-        
-        # 按y坐标排序条目（从上到下）
-        sorted_entries = sorted(processed_entries, key=lambda a: a['y'])
-        log.debug(f"排序后的条目: {sorted_entries}")
-        
-        # 检查垂直间距是否符合要求
-        prev_rounded_y = None
-        expected_delta = 60/1080*height
-        log.debug(f"期望的垂直间距: {expected_delta:.2f}±10")
-        
-        for entry in sorted_entries:
-            rounded_y = round(entry['y'] / 10) * 10  # 四舍五入到十位
-            if prev_rounded_y is not None:
-                delta = rounded_y - prev_rounded_y
-                log.debug(f"检查间距: {entry['name']} 与上一个条目间距为 {delta:.2f}")
-                if not ((60/1080*height - 10) <= delta <= (60/1080*height + 10)):
-                    log.debug(f"间距不符合要求: {delta:.2f}")
-                    flag = False
-            prev_rounded_y = rounded_y
-        
-        # 生成结果列表（最多10个元素）
-        result_list = [entry['name'] for entry in sorted_entries]
-        if not (1 <= len(result_list) <= 10):
-            log.debug(f"结果数量不符合要求: {len(result_list)}")
-            flag = False
-        
-        log.debug(f"最终结果: {result_list}, 检查标志: {flag}")
-        return result_list, flag
-
-tool = Tool()
 #==============================
 class Simulator:
     def __init__(self, adb_path = ADB_PATH, type = "mumu", resource_dir = "."):
@@ -638,11 +131,17 @@ class Simulator:
         """确保设备已连接"""
         if not self._connected:
             try:
-                if not self.connect(adb_path=self.adb_path):
+                result = self.connect(adb_path=self.adb_path)
+                if isinstance(result, tuple) and result[0] is False and "device offline" in result[1]:
+                    if not self.reset_server(adb_path=self.adb_path):
+                        raise ConnectionError("无法连接到设备")
+                    result = self.connect(adb_path=self.adb_path)
+                if result is False or (isinstance(result, tuple) and result[0] is False):
                     raise ConnectionError("无法连接到设备")
                 self._connected = True
                 return True
             except Exception as e:
+                error_record(e)
                 log.error(f"设备连接失败: {str(e)}")
                 return False
         
@@ -658,12 +157,28 @@ class Simulator:
                 raise ConnectionError("设备连接异常")
             return True
         except Exception as e:
+            error_record(e)
             log.error(f"设备连接丢失: {str(e)}")
             self._connected = False
             self.cleanup()
             return False
-        
-    def connect(self, adb_path: Optional[str] = None) -> bool:
+
+    def reset_server(self, adb_path):
+        try:
+            log.info("尝试重新启动adb server")
+            subprocess.run([self.adb_path, "kill-server"], check=True)
+            subprocess.run([self.adb_path, "start-server"], check=True)
+            return True
+        except subprocess.CalledProcessError as e:
+            error_record(e)
+            log.error(f"重启失败:{e.stderr}")
+            return False
+        except Exception as e:
+            error_record(e)
+            log.error(f"重启失败:{e}")
+            return False
+
+    def connect(self, adb_path = None) -> bool:
         """
         连接设备
         :param adb_path: adb路径，如果为None则自动查找
@@ -706,7 +221,7 @@ class Simulator:
             self.orientation = 0  # 默认为0度
             if "SurfaceOrientation" in result.stdout:
                 self.orientation = int(result.stdout.strip().split()[-1])
-            log.info(f"屏幕方向: {self.orientation}度")
+            log.info(f"屏幕方向: {self.orientation*90}度")
             
             # 获取CPU架构
             result = subprocess.run(
@@ -751,7 +266,7 @@ class Simulator:
                     "/data/local/tmp/minitouch"
                 ])
                 
-                time.sleep(1)  # 等待minitouch启动
+                #time.sleep(0.4)  # 等待minitouch启动
                 
                 if self.minitouch_proc.poll() is not None:
                     raise RuntimeError("minitouch启动失败")
@@ -759,13 +274,18 @@ class Simulator:
                     log.info("minitouch启动成功")
                     
             except Exception as e:
+                error_record(e)
                 log.error(f"设置minitouch失败: {e}")
                 # 清理minitouch相关资源
-                self.cleanup()
+                self.cleanup(b_killADB=False)
                 
             return True
-            
+        except subprocess.CalledProcessError as e:
+            error_record(e)
+            log.error(f"连接失败:{e.stderr}")
+            return False, str(e.stderr)
         except Exception as e:
+            error_record(e)
             log.error(f"连接失败: {e}")
             return False
             
@@ -780,14 +300,14 @@ class Simulator:
             return x, y
             
         if self.orientation == 0:  # 0度
-            return x, y
+            a, b = x, y
         elif self.orientation == 1:  # 90度
-            return self.screen_size[1] - y, x
+            a, b = self.screen_size[0] - y, x
         elif self.orientation == 2:  # 180度
-            return self.screen_size[0] - x, self.screen_size[1] - y
+            a, b = self.screen_size[1] - x, self.screen_size[0] - y
         elif self.orientation == 3:  # 270度
-            return y, self.screen_size[0] - x
-        return x, y
+            a, b = y, self.screen_size[1] - x
+        return int(a), int(b)
             
     def click(self, x, y, press_time = 50):
         """
@@ -800,6 +320,7 @@ class Simulator:
         try:
             x, y, press_time = int(x), int(y), int(press_time)
         except Exception:
+            error_record(e)
             raise ValueError(f"坐标{x}或{y}或按下时间{press_time}不是数字")
         try:
             # 转换坐标
@@ -810,11 +331,15 @@ class Simulator:
                 # 使用minitouch进行点击
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     s.connect(('127.0.0.1', 1111))
+                    # 禁用Nagle算法，减少延迟
+                    s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
                     # 按下
                     s.sendall(f"d 0 {conv_x} {conv_y} 50\nc\n".encode())
                     time.sleep(press_time / 1000)  # 转换为秒
                     # 抬起
                     s.sendall("u 0\nc\n".encode())
+                    # 短暂延迟确保命令发送完成
+                    time.sleep(0.01)
             else:
                 # 回退到input命令
                 log.debug("minitouch未启动，使用input命令")
@@ -823,6 +348,7 @@ class Simulator:
                     f"input swipe {conv_x} {conv_y} {conv_x} {conv_y} {press_time}"  # 使用swipe模拟长按
                 ], check=True)
         except Exception as e:
+            error_record(e)
             log.error(f"点击失败: {e}")
             return False
         time.sleep(0.05)  # 额外延迟
@@ -847,6 +373,7 @@ class Simulator:
             int(end_y)
             int(duration)
         except:
+            error_record(e)
             raise ValueError(f"坐标{start_x}或{start_y}或{end_x}或{end_y}或持续时间{duration}不是数字")
         try:
             # 转换坐标
@@ -858,6 +385,8 @@ class Simulator:
                 # 使用minitouch进行滑动
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     s.connect(('127.0.0.1', 1111))
+                    # 禁用Nagle算法，减少延迟
+                    s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
                     # 计算滑动步骤
                     step_duration = 5  # 每5ms一步
                     steps = max(duration // step_duration, 1)  # 至少1步
@@ -879,11 +408,13 @@ class Simulator:
                         time.sleep(step_duration / 1000)  # 每步延迟
                     
                     # 移动到终点
-                    s.sendall(f"m 0 {conv_end_x} {conv_end_y} 50\nc\n".encode())
-                    time.sleep(0.05)  # 终点停留50ms
+                    #s.sendall(f"m 0 {conv_end_x} {conv_end_y} 50\nc\n".encode())
+                    #time.sleep(0.05)  # 终点停留50ms
                     
                     # 抬起
                     s.sendall("u 0\nc\n".encode())
+                    # 短暂延迟确保命令发送完成
+                    time.sleep(0.01)
             else:
                 # 回退到input命令
                 log.debug("minitouch未启动，使用input命令")
@@ -892,6 +423,7 @@ class Simulator:
                     f"input swipe {conv_start_x} {conv_start_y} {conv_end_x} {conv_end_y} {duration}"
                 ], check=True)
         except Exception as e:
+            error_record(e)
             log.error(f"滑动失败: {e}")
             return False
         time.sleep(0.05)  # 额外延迟
@@ -927,11 +459,13 @@ class Simulator:
                 else:
                     log.warning(f"截图解码失败，重试 {i+1}/{retries}")
             except subprocess.CalledProcessError as e:
+                error_record(e)
                 log.error(f"截图失败: {e}")
                 if i < retries - 1:
                     time.sleep(1)  # 等待1秒后重试
                 continue
             except Exception as e:
+                error_record(e)
                 log.error(f"截图时发生未知错误: {e}")
                 if i < retries - 1:
                     time.sleep(1)
@@ -940,7 +474,7 @@ class Simulator:
         log.error("截图失败，已达到最大重试次数")
         return None
 
-    def cleanup(self):
+    def cleanup(self, b_killADB=True):
         """清理资源"""
         try:
             # 关闭socket连接
@@ -964,6 +498,7 @@ class Simulator:
                     )
                     log.info("端口转发已移除")
                 except Exception as e:
+                    error_record(e)
                     log.error(f"移除端口转发时发生错误: {str(e)}")
                     
                 # 删除推送的文件
@@ -975,8 +510,17 @@ class Simulator:
                     )
                     log.info("推送的minitouch文件已删除")
                 except Exception as e:
+                    error_record(e)
                     log.error(f"删除推送的minitouch文件时发生错误: {str(e)}")
+            if b_killADB:
+                try:
+                    subprocess.run([self.adb_path, "kill-server"], check=True)
+                    log.info("adb服务已杀死")
+                except Exception as e:
+                    error_record(e)
+                    log.error(f"杀死adb服务时发生错误: {str(e)}")
         except Exception as e:
+            error_record(e)
             log.error(f"清理时发生错误: {str(e)}")
 
     def __del__(self):
@@ -1015,15 +559,19 @@ class TaskType(Enum):
     CLICK_COORDINATE_RELATIVE = "点击相对位置"
     SWIPE_TO_RIGHT = "向左划动"
     SWIPE_TO_LEFT  = "向右划动"
+    SCREEN_TO_MEM  = "截屏并追加进MEM列表"
+    CROP_FROM_MEM  = "裁切MEM列表指定index的图片"
+    SAVE_FROM_MEM  = "存储MEM列表指定index的内容"
     # 界面切换操作
     ENTER_SLOT    = "进入指定公招池"
     SWIPE_TO_PAGE = "划动到指定页面"
     #ENTER_GACHA_STATISTICS = "进入当前寻访界面的历史记录"
     # 流程控制任务
     NOP = "无"
-    STEP_COMPLETED = "一个步骤已完成"
-    IF = "条件任务组"
-    END = "终止"
+    STEP_COMPLETED = "一个步骤已完成" # 用于循环任务阶段性完成后分配下一组任务
+    IF = "条件任务组"        # 可选negation参数
+    WHILE = "条件循环任务组"  # 可选negation参数
+    END = "终止" # 用于单次执行的任务
 
 class Task:
     """任务类，定义单个任务的属性和行为"""
@@ -1032,6 +580,7 @@ class Task:
     currentPage = 0
     d_imgs = None
     d_reuseableCoordinate = {}
+    l_MEM = []
 
     @classmethod
     def init_img(cls, imgPath):
@@ -1056,6 +605,7 @@ class Task:
         b_reuse        = False, # 坐标可复用（重名不可用！）
         b_recruitCheck = False, # 需要进行公招的点击位置筛选
         region         = None,  # 图像识寻找的区域，格式为(x1, x2, y1, y2)
+        memIndex       = -1,    # MEM操作指定的index
         **kwargs
     ):
         if Task.d_imgs is None:
@@ -1072,6 +622,7 @@ class Task:
         self.retry_count = retry_count
         self.b_reuse = b_reuse
         self.region = region
+        self.memIndex = memIndex
         self.args = args
         self.kwargs = kwargs
         if b_recruitCheck:
@@ -1103,16 +654,34 @@ class Task:
                 l_sorted = sorted([(tag, DATA.getTagPriority(tag)) for tag in l_tag], key=lambda t:t[1], reverse=True)
                 log.debug(f"tag优先级排序: {l_sorted}")
                 bestNum = l_sorted[0][1]
+                # !!!！！！记得改回来
+                """
+                if bestNum > 2:
+                    raise StopError("最好tag超出阈值，请自己选择")
+                """
+                if bestNum > 3:
+                    l_chosen = []
+                    for i in range(3):
+                        if l_sorted[i][1] == bestNum:
+                            l_chosen.append(l_sorted[i][0])
+                        else:
+                            break
+                    log.debug(f"选择的tag: {l_chosen}")
+                    # 点击
+                    for tag in l_chosen:
+                        self.click_item(self.find_nameOnScreen, tag)
+                '''
                 l_chosen = []
                 for i in range(3):
                     if l_sorted[i][1] == bestNum:
-                        l_chosen.append(l_sorted[i][1])
+                        l_chosen.append(l_sorted[i][0])
                     else:
                         break
                 log.debug(f"选择的tag: {l_chosen}")
                 # 点击
                 for tag in l_chosen:
                     self.click_item(self.find_nameOnScreen, tag)
+                '''
             elif self.taskType == TaskType.RECORD_TAG:
                 img = Task.simulator.screenshot()
                 l_tag = tool.getTag(img)
@@ -1126,9 +695,9 @@ class Task:
                 agent = tool.getAgent(img)
                 log.debug(f"识别到的干员: {agent}")
                 if agent is not None:
-                    return (True, TaskType.RECORD_AGENT, tool.cropping(img, region_agent, mode="percent"))
+                    return (True, TaskType.RECORD_AGENT, agent)
                 else:
-                    return (False, TaskType.RECORD_AGENT, img)
+                    return (False, TaskType.RECORD_AGENT, tool.cropping(img, region_agent, mode="percent"))
             elif self.taskType == TaskType.RECORD_HISTORY_PAGE:
                 img = Task.simulator.screenshot()
                 l_history, b_flag = tool.getHistory(img)
@@ -1138,17 +707,18 @@ class Task:
                 else:
                     return (False, TaskType.RECORD_HISTORY_PAGE, (tool.cropping(img, region_history, mode="percent"), l_history))
             elif self.taskType == TaskType.RECORD_SCREEN:
-                # 三种识别
                 img = Task.simulator.screenshot()
+                # 三种识别挨个判定正确的
                 l_tag = tool.getTag(img)
-                agent = tool.getAgent(img)
-                l_history, b_flag = tool.getHistory(img)
-                log.debug(f"屏幕识别结果: tag={l_tag}, 干员={agent}, 历史={l_history}, 标志={b_flag}")
-                # 挨个判定正确的
+                log.debug(f"屏幕识别结果: tag={l_tag}")
                 if len(l_tag) == 5:
                     return (True, TaskType.RECORD_TAG, l_tag)
+                l_history, b_flag = tool.getHistory(img)
+                log.debug(f"屏幕识别结果: 历史={l_history}, 标志={b_flag}")
                 if b_flag:
                     return (True, TaskType.RECORD_HISTORY_PAGE, l_history)
+                agent = tool.getAgent(img)
+                log.debug(f"屏幕识别结果: 干员={agent}")
                 if agent is not None:
                     return (True, TaskType.RECORD_AGENT, agent)
                 # 找不到
@@ -1157,6 +727,7 @@ class Task:
                 aim = self.param
                 log.debug(f"开始记录历史记录，目标数量: {aim}")
                 b_less = False
+                l_agent = []
                 while len(l_agent) < aim:
                     if b_less:
                         log.debug(f"记录数量不足: {l_history}")
@@ -1174,7 +745,7 @@ class Task:
                     log.debug(f"当前已记录: {len(l_agent)}/{aim}")
                     # 点击下一页
                     try:
-                        self.click_item(self.find_nameOnScreen, "gachaHistoryButton_right", True)
+                        self.click_item(self.find_imgOnScreen, "gachaHistoryButton_right", True)
                     except CantFindNameError as e:
                         # 抵达最后一页
                         if len(l_agent) < aim:
@@ -1198,6 +769,41 @@ class Task:
             elif self.taskType == TaskType.SWIPE_TO_LEFT:
                 log.debug("执行向左滑动")
                 self.to_leftPage()
+            elif self.taskType == TaskType.SCREEN_TO_MEM:
+                log.debug("执行截屏到MEM")
+                self.l_MEM.append(Task.simulator.screenshot())
+            elif self.taskType == TaskType.CROP_FROM_MEM:
+                log.debug("执行从MEM裁切")
+                img = self.l_MEM[self.memIndex]
+                # self.param = (0.44, 0.27, 0.71, 0.91)
+                cropped = tool.cropping(img, self.param, mode="percent")
+                self.l_MEM[self.memIndex] = cropped
+            elif self.taskType == TaskType.SAVE_FROM_MEM:
+                log.debug("执行从MEM存储")
+                # self.kwargs = {"mode":"png"}
+                # self.kwargs = {"mode":"txt"}
+                # self.param = "C:\\Users\\Administrator\\Desktop"
+                if "mode" not in self.kwargs:
+                    raise ValueError(f"保存模式 'mode' 参数未定义")
+                timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f")
+                fileName = f"{timestamp}.{self.kwargs['mode']}"
+                # 如果路径包含中文，报错
+                for i in self.param:
+                    if ord(i) > 128:
+                        raise ValueError(f"路径包含中文") 
+                if not os.path.exists(self.param):
+                    os.makedirs(self.param)
+                path = os.path.join(self.param, fileName)
+                img = self.l_MEM.pop(self.memIndex)
+                if self.kwargs["mode"] == "png":
+                    cv2.imwrite(path, img)
+                    log.debug(f"图片已保存: {path}")
+                elif self.kwargs["mode"] == "txt":
+                    with open(path, "w") as f:
+                        f.write(self.l_MEM[self.memIndex])
+                    log.debug(f"文本已保存: {path}")
+                else:
+                    raise ValueError(f"保存模式{self.kwargs['mode']}未定义")
             elif self.taskType == TaskType.ENTER_SLOT:
                 log.debug(f"进入公招槽位: {Task.aimRecruitSlot}")
                 # "开始招募干员"可能出bug，稳妥一点选"开始"二字
@@ -1218,44 +824,58 @@ class Task:
                 log.debug("执行空任务")
             elif self.taskType == TaskType.STEP_COMPLETED:
                 raise RuntimeError("STEP_COMPLETED 任务不应在此处被捕获")
-            elif self.taskType == TaskType.IF:
+            elif self.taskType == TaskType.IF or self.taskType == TaskType.WHILE:
                 log.debug(f"执行条件判断: {self.param}")
                 if self.param is True:
                     return (True, TaskType.IF, True)
                 elif self.param is False:
                     return (True, TaskType.IF, False)
                 elif not isinstance(self.param, str):
-                    raise TypeError(f"IF 任务的参数必须是True False str中的一种，'{self.param}'是'{type(self.param)}'")
+                    raise TypeError(f"IF/WHILE 任务的参数必须是True False str中的一种，'{self.param}'是'{type(self.param)}'")
                 if callable(getattr(self, self.param)):
-                    result = getattr(self, self.param)()
+                    result = getattr(self, self.param)(*self.args, **self.kwargs)
+                    if "negation" in self.kwargs:
+                        result = not result
                     log.debug(f"条件判断结果: {result}")
                     return (True, TaskType.IF, result)
                 else:
-                    raise TypeError(f"IF 任务的str参数必须是可调用的，'{getattr(self, self.param)}'是'{type(self.param)}'")
+                    raise TypeError(f"IF/WHILE 任务的str参数必须是可调用的，'{getattr(self, self.param)}'是'{type(self.param)}'")
             elif self.taskType == TaskType.END:
                 raise RuntimeError("END 任务不应在此处被捕获")
             log.debug(f"任务执行完成: {self.description}")
             return True
         except Exception as e:
-            # 获取调用栈信息
-            frame = inspect.currentframe()
-            caller_frame = frame.f_back
-            while caller_frame:
-                if caller_frame.f_code.co_filename != frame.f_code.co_filename:
-                    break
-                caller_frame = caller_frame.f_back
-            
-            if caller_frame:
-                filename = os.path.basename(caller_frame.f_code.co_filename)
-                lineno = caller_frame.f_lineno
-                log_manager.log(str(e), "DEBUG", filename, lineno)
-            else:
-                log_manager.log(str(e), "DEBUG")
+            error_record(e)
             raise
 
-    def isOriginiteOnScreen(self):
+    def isOriginiteOnScreen(self, *args, **kwargs):
         result = self.find_nameOnScreen("至纯源石")
         log.debug(f"检查源石: {'存在' if result else '不存在'}")
+        if result is None:
+            return False
+        return True
+
+    def isCertificateOnScreen(self, *args, **kwargs):
+        result = self.find_nameOnScreen("凭证")
+        log.debug(f"检查凭证: {'存在' if result else '不存在'}")
+        if result is None:
+            return False
+        return True
+
+    def isTextOnScreen(self, *args, **kwargs):
+        if "name" not in kwargs:
+            raise ValueError("调用的isTextOnScreen函数缺少文本'name'参数")
+        result = self.find_nameOnScreen(*args, **kwargs)
+        log.debug(f"文本'{kwargs['name']}': {'存在' if result else '不存在'}于截图")
+        if result is None:
+            return False
+        return True
+
+    def isImgOnScreen(self, *args, **kwargs):
+        if "name" not in kwargs:
+            raise ValueError("调用的isImgOnScreen函数缺少图片路径'name'参数")
+        result = self.find_imgOnScreen(*args, b_paddleOutput=False, **kwargs)
+        log.debug(f"图片{kwargs['name']}: {'存在' if result else '不存在'}于截图")
         if result is None:
             return False
         return True
@@ -1286,24 +906,36 @@ class Task:
             return True
         return False
 
-    def find_nameOnScreen(self, name, limit = 0.5, b_allGet = False, **kwargs):
+    def find_nameOnScreen(self, name, limit = 0.7, b_allGet = False, **kwargs):
         """
         在屏幕上查找指定文字
         :param name: 要查找的文字
         :return: OCR识别结果
         """
         Task.simulator.ensure_connected()
-        log.debug(f"查找文字: {name}, 阈值={limit}, 全部获取={b_allGet}")
+        b_sameOnly = False
+        if "b_sameOnly" in kwargs and kwargs["b_sameOnly"]:
+            b_sameOnly = True
+        log.debug(f"查找文字: {name}, 阈值={limit}, 全部获取={b_allGet}, 全字匹配={b_sameOnly}, kwargs:{kwargs}")
         img = Task.simulator.screenshot()
-        if "region" in kwargs and kwargs["region"] is not None:
-            img = tool.cropping(img, kwargs["region"], mode="percent")
-            log.debug(f"在区域内查找: {kwargs['region']}")
+        regionOffset = (0,0)
+        if self.region is not None:
+            h, w = img.shape[:2]
+            regionOffset = (int(self.region[0] * w), int(self.region[1] * h))
+            img = tool.cropping(img, self.region, mode="percent")
+            log.debug(f"在区域内查找: {self.region}")
         results = tool.ocr(img)
         l_output = []
         for result in results:
             l_position, t_text = result
-            if name in t_text[0]:
-                l_output.append(result)
+            if (b_sameOnly and name == t_text[0]) or ((not b_sameOnly) and name in t_text[0]):
+                points = [
+                    [l_position[0][0]+regionOffset[0], l_position[0][1]+regionOffset[1]],
+                    [l_position[1][0]+regionOffset[0], l_position[1][1]+regionOffset[1]],
+                    [l_position[2][0]+regionOffset[0], l_position[2][1]+regionOffset[1]],
+                    [l_position[3][0]+regionOffset[0], l_position[3][1]+regionOffset[1]],
+                ]
+                l_output.append([points, result[1]])
         offset = 0
         for i in range(len(l_output)):
             if l_output[i-offset][1][1] < limit:
@@ -1318,32 +950,41 @@ class Task:
             l_output.sort(key=lambda result: result[1][1])
             return l_output[-1]
 
-    def find_imgOnScreen(self, name, limit=0.5, b_allGet=False, b_paddleOutput=True, b_counterexampleMode = True, **kwargs):
+    def find_imgOnScreen(self, name, limit=0.7, b_allGet=False, b_paddleOutput=True, b_counterexampleMode=True, **kwargs):
         if name not in Task.d_imgs:
             raise KeyError(f"'{name}'可能不存在于识别图片路径中")
 
-        log.debug(f"查找图片: {name}, 阈值={limit}, 全部获取={b_allGet}, 反例模式={b_counterexampleMode}")
+        log.debug(f"查找图片: {name}, 阈值={limit}, 全部获取={b_allGet}, 反例模式={b_counterexampleMode}, kwargs:{kwargs}")
         screenshot = Task.simulator.screenshot()
-        if "region" in kwargs and kwargs["region"] is not None:
-            img = tool.cropping(img, kwargs["region"], mode="percent")
-            log.debug(f"在区域内查找: {kwargs['region']}")
+        regionOffset = (0,0)
+        if self.region is not None:
+            h, w = img.shape[:2]
+            regionOffset = (int(self.region[0] * w), int(self.region[1] * h))
+            img = tool.cropping(img, self.region, mode="percent")
+            log.debug(f"在区域内查找: {self.region}")
         template = Task.d_imgs[name]
         l_results = tool.find_imgOnImg(screenshot, template, match_threshold = limit, b_needTemplate2GRAY = False)
         if b_counterexampleMode and (name + "#") in Task.d_imgs:
             template = Task.d_imgs[name + "#"]
             l_results_c = tool.find_imgOnImg(screenshot, template, match_threshold = limit, b_needTemplate2GRAY = False)
             log.debug(f"反例匹配结果: {l_results_c}")
-            if l_results_c[0][1] > l_results[0][1]:
-                l_results = []
+        else:
+            l_results_c = []
+        if l_results_c and l_results and (l_results_c[0][1] > l_results[0][1]):
+            l_results = []
         log.debug(f"找到结果: {l_results}")
         if len(l_results) == 0:
             return None
+        l_output = []
+        for result in l_results:
+            points = [result[0][0]+regionOffset[0], result[0][1]+regionOffset[1], result[0][2] + regionOffset[0], result[0][3] + regionOffset[1]]
+            l_output.append((points, result[1]))
         if b_paddleOutput:
             # 配合paddle的格式
-            l_results = [ [[(result[0][0], result[0][1]), None, (result[0][2], result[0][3]), None], result[1]] for result in l_results]
+            l_output = [ [[(result[0][0], result[0][1]), None, (result[0][2], result[0][3]), None], result[1]] for result in l_output]
         if b_allGet:
-            return l_results
-        return l_results[0]
+            return l_output
+        return l_output[0]
 
     def click_item(self, func_findResult, name=None, b_reuse=False, checkFunc=None, **kwargs):
         """点击指定文字位置"""
@@ -1369,7 +1010,7 @@ class Task:
                 # 需要寻找
                 Task.d_reuseableCoordinate[name] = findCoodinate()
             x, y = Task.d_reuseableCoordinate[name]
-            log.debug(f"使用复用坐标: ({x}, {y})")
+            log.debug(f"使用已记录的坐标: ({x}, {y})")
         elif checkFunc is not None:
             #3.公招位置寻找模式
             l_results = func_findResult(name, b_allGet=True, **kwargs)
@@ -1382,11 +1023,11 @@ class Task:
             if realResult is None:
                 raise CantFindNameError(f"找不到合适的: {name}")
             x, y = tool.find_centerOnResult(realResult, mode = "paddle")
-            log.debug(f"使用公招位置: ({x}, {y})")
+            log.debug(f"匹配当前公招栏的位置: ({x}, {y})")
         else:
             #4.常规模式
             x, y = findCoodinate()
-            log.debug(f"使用常规位置: ({x}, {y})")
+            log.debug(f"无条件: ({x}, {y})")
         Task.simulator.click(x, y)
     
     def to_rightPage(self):
@@ -1441,7 +1082,7 @@ class TaskManager(QObject):
         """获取下一个任务的描述"""
         if not self.tasks:
             return None
-        return self.tasks[0].description if self.tasks else None
+        return self.tasks[0].description if hasattr(self.tasks, "description") else None
     
     def execute_tasks(self):
         """开始执行任务队列"""
@@ -1516,20 +1157,7 @@ class TaskManager(QObject):
                             
                     except Exception as e:
                         error = str(e)
-                        # 获取调用栈信息
-                        frame = inspect.currentframe()
-                        caller_frame = frame.f_back
-                        while caller_frame:
-                            if caller_frame.f_code.co_filename != frame.f_code.co_filename:
-                                break
-                            caller_frame = caller_frame.f_back
-                        
-                        if caller_frame:
-                            filename = os.path.basename(caller_frame.f_code.co_filename)
-                            lineno = caller_frame.f_lineno
-                            log_manager.log(str(e), "DEBUG", filename, lineno)
-                        else:
-                            log_manager.log(str(e), "DEBUG")
+                        error_record(e)
                         time.sleep(0.1)  # 重试前短暂等待
 
                 
@@ -1567,6 +1195,15 @@ class TaskManager(QObject):
                         self.tasks = l + self.tasks
                     else:
                         self.tasks.pop(0)
+                if self.current_task.taskType == TaskType.WHILE:
+                    if not isinstance(self.tasks[0], list):
+                        raise TypeError("WHILE 类型的任务后必须接一个任务列表")
+                    if result[2] is True:
+                        l = self.tasks.pop(0)
+                        selfTaskGroup = [self.current_task, l]
+                        self.tasks = l + selfTaskGroup + self.tasks
+                    else:
+                        self.tasks.pop(0)
                 elif result:
                     self.task_completed.emit(result)
                     if isinstance(result, tuple) and result[0] is False:
@@ -1580,6 +1217,7 @@ class TaskManager(QObject):
                 break
             except Exception as e:
                 self.task_failed.emit(str(e))
+                error_record(e)
                 break
         self.is_running = False
         self.b_needJoin = True
@@ -1651,19 +1289,7 @@ class GameManager(QObject):
         if message is None:
             return
         # 获取调用栈信息
-        frame = inspect.currentframe()
-        caller_frame = frame.f_back
-        while caller_frame:
-            if caller_frame.f_code.co_filename != frame.f_code.co_filename:
-                break
-            caller_frame = caller_frame.f_back
-        
-        if caller_frame:
-            filename = os.path.basename(caller_frame.f_code.co_filename)
-            lineno = caller_frame.f_lineno
-            log_manager.log(message, level, filename, lineno)
-        else:
-            log_manager.log(message, level)
+        error_record(e)
     
     def log_with_time(self, level: str, message: str, filename: str = None, lineno: int = None):
         """带时间戳的日志记录"""
@@ -1679,6 +1305,7 @@ class GameManager(QObject):
     def connect_device(self, adb_path: str):
         """连接设备"""
         try:
+            self.break_connection()
             self.task_manager = TaskManager()
             Task.simulator = Simulator(adb_path = adb_path)
             
@@ -1698,15 +1325,17 @@ class GameManager(QObject):
             self.device_connected.emit(True)
         except Exception as e:
             self.update_macro_step("ERROR", f"设备连接失败: {str(e)}")
+            error_record(e)
             self.device_connected.emit(False)
     
     def break_connection(self):
         try:
             if hasattr(Task, "simulator"):
-                Task.simulator.cleanup()
+                del Task.simulator
             if hasattr(self, "task_manager"):
                 del self.task_manager
         except Exception as e:
+            error_record(e)
             self._log("ERROR", f"adb清理失败: {str(e)}")
 
     def set_gacha_mode(self, mode: GachaMode):
@@ -1854,10 +1483,13 @@ class GameManager(QObject):
                 self.update_macro_step("INFO", "已达到目标，操作结束")
                 if self.current_mode == OperationMode.GACHA and self.gacha_mode == GachaMode.TEN:
                     self.taskAdd_tenModeEndUp()
+                elif self.current_mode == OperationMode.RECRUIT:
+                    self.taskAdd_recruitEndUp()
                 else:
                     self.taskAdd_endUp()
                 self.is_running = False
         except Exception as e:
+            error_record(e)
             self.log_with_time("ERROR", f"任务分配过程中发生错误：{str(e)}")
             self.reset_operation()
 
@@ -1890,7 +1522,7 @@ class GameManager(QObject):
                 # 检查是否有罕见tag
                 rare_tags = [tag for tag in result if DATA.is_special(tag)]
                 if rare_tags:
-                    self.log_with_time("INFO", f"出现罕见tag:{', '.join(rare_tags)}！")
+                    self.update_macro_step("INFO", f"出现罕见tag:{', '.join(rare_tags)}！")
                     self.b_exist_rare_tag = True
 
             elif taskType == TaskType.RECORD_AGENT:
@@ -1905,8 +1537,8 @@ class GameManager(QObject):
                 self.log_with_time("INFO", f"获得干员：{result}")
                 self.record(result)
                 # 检查是否为六星干员
-                if result in DATA.d_agent and DATA.d_agent[result]["star"] == 6:
-                    self.log_with_time("INFO", f"获得六星干员{result}！")
+                if result in DATA.d_agent and int(DATA.d_agent[result]["star"])+1 == 6:
+                    self.update_macro_step("INFO", f"获得六星干员{result}！")
                     self.top_item_count += 1
 
             elif taskType == TaskType.RECORD_HISTORY_PAGE:
@@ -1922,8 +1554,8 @@ class GameManager(QObject):
                 for agent in result:
                     self.record(agent)
                     # 检查是否为六星干员
-                    if result in DATA.d_agent and DATA.d_agent[result]["star"] == 6:
-                        self.log_with_time("INFO", f"获得六星干员{result}！")
+                    if agent in DATA.d_agent and int(DATA.d_agent[agent]["star"])+1 == 6:
+                        self.update_macro_step("INFO", f"获得六星干员{agent}！")
                         self.top_item_count += 1
 
             elif taskType == TaskType.RECORD_SCREEN and not b_success:
@@ -1941,6 +1573,7 @@ class GameManager(QObject):
                 raise ValueError(f"tag点击识别结果：{result}，数量不正确，失败")
 
         except Exception as e:
+            error_record(e)
             log.error(str(e))
             self.reset_operation()
 
@@ -1951,13 +1584,21 @@ class GameManager(QObject):
         self.reset_operation()
 
     @execute_tasks
+    def taskAdd_recruitEndUp(self):
+        return [
+            Task(TaskType.ENTER_SLOT, None, post_wait=0.3, description="进入公招池"),
+            Task(TaskType.RECORD_TAG, None),
+            Task(TaskType.CLICK_IMG, "RecruitRefuse", b_reuse=True, description="点击×退出"),
+            Task(TaskType.END, None),
+        ]
+    @execute_tasks
     def taskAdd_tenModeEndUp(self):
         return [
-            Task(TaskType.CLICK_TEXT, "查看详情", b_reuseable = True, description="点击查看详情"),
-            Task(TaskType.CLICK_TEXT, "查询记录", b_reuseable = True, pre_wait=0.4, description="点击查询记录"),
-            Task(TaskType.RECORD_HISTORY_FLEX, self.gacha_count, pre_wait=0.4, description="记录招募历史"),
-            Task(TaskType.CLICK_IMG, "gachaHistoryButton_exit", b_reuseable = True, description="点击×退出"),
-            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.5, 0.05), pre_wait=0.4, description="点击屏幕上方退出"),
+            Task(TaskType.CLICK_TEXT, "查看详情", b_reuse=True, description="点击查看详情"),
+            Task(TaskType.CLICK_TEXT, "查询记录", b_reuse=True, description="点击查询记录"),
+            Task(TaskType.RECORD_HISTORY_FLEX, self.gacha_count, pre_wait=0.3, description="记录招募历史"),
+            Task(TaskType.CLICK_IMG, "gachaHistoryButton_exit", b_reuse=True, description="点击×退出"),
+            Task(TaskType.CLICK_TEXT, None, pre_wait=0.3, description="点击任意位置退出"),
             Task(TaskType.END, None),
         ]
     @execute_tasks
@@ -1974,73 +1615,141 @@ class GameManager(QObject):
     @execute_tasks
     def taskAdd_recruit_enter(self):
         return [
-            Task(TaskType.ENTER_SLOT, None, description="进入公招池"),
-            Task(TaskType.RECORD_TAG, None, pre_wait=0.5),
+            Task(TaskType.ENTER_SLOT, None, post_wait=0.3, description="进入公招池"),
+            Task(TaskType.RECORD_TAG, None),
         ]
     @execute_tasks
     def taskAdd_recruit_break(self):
         return [
-            Task(TaskType.CLICK_IMG, "RecruitConfirm", b_reuseable = True, description="点击对勾开始招募"),
-            Task(TaskType.CLICK_TEXT, "停止招募", pre_wait=0.4, b_recruitCheck=True, description="点击停止招募"),
-            Task(TaskType.CLICK_TEXT, "停止招募", pre_wait=0.4, b_recruitCheck=True, description="点击停止招募"),
+            Task(TaskType.CLICK_IMG, "RecruitConfirm", b_reuse=True, description="点击对勾开始招募"),
+            Task(TaskType.CLICK_TEXT, "停止招募", b_recruitCheck=True, description="点击停止招募"),
+            Task(TaskType.CLICK_TEXT, "确认停止", b_recruitCheck=True, description="点击确认停止"),
             Task(TaskType.STEP_COMPLETED, None),
         ]
     @execute_tasks
     def taskAdd_recruit_accelerate(self):
         return [
-            Task(TaskType.CLICK_IMG, "RecruitTimerDecrement", b_reuseable = True, description="点击向下箭头增加时间"),
+            Task(TaskType.CLICK_IMG, "RecruitTimerDecrement", b_reuse=True, description="点击向下箭头增加时间"),
             Task(TaskType.CLICK_BEST_TAGS, None, description="选好tag"),
-            Task(TaskType.CLICK_IMG, "RecruitConfirm", b_reuseable = True, description="点击对勾开始招募"),
-            Task(TaskType.CLICK_TEXT, "立即招募", pre_wait=0.2, b_recruitCheck=True, description="点击立即招募"),
-            Task(TaskType.CLICK_IMG, "RecruitNowConfirm", pre_wait=0.2, b_reuseable = True, description="确认使用公招券"),
-            Task(TaskType.CLICK_TEXT, "聘用候选人", pre_wait=0.2, b_recruitCheck=True, description="点击聘用候选人"),
-            Task(TaskType.CLICK_TEXT, "SKIP", pre_wait=1, b_reuseable = True, description="点击SKIP"),
-            Task(TaskType.CLICK_TEXT, "凭证", pre_wait=0.5, b_reuseable = True, description="点击凭证"),
+            Task(TaskType.CLICK_IMG, "RecruitConfirm", b_reuse=True, description="点击对勾开始招募"),
+            Task(TaskType.CLICK_TEXT, "立即招募", b_recruitCheck=True, description="点击立即招募"),
+            Task(TaskType.CLICK_IMG, "RecruitNowConfirm", b_reuse=True, description="确认使用加速券"),
+            Task(TaskType.CLICK_TEXT, "聘用候选人", b_recruitCheck=True, description="点击聘用候选人"),
+            Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, description="点击SKIP"),
+            Task(TaskType.WHILE, "isCertificateOnScreen", description="检查是否有凭证可以点击"),
+            [
+                Task(TaskType.CLICK_TEXT, None, description="点击任意处"),
+            ],
             Task(TaskType.STEP_COMPLETED, None),
         ]
     @execute_tasks
     def taskAdd_gacha_once(self):
         return ([
-            Task(TaskType.CLICK_TEXT, "寻访一次", b_reuseable = True, description="点击寻访一次"),
+            Task(TaskType.CLICK_TEXT, "寻访一次", b_reuse=True, description="点击寻访一次"),
             ] + 
             self.l_originiteCheckTask + 
             [
-            Task(TaskType.CLICK_TEXT, "确认", pre_wait=0.6, b_reuseable = True, description="点击确认寻访"),
-            Task(TaskType.CLICK_TEXT, "SKIP", pre_wait=1.2, b_reuseable = True, description="点击SKIP"),
-            Task(TaskType.RECORD_AGENT, None, pre_wait=1.0),
-            Task(TaskType.CLICK_TEXT, "凭证", pre_wait=1.0, b_reuseable = True, description="点击凭证"),
+            Task(TaskType.CLICK_TEXT, "确认", b_reuse=True, description="点击确认寻访"),
+            #Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, post_wait=0.3, description="点击SKIP"),
+            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.98, 0.02), pre_wait=0.5, description="点击SKIP"),
+            Task(TaskType.RECORD_AGENT, None),
+            Task(TaskType.WHILE, "isCertificateOnScreen", description="检查是否有凭证可以点击"),
+            [
+                Task(TaskType.CLICK_TEXT, None, description="点击任意处"),
+            ],
             Task(TaskType.STEP_COMPLETED, None),
         ])
     @execute_tasks
     def taskAdd_gacha_ten(self):
         return ([
-            Task(TaskType.CLICK_TEXT, "寻访十次", b_reuseable = True, description="点击寻访十次"),
+            Task(TaskType.CLICK_TEXT, "寻访十次", b_reuse=True, description="点击寻访十次"),
             ] + 
             self.l_originiteCheckTask + 
             [
-            Task(TaskType.CLICK_TEXT, "确认", pre_wait=0.6, b_reuseable = True, description="点击确认寻访"),
-            Task(TaskType.CLICK_TEXT, "SKIP", pre_wait=1.2, b_reuseable = True, description="点击SKIP"),
-            Task(TaskType.CLICK_TEXT, None, pre_wait=0.8, description="点击任意位置跳过干员"),
-            Task(TaskType.CLICK_TEXT, None, pre_wait=0.3, description="点击任意位置跳过信物"),
-            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.5, 0.9), description="点击屏幕下方"),
+            Task(TaskType.CLICK_TEXT, "确认", b_reuse=True, description="点击确认寻访"),
+            #Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, description="点击SKIP"),
+            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.98, 0.02), pre_wait=0.5, description="点击SKIP"),
+            Task(TaskType.CLICK_TEXT, None, pre_wait=2.5, description="点击任意位置跳过干员"),
+            #Task(TaskType.CLICK_TEXT, None, pre_wait=0.5, description="点击任意位置跳过信物"),
+            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.5, 0.9), pre_wait=0.5, description="点击屏幕下方"),
             Task(TaskType.STEP_COMPLETED, None),
         ])
     @execute_tasks
     def taskAdd_gacha_tenWithRecord(self):
         return ([
-            Task(TaskType.CLICK_TEXT, "寻访十次", b_reuseable = True, description="点击寻访十次"),
+            Task(TaskType.CLICK_TEXT, "寻访十次", b_reuse=True, description="点击寻访十次"),
             ] + 
             self.l_originiteCheckTask + 
             [
-            Task(TaskType.CLICK_TEXT, "确认", pre_wait=0.6, b_reuseable = True, description="点击确认寻访"),
-            Task(TaskType.CLICK_TEXT, "SKIP", pre_wait=1.2, b_reuseable = True, description="点击SKIP"),
-            Task(TaskType.CLICK_TEXT, None, pre_wait=0.8, description="点击任意位置跳过干员"),
-            Task(TaskType.CLICK_TEXT, None, pre_wait=0.3, description="点击任意位置跳过信物"),
-            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.5, 0.9), description="点击屏幕下方"),
-            Task(TaskType.CLICK_TEXT, "查看详情", b_reuseable = True, pre_wait=0.5, description="点击查看详情"),
-            Task(TaskType.CLICK_TEXT, "查询记录", b_reuseable = True, pre_wait=0.4, description="点击查询记录"),
-            Task(TaskType.RECORD_HISTORY_PAGE, None, pre_wait=0.4, description="记录一页招募历史"),
-            Task(TaskType.CLICK_IMG, "gachaHistoryButton_exit", b_reuseable = True, description="点击×退出"),
-            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.5, 0.05), pre_wait=0.4, description="点击屏幕上方退出"),
+            Task(TaskType.CLICK_TEXT, "确认", b_reuse=True, description="点击确认寻访"),
+            #Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, description="点击SKIP"),
+            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.98, 0.02), pre_wait=0.5, description="点击SKIP"),
+            Task(TaskType.CLICK_TEXT, None, pre_wait=2.5, description="点击任意位置跳过干员"),
+            #Task(TaskType.CLICK_TEXT, None, pre_wait=0.5, description="点击任意位置跳过信物"),
+            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.5, 0.9), pre_wait=0.5, description="点击屏幕下方"),
+            Task(TaskType.CLICK_TEXT, "查看详情", b_reuse=True, description="点击查看详情"),
+            Task(TaskType.CLICK_TEXT, "查询记录", b_reuse=True, description="点击查询记录"),
+            Task(TaskType.RECORD_HISTORY_PAGE, None, pre_wait=0.3, description="记录一页招募历史"),
+            Task(TaskType.CLICK_IMG, "gachaHistoryButton_exit", b_reuse=True, description="点击×退出"),
+            Task(TaskType.CLICK_TEXT, None, pre_wait=0.3, description="点击任意位置退出"),
             Task(TaskType.STEP_COMPLETED, None),
         ])
+    
+    @execute_tasks
+    def taskAdd_customTask_loop(self):
+        return [
+            Task(TaskType.WHILE, True),
+            [
+                Task(TaskType.CLICK_IMG, "RecruitTimerDecrement", b_reuse=True, description="点击向下箭头增加时间"),
+                Task(TaskType.CLICK_BEST_TAGS, None, description="检查tag"),
+                Task(TaskType.SCREEN_TO_MEM, None),
+                Task(TaskType.CLICK_IMG, "RecruitConfirm", b_reuse=True, description="点击对勾开始招募"),
+                Task(TaskType.CROP_FROM_MEM, region_tag),
+                Task(TaskType.SAVE_FROM_MEM, "E:\\System_ProgramDataPath\\Desktop\\111", mode="png"),
+                Task(TaskType.WHILE, "isTextOnScreen", name="立即招募", b_sameOnly=True, negation=True, description="等待文字出现"),
+                [
+                    Task(TaskType.NOP, None),
+                ],
+                Task(TaskType.CLICK_TEXT, "立即招募", b_recruitCheck=True, description="点击立即招募"),
+                Task(TaskType.CLICK_IMG, "RecruitNowConfirm", b_reuse=True, description="确认使用加速券"),
+                Task(TaskType.CLICK_TEXT, "聘用候选人", b_recruitCheck=True, description="点击聘用候选人"),
+                Task(TaskType.WHILE, "isCertificateOnScreen", negation=True, region=region_certificate, description="检查是否有凭证可以点击"),
+                [
+                    Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, description="点击SKIP"),
+                ],
+                Task(TaskType.SCREEN_TO_MEM, None),
+                Task(TaskType.CROP_FROM_MEM, (0.33, 0.55, 0.87, 0.85)),
+                Task(TaskType.SAVE_FROM_MEM, "E:\\System_ProgramDataPath\\Desktop\\111", mode="png"),
+                Task(TaskType.WHILE, "isCertificateOnScreen", region=region_certificate, description="检查是否有凭证可以点击"),
+                [
+                    Task(TaskType.CLICK_TEXT, None, description="点击任意处"),
+                ],
+                Task(TaskType.ENTER_SLOT, None, post_wait=0.2, description="进入公招池"),
+            ]
+        ]
+        '''
+        return [
+            Task(TaskType.WHILE, True),
+            [
+                Task(TaskType.CLICK_TEXT, "最少", b_reuse=True, description="点击最少", region=(0.35, 0.8, 0.47, 1), pre_wait=0.1),
+                Task(TaskType.WHILE, "isTextOnScreen", name="1", b_sameOnly=True, negation=True, region=(0.5, 0.872, 0.562, 0.939), description="检查选中数量是否正确"),
+                [
+                    Task(TaskType.WHILE, "isTextOnScreen", name="-20", b_sameOnly=True, negation=True, region=(0.761, 0.84, 0.83, 1), description="检查消耗物资数量是否正确"),
+                    [
+                        Task(TaskType.CLICK_TEXT, "最少", b_reuse=True, description="点击最少", region=(0.35, 0.8, 0.47, 1)),
+                    ],
+                ],
+                Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.85, 0.9), description="点击任命"),
+                Task(TaskType.IF, "isTextOnScreen", name="道具不足", description="判断终止条件", region=(0.8, 0.13, 0.871, 0.18), pre_wait=0.5, post_wait=0.4),
+                [
+                    Task(TaskType.END, None),
+                ],
+                Task(TaskType.SCREEN_TO_MEM, None),
+                Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.85, 0.857), description="点击确认"),
+                Task(TaskType.CROP_FROM_MEM, (0.135, 0.265, 0.238, 0.448)),
+                #Task(TaskType.SAVE_FROM_MEM, "E:\\System_ProgramDataPath\\Desktop\\111\\laojunxiao", mode="png"),
+                Task(TaskType.SAVE_FROM_MEM, "E:\\System_ProgramDataPath\\Desktop\\111\\ico", mode="png"),
+                #Task(TaskType.SAVE_FROM_MEM, "E:\\System_ProgramDataPath\\Desktop\\111\\yuer", mode="png"),
+            ],
+        ]
+        '''

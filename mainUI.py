@@ -1,4 +1,6 @@
+import json
 import logging
+import os
 import platform
 import sys
 
@@ -6,7 +8,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QHBoxLayout, QLabel, QPushButton, QComboBox, 
                              QSpinBox, QCheckBox, QTabWidget, QTextEdit,
                              QFileDialog, QMessageBox, QScrollArea, QFrame,
-                             QSplitter, QLineEdit, QPlainTextEdit,
+                             QSplitter, QLineEdit, QPlainTextEdit, QDoubleSpinBox,
                              QInputDialog, QGroupBox, QGridLayout, QDialog,
                              QDialogButtonBox)
 from PySide6.QtCore import Qt, QTimer, Signal, Slot
@@ -17,12 +19,14 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 
+import cv2 as cv
 import numpy as np
 
 from data import data as DATA
 from data_manager import data_manager
-from game_manager import GameManager, OperationMode, GachaMode, RecruitMode
+from game_manager import Task, GameManager, OperationMode, GachaMode, RecruitMode, TaskType
 from log import log_manager
+from tool import tool, error_record
 
 matplotlib.use('Qt5Agg')
 # 设置matplotlib的默认字体
@@ -134,7 +138,7 @@ class ConsoleWidget(QWidget):
         }.get(level.upper(), "#000000")
         
         # 格式化消息
-        formatted_message = f'<span style="color: {color};">{message}</span><br>'
+        formatted_message = f'<span style="color: {color};">{message}</span><br>'.replace("\n", "<br>")
         
         # 添加到日志区域
         self.log_text.moveCursor(QTextCursor.End)
@@ -151,7 +155,7 @@ class ConsoleWidget(QWidget):
         self.next_step.setText(f"即将进行：{next_step if next_step else ''}")
         
         # 添加到日志记录
-        self.append_message(current_step, "INFO")
+        # self.append_message(current_step, "INFO")
     
     def append_macro_step(self, macro_step, level = "INFO", formated = False):
         """添加消息到宏观步骤区域"""
@@ -171,7 +175,7 @@ class ConsoleWidget(QWidget):
             }.get(level.upper(), "#000000")
             
             # 格式化消息
-            formatted_message = f'<span style="color: {color};">{macro_step}</span><br>'
+            formatted_message = f'<span style="color: {color};">{macro_step}</span><br>'.replace("\n", "<br>")
         
         # 添加到宏观步骤区域
         self.step_text.moveCursor(QTextCursor.End)
@@ -240,7 +244,7 @@ class PlotWidget(QWidget):
         self.canvas.mpl_connect('scroll_event', self.on_scroll)
         
     def set_data(self, data):
-        if not data or self._updating:
+        if self._updating:
             return
             
         self._updating = True
@@ -473,8 +477,8 @@ class PlotWidget(QWidget):
         """加载图表设置"""
         if not hasattr(self, 'ax'):
             return
-            
-        config = log_manager.load_config()
+
+        config = g.config
         plot_settings = config.get('plot', {})
         
         self.grid_on = plot_settings.get('show_grid', True)
@@ -490,7 +494,7 @@ class PlotWidget(QWidget):
         if not hasattr(self, 'ax'):
             return
             
-        config = log_manager.load_config()
+        config = g.config
         
         plot_settings = {
             'show_grid': self.grid_on,
@@ -752,14 +756,14 @@ class DataViewWidget(QWidget):
             raise RuntimeError("未定义行为")
         
         # 设置信息数据
-        if isinstance(numeric_data, list):
+        if isinstance(info_data, list):
             text = "\n".join(str(x) for x in info_data)
             self.info_editor.setPlainText(text)
-        elif isinstance(numeric_data, str):
+        elif isinstance(info_data, str):
             self.info_editor.setPlainText(info_data)
-        elif numeric_data is False:
+        elif info_data is False:
             self.info_editor.clear()
-        elif numeric_data is not None:
+        elif info_data is not None:
             raise RuntimeError("未定义行为")
     
     def get_data(self) -> list:
@@ -806,6 +810,7 @@ class DataViewWidget(QWidget):
             self.save_button.setEnabled(False)
             
         except Exception as e:
+            error_record(e)
             log_manager.error(f"保存失败：{str(e)}")
             QMessageBox.warning(self, "错误", f"保存失败：{str(e)}")
 
@@ -999,14 +1004,18 @@ class SettingsWidget(QWidget):
         }
         
         # 加载当前配置
-        config = log_manager.load_config()
+        config = g.config
         
         # 更新配置
+        config['log'] = new_log_settings
         config['simulator'] = simulator_settings
         config['data'] = data_settings
         
         # 保存配置
+        g.config = config
+
         if log_manager.save_config(config):
+            g.mainWindow.loadSettings()
             g.mainWindow.statusBar().showMessage("设置已保存", 3000)
         else:
             g.mainWindow.statusBar().showMessage("设置保存失败", 3000)
@@ -1039,7 +1048,7 @@ class SettingsWidget(QWidget):
 
     def loadSettings(self):
         """加载设置"""
-        config = log_manager.load_config()
+        config = g.config
         
         # 加载模拟器设置
         simulator_settings = config.get('simulator', {})
@@ -1435,35 +1444,172 @@ class MiniPanel(QWidget):
         self.setWindowFlags(Qt.Window)  # 设置为独立窗口
 
     def initUI(self):
-        self.setWindowTitle('小面板')
+        self.setWindowTitle('测试面板')
         layout = QVBoxLayout(self)
         
-        # 获取GameManager中所有以taskAdd开头的方法
-        task_methods = [method for method in dir(self.game_manager) 
-                       if method.startswith('taskAdd_')]
+        # 创建任务类型选择下拉框
+        task_type_layout = QHBoxLayout()
+        task_type_layout.addWidget(QLabel("任务类型:"))
+        self.task_type_combo = QComboBox()
+        self.task_type_combo.addItems([t.value for t in TaskType])
+        self.task_type_combo.currentTextChanged.connect(self.on_task_type_changed)
+        task_type_layout.addWidget(self.task_type_combo)
+        layout.addLayout(task_type_layout)
         
-        # 创建按钮
-        for method_name in task_methods:
-            # 将方法名转换为中文显示文本
-            display_name = {
-                'taskAdd_tenModeEndUp': '结束操作并记录十连结果',
-                'taskAdd_endUp': '结束操作',
-                'taskAdd_recordScreen': '记录画面',
-                'taskAdd_recruit_enter': '进入公招栏',
-                'taskAdd_recruit_break': '公招终止模式',
-                'taskAdd_recruit_accelerate': '公招加速模式',
-                'taskAdd_gacha_once': '单抽',
-                'taskAdd_gacha_ten': '十连',
-                'taskAdd_gacha_tenWithRecord': '十连并记录'
-            }.get(method_name, method_name)
-            
-            btn = QPushButton(display_name)
-            btn.clicked.connect(lambda checked, m=method_name: self.execute_task(m))
-            layout.addWidget(btn)
+        # 创建参数输入区域
+        param_group = QGroupBox("参数设置")
+        self.param_layout = QVBoxLayout(param_group)
+        
+        # 通用参数
+        common_params = QGridLayout()
+        
+        # 超时设置
+        common_params.addWidget(QLabel("超时(秒):"), 0, 0)
+        self.timeout_input = QSpinBox()
+        self.timeout_input.setRange(1, 60)
+        self.timeout_input.setValue(4)
+        common_params.addWidget(self.timeout_input, 0, 1)
+        
+        # 重试次数
+        common_params.addWidget(QLabel("重试次数:"), 0, 2)
+        self.retry_input = QSpinBox()
+        self.retry_input.setRange(1, 100)
+        self.retry_input.setValue(50)
+        common_params.addWidget(self.retry_input, 0, 3)
+        
+        # 前置等待
+        common_params.addWidget(QLabel("前置等待(秒):"), 1, 0)
+        self.pre_wait_input = QDoubleSpinBox()
+        self.pre_wait_input.setRange(0, 10)
+        self.pre_wait_input.setSingleStep(0.1)
+        common_params.addWidget(self.pre_wait_input, 1, 1)
+        
+        # 后置等待
+        common_params.addWidget(QLabel("后置等待(秒):"), 1, 2)
+        self.post_wait_input = QDoubleSpinBox()
+        self.post_wait_input.setRange(0, 10)
+        self.post_wait_input.setSingleStep(0.1)
+        common_params.addWidget(self.post_wait_input, 1, 3)
+        
+        self.param_layout.addLayout(common_params)
+        
+        # 特定参数区域（动态变化）
+        self.specific_param_widget = QWidget()
+        self.specific_param_layout = QVBoxLayout(self.specific_param_widget)
+        self.param_layout.addWidget(self.specific_param_widget)
+        
+        layout.addWidget(param_group)
+        
+        # 执行按钮
+        self.execute_btn = QPushButton("执行任务")
+        self.execute_btn.clicked.connect(self.execute_task)
+        layout.addWidget(self.execute_btn)
+
+        # 自定义任务按钮
+        self.execute_custom_task_btn = QPushButton("执行自定义任务")
+        self.execute_custom_task_btn.clicked.connect(self.execute_custom_task)
+        layout.addWidget(self.execute_custom_task_btn)
+        
+        # 初始化特定参数界面
+        self.on_task_type_changed(self.task_type_combo.currentText())
+        
+        # 设置合适的窗口大小
+        self.setMinimumWidth(400)
     
-    def execute_task(self, method_name):
-        method = getattr(self.game_manager, method_name)
-        method()
+    def clear_specific_params(self):
+        """清除特定参数区域的所有控件"""
+        while self.specific_param_layout.count():
+            item = self.specific_param_layout.takeAt(0)
+            if item.widget():
+                item.widget().deleteLater()
+    
+    def on_task_type_changed(self, task_type):
+        """当任务类型改变时更新参数输入界面"""
+        self.clear_specific_params()
+        
+        if task_type in ["点击文字", "点击图片"]:
+            # 添加目标输入
+            target_layout = QHBoxLayout()
+            target_layout.addWidget(QLabel("目标:"))
+            self.target_input = QLineEdit()
+            target_layout.addWidget(self.target_input)
+            self.specific_param_layout.addLayout(target_layout)
+            
+            # 添加复用和公招检查选项
+            options_layout = QHBoxLayout()
+            self.reuse_check = QCheckBox("坐标复用")
+            self.recruit_check = QCheckBox("公招检查")
+            options_layout.addWidget(self.reuse_check)
+            options_layout.addWidget(self.recruit_check)
+            self.specific_param_layout.addLayout(options_layout)
+            
+        elif task_type in ["点击指定坐标"]:
+            coord_layout = QHBoxLayout()
+            coord_layout.addWidget(QLabel("X:"))
+            self.x_input = QSpinBox()
+            self.x_input.setRange(0, 1920)
+            coord_layout.addWidget(self.x_input)
+            coord_layout.addWidget(QLabel("Y:"))
+            self.y_input = QSpinBox()
+            self.y_input.setRange(0, 1080)
+            coord_layout.addWidget(self.y_input)
+            self.specific_param_layout.addLayout(coord_layout)
+            
+        elif task_type in ["点击相对位置"]:
+            coord_layout = QHBoxLayout()
+            coord_layout.addWidget(QLabel("相对X(0-1):"))
+            self.rx_input = QDoubleSpinBox()
+            self.rx_input.setRange(0, 1)
+            self.rx_input.setSingleStep(0.1)
+            coord_layout.addWidget(self.rx_input)
+            coord_layout.addWidget(QLabel("相对Y(0-1):"))
+            self.ry_input = QDoubleSpinBox()
+            self.ry_input.setRange(0, 1)
+            self.ry_input.setSingleStep(0.1)
+            coord_layout.addWidget(self.ry_input)
+            self.specific_param_layout.addLayout(coord_layout)
+            
+        elif task_type in ["记录指定数量抽卡记录"]:
+            count_layout = QHBoxLayout()
+            count_layout.addWidget(QLabel("记录数量:"))
+            self.count_input = QSpinBox()
+            self.count_input.setRange(1, 100)
+            count_layout.addWidget(self.count_input)
+            self.specific_param_layout.addLayout(count_layout)
+    
+    def execute_task(self):
+        """执行选定的任务"""
+        task_type = TaskType(self.task_type_combo.currentText())
+        param = None
+        
+        # 根据任务类型获取参数
+        if task_type in [TaskType.CLICK_TEXT, TaskType.CLICK_IMG]:
+            param = self.target_input.text()
+        elif task_type == TaskType.CLICK_COORDINATE:
+            param = (self.x_input.value(), self.y_input.value())
+        elif task_type == TaskType.CLICK_COORDINATE_RELATIVE:
+            param = (self.rx_input.value(), self.ry_input.value())
+        elif task_type == TaskType.RECORD_HISTORY_FLEX:
+            param = self.count_input.value()
+            
+        # 创建任务
+        task = Task(
+            task_type,
+            param,
+            timeout=self.timeout_input.value(),
+            retry_count=self.retry_input.value(),
+            pre_wait=self.pre_wait_input.value(),
+            post_wait=self.post_wait_input.value(),
+            b_reuse=getattr(self, 'reuse_check', QCheckBox()).isChecked(),
+            b_recruitCheck=getattr(self, 'recruit_check', QCheckBox()).isChecked()
+        )
+        
+        # 添加并执行任务
+        self.game_manager.task_manager.add_task(task)
+        self.game_manager.task_manager.execute_tasks()
+
+    def execute_custom_task(self):
+        self.game_manager.taskAdd_customTask_loop()
 
     def closeEvent(self, event):
         """关闭窗口时启用主界面的开始按钮"""
@@ -1471,6 +1617,7 @@ class MiniPanel(QWidget):
             self.control_widget.btn_start_pause.setEnabled(True)
             self.control_widget.enable_settings()
             delattr(self.control_widget, 'mini_panel')
+        self.game_manager.task_manager.stop_tasks()
         event.accept()
 
 class InputWithImageDialog(QDialog):
@@ -1551,6 +1698,9 @@ class MainWindow(QMainWindow):
         self.initUI()
         self.loadSettings()
         self.setupMenuBar()
+
+        self.img_extension = ['.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.webp']
+        self.supported_extension = self.img_extension + [".json", ".txt"]
 
     def setupMenuBar(self):
         """设置菜单栏"""
@@ -1755,11 +1905,12 @@ class MainWindow(QMainWindow):
     
     def loadSettings(self):
         """加载所有设置"""
+        g.config = log_manager.load_config()
         self.settings_widget.loadSettings()
         self.plot_widget.loadSettings()
         
         # 应用自动保存设置
-        config = log_manager.load_config()
+        config = g.config
         data_settings = config.get('data', {})
         if data_settings.get('auto_save', True):
             interval = data_settings.get('auto_save_interval', 5) * 60 * 1000  # 转换为毫秒
@@ -1773,6 +1924,7 @@ class MainWindow(QMainWindow):
             else:
                 log_manager.warning("数据自动保存失败")
         except Exception as e:
+            error_record(e)
             log_manager.error(f"自动保存时发生错误: {str(e)}")
     
     def closeEvent(self, event):
@@ -1792,6 +1944,7 @@ class MainWindow(QMainWindow):
             self.game_manager.break_connection()
             
         except Exception as e:
+            error_record(e)
             log_manager.error(f"关闭窗口时发生错误: {str(e)}")
         
         event.accept()
@@ -1887,7 +2040,7 @@ class MainWindow(QMainWindow):
                 
             return text
 
-    def handle_missing_agent(self, errorTuple):
+    def handle_missing_record(self, errorTuple):
         """处理无法识别记录的情况"""
         img, l_result = errorTuple
         while True:
@@ -1931,7 +2084,7 @@ class MainWindow(QMainWindow):
 
     def on_user_changed_data(self, info_data: list):
         """用户应用数据的修改"""
-        data_manager.update_data("\n".join(info_data))
+        data_manager.set_data("\n".join(info_data))
         self.plot_widget.set_data(data_manager.data)
         self.data_view.set_data(numeric_data=data_manager.data)
 
@@ -1942,7 +2095,7 @@ class MainWindow(QMainWindow):
     def save_current_data(self):
         """保存核心数据"""
         try:
-            config = log_manager.load_config()
+            config = g.config
             data_settings = config.get('data', {})
             file_path = data_settings.get('file_path', '#record.txt')
             
@@ -1951,33 +2104,172 @@ class MainWindow(QMainWindow):
             else:
                 log_manager.error("保存数据失败")
         except Exception as e:
+            error_record(e)
             QMessageBox.warning(self, "错误", f"保存失败：{str(e)}")
             log_manager.error(f"保存数据时发生错误：{str(e)}")
 
     def dragEnterEvent(self, event):
-        """拖入事件处理"""
+        """拖入事件处理，支持目录、图片、JSON和TXT文件"""
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
-                if url.toLocalFile().endswith('.txt'):
+                file_path = url.toLocalFile()
+                # 检查是否为目录
+                if os.path.isdir(file_path):
                     event.acceptProposedAction()
                     return
-                    
+                # 检查文件扩展名
+                ext = os.path.splitext(file_path)[1].lower()
+                if ext in self.supported_extension:
+                    event.acceptProposedAction()
+                    return
+        event.ignore()
+
     def dropEvent(self, event):
-        """放下事件处理"""
+        """放下事件处理，支持多种文件类型和目录"""
         for url in event.mimeData().urls():
             file_path = url.toLocalFile()
-            if file_path.endswith('.txt'):
-                if data_manager.load_data(file_path):
-                    self.plot_widget.set_data(data_manager.data)
-                    self.data_view.set_data(
-                        data_manager.data,
-                        data_manager.real_data
-                    )
-                    self.statusBar().showMessage(f"已导入文件：{file_path}", 3000)
+            try:
+                if os.path.isdir(file_path):
+                    self.append_data_from_dir(file_path)
+                    self.statusBar().showMessage(f"成功导入目录: {file_path}", 3000)
                 else:
-                    self.statusBar().showMessage("导入失败", 3000)
-                event.acceptProposedAction()
-                return
+                    ext = os.path.splitext(file_path)[1].lower()
+                    if ext in self.img_extension:
+                        self.append_data_from_img(file_path)
+                        self.statusBar().showMessage(f"成功导入图片: {file_path}", 3000)
+                    elif ext == '.json':
+                        self.append_data_from_json(file_path)
+                        self.statusBar().showMessage(f"成功导入JSON文件: {file_path}", 3000)
+                    elif ext == '.txt':
+                        self.append_data_from_txt(file_path)
+                        self.statusBar().showMessage(f"成功导入TXT文件: {file_path}", 3000)
+            except Exception as e:
+                self.statusBar().showMessage(f"导入失败: {str(e)}", 3000)
+                error_record(e)
+                log_manager.error(f"文件处理失败 {file_path}: {e}", e)
+        event.acceptProposedAction()
+
+    def append_data_from_json(self, jsonPath):
+        log_manager.debug(f"从json文件 {jsonPath} 中录入")
+        with open(jsonPath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        l_agents = []
+        for entry in data['data']['list']:
+            for char in entry['chars']:
+                l_agents.append(char['name'])
+        data_manager.update_data(l_agents[::-1])
+        self.plot_widget.set_data(data_manager.data)
+        self.data_view.set_data(
+            data_manager.data,
+            data_manager.real_data
+        )
+
+    def append_data_from_txt(self, txtPath):
+        log_manager.debug(f"从文本文件 {txtPath} 中录入")
+        if data_manager.load_data(txtPath):
+            self.plot_widget.set_data(data_manager.data)
+            self.data_view.set_data(
+                data_manager.data,
+                data_manager.real_data
+            )
+        else:
+            raise RuntimeError(f"文件 {txtPath} 解析失败")
+
+    def append_data_from_img(self, imgPath, refresh = False):
+        log_manager.debug(f"从图片 {imgPath} 中录入")
+        file_ext = os.path.splitext(imgPath)[1].lower()
+        if file_ext in self.img_extension:
+            img = cv.imread(imgPath)
+        else:
+            raise RuntimeError(f"无法将 {imgPath} 读取为图片")
+        if img is None:
+            raise RuntimeError(f"无法将 {imgPath} 读取为图片，可能是路径有中文？")
+        # 三种识别挨个判定正确的
+        l_tag = tool.getTag(img)
+        if len(l_tag) == 5:
+            data_manager.update_data("!".join(l_tag))
+        else:
+            agent = tool.getAgent(img)
+            if agent is not None:
+                data_manager.update_data(agent)
+            else:
+                l_history, b_flag = tool.getHistory(img)
+                if b_flag:
+                    data_manager.update_data("\n".join(l_history))
+                else:
+                    log_manager.debug(f"{imgPath}识别结果: tag={l_tag}, 干员={agent}, 历史={l_history}, 标志={b_flag}")
+                    raise RuntimeError(f"无法识别图像 {imgPath}")
+        if refresh:
+            self.plot_widget.set_data(data_manager.data)
+            self.data_view.set_data(
+                data_manager.data,
+                data_manager.real_data
+            )
+
+    def append_data_from_dir(self, dirPath):
+        log_manager.debug(f"从目录 {dirPath} 中录入")
+
+        # 收集所有文件及其创建时间
+        l_files = []
+        # 是否所有文件都是纯数字命名
+        all_numeric = True
+
+        # 遍历文件夹中的所有文件
+        for root, dirs, files in os.walk(dirPath):
+            for file in files:
+                # 获取文件完整路径
+                #file_path = root.replace("/", "\\") + "\\" + file
+                file_path = os.path.join(root, file)
+
+                # 检查文件扩展名是否为图像文件
+                file_ext = os.path.splitext(file_path)[1].lower()
+                if file_ext not in self.supported_extension:
+                    continue
+
+                try:
+                    # 获取文件修改时间
+                    creation_time = os.path.getmtime(file_path)
+                except Exception as e:
+                    error_record(e)
+                    print(f"无法获取文件 {file_path} 的修改时间: {e}")
+                    continue
+
+                l_files.append((file_path, creation_time, file_ext))
+
+                # 判断文件名是否纯数字（无扩展名部分）
+                base_name = os.path.splitext(file)[0]
+                if not base_name.isdigit():
+                    all_numeric = False
+
+        # 根据 all_numeric 决定排序键
+        if all_numeric and l_files:
+            l_files.sort(key=lambda t: int(os.path.splitext(os.path.basename(t[0]))[0]))
+        else:
+            # 按创建时间排序（从老到新）
+            l_files.sort(key=lambda t: t[1])
+
+        l_error = []
+        for file_path, _, file_ext in l_files:
+            try:
+                if file_ext in self.img_extension:
+                    self.append_data_from_img(file_path, refresh = False)
+                elif file_ext == ".txt":
+                    self.append_data_from_txt(file_path)
+                elif file_ext == ".json":
+                    self.append_data_from_json(file_path)
+                else:
+                    raise RuntimeError("shouldn't be here")
+            except Exception as e:
+                error_record(e)
+                l_error.append(file_path)
+
+        self.plot_widget.set_data(data_manager.data)
+        self.data_view.set_data(
+            data_manager.data,
+            data_manager.real_data
+        )
+        if l_error:
+            raise RuntimeError("以下文件在载入时出错：\n" + "\n".join(l_error))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -1,10 +1,11 @@
+from datetime import datetime, timedelta
 import inspect
 import os
 import logging
-import yaml
-from datetime import datetime, timedelta
-from PySide6.QtCore import QObject, Signal
+
 import cv2
+from PySide6.QtCore import QObject, Signal
+import yaml
 
 class LogManager(QObject):
     # 信号定义
@@ -99,11 +100,6 @@ class LogManager(QObject):
         self.settings.update(new_settings)
         self.setup_log_dir()
         self.setup_handlers()
-        
-        # 保存到配置文件
-        config = self.load_config()
-        config['log'] = self.settings
-        self.save_config(config)
             
         # 发送设置变更信号
         self.log_settings_changed.emit(self.settings)
@@ -137,15 +133,15 @@ class LogManager(QObject):
         # 格式化消息
         formatted_msg = self.formatter.format(record)
 
-        if level >= logging.ERROR:
-            s_level = "ERROR"
-        else:
-            s_level = "INFO"
-        self.log_message.emit(formatted_msg, s_level)
+        print(formatted_msg)
         
         # 处理控制台输出
         if self.settings.get('console_enabled', True) and level >= self.settings.get('console_level', logging.INFO):
-            print(formatted_msg)
+            if level >= logging.ERROR:
+                s_level = "ERROR"
+            else:
+                s_level = "INFO"
+            self.log_message.emit(formatted_msg, s_level)
     
         # 处理文件输出
         if self.settings.get('file_enabled', True) and level >= self.settings.get('file_level', logging.DEBUG):
@@ -186,7 +182,7 @@ class LogManager(QObject):
             return None
             
         try:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S%f")[:-3]
             filename = f"{prefix}_{timestamp}.png"
             filepath = os.path.join(self.log_dir, 'img', filename)
             cv2.imwrite(filepath, img)

@@ -1,0 +1,3496 @@
+html = """<!DOCTYPE html>
+<html class="client-nojs" lang="zh-Hans-CN" dir="ltr">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>干员一览 - PRTS - 玩家共同构筑的明日方舟中文Wiki</title>
+        <script>
+            document.documentElement.className = "client-js";
+            RLCONF = {
+                "wgBreakFrames": false,
+                "wgSeparatorTransformTable": ["", ""],
+                "wgDigitTransformTable": ["", ""],
+                "wgDefaultDateFormat": "zh",
+                "wgMonthNames": ["", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+                "wgRequestId": "3bba3a342d8742d902b347ec",
+                "wgCSPNonce": false,
+                "wgCanonicalNamespace": "",
+                "wgCanonicalSpecialPageName": false,
+                "wgNamespaceNumber": 0,
+                "wgPageName": "干员一览",
+                "wgTitle": "干员一览",
+                "wgCurRevisionId": 335492,
+                "wgRevisionId": 335492,
+                "wgArticleId": 1831,
+                "wgIsArticle": true,
+                "wgIsRedirect": false,
+                "wgAction": "view",
+                "wgUserName": null,
+                "wgUserGroups": ["*"],
+                "wgCategories": [],
+                "wgPageContentLanguage": "zh-cn",
+                "wgPageContentModel": "wikitext",
+                "wgRelevantPageName": "干员一览",
+                "wgRelevantArticleId": 1831,
+                "wgIsProbablyEditable": false,
+                "wgRelevantPageIsProbablyEditable": false,
+                "wgRestrictionEdit": ["sysop"],
+                "wgRestrictionMove": ["sysop"],
+                "wgCargoDefaultQueryLimit": 100,
+                "wgCargoMapClusteringMinimum": 80,
+                "wgCargoMonthNamesShort": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+                "wgMFDisplayWikibaseDescriptions": {
+                    "search": false,
+                    "nearby": false,
+                    "watchlist": false,
+                    "tagline": false
+                },
+                "srfFilteredConfig": null,
+                "wgVector2022PreviewPages": [],
+                "wgULSAcceptLanguageList": ["zh-cn", "zh", "en", "en-gb", "en-us"],
+                "wgULSCurrentAutonym": "中文（中国大陆）",
+                "wgULSPosition": "personal",
+                "wgULSisCompactLinksEnabled": true
+            };
+            RLSTATE = {
+                "ext.gadget.fivethStyle": "ready",
+                "site.styles": "ready",
+                "user.styles": "ready",
+                "user": "ready",
+                "user.options": "loading",
+                "skins.vector.styles.legacy": "ready",
+                "ext.smw.style": "ready",
+                "ext.smw.tooltip.styles": "ready",
+                "ext.srf.styles": "ready",
+                "ext.uls.pt": "ready"
+            };
+            RLPAGEMODULES = ["ext.smw.style", "ext.smw.tooltips", "smw.entityexaminer", "site", "mediawiki.page.ready", "skins.vector.legacy.js", "ext.gadget.copyUrl", "ext.gadget.Filterable", "ext.gadget.Carousel", "ext.gadget.Popup", "ext.gadget.Edittools", "ext.gadget.HeimuToggle", "ext.uls.compactlinks", "ext.uls.interface"];
+        </script>
+        <script>
+            (RLQ = window.RLQ || []).push(function() {
+                mw.loader.implement("user.options@12s5i", function($, jQuery, require, module) {
+                    mw.user.tokens.set({
+                        "patrolToken": "+\\",
+                        "watchToken": "+\\",
+                        "csrfToken": "+\\"
+                    });
+                });
+            });
+        </script>
+        <link rel="stylesheet" href="/load.php?lang=zh-cn&amp;modules=ext.smw.style%7Cext.smw.tooltip.styles%7Cext.srf.styles%7Cext.uls.pt%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector"/>
+        <script async="" src="/load.php?lang=zh-cn&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+        <style>
+            #mw-indicator-mw-helplink {
+                display: none;
+            }
+        </style>
+        <meta name="ResourceLoaderDynamicStyles" content=""/>
+        <link rel="stylesheet" href="/load.php?lang=zh-cn&amp;modules=ext.gadget.fivethStyle&amp;only=styles&amp;skin=vector"/>
+        <link rel="stylesheet" href="/load.php?lang=zh-cn&amp;modules=site.styles&amp;only=styles&amp;skin=vector"/>
+        <meta name="generator" content="MediaWiki 1.39.7"/>
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="description" content="PRTS是一个非营利性质的明日方舟资料Wiki网站"/>
+        <meta name="keywords" content="PRTS,明日方舟,明日方舟Arknights,Arknights,明日方舟wiki,明日方舟百科,明日方舟攻略,明日方舟图鉴,明日方舟,明日方舟资料站"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="viewport" content="width=1000"/>
+        <link rel="alternate" media="only screen and (max-width: 720px)" href="//m.prts.wiki/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88"/>
+        <link rel="alternate" type="application/rdf+xml" title="干员一览" href="/index.php?title=%E7%89%B9%E6%AE%8A:%E5%AF%BC%E5%87%BARDF/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88&amp;xmlmime=rdf"/>
+        <link rel="icon" href="/public/favicon.ico"/>
+        <link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="PRTS (zh-cn)"/>
+        <link rel="EditURI" type="application/rsd+xml" href="//prts.wiki/api.php?action=rsd"/>
+        <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"/>
+        <script>
+            this.globalThis || (this.globalThis = this)
+        </script>
+        <link rel="dns-prefetch" href="https://static.prts.wiki/">
+        <link rel="modulepreload" href="https://static.prts.wiki/widgets/production/sentry.l-4LUkec.js" as="script">
+        <script type="module" crossorigin src="https://static.prts.wiki/widgets/production/sentry.l-4LUkec.js"></script>
+        <link rel="modulepreload" href="https://static.prts.wiki/widgets/production/DisplayController.js" as="script">
+        <script type="module" crossorigin src="https://static.prts.wiki/widgets/production/DisplayController.js"></script>
+        <link rel="manifest" href="/manifest.json">
+        <link href="https://static.prts.wiki/mdi/7.2.96/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"/>
+        <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/font-awesome/5.15.4/css/all.min.css" type="text/css" rel="stylesheet"/>
+        <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/font-awesome/5.15.4/css/v4-shims.min.css" type="text/css" rel="stylesheet"/>
+        <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/animate.css/3.7.2/animate.min.css" type="text/css" rel="stylesheet"/>
+        <meta name="theme-color" content="#343434">
+        <link rel="apple-touch-icon" href="/ioslogo.png">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            if ('serviceWorker'in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope)
+                    }).catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err)
+                    })
+                })
+            }
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEE6E93G5M"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-DEE6E93G5M');
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?e1369c7d981281aa581e68b669c5a75c";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            }
+            )();
+        </script>
+        <style type="text/css">
+            .skin-vector .mw-body {
+                margin-left: 11em !important;
+                padding: 1.25em 1.5em 1.5em 1.5em !important
+            }
+
+            .skin-vector #mw-panel {
+                padding-left: 0 !important;
+                width: 10.5em !important
+            }
+
+            .skin-vector #left-navigation,.skin-vector #content {
+                margin-left: 11em
+            }
+
+            div#MenuSidebar {
+                margin-bottom: 5rem;
+                position: absolute;
+                top: 200px;
+                width: 100%
+            }
+
+            div#MenuSidebar a.external {
+                background: none;
+                padding-right: auto
+            }
+
+            div#MenuSidebar>:first-child {
+                margin-top: 0px;
+                border-top: 2px solid #f4c430
+            }
+
+            div#MenuSidebar>:first-child>:first-child {
+                box-shadow: none
+            }
+
+            div#MenuSidebar>ul {
+                list-style: none none;
+                width: 100%;
+                margin: 0px;
+                background-color: rgba(20,20,20,0.6);
+                border-top: 2px solid #f4c430;
+                border-bottom-right-radius: 5px
+            }
+
+            div#MenuSidebar ul {
+                position: relative;
+                font-size: 0.9rem
+            }
+
+            div#MenuSidebar>ul>li ul {
+                display: block;
+                opacity: 0;
+                pointer-events: none;
+                visibility: hidden;
+                transition: 0.2s all ease-in-out;
+                z-index: 1;
+                background-color: #373737;
+                width: unset !important;
+                white-space: nowrap
+            }
+
+            div#MenuSidebar>ul>li ul a,div#MenuSidebar>ul>li ul b {
+                padding-right: 18px
+            }
+
+            div#MenuSidebar>ul ul {
+                list-style: none none;
+                position: absolute;
+                left: 100%;
+                width: 100%;
+                top: 0px;
+                margin: 0px;
+                z-index: 1;
+                background-color: #333;
+                box-shadow: -1px 2px 10px 0px rgba(0,0,0,0.4),-1px -2px 10px 0px rgba(0,0,0,0.4)
+            }
+
+            div#MenuSidebar ul li:first-child {
+                box-shadow: none
+            }
+
+            div#MenuSidebar > p {
+                padding: 8px 10px;
+                margin: 0px;
+                cursor: default;
+                color: #f4c430;
+                font-weight: bold;
+                margin-top: 8px;
+                background-color: rgba(30,30,30,0.6)
+            }
+
+            div#MenuSidebar>ul li:hover>ul {
+                display: block;
+                opacity: 1;
+                pointer-events: auto;
+                visibility: visible
+            }
+
+            div#MenuSidebar li {
+                position: relative;
+                margin: 0px;
+                box-shadow: inset 0 1px rgba(244,196,48,0.5);
+                transition: 0.15s all ease-in;
+                z-index: 1
+            }
+
+            div#MenuSidebar li b,div#MenuSidebar li a {
+                padding: 5px 0px;
+                padding-left: 18px;
+                display: block;
+                width: auto;
+                height: 100%;
+                font-weight: normal
+            }
+
+            div#MenuSidebar a {
+                transition: all 0.15s ease-in;
+                color: #eaeaea
+            }
+
+            div#MenuSidebar a:hover,div#MenuSidebar b:hover {
+                color: black;
+                background-color: #f4c430;
+                text-decoration: none !important
+            }
+
+            div#MenuSidebar b {
+                cursor: default
+            }
+
+            div#MenuSidebar li.child>a::after,div#MenuSidebar li.child>b::after {
+                float: right;
+                content: "\f0da";
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                display: inherit;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                line-height: 100%;
+                font-size: 1rem;
+                padding-top: 2%;
+                margin-right: 3px
+            }
+
+            div#MenuSidebar a.selflink {
+                font-weight: bold;
+                color: #f4c430;
+                cursor: default
+            }
+
+            div#MenuSidebar a.selflink:hover {
+                background-color: inherit;
+                color: #f4c430
+            }
+
+            div#MenuSidebar>ul>li:last-child>a,div#MenuSidebar>ul>li:last-child>b {
+                border-bottom-right-radius: 5px
+            }
+
+            div#MenuSidebar a.selflink::before {
+                content: "";
+                display: block;
+                position: absolute;
+                left: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+                border-top: 6px solid transparent;
+                border-bottom: 6px solid transparent;
+                border-left: 6px solid #f4c430
+            }
+
+            #MenuSidebar .copyUrl::after {
+                content: "\f0c1";
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                -webkit-font-smoothing: antialiased;
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                line-height: 1;
+                font-size: 70%;
+                margin-left: .4em;
+                color: var(--production);
+                pointer-events: auto;
+                cursor: pointer
+            }
+        </style>
+        <link rel="preload" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/lazysizes/4.1.8/lazysizes.min.js" as="script">
+        <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/lazysizes/4.1.8/lazysizes.min.js" type="application/javascript"></script>
+        <meta property="og:title" content="干员一览 - PRTS - 玩家共同构筑的明日方舟中文Wiki"/>
+        <meta property="og:site_name" content="PRTS"/>
+        <meta property="og:url" content="https://prts.wiki/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88"/>
+        <meta property="og:description" content="PRTS是一个非营利性质的明日方舟资料Wiki网站"/>
+        <meta property="og:image" content="https://prts.wiki/public/ak.png"/>
+        <meta property="article:tag" content="PRTS,明日方舟,明日方舟Arknights,Arknights,明日方舟wiki,明日方舟百科,明日方舟攻略,明日方舟图鉴,明日方舟,明日方舟资料站"/>
+        <meta property="article:modified_time" content="2025-02-28T16:06:34Z"/>
+        <meta property="article:published_time" content="2025-02-28T16:06:34Z"/>
+        <script type="application/ld+json">
+            {
+                "@context": "http:\/\/schema.org",
+                "@type": "Article",
+                "name": "\u5e72\u5458\u4e00\u89c8 - PRTS - \u73a9\u5bb6\u5171\u540c\u6784\u7b51\u7684\u660e\u65e5\u65b9\u821f\u4e2d\u6587Wiki",
+                "headline": "\u5e72\u5458\u4e00\u89c8 - PRTS - \u73a9\u5bb6\u5171\u540c\u6784\u7b51\u7684\u660e\u65e5\u65b9\u821f\u4e2d\u6587Wiki",
+                "mainEntityOfPage": "<span class=\"mw-page-title-main\">\u5e72\u5458\u4e00\u89c8<\/span>",
+                "identifier": "https:\/\/prts.wiki\/w\/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88",
+                "url": "https:\/\/prts.wiki\/w\/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88",
+                "description": "PRTS\u662f\u4e00\u4e2a\u975e\u8425\u5229\u6027\u8d28\u7684\u660e\u65e5\u65b9\u821f\u8d44\u6599Wiki\u7f51\u7ad9",
+                "keywords": "PRTS,\u660e\u65e5\u65b9\u821f,\u660e\u65e5\u65b9\u821fArknights,Arknights,\u660e\u65e5\u65b9\u821fwiki,\u660e\u65e5\u65b9\u821f\u767e\u79d1,\u660e\u65e5\u65b9\u821f\u653b\u7565,\u660e\u65e5\u65b9\u821f\u56fe\u9274,\u660e\u65e5\u65b9\u821f,\u660e\u65e5\u65b9\u821f\u8d44\u6599\u7ad9",
+                "dateModified": "2025-02-28T16:06:34Z",
+                "datePublished": "2025-02-28T16:06:34Z",
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/prts.wiki\/public\/ak.png"
+                },
+                "author": {
+                    "@type": "Organization",
+                    "name": "PRTS",
+                    "url": "\/\/prts.wiki",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https:\/\/prts.wiki\/public\/ak.png",
+                        "caption": "PRTS"
+                    }
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "PRTS",
+                    "url": "\/\/prts.wiki",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https:\/\/prts.wiki\/public\/ak.png",
+                        "caption": "PRTS"
+                    }
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https:\/\/prts.wiki\/index.php?title=%E7%89%B9%E6%AE%8A:Search&search={search_term}",
+                    "query-input": "required name=search_term"
+                }
+            }</script>
+    </head>
+    <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-干员一览 rootpage-干员一览 skin-vector action-view skin-vector-legacy vector-feature-language-in-header-enabled vector-feature-language-in-main-page-header-disabled vector-feature-language-alert-in-sidebar-disabled vector-feature-sticky-header-disabled vector-feature-sticky-header-edit-disabled vector-feature-table-of-contents-disabled vector-feature-visual-enhancement-next-disabled">
+        <div id="mw-page-base" class="noprint"></div>
+        <div id="mw-head-base" class="noprint"></div>
+        <div id="content" class="mw-body" role="main">
+            <a id="top"></a>
+            <div id="siteNotice">
+                <div id="localNotice">
+                    <div class="sitenotice" lang="zh-Hans-CN" dir="ltr">
+                        <div class="nomobile"></div>
+                        <div class="mobileonly nodesktop"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mw-indicators">
+                <div id="mw-indicator-smw-entity-examiner" class="mw-indicator">
+                    <div class="smw-entity-examiner smw-indicator-vertical-bar-loader" data-subject="干员一览#0##" data-dir="ltr" data-uselang="" title="在后台运行检查器"></div>
+                </div>
+            </div>
+            <h1 id="firstHeading" class="firstHeading mw-first-heading">
+                <span class="mw-page-title-main">干员一览</span>
+            </h1>
+            <div id="bodyContent" class="vector-body">
+                <div id="siteSub" class="noprint">来自PRTS</div>
+                <div id="contentSub"></div>
+                <div id="contentSub2"></div>
+                <div id="jump-to-nav"></div>
+                <a class="mw-jump-link" href="#mw-head">跳转到导航</a>
+                <a class="mw-jump-link" href="#searchInput">跳转到搜索</a>
+                <div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="zh-Hans-CN" dir="ltr">
+                    <div class="mw-parser-output">
+                        <div class="nomobile cbox-autonarrow" style="margin-bottom:12px; margin-top:12px;display:flex; flex-direction: row; flex-wrap: nowrap; background: #F9FFEA; width:825px; max-width:100%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);">
+                            <div style="display:flex; padding:10px 10px 10px 10px; width:40px; min-width:40px; max-width:40px; justify-content: center; background-color:#B9E66B; color:#84B63C; box-sizing:border-box;">
+                                <span class="mdi mdi-arrow-top-right-thick" style="font-size:24px;color:;"></span>
+                            </div>
+                            <div style="display:block; padding:12px 12px 12px 12px; flex-grow:1; -webkit-box-flex:1; box-sizing:border-box;">
+                                如需了解<b>公招计算</b>
+                                ，您也可以查阅<a href="/w/%E5%85%AC%E6%8B%9B%E8%AE%A1%E7%AE%97" title="公招计算">公招计算</a>
+                                页面。
+                            </div>
+                        </div>
+                        <div class="nodesktop" style="margin-bottom:0.5rem;margin-top:0.5rem; display:flex; flex-direction: column; background: #F9FFEA;">
+                            <div style="display:block; padding:0.5rem 1rem 0.5rem 1rem; background-color:#B9E66B; color:#84B63C; box-sizing:border-box;">
+                                <span class="mdi mdi-arrow-top-right-thick" style="font-size:1em;color:;"></span>
+                            </div>
+                            <div style="display:block; padding:0.5rem 1rem 0.5rem 1rem; flex-grow:1; -webkit-box-flex:1; -webkit-box-pack:center; justify-content:center; box-sizing:border-box;">
+                                如需了解<b>公招计算</b>
+                                ，您也可以查阅<a href="/w/%E5%85%AC%E6%8B%9B%E8%AE%A1%E7%AE%97" title="公招计算">公招计算</a>
+                                页面。
+                            </div>
+                        </div>
+                        <div class="nomobile cbox-autonarrow" style="margin-bottom:12px; margin-top:12px;display:flex; flex-direction: row; flex-wrap: nowrap; background: #F9FFEA; width:825px; max-width:100%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);">
+                            <div style="display:flex; padding:10px 10px 10px 10px; width:40px; min-width:40px; max-width:40px; justify-content: center; background-color:#B9E66B; color:#84B63C; box-sizing:border-box;">
+                                <span class="mdi mdi-arrow-top-right-thick" style="font-size:24px;color:;"></span>
+                            </div>
+                            <div style="display:block; padding:12px 12px 12px 12px; flex-grow:1; -webkit-box-flex:1; box-sizing:border-box;">
+                                如需了解<b>仅在特殊模式中可选用的专属干员</b>
+                                ，您也可以查阅<a href="/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88/%E4%B8%93%E5%B1%9E%E5%B9%B2%E5%91%98" title="干员一览/专属干员">干员一览/专属干员</a>
+                                页面。
+                            </div>
+                        </div>
+                        <div class="nodesktop" style="margin-bottom:0.5rem;margin-top:0.5rem; display:flex; flex-direction: column; background: #F9FFEA;">
+                            <div style="display:block; padding:0.5rem 1rem 0.5rem 1rem; background-color:#B9E66B; color:#84B63C; box-sizing:border-box;">
+                                <span class="mdi mdi-arrow-top-right-thick" style="font-size:1em;color:;"></span>
+                            </div>
+                            <div style="display:block; padding:0.5rem 1rem 0.5rem 1rem; flex-grow:1; -webkit-box-flex:1; -webkit-box-pack:center; justify-content:center; box-sizing:border-box;">
+                                如需了解<b>仅在特殊模式中可选用的专属干员</b>
+                                ，您也可以查阅<a href="/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88/%E4%B8%93%E5%B1%9E%E5%B9%B2%E5%91%98" title="干员一览/专属干员">干员一览/专属干员</a>
+                                页面。
+                            </div>
+                        </div>
+                        <div style="display:none" id="filter-data">
+                            <div data-zh="12F" data-profession="术师" data-rarity="1" data-logo="罗德岛" data-birth_place="不明" data-team="" data-race="萨弗拉" data-en="12F" data-ja="12F" data-id="R303" data-hp="1461" data-atk="432" data-def="50" data-res="10" data-re_deploy="70s" data-cost="24" data-block="1" data-interval="2.9s" data-sex="男" data-position="远程位" data-tag="新手" data-obtain_method="公开招募, 主线剧情" data-potential="cost,atk,re_deploy,atk,cost`-1,12,-5,12,-1" data-trust="0,50,0" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="7" data-subprofession="扩散术师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="Castle-3" data-profession="近卫" data-rarity="0" data-logo="罗德岛" data-birth_place="" data-team="" data-race="" data-en="Castle-3" data-ja="Castle-3" data-id="RCX3" data-hp="1191" data-atk="353" data-def="90" data-res="0" data-re_deploy="200s" data-cost="3" data-block="1" data-interval="1.5s" data-sex="男" data-position="近战位" data-tag="支援机械 支援" data-obtain_method="公开招募" data-potential="`" data-trust="200,60,0" data-phy="" data-flex="" data-tolerance="" data-plan="" data-skill="" data-adapt="" data-sortid="2" data-subprofession="无畏者" data-nation="罗德岛" data-group="">
+                                能够阻挡一个敌人，且不受<span style="color:#00B0FF;">部署数量</span>
+                                限制，但再部署时间极长
+                            </div>
+                            <div data-zh="Friston-3" data-profession="重装" data-rarity="0" data-logo="罗德岛" data-birth_place="" data-team="" data-race="" data-en="Friston-3" data-ja="Friston-3" data-id="RCX5" data-hp="1152" data-atk="198" data-def="235" data-res="0" data-re_deploy="200s" data-cost="3" data-block="3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="支援机械 防护" data-obtain_method="公开招募, 活动获得" data-potential="`" data-trust="100,0,70" data-phy="" data-flex="" data-tolerance="" data-plan="" data-skill="" data-adapt="" data-sortid="283" data-subprofession="铁卫" data-nation="罗德岛" data-group="">
+                                能够阻挡三个敌人，且不受<span style="color:#00B0FF;">部署数量</span>
+                                限制，但再部署时间极长
+                            </div>
+                            <div data-zh="Lancet-2" data-profession="医疗" data-rarity="0" data-logo="罗德岛" data-birth_place="" data-team="" data-race="" data-en="Lancet-2" data-ja="Lancet-2" data-id="RCX2" data-hp="435" data-atk="70" data-def="27" data-res="0" data-re_deploy="200s" data-cost="3" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="支援机械 治疗" data-obtain_method="公开招募, 主线剧情" data-potential="`" data-trust="100,40,0" data-phy="" data-flex="" data-tolerance="" data-plan="" data-skill="" data-adapt="" data-sortid="1" data-subprofession="医师" data-nation="罗德岛" data-group="">
+                                恢复友方单位生命，且不受<span style="color:#00B0FF;">部署数量</span>
+                                限制，但再部署时间极长
+                            </div>
+                            <div data-zh="PhonoR-0" data-profession="辅助" data-rarity="0" data-logo="罗德岛" data-birth_place="" data-team="" data-race="" data-en="PhonoR-0" data-ja="PhonoR-0" data-id="RCX6" data-hp="395" data-atk="205" data-def="30" data-res="5" data-re_deploy="200s" data-cost="3" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="支援机械 元素" data-obtain_method="公开招募, 活动获得" data-potential="`" data-trust="125,30,0" data-phy="" data-flex="" data-tolerance="" data-plan="" data-skill="" data-adapt="" data-sortid="325" data-subprofession="巫役" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以造成<span style="color:#00B0FF;">元素损伤</span>
+                                ，且不受<span style="color:#00B0FF;">部署数量</span>
+                                限制，但再部署时间极长
+                            </div>
+                            <div data-zh="THRM-EX" data-profession="特种" data-rarity="0" data-logo="罗德岛" data-birth_place="" data-team="" data-race="" data-en="Thermal-EX" data-ja="THRM-EX" data-id="RCX4" data-hp="1443" data-atk="260" data-def="443" data-res="50" data-re_deploy="200s" data-cost="3" data-block="0" data-interval="0.93s" data-sex="男" data-position="近战位" data-tag="支援机械 爆发" data-obtain_method="公开招募, 主线剧情, 活动获得" data-potential="`" data-trust="0,90,0" data-phy="" data-flex="" data-tolerance="" data-plan="" data-skill="" data-adapt="" data-sortid="134" data-subprofession="处决者" data-nation="罗德岛" data-group="">
+                                不进行攻击，且不受<span style="color:#00B0FF;">部署数量</span>
+                                限制，但再部署时间极长
+                            </div>
+                            <div data-zh="U-Official" data-profession="辅助" data-rarity="0" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="札拉克" data-en="U-Official" data-ja="U-Official" data-id="U007" data-hp="385" data-atk="102" data-def="28" data-res="0" data-re_deploy="200s" data-cost="3" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="控场" data-obtain_method="活动获得" data-potential="`" data-trust="120,20,0" data-phy="普通" data-flex="缺陷" data-tolerance="普通" data-plan="缺陷" data-skill="缺陷" data-adapt="普通" data-sortid="274" data-subprofession="吟游者" data-nation="罗德岛" data-group="">
+                                不攻击，持续恢复范围内所有友军<span style="color:#00B0FF;">生命</span>
+                                （每秒恢复相当于自身攻击力10%的生命），自身不受
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">鼓舞</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 鼓舞</strong>
+                                        <br/>
+                                        获得额外附加的基础属性加成（同类属性取最高）<br/>
+                                        ※给予他人鼓舞效果的角色会将自身的鼓舞BUFF重写后适用于受益者（先最终乘算计算加成数值后，重写为最终加算，再将鼓舞赋予受益者）<br/>※同类效果取倍率最高（非最终数值）生效
+                                    </span>
+                                </span>
+                                影响，且不受<span style="color:#00B0FF;">部署数量</span>
+                                限制，但再部署时间极长
+                            </div>
+                            <div data-zh="W" data-profession="狙击" data-rarity="5" data-logo="巴别塔" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="W" data-ja="W" data-id="B214" data-hp="1605" data-atk="912" data-def="133" data-res="0" data-re_deploy="70s" data-cost="25→27→29" data-block="1" data-interval="2.8s" data-sex="女" data-position="远程位" data-tag="输出 控场" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,35,,-1" data-trust="0,100,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="卓越" data-skill="优良" data-adapt="标准" data-sortid="137" data-subprofession="炮手" data-nation="" data-group="巴别塔">
+                                攻击造成<span style="color:#00B0FF;">群体物理伤害</span>
+                            </div>
+                            <div data-zh="万顷" data-profession="先锋" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="丰蹄" data-en="Wanqing" data-ja="ワンチィン" data-id="YD13" data-hp="1516" data-atk="514" data-def="380" data-res="0" data-re_deploy="80s" data-cost="11→13" data-block="1" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="费用回复 支援" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="100,0,45" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="312" data-subprofession="执旗手" data-nation="炎" data-group="">技能发动期间阻挡数变为0</div>
+                            <div data-zh="临光" data-profession="重装" data-rarity="4" data-logo="使徒" data-birth_place="卡西米尔" data-team="使徒" data-race="库兰塔" data-en="Nearl" data-ja="ニアール" data-id="FO02" data-hp="2780" data-atk="462" data-def="575" data-res="10" data-re_deploy="70s" data-cost="17→19→21" data-block="2→3→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 治疗" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,25,,-1" data-trust="0,40,50" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="优良" data-skill="优良" data-adapt="优良" data-sortid="60" data-subprofession="守护者" data-nation="" data-group="">技能可以治疗友方单位</div>
+                            <div data-zh="乌尔比安" data-profession="近卫" data-rarity="5" data-logo="深海猎人" data-birth_place="阿戈尔" data-team="" data-race="阿戈尔" data-en="Ulpianus" data-ja="ウルピアヌス" data-id="AA00" data-hp="6022" data-atk="1569" data-def="0" data-res="0" data-re_deploy="70s" data-cost="20→22→24" data-block="2" data-interval="2.5s" data-sex="男" data-position="近战位" data-tag="输出 生存" data-obtain_method="标准寻访" data-potential="cost,hp,atk,,cost`-1,250,45,,-1" data-trust="500,80,0" data-phy="卓越" data-flex="优良" data-tolerance="卓越" data-plan="优良" data-skill="卓越" data-adapt="缺陷" data-sortid="333" data-subprofession="重剑手" data-nation="阿戈尔" data-group="深海猎人">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="乌有" data-profession="特种" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="黎博利" data-en="Mr.Nothing" data-ja="ウユウ" data-id="YD11" data-hp="2398" data-atk="725" data-def="396" data-res="0" data-re_deploy="25s" data-cost="6→8" data-block="1" data-interval="1.0s" data-sex="男" data-position="近战位" data-tag="快速复活 输出" data-obtain_method="中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-3,25,,-1" data-trust="200,40,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="180" data-subprofession="行商" data-nation="炎" data-group="">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，撤退时不返还<span style="color:#00B0FF;">部署费用</span>
+                                ，在场时每3秒<span style="color:#00B0FF;">消耗</span>
+                                3点部署费用（不足时自动撤退）
+                            </div>
+                            <div data-zh="九色鹿" data-profession="辅助" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="埃拉菲亚" data-en="Nine-Colored Deer" data-ja="九色鹿" data-id="YD09" data-hp="1685" data-atk="443" data-def="179" data-res="25" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="支援 生存" data-obtain_method="活动获得" data-potential="`" data-trust="350,35,0" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="219" data-subprofession="护佑者" data-nation="炎" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，技能开启后改为治疗友方单位（治疗量相当于<span style="color:#00B0FF;">75%</span>
+                                攻击力）
+                            </div>
+                            <div data-zh="云迹" data-profession="特种" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="札拉克" data-en="Contrail" data-ja="" data-id="CB33" data-hp="2255" data-atk="692" data-def="393" data-res="0" data-re_deploy="70s" data-cost="14→16" data-block="2" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="高空 控场" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,35,35" data-phy="普通" data-flex="优良" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="348" data-subprofession="巡空者" data-nation="哥伦比亚" data-group="">
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">起飞</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 起飞</strong>
+                                        <br/>
+                                        不阻挡地面敌人且不会被地面敌人攻击，可以阻挡飞行敌人<br/>
+                                        ※包含
+                                        <span class="mc-tooltips">
+                                            <a href="/w/%E5%BC%82%E5%B8%B8%E6%95%88%E6%9E%9C" title="异常效果">机动</a>
+                                            <span style="display:none" data-size="350">
+                                                <strong>异常效果: 机动</strong>
+                                                <br/>无法被敌对阵营中非飞行单位选中（可选性效果）
+                                            </span>
+                                        </span>
+                                        （无法被敌对阵营的地面单位选中），可以阻挡近地悬浮单位<br/>※起飞的干员并非真正的飞行单位，不受攻击是否对空影响
+                                    </span>
+                                </span>
+                                后能够阻挡2个飞行敌人
+                            </div>
+                            <div data-zh="亚叶" data-profession="医疗" data-rarity="4" data-logo="罗德岛" data-birth_place="乌萨斯" data-team="" data-race="菲林" data-en="Folinic" data-ja="フォリニック" data-id="R133" data-hp="1585" data-atk="479" data-def="133" data-res="0" data-re_deploy="80s" data-cost="19→21" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗 输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="200,50,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="145" data-subprofession="医师" data-nation="罗德岛" data-group="">恢复友方单位生命</div>
+                            <div data-zh="仇白" data-profession="近卫" data-rarity="5" data-logo="炎" data-birth_place="炎" data-team="" data-race="埃拉菲亚" data-en="Qiubai" data-ja="チューバイ" data-id="YD20" data-hp="2480" data-atk="718" data-def="402" data-res="10" data-re_deploy="70s" data-cost="18→20" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="输出 控场" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,26,,-1" data-trust="0,50,50" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="卓越" data-adapt="标准" data-sortid="270" data-subprofession="领主" data-nation="炎" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="令" data-profession="辅助" data-rarity="5" data-logo="炎-岁" data-birth_place="炎" data-team="" data-race="未公开" data-en="Ling" data-ja="リィン" data-id="NM03" data-hp="1079" data-atk="473" data-def="138" data-res="20" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="召唤 支援 控场" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="350,35,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="普通" data-adapt="缺陷" data-sortid="223" data-subprofession="召唤师" data-nation="炎" data-group="炎-岁">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>
+                                可以使用<span style="color:#00B0FF;">召唤物</span>
+                                协助作战
+                            </div>
+                            <div data-zh="伊内丝" data-profession="先锋" data-rarity="5" data-logo="巴别塔" data-birth_place="卡兹戴尔" data-team="" data-race="未公开" data-en="Ines" data-ja="イネス" data-id="B215" data-hp="2121" data-atk="589" data-def="281" data-res="0" data-re_deploy="35s" data-cost="9→11" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="费用回复 快速复活" data-obtain_method="标准寻访" data-potential="cost,re_deploy,interval,,cost`-1,-4,8,,-1" data-trust="0,50,30" data-phy="标准" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="278" data-subprofession="情报官" data-nation="" data-group="巴别塔">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，可使用远程攻击
+                            </div>
+                            <div data-zh="伊桑" data-profession="特种" data-rarity="3" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="萨弗拉" data-en="Ethan" data-ja="イーサン" data-id="R130" data-hp="1530" data-atk="742" data-def="337" data-res="30" data-re_deploy="70s" data-cost="17→19" data-block="0" data-interval="3.5s" data-sex="男" data-position="近战位" data-tag="输出 控场" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,hp,re_deploy,cost`-1,-4,150,-6,-1" data-trust="450,0,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="107" data-subprofession="伏击客" data-nation="罗德岛" data-group="">
+                                对攻击范围内<span style="color:#00B0FF;">所有敌人</span>
+                                造成伤害<br/>
+                                拥有50%的物理和法术闪避且不容易成为敌人的<span style="color:#00B0FF;">攻击目标</span>
+                            </div>
+                            <div data-zh="伊芙利特" data-profession="术师" data-rarity="5" data-logo="莱茵生命" data-birth_place="未公开" data-team="" data-race="萨卡兹" data-en="Ifrit" data-ja="イフリータ" data-id="RL03" data-hp="1680" data-atk="870" data-def="130" data-res="20" data-re_deploy="70s" data-cost="31→34" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻 削弱" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,,atk,cost,`-1,,35,-1," data-trust="0,110,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="缺陷" data-skill="普通" data-adapt="卓越" data-sortid="75" data-subprofession="轰击术师" data-nation="哥伦比亚" data-group="莱茵生命">
+                                攻击造成<span style="color:#00B0FF;">超远距离的群体法术伤害</span>
+                            </div>
+                            <div data-zh="休谟斯" data-profession="近卫" data-rarity="3" data-logo="罗德岛" data-birth_place="哥伦比亚" data-team="" data-race="丰蹄" data-en="Humus" data-ja="ヒューマス" data-id="R171" data-hp="2150" data-atk="616" data-def="403" data-res="0" data-re_deploy="70s" data-cost="18→19→21" data-block="1→2→2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="输出 生存" data-obtain_method="标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,35,,-1" data-trust="0,30,30" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="275" data-subprofession="收割者" data-nation="罗德岛" data-group="">
+                                无法被友方角色治疗，攻击造成<span style="color:#00B0FF;">群体伤害</span>
+                                ，每攻击到一个敌人回复自身<span style="color:#00B0FF;">50</span>
+                                生命，最大生效数等于阻挡数
+                            </div>
+                            <div data-zh="伺夜" data-profession="先锋" data-rarity="5" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="鲁珀" data-en="Vigil" data-ja="ヴィジェル" data-id="SR36" data-hp="1755" data-atk="462" data-def="154" data-res="0" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="1.0s" data-sex="男" data-position="远程位" data-tag="费用回复 控场" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,80,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="259" data-subprofession="战术家" data-nation="叙拉古" data-group="">
+                                可以在攻击范围内选择一次<span style="color:#00B0FF;">战术点</span>
+                                来召唤援军，自身攻击援军阻挡的敌人时攻击力提升至150%
+                            </div>
+                            <div data-zh="但书" data-profession="辅助" data-rarity="4" data-logo="卡西米尔" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Proviso" data-ja="プロヴァイゾ" data-id="KZ10" data-hp="1298" data-atk="513" data-def="102" data-res="20" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="削弱 减速" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,65,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="普通" data-sortid="248" data-subprofession="凝滞师" data-nation="卡西米尔" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="余" data-profession="重装" data-rarity="5" data-logo="炎-岁" data-birth_place="炎" data-team="" data-race="未公开" data-en="Yu" data-ja="" data-id="NM06" data-hp="3333" data-atk="685" data-def="577" data-res="10" data-re_deploy="70s" data-cost="22→24→26" data-block="3" data-interval="1.6s" data-sex="男" data-position="近战位" data-tag="元素 防护" data-obtain_method="限定寻访" data-potential="cost,,hp,,cost`-1,,270,,-1" data-trust="300,30,30" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="缺陷" data-sortid="360" data-subprofession="本源铁卫" data-nation="炎" data-group="炎-岁">能够阻挡三个敌人，可以造成元素损伤</div>
+                            <div data-zh="佩佩" data-profession="近卫" data-rarity="5" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="菲林" data-en="Pepe" data-ja="ペペ" data-id="SG14" data-hp="2851" data-atk="1290" data-def="387" data-res="0" data-re_deploy="70s" data-cost="18→20" data-block="2" data-interval="1.8s" data-sex="女" data-position="近战位" data-tag="输出 控场" data-obtain_method="限定寻访" data-potential="cost,,atk,,cost`-1,,35,,-1" data-trust="0,70,45" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="340" data-subprofession="撼地者" data-nation="萨尔贡" data-group="">
+                                攻击使目标周围的其他敌人受到相当于攻击力<span style="color:#00B0FF;">50%</span>
+                                的<span style="color:#00B0FF;">群体</span>
+                                物理伤害
+                            </div>
+                            <div data-zh="假日威龙陈" data-profession="狙击" data-rarity="5" data-logo="罗德岛" data-birth_place="龙门" data-team="" data-race="龙" data-en="Ch&#39;en the Holungday" data-ja="遊龍チェン" data-id="R112" data-hp="2501" data-atk="773" data-def="203" data-res="0" data-re_deploy="70s" data-cost="29→32" data-block="1" data-interval="2.3s" data-sex="女" data-position="远程位" data-tag="输出 群攻" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,33,,-1" data-trust="0,80,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="202" data-subprofession="散射手" data-nation="罗德岛" data-group="">
+                                攻击范围内的<span style="color:#00B0FF;">所有敌人</span>
+                                ，对自己前方一横排的敌人攻击力提升至150%
+                            </div>
+                            <div data-zh="傀影" data-profession="特种" data-rarity="5" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Phantom" data-ja="ファントム" data-id="R109" data-hp="1645" data-atk="558" data-def="322" data-res="0" data-re_deploy="18s" data-cost="8→10" data-block="1" data-interval="0.93s" data-sex="男" data-position="近战位" data-tag="快速复活 控场 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,atk,re_deploy,hp,cost`-1,22,-2,130,-1" data-trust="0,90,0" data-phy="标准" data-flex="卓越" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="133" data-subprofession="处决者" data-nation="维多利亚" data-group="">
+                                再部署时间大幅度<span style="color:#00B0FF;">减少</span>
+                            </div>
+                            <div data-zh="克洛丝" data-profession="狙击" data-rarity="2" data-logo="行动预备组A1" data-birth_place="雷姆必拓" data-team="行动预备组A1" data-race="卡特斯" data-en="Kroos" data-ja="クルース" data-id="PA12" data-hp="1060" data-atk="375" data-def="126" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,atk,,cost`-1,-4,21,,-1" data-trust="0,50,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="14" data-subprofession="速射手" data-nation="罗德岛" data-group="">优先攻击空中单位</div>
+                            <div data-zh="冰酿" data-profession="狙击" data-rarity="4" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="埃拉菲亚" data-en="Coldshot" data-ja="コールドショット" data-id="CB28" data-hp="1855" data-atk="958" data-def="224" data-res="0" data-re_deploy="80s" data-cost="17→19→21" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,105,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="294" data-subprofession="猎手" data-nation="哥伦比亚" data-group="">
+                                攻击时需要消耗子弹且攻击力提升至<span style="color:#00B0FF;">120%</span>
+                                ，不攻击时会缓慢地装填子弹（最多8发）
+                            </div>
+                            <div data-zh="凛冬" data-profession="先锋" data-rarity="4" data-logo="乌萨斯学生自治团" data-birth_place="乌萨斯" data-team="乌萨斯学生自治团" data-race="乌萨斯" data-en="Зима" data-ja="ズィマー" data-id="USS1" data-hp="2150" data-atk="470" data-def="350" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,re_deploy,cost`-1,-4,24,-6,-1" data-trust="0,0,70" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="46" data-subprofession="尖兵" data-nation="乌萨斯" data-group="">能够阻挡两个敌人</div>
+                            <div data-zh="凛视" data-profession="辅助" data-rarity="4" data-logo="萨米" data-birth_place="萨米" data-team="" data-race="萨卡兹" data-en="Valarqvin" data-ja="ヴァラルクビン" data-id="SI06" data-hp="1097" data-atk="447" data-def="101" data-res="15" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="元素" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="250,30,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="289" data-subprofession="巫役" data-nation="萨米" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以造成<span style="color:#00B0FF;">元素损伤</span>
+                            </div>
+                            <div data-zh="凯尔希" data-profession="医疗" data-rarity="5" data-logo="罗德岛" data-birth_place="罗德岛" data-team="" data-race="菲林" data-en="Kal&#39;tsit" data-ja="ケルシー" data-id="B003" data-hp="1633" data-atk="490" data-def="215" data-res="0" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="召唤 治疗" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="400,0,40" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="■■" data-skill="普通" data-adapt="标准" data-sortid="192" data-subprofession="医师" data-nation="罗德岛" data-group="">恢复友方单位生命</div>
+                            <div data-zh="凯瑟琳" data-profession="辅助" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Catherine" data-ja="" data-id="VC20" data-hp="2680" data-atk="550" data-def="420" data-res="0" data-re_deploy="80s" data-cost="16→18→20" data-block="2" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="防护 支援" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,40,40" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="优良" data-skill="普通" data-adapt="标准" data-sortid="345" data-subprofession="工匠" data-nation="维多利亚" data-group="">能够阻挡两个敌人，使用 &lt;支援装置 &gt;协助作战</div>
+                            <div data-zh="初雪" data-profession="辅助" data-rarity="4" data-logo="喀兰贸易" data-birth_place="谢拉格" data-team="" data-race="菲林" data-en="Pramanix" data-ja="プラマニクス" data-id="JC05" data-hp="1605" data-atk="430" data-def="102" data-res="25" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="削弱" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,res,,cost`-1,-4,8,,-1" data-trust="0,65,0" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="卓越" data-sortid="68" data-subprofession="削弱者" data-nation="谢拉格" data-group="喀兰贸易">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="刺玫" data-profession="医疗" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Vendela" data-ja="ヴァンデラ" data-id="VC24" data-hp="1370" data-atk="550" data-def="100" data-res="20" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,22,,-1" data-trust="180,30,0" data-phy="缺陷" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="299" data-subprofession="咒愈师" data-nation="维多利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，攻击敌人时为攻击范围内一名友方干员治疗相当于<span style="color:#00B0FF;">50%</span>
+                                伤害的生命值
+                            </div>
+                            <div data-zh="刻俄柏" data-profession="术师" data-rarity="5" data-logo="罗德岛" data-birth_place="玻利瓦尔" data-team="" data-race="佩洛" data-en="Ceobe" data-ja="ケオベ" data-id="R155" data-hp="1565" data-atk="667" data-def="128" data-res="20" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出 控场" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,90,0" data-phy="标准" data-flex="优良" data-tolerance="卓越" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="123" data-subprofession="中坚术师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="刻刀" data-profession="近卫" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="沃尔珀" data-en="Cutter" data-ja="カッター" data-id="R144" data-hp="2320" data-atk="571" data-def="325" data-res="0" data-re_deploy="70s" data-cost="17→19→21" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="爆发 输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,21,,-1" data-trust="0,70,0" data-phy="标准" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="130" data-subprofession="剑豪" data-nation="哥伦比亚" data-group="">
+                                普通攻击连续造成<span style="color:#00B0FF;">两次</span>
+                                伤害
+                            </div>
+                            <div data-zh="医生" data-profession="近卫" data-rarity="4" data-logo="彩虹小队" data-birth_place="未知" data-team="彩虹小队" data-race="未知" data-en="Doc" data-ja="Doc" data-id="RS06" data-hp="2217" data-atk="657" data-def="360" data-res="0" data-re_deploy="70s" data-cost="14→16" data-block="2" data-interval="1.05s" data-sex="男" data-position="近战位" data-tag="治疗 支援" data-obtain_method="限定寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,200,,-1" data-trust="150,0,40" data-phy="标准" data-flex="普通" data-tolerance="普通" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="319" data-subprofession="教官" data-nation="" data-group="">
+                                可以攻击到<span style="color:#00B0FF;">较远敌人</span>
+                                ，攻击自身未阻挡的敌人时攻击力提升至120%
+                            </div>
+                            <div data-zh="华法琳" data-profession="医疗" data-rarity="4" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Warfarin" data-ja="ワルファリン" data-id="R106" data-hp="1520" data-atk="505" data-def="125" data-res="0" data-re_deploy="70s" data-cost="17→19" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,27,-6,-1" data-trust="0,75,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="59" data-subprofession="医师" data-nation="罗德岛" data-group="">恢复友方单位生命</div>
+                            <div data-zh="卡夫卡" data-profession="特种" data-rarity="4" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Kafka" data-ja="カフカ" data-id="CB06" data-hp="1675" data-atk="525" data-def="311" data-res="0" data-re_deploy="18s" data-cost="7→9" data-block="1" data-interval="0.93s" data-sex="女" data-position="近战位" data-tag="快速复活 控场" data-obtain_method="中坚寻访, 公开招募" data-potential="cost,hp,re_deploy,,cost`-1,150,-2,,-1" data-trust="350,0,0" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="173" data-subprofession="处决者" data-nation="哥伦比亚" data-group="">
+                                再部署时间大幅度<span style="color:#00B0FF;">减少</span>
+                            </div>
+                            <div data-zh="卡涅利安" data-profession="术师" data-rarity="5" data-logo="莱塔尼亚" data-birth_place="萨尔贡" data-team="" data-race="卡普里尼" data-en="Carnelian" data-ja="カーネリアン" data-id="LN04" data-hp="2106" data-atk="846" data-def="228" data-res="15" data-re_deploy="70s" data-cost="22→24" data-block="1" data-interval="2.0s" data-sex="女" data-position="远程位" data-tag="群攻 防护" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,34,,-1" data-trust="0,80,30" data-phy="普通" data-flex="普通" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="197" data-subprofession="阵法术师" data-nation="莱塔尼亚" data-group="">
+                                通常时<span style="color:#00B0FF;">不攻击</span>
+                                且防御力和法术抗性大幅度<span style="color:#00B0FF;">提升</span>
+                                ，技能开启时攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="卡缇" data-profession="重装" data-rarity="2" data-logo="行动预备组A4" data-birth_place="莱塔尼亚" data-team="行动预备组A4" data-race="佩洛" data-en="Cardigan" data-ja="カーディ" data-id="PA45" data-hp="2130" data-atk="305" data-def="475" data-res="0" data-re_deploy="70s" data-cost="16→18" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护" data-obtain_method="标准寻访, 中坚寻访" data-potential="cost,re_deploy,hp,re_deploy,cost`-1,-4,200,-6,-1" data-trust="300,0,0" data-phy="普通" data-flex="优良" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="普通" data-sortid="12" data-subprofession="铁卫" data-nation="罗德岛" data-group="">能够阻挡三个敌人</div>
+                            <div data-zh="卡达" data-profession="术师" data-rarity="3" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="札拉克" data-en="Click" data-ja="カシャ" data-id="R140" data-hp="1440" data-atk="315" data-def="120" data-res="20" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="输出 控场" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,interval,re_deploy,cost`-1,-4,6,-6,-1" data-trust="0,60,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="144" data-subprofession="驭械术师" data-nation="罗德岛" data-group="">
+                                操作<span style="color:#00B0FF;">浮游单元</span>
+                                造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>单元攻击同一敌人伤害提升（最高造成干员110%攻击力的伤害）
+                            </div>
+                            <div data-zh="历阵锐枪芬" data-profession="先锋" data-rarity="4" data-logo="罗德岛" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Fang the Fire-sharpened" data-ja="歴陣鋭槍フェン" data-id="RF04" data-hp="2226" data-atk="570" data-def="360" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,25,-6,-1" data-trust="0,70,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="326" data-subprofession="冲锋手" data-nation="罗德岛" data-group="">击杀敌人后获得1点部署费用，撤退时返还初始部署费用</div>
+                            <div data-zh="双月" data-profession="特种" data-rarity="4" data-logo="彩虹小队" data-birth_place="未知" data-team="彩虹小队" data-race="未知" data-en="Iana" data-ja="Iana" data-id="RS07" data-hp="2436" data-atk="708" data-def="291" data-res="0" data-re_deploy="70s" data-cost="13→15" data-block="2" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="削弱 快速复活" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,50,30" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="318" data-subprofession="傀儡师" data-nation="" data-group="">受到致命伤时不撤退，切换成 &lt;替身 &gt;作战（替身阻挡数为0），持续20s后自身再次替换 &lt;替身 &gt;</div>
+                            <div data-zh="古米" data-profession="重装" data-rarity="3" data-logo="乌萨斯学生自治团" data-birth_place="乌萨斯" data-team="乌萨斯学生自治团" data-race="乌萨斯" data-en="Гум" data-ja="グム" data-id="USS3" data-hp="2550" data-atk="435" data-def="562" data-res="10" data-re_deploy="70s" data-cost="16→18→20" data-block="2→3→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,21,,-1" data-trust="400,0,0" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="普通" data-adapt="普通" data-sortid="41" data-subprofession="守护者" data-nation="乌萨斯" data-group="">技能可以治疗友方单位</div>
+                            <div data-zh="可颂" data-profession="重装" data-rarity="4" data-logo="企鹅物流" data-birth_place="米诺斯" data-team="" data-race="丰蹄" data-en="Croissant" data-ja="クロワッサン" data-id="PL04" data-hp="3520" data-atk="380" data-def="710" data-res="0" data-re_deploy="70s" data-cost="18→20→22" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 位移" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,26,,-1" data-trust="150,0,60" data-phy="优良" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="63" data-subprofession="铁卫" data-nation="炎-龙门" data-group="企鹅物流">能够阻挡三个敌人</div>
+                            <div data-zh="史尔特尔" data-profession="近卫" data-rarity="5" data-logo="罗德岛" data-birth_place="不明" data-team="" data-race="萨卡兹" data-en="Surtr" data-ja="スルト" data-id="R111" data-hp="2916" data-atk="672" data-def="414" data-res="15" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.25s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,,atk,,cost`-1,,28,,-1" data-trust="0,100,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="优良" data-skill="普通" data-adapt="缺陷" data-sortid="161" data-subprofession="术战者" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="史都华德" data-profession="术师" data-rarity="2" data-logo="行动预备组A4" data-birth_place="谢拉格" data-team="行动预备组A4" data-race="沃尔珀" data-en="Steward" data-ja="スチュワード" data-id="PA42" data-hp="1100" data-atk="470" data-def="90" data-res="15" data-re_deploy="70s" data-cost="16→18" data-block="1" data-interval="1.6s" data-sex="男" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,23,-6,-1" data-trust="0,50,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="19" data-subprofession="中坚术师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="号角" data-profession="重装" data-rarity="5" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="鲁珀" data-en="Horn" data-ja="ホルン" data-id="VC16" data-hp="3067" data-atk="936" data-def="620" data-res="0" data-re_deploy="70s" data-cost="24→26→28" data-block="2→3→3" data-interval="2.8s" data-sex="女" data-position="近战位" data-tag="输出 防护" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,30,,-1" data-trust="300,70,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="232" data-subprofession="要塞" data-nation="维多利亚" data-group="">
+                                不阻挡敌人时优先<span style="color:#00B0FF;">远程群体</span>
+                                物理攻击
+                            </div>
+                            <div data-zh="吽" data-profession="重装" data-rarity="4" data-logo="鲤氏侦探事务所" data-birth_place="龙门" data-team="鲤氏侦探事务所" data-race="佩洛" data-en="Hung" data-ja="ウン" data-id="LM19" data-hp="2823" data-atk="442" data-def="585" data-res="10" data-re_deploy="70s" data-cost="17→19→21" data-block="2→3→3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="防护 治疗" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,25,,-1" data-trust="200,0,60" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="119" data-subprofession="守护者" data-nation="炎-龙门" data-group="">技能可以治疗友方单位</div>
+                            <div data-zh="和弦" data-profession="术师" data-rarity="4" data-logo="深池" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Harmonie" data-ja="ハーモニー" data-id="DB03" data-hp="1546" data-atk="1245" data-def="125" data-res="20" data-re_deploy="70s" data-cost="22→24" data-block="1" data-interval="3.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,45,,-1" data-trust="0,130,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="263" data-subprofession="秘术师" data-nation="维多利亚" data-group="深池">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，在找不到攻击目标时可以将攻击能量<span style="color:#00B0FF;">储存</span>
+                                起来之后一齐发射（最多3个）
+                            </div>
+                            <div data-zh="哈洛德" data-profession="医疗" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Harold" data-ja="ハロルド" data-id="VC27" data-hp="1400" data-atk="385" data-def="100" data-res="10" data-re_deploy="80s" data-cost="15→17" data-block="1" data-interval="2.85s" data-sex="男" data-position="远程位" data-tag="治疗" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="150,35,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="优良" data-skill="优良" data-adapt="优良" data-sortid="307" data-subprofession="行医" data-nation="维多利亚" data-group="">
+                                恢复友方单位生命，并回复相当于攻击力<span style="color:#00B0FF;">50%</span>
+                                的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                （可以回复未受伤友方单位的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                ）
+                            </div>
+                            <div data-zh="嘉维尔" data-profession="医疗" data-rarity="3" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="阿达克利斯" data-en="Gavial" data-ja="ガヴィル" data-id="IU07" data-hp="1580" data-atk="450" data-def="152" data-res="0" data-re_deploy="70s" data-cost="16→18" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="信用交易所" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,30,30" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="37" data-subprofession="医师" data-nation="罗德岛" data-group="">恢复友方单位生命</div>
+                            <div data-zh="四月" data-profession="狙击" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯" data-en="April" data-ja="エイプリル" data-id="RB07" data-hp="1280" data-atk="528" data-def="160" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,23,-6,-1" data-trust="0,75,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="160" data-subprofession="速射手" data-nation="雷姆必拓" data-group="">优先攻击空中单位</div>
+                            <div data-zh="因陀罗" data-profession="近卫" data-rarity="4" data-logo="格拉斯哥帮" data-birth_place="不明" data-team="" data-race="菲林" data-en="Indra" data-ja="インドラ" data-id="GG03" data-hp="2565" data-atk="530" data-def="350" data-res="0" data-re_deploy="70s" data-cost="8→10" data-block="1" data-interval="0.78s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="公开招募" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,75,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="优良" data-adapt="普通" data-sortid="49" data-subprofession="斗士" data-nation="维多利亚" data-group="格拉斯哥帮">能够阻挡一个敌人</div>
+                            <div data-zh="图耶" data-profession="医疗" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="丰蹄" data-en="Tuye" data-ja="トゥイエ" data-id="SG08" data-hp="1550" data-atk="493" data-def="135" data-res="0" data-re_deploy="80s" data-cost="19→21" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="活动获得, 凭证交易所(高级/通用)" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,75,0" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="优良" data-skill="普通" data-adapt="普通" data-sortid="178" data-subprofession="医师" data-nation="萨尔贡" data-group="">恢复友方单位生命</div>
+                            <div data-zh="圣约送葬人" data-profession="近卫" data-rarity="5" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Executor the Ex Foedere" data-ja="聖約イグゼキュター" data-id="LT40" data-hp="2491" data-atk="707" data-def="461" data-res="0" data-re_deploy="70s" data-cost="20→21→23" data-block="1→2→2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,def,atk,,cost`-1,22,26,,-1" data-trust="0,70,30" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="286" data-subprofession="收割者" data-nation="拉特兰" data-group="">
+                                无法被友方角色治疗，攻击造成<span style="color:#00B0FF;">群体伤害</span>
+                                ，每攻击到一个敌人回复自身<span style="color:#00B0FF;">50</span>
+                                生命，最大生效数等于阻挡数
+                            </div>
+                            <div data-zh="地灵" data-profession="辅助" data-rarity="3" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="卡普里尼" data-en="Earthspirit" data-ja="アーススピリット" data-id="LN01" data-hp="1205" data-atk="480" data-def="101" data-res="20" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="减速" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,21,,-1" data-trust="0,50,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="43" data-subprofession="凝滞师" data-nation="莱塔尼亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="坚雷" data-profession="重装" data-rarity="3" data-logo="罗德岛" data-birth_place="哥伦比亚" data-team="" data-race="沃尔珀" data-en="Dur-nar" data-ja="ジュナー" data-id="R124" data-hp="3007" data-atk="583" data-def="548" data-res="15" data-re_deploy="70s" data-cost="20→22→24" data-block="3" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="防护 输出" data-obtain_method="信用交易所" data-potential="cost,re_deploy,atk,def,cost`-1,-4,23,20,-1" data-trust="0,65,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="优良" data-adapt="普通" data-sortid="102" data-subprofession="驭法铁卫" data-nation="罗德岛" data-group="">技能开启时普通攻击会造成法术伤害</div>
+                            <div data-zh="埃拉托" data-profession="狙击" data-rarity="4" data-logo="米诺斯" data-birth_place="米诺斯" data-team="" data-race="黎博利" data-en="Erato" data-ja="エラト" data-id="MN07" data-hp="1648" data-atk="957" data-def="125" data-res="0" data-re_deploy="70s" data-cost="21→23" data-block="1" data-interval="2.4s" data-sex="女" data-position="远程位" data-tag="输出 控场" data-obtain_method="活动获得, 凭证交易所(高级/通用)" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,34,-6,-1" data-trust="150,70,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="237" data-subprofession="攻城手" data-nation="米诺斯" data-group="">优先攻击重量最重的敌人</div>
+                            <div data-zh="塑心" data-profession="辅助" data-rarity="5" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Virtuosa" data-ja="ヴィルトゥオーサ" data-id="LT22" data-hp="1201" data-atk="485" data-def="109" data-res="15" data-re_deploy="70s" data-cost="14→16" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="元素 支援" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-6,23,,-1" data-trust="300,40,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="卓越" data-sortid="306" data-subprofession="巫役" data-nation="拉特兰" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以造成<span style="color:#00B0FF;">元素损伤</span>
+                            </div>
+                            <div data-zh="塞雷娅" data-profession="重装" data-rarity="5" data-logo="莱茵生命" data-birth_place="哥伦比亚" data-team="" data-race="瓦伊凡" data-en="Saria" data-ja="サリア" data-id="RL02" data-hp="3150" data-atk="485" data-def="595" data-res="10" data-re_deploy="70s" data-cost="18→20→22" data-block="2→3→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 治疗 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,27,,-1" data-trust="0,50,60" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="优良" data-skill="优良" data-adapt="卓越" data-sortid="81" data-subprofession="守护者" data-nation="哥伦比亚" data-group="莱茵生命">技能可以治疗友方单位</div>
+                            <div data-zh="夏栎" data-profession="辅助" data-rarity="4" data-logo="罗德岛" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Quercus" data-ja="クエルクス" data-id="R121" data-hp="1680" data-atk="463" data-def="172" data-res="25" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="支援 生存" data-obtain_method="标准寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,160,,-1" data-trust="400,0,30" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="224" data-subprofession="护佑者" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，技能开启后改为治疗友方单位（治疗量相当于<span style="color:#00B0FF;">75%</span>
+                                攻击力）
+                            </div>
+                            <div data-zh="夕" data-profession="术师" data-rarity="5" data-logo="炎-岁" data-birth_place="炎" data-team="" data-race="未公开" data-en="Dusk" data-ja="シー" data-id="NM02" data-hp="1801" data-atk="918" data-def="127" data-res="20" data-re_deploy="70s" data-cost="31→34" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻 输出 控场" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,34,,-1" data-trust="0,110,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="缺陷" data-sortid="182" data-subprofession="扩散术师" data-nation="炎" data-group="炎-岁">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="多萝西" data-profession="特种" data-rarity="5" data-logo="莱茵生命" data-birth_place="哥伦比亚" data-team="" data-race="札拉克" data-en="Dorothy" data-ja="ドロシー" data-id="RL07" data-hp="1502" data-atk="581" data-def="172" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="0.85s" data-sex="女" data-position="远程位" data-tag="召唤 控场" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,27,,-1" data-trust="0,80,0" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="243" data-subprofession="陷阱师" data-nation="哥伦比亚" data-group="莱茵生命">
+                                可以使用陷阱来协助作战，但陷阱无法放置于<span style="color:#00B0FF;">敌人已在</span>
+                                的格子中
+                            </div>
+                            <div data-zh="夜刀" data-profession="先锋" data-rarity="1" data-logo="行动组A4" data-birth_place="东国" data-team="行动组A4" data-race="鬼" data-en="Yato" data-ja="ヤトウ" data-id="A41" data-hp="1030" data-atk="232" data-def="192" data-res="0" data-re_deploy="70s" data-cost="7" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="新手" data-obtain_method="公开招募" data-potential="cost,re_deploy,atk,atk,cost`-1,-5,9,9,-1" data-trust="0,30,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="3" data-subprofession="尖兵" data-nation="罗德岛" data-group="">能够阻挡两个敌人</div>
+                            <div data-zh="夜半" data-profession="先锋" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="萨弗拉" data-en="Blacknight" data-ja="ブラックナイト" data-id="RB12" data-hp="1625" data-atk="442" data-def="133" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="费用回复 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,interval,re_deploy,cost`-1,-4,8,-6,-1" data-trust="0,60,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="221" data-subprofession="战术家" data-nation="雷姆必拓" data-group="">
+                                可以在攻击范围内选择一次<span style="color:#00B0FF;">战术点</span>
+                                来召唤援军，自身攻击援军阻挡的敌人时攻击力提升至150%
+                            </div>
+                            <div data-zh="夜烟" data-profession="术师" data-rarity="3" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Haze" data-ja="ヘイズ" data-id="VC02" data-hp="1420" data-atk="583" data-def="110" data-res="20" data-re_deploy="70s" data-cost="17→19" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出 削弱" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,100,,-1" data-trust="0,60,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="优良" data-skill="普通" data-adapt="优良" data-sortid="21" data-subprofession="中坚术师" data-nation="维多利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="夜莺" data-profession="医疗" data-rarity="5" data-logo="使徒" data-birth_place="卡兹戴尔" data-team="使徒" data-race="萨卡兹" data-en="Nightingale" data-ja="ナイチンゲール" data-id="FO03" data-hp="1705" data-atk="350" data-def="169" data-res="5" data-re_deploy="70s" data-cost="16→18" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,res,,cost`-1,-4,10,,-1" data-trust="0,70,0" data-phy="缺陷" data-flex="缺陷" data-tolerance="缺陷" data-plan="普通" data-skill="普通" data-adapt="卓越" data-sortid="79" data-subprofession="群愈师" data-nation="" data-group="">同时恢复三个友方单位的生命</div>
+                            <div data-zh="夜魔" data-profession="术师" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Nightmare" data-ja="ナイトメア" data-id="VC03" data-hp="1510" data-atk="622" data-def="120" data-res="20" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出 治疗 减速" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="0,70,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="87" data-subprofession="中坚术师" data-nation="维多利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="天火" data-profession="术师" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Skyfire" data-ja="スカイフレア" data-id="SK01" data-hp="1620" data-atk="784" data-def="122" data-res="20" data-re_deploy="70s" data-cost="30→33" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻 控场" data-obtain_method="中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,33,,-1" data-trust="0,90,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="卓越" data-sortid="56" data-subprofession="扩散术师" data-nation="维多利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="奥斯塔" data-profession="狙击" data-rarity="4" data-logo="贾维团伙" data-birth_place="叙拉古" data-team="贾维团伙" data-race="鲁珀" data-en="Aosta" data-ja="アオスタ" data-id="SR28" data-hp="2376" data-atk="691" data-def="192" data-res="0" data-re_deploy="70s" data-cost="28→31" data-block="1" data-interval="2.3s" data-sex="男" data-position="远程位" data-tag="群攻" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="0,65,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="164" data-subprofession="散射手" data-nation="叙拉古" data-group="">
+                                攻击范围内的<span style="color:#00B0FF;">所有敌人</span>
+                                ，对自己前方一横排的敌人攻击力提升至150%
+                            </div>
+                            <div data-zh="奥达" data-profession="近卫" data-rarity="4" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Odda" data-ja="オッダ" data-id="R167" data-hp="2593" data-atk="1190" data-def="337" data-res="0" data-re_deploy="80s" data-cost="19→21" data-block="2" data-interval="1.8s" data-sex="男" data-position="近战位" data-tag="群攻 控场" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,70,30" data-phy="普通" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="322" data-subprofession="撼地者" data-nation="罗德岛" data-group="">
+                                攻击使目标周围的其他敌人受到相当于攻击力<span style="color:#00B0FF;">50%</span>
+                                的<span style="color:#00B0FF;">群体</span>
+                                物理伤害
+                            </div>
+                            <div data-zh="妮芙" data-profession="术师" data-rarity="5" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Nymph" data-ja="" data-id="R182" data-hp="1650" data-atk="655" data-def="129" data-res="15" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="元素 输出 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,90,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="优良" data-sortid="335" data-subprofession="本源术师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以造成<span style="color:#00B0FF;">元素伤害</span>
+                            </div>
+                            <div data-zh="娜仁图亚" data-profession="狙击" data-rarity="5" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="库兰塔" data-en="Narantuya" data-ja="ナラントゥヤ" data-id="SG17" data-hp="2500" data-atk="675" data-def="170" data-res="0" data-re_deploy="70s" data-cost="14→16" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,27,,-1" data-trust="0,90,0" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="339" data-subprofession="回环射手" data-nation="萨尔贡" data-group="">
+                                持有<span style="color:#00B0FF;">回旋投射物</span>
+                                时才能够攻击（投射物需要时间回收）
+                            </div>
+                            <div data-zh="子月" data-profession="狙击" data-rarity="4" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="鲁珀" data-en="Lunacub" data-ja="ルナカブ" data-id="SR37" data-hp="1536" data-atk="1034" data-def="155" data-res="0" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="2.7s" data-sex="女" data-position="远程位" data-tag="输出 生存" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,35,-6,-1" data-trust="300,40,0" data-phy="标准" data-flex="卓越" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="258" data-subprofession="神射手" data-nation="叙拉古" data-group="">
+                                优先攻击攻击范围内<span style="color:#00B0FF;">防御力最低</span>
+                                的敌方单位
+                            </div>
+                            <div data-zh="孑" data-profession="特种" data-rarity="3" data-logo="炎-龙门" data-birth_place="龙门" data-team="" data-race="乌萨斯" data-en="Jaye" data-ja="ジェイ" data-id="LM14" data-hp="2284" data-atk="674" data-def="378" data-res="0" data-re_deploy="25s" data-cost="5→7" data-block="1" data-interval="1.0s" data-sex="男" data-position="近战位" data-tag="快速复活 输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-3,23,,-1" data-trust="200,40,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="151" data-subprofession="行商" data-nation="炎-龙门" data-group="">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，撤退时不返还<span style="color:#00B0FF;">部署费用</span>
+                                ，在场时每3秒<span style="color:#00B0FF;">消耗</span>
+                                3点部署费用（不足时自动撤退）
+                            </div>
+                            <div data-zh="守林人" data-profession="狙击" data-rarity="4" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="埃拉菲亚" data-en="Firewatch" data-ja="ファイヤーウォッチ" data-id="ST01" data-hp="1450" data-atk="1085" data-def="131" data-res="0" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="2.7s" data-sex="女" data-position="远程位" data-tag="输出 爆发" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,35,,-1" data-trust="0,90,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="66" data-subprofession="神射手" data-nation="罗德岛" data-group="">
+                                优先攻击攻击范围内<span style="color:#00B0FF;">防御力最低</span>
+                                的敌方单位
+                            </div>
+                            <div data-zh="安哲拉" data-profession="狙击" data-rarity="4" data-logo="深海猎人" data-birth_place="伊比利亚" data-team="" data-race="阿戈尔" data-en="Andreana" data-ja="アンドレアナ" data-id="II04" data-hp="1498" data-atk="1070" data-def="128" data-res="0" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="2.7s" data-sex="女" data-position="远程位" data-tag="输出 减速" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,35,,-1" data-trust="300,40,0" data-phy="标准" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="缺陷" data-sortid="152" data-subprofession="神射手" data-nation="阿戈尔" data-group="深海猎人">
+                                优先攻击攻击范围内<span style="color:#00B0FF;">防御力最低</span>
+                                的敌方单位
+                            </div>
+                            <div data-zh="安德切尔" data-profession="狙击" data-rarity="2" data-logo="行动预备组A4" data-birth_place="拉特兰" data-team="行动预备组A4" data-race="萨科塔" data-en="Adnachiel" data-ja="アドナキエル" data-id="PA44" data-hp="1080" data-atk="365" data-def="134" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="1.0s" data-sex="男" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 主线剧情" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,23,-6,-1" data-trust="0,50,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="15" data-subprofession="速射手" data-nation="罗德岛" data-group="">优先攻击空中单位</div>
+                            <div data-zh="安比尔" data-profession="狙击" data-rarity="3" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Ambriel" data-ja="アンブリエル" data-id="LT02" data-hp="1595" data-atk="977" data-def="122" data-res="0" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="2.7s" data-sex="女" data-position="远程位" data-tag="输出 减速" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,interval,,cost`-1,-4,6,,-1" data-trust="0,75,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="115" data-subprofession="神射手" data-nation="拉特兰" data-group="">
+                                优先攻击攻击范围内<span style="color:#00B0FF;">防御力最低</span>
+                                的敌方单位
+                            </div>
+                            <div data-zh="安洁莉娜" data-profession="辅助" data-rarity="5" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="沃尔珀" data-en="Angelina" data-ja="アンジェリーナ" data-id="SR02" data-hp="1385" data-atk="542" data-def="120" data-res="25" data-re_deploy="70s" data-cost="14→16" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="减速 输出 支援" data-obtain_method="中坚寻访" data-potential="cost,,atk,cost,`-1,,25,-1," data-trust="0,75,0" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="优良" data-sortid="77" data-subprofession="凝滞师" data-nation="叙拉古" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="安赛尔" data-profession="医疗" data-rarity="2" data-logo="行动预备组A4" data-birth_place="雷姆必拓" data-team="行动预备组A4" data-race="卡特斯" data-en="Ansel" data-ja="アンセル" data-id="PA43" data-hp="1135" data-atk="362" data-def="109" data-res="0" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="2.85s" data-sex="男" data-position="远程位" data-tag="治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,atk,,cost`-1,-4,20,,-1" data-trust="0,45,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="18" data-subprofession="医师" data-nation="罗德岛" data-group="">恢复友方单位生命</div>
+                            <div data-zh="宴" data-profession="近卫" data-rarity="3" data-logo="东" data-birth_place="东国" data-team="" data-race="不明" data-en="Utage" data-ja="ウタゲ" data-id="HK03" data-hp="3444" data-atk="693" data-def="312" data-res="0" data-re_deploy="70s" data-cost="20→22→24" data-block="1" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,23,-6,-1" data-trust="0,30,40" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="优良" data-adapt="普通" data-sortid="125" data-subprofession="武者" data-nation="东" data-group="">
+                                不成为其他角色的治疗目标，每次攻击到敌人后回复自身<span style="color:#00B0FF;">70</span>
+                                生命
+                            </div>
+                            <div data-zh="寒檀" data-profession="术师" data-rarity="4" data-logo="萨米" data-birth_place="萨米" data-team="" data-race="菲林" data-en="Santalla" data-ja="サンタラ" data-id="SI02" data-hp="1640" data-atk="770" data-def="123" data-res="20" data-re_deploy="70s" data-cost="30→33" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,32,,-1" data-trust="0,90,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="287" data-subprofession="扩散术师" data-nation="萨米" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="寒芒克洛丝" data-profession="狙击" data-rarity="4" data-logo="罗德岛" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯" data-en="Kroos the Keen Glint" data-ja="寒芒クルース" data-id="RF02" data-hp="1520" data-atk="502" data-def="176" data-res="0" data-re_deploy="80s" data-cost="13→15" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,75,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="220" data-subprofession="速射手" data-nation="罗德岛" data-group="">优先攻击空中单位</div>
+                            <div data-zh="寻澜" data-profession="先锋" data-rarity="4" data-logo="黑钢国际" data-birth_place="哥伦比亚" data-team="" data-race="札拉克" data-en="Surfer" data-ja="" data-id="BS07" data-hp="1950" data-atk="560" data-def="261" data-res="0" data-re_deploy="35s" data-cost="8→10" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="费用回复 快速复活" data-obtain_method="标准寻访" data-potential="cost,re_deploy,interval,,cost`-1,-4,5,,-1" data-trust="0,40,20" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="普通" data-sortid="358" data-subprofession="情报官" data-nation="哥伦比亚" data-group="黑钢国际">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，可使用远程攻击
+                            </div>
+                            <div data-zh="导火索" data-profession="近卫" data-rarity="4" data-logo="彩虹小队" data-birth_place="未知" data-team="彩虹小队" data-race="未知" data-en="Fuze" data-ja="Fuze" data-id="RS08" data-hp="2660" data-atk="795" data-def="290" data-res="0" data-re_deploy="80s" data-cost="21→23→25" data-block="2→2→3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="群攻 生存" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,40,40" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="317" data-subprofession="强攻手" data-nation="" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="小满" data-profession="辅助" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="黎博利" data-en="Grain Buds" data-ja="グレインバッズ" data-id="YD14" data-hp="1260" data-atk="525" data-def="100" data-res="20" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="减速 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,65,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="优良" data-sortid="313" data-subprofession="凝滞师" data-nation="炎" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="山" data-profession="近卫" data-rarity="5" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="菲林" data-en="Mountain" data-ja="マウンテン" data-id="CB05" data-hp="2745" data-atk="587" data-def="357" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="0.78s" data-sex="男" data-position="近战位" data-tag="输出 生存" data-obtain_method="中坚寻访, 公开招募" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,45,45" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="普通" data-sortid="174" data-subprofession="斗士" data-nation="哥伦比亚" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="崖心" data-profession="特种" data-rarity="4" data-logo="喀兰贸易" data-birth_place="谢拉格" data-team="" data-race="菲林" data-en="Cliffheart" data-ja="クリフハート" data-id="JC06" data-hp="1970" data-atk="765" data-def="340" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="2" data-interval="1.8s" data-sex="女" data-position="近战位" data-tag="位移 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,interval,,cost`-1,-4,8,,-1" data-trust="0,70,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="67" data-subprofession="钩索师" data-nation="谢拉格" data-group="喀兰贸易">
+                                技能可以使敌人产生<span style="color:#00B0FF;">位移</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="嵯峨" data-profession="先锋" data-rarity="5" data-logo="东" data-birth_place="东国" data-team="" data-race="佩洛" data-en="Saga" data-ja="サガ" data-id="HK13" data-hp="2205" data-atk="530" data-def="372" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,85,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="181" data-subprofession="尖兵" data-nation="东" data-group="">能够阻挡两个敌人</div>
+                            <div data-zh="巡林者" data-profession="狙击" data-rarity="1" data-logo="行动组A4" data-birth_place="未公开" data-team="行动组A4" data-race="萨弗拉" data-en="Rangers" data-ja="レンジャー" data-id="A42" data-hp="780" data-atk="269" data-def="66" data-res="0" data-re_deploy="70s" data-cost="7" data-block="1" data-interval="1.0s" data-sex="男" data-position="远程位" data-tag="新手" data-obtain_method="公开招募" data-potential="cost,interval,interval,re_deploy,cost`-1,6,6,-5,-1" data-trust="0,30,0" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="优良" data-adapt="普通" data-sortid="5" data-subprofession="速射手" data-nation="罗德岛" data-group="">优先攻击空中单位</div>
+                            <div data-zh="左乐" data-profession="近卫" data-rarity="5" data-logo="炎" data-birth_place="炎" data-team="" data-race="斐迪亚" data-en="Zuo Le" data-ja="ズオ・ラウ" data-id="YD06" data-hp="3858" data-atk="780" data-def="315" data-res="0" data-re_deploy="70s" data-cost="22→24→26" data-block="1" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="输出 生存" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="340,40,40" data-phy="标准" data-flex="卓越" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="314" data-subprofession="武者" data-nation="炎" data-group="">
+                                不成为其他角色的治疗目标，每次攻击到敌人后回复自身<span style="color:#00B0FF;">70</span>
+                                生命
+                            </div>
+                            <div data-zh="巫恋" data-profession="辅助" data-rarity="4" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="沃尔珀" data-en="Shamare" data-ja="シャマレ" data-id="R148" data-hp="1728" data-atk="408" data-def="105" data-res="25" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="削弱" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,res,,cost`-1,-4,8,,-1" data-trust="0,65,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="132" data-subprofession="削弱者" data-nation="叙拉古" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="布丁" data-profession="术师" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="阿戈尔" data-en="Pudding" data-ja="プリン" data-id="CB03" data-hp="1326" data-atk="542" data-def="108" data-res="20" data-re_deploy="70s" data-cost="28→31" data-block="1" data-interval="2.3s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,23,-6,-1" data-trust="0,70,0" data-phy="缺陷" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="209" data-subprofession="链术师" data-nation="哥伦比亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，且会在<span style="color:#00B0FF;">4</span>
+                                个敌人间跳跃，每次跳跃伤害降低15%并造成短暂
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="布洛卡" data-profession="近卫" data-rarity="4" data-logo="贾维团伙" data-birth_place="叙拉古" data-team="贾维团伙" data-race="菲林" data-en="Broca" data-ja="ブローカ" data-id="SR27" data-hp="2335" data-atk="762" data-def="366" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="2→2→3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="群攻 生存" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,28,,-1" data-trust="0,80,0" data-phy="优良" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="114" data-subprofession="强攻手" data-nation="叙拉古" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="帕拉斯" data-profession="近卫" data-rarity="5" data-logo="米诺斯" data-birth_place="米诺斯" data-team="" data-race="丰蹄" data-en="Pallas" data-ja="パラス" data-id="MN04" data-hp="1963" data-atk="687" data-def="455" data-res="0" data-re_deploy="70s" data-cost="15→17" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="输出 支援" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="300,50,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="198" data-subprofession="教官" data-nation="米诺斯" data-group="">
+                                可以攻击到<span style="color:#00B0FF;">较远敌人</span>
+                                ，攻击自身未阻挡的敌人时攻击力提升至120%
+                            </div>
+                            <div data-zh="年" data-profession="重装" data-rarity="5" data-logo="炎-岁" data-birth_place="炎" data-team="" data-race="未公开" data-en="Nian" data-ja="ニェン" data-id="NM01" data-hp="3699" data-atk="619" data-def="726" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="3" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="防护 支援" data-obtain_method="限定寻访" data-potential="cost,atk,def,,cost`-1,24,30,,-1" data-trust="400,0,70" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="缺陷" data-sortid="121" data-subprofession="铁卫" data-nation="炎" data-group="炎-岁">能够阻挡三个敌人</div>
+                            <div data-zh="幽灵鲨" data-profession="近卫" data-rarity="4" data-logo="深海猎人" data-birth_place="阿戈尔" data-team="" data-race="未公开" data-en="Specter" data-ja="スペクター" data-id="AA02" data-hp="2630" data-atk="725" data-def="355" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="2→2→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="群攻 生存" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,80,0" data-phy="卓越" data-flex="普通" data-tolerance="卓越" data-plan="缺陷" data-skill="优良" data-adapt="缺陷" data-sortid="51" data-subprofession="强攻手" data-nation="阿戈尔" data-group="深海猎人">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="异客" data-profession="术师" data-rarity="5" data-logo="萨尔贡" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Passenger" data-ja="パッセンジャー" data-id="SG07" data-hp="1558" data-atk="689" data-def="130" data-res="20" data-re_deploy="70s" data-cost="30→33" data-block="1" data-interval="2.3s" data-sex="男" data-position="远程位" data-tag="输出" data-obtain_method="中坚寻访" data-potential="cost,,atk,cost,`-1,,32,-1," data-trust="0,85,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="189" data-subprofession="链术师" data-nation="萨尔贡" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，且会在<span style="color:#00B0FF;">4</span>
+                                个敌人间跳跃，每次跳跃伤害降低15%并造成短暂
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                                (0.5s)
+                            </div>
+                            <div data-zh="弑君者" data-profession="特种" data-rarity="5" data-logo="罗德岛" data-birth_place="乌萨斯" data-team="" data-race="瑞柏巴" data-en="Crownslayer" data-ja="" data-id="R315" data-hp="1695" data-atk="545" data-def="325" data-res="0" data-re_deploy="22s" data-cost="10→12" data-block="1" data-interval="0.93s" data-sex="女" data-position="近战位" data-tag="快速复活" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-4,-1,,-1" data-trust="0,90,0" data-phy="标准" data-flex="卓越" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="351" data-subprofession="处决者" data-nation="罗德岛" data-group="">
+                                再部署时间大幅度<span style="color:#00B0FF;">减少</span>
+                            </div>
+                            <div data-zh="引星棘刺" data-profession="特种" data-rarity="5" data-logo="伊比利亚" data-birth_place="伊比利亚" data-team="" data-race="阿戈尔" data-en="Thorns the Lodestar" data-ja="" data-id="II02" data-hp="1173" data-atk="501" data-def="106" data-res="30" data-re_deploy="70s" data-cost="14→16→18" data-block="1" data-interval="1.5s" data-sex="男" data-position="远程位" data-tag="输出 支援 削弱" data-obtain_method="标准寻访" data-potential="cost,re_deploy,res,,cost`-1,-4,12,,-1" data-trust="200,40,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="优良" data-sortid="356" data-subprofession="炼金师" data-nation="伊比利亚" data-group="">
+                                可以投掷<span style="color:#00B0FF;">炼金单元</span>
+                                协助作战
+                            </div>
+                            <div data-zh="归溟幽灵鲨" data-profession="特种" data-rarity="5" data-logo="深海猎人" data-birth_place="阿戈尔" data-team="" data-race="阿戈尔" data-en="Specter the Unchained" data-ja="帰溟スペクター" data-id="CR02" data-hp="2803" data-atk="737" data-def="322" data-res="0" data-re_deploy="70s" data-cost="14→14→16" data-block="2" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="输出 快速复活" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,33,,-1" data-trust="0,80,0" data-phy="卓越" data-flex="优良" data-tolerance="卓越" data-plan="标准" data-skill="优良" data-adapt="缺陷" data-sortid="236" data-subprofession="傀儡师" data-nation="阿戈尔" data-group="深海猎人">受到致命伤时不撤退，切换成 &lt;替身 &gt;作战（替身阻挡数为0），持续20秒后自身再次替换 &lt;替身 &gt;</div>
+                            <div data-zh="微风" data-profession="医疗" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="沃尔珀" data-en="Breeze" data-ja="ブリーズ" data-id="R132" data-hp="1595" data-atk="343" data-def="153" data-res="0" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗 支援" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,20,-6,-1" data-trust="200,30,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="缺陷" data-adapt="优良" data-sortid="108" data-subprofession="群愈师" data-nation="维多利亚" data-group="">同时恢复三个友方单位的生命</div>
+                            <div data-zh="德克萨斯" data-profession="先锋" data-rarity="4" data-logo="企鹅物流" data-birth_place="哥伦比亚" data-team="" data-race="鲁珀" data-en="Texas" data-ja="テキサス" data-id="PL02" data-hp="1950" data-atk="500" data-def="343" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 控场" data-obtain_method="公开招募, 中坚寻访, 常驻赠送" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,24,-6,-1" data-trust="0,70,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="优良" data-sortid="47" data-subprofession="尖兵" data-nation="炎-龙门" data-group="企鹅物流">能够阻挡两个敌人</div>
+                            <div data-zh="忍冬" data-profession="先锋" data-rarity="5" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="沃尔珀" data-en="Vulpisfoglia" data-ja="" data-id="SR40" data-hp="2030" data-atk="562" data-def="380" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="150,60,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="卓越" data-adapt="标准" data-sortid="352" data-subprofession="尖兵" data-nation="叙拉古" data-group="">能够阻挡两个敌人</div>
+                            <div data-zh="惊蛰" data-profession="术师" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="麒麟" data-en="Leizi" data-ja="レイズ" data-id="YD05" data-hp="1443" data-atk="635" data-def="119" data-res="20" data-re_deploy="70s" data-cost="29→32" data-block="1" data-interval="2.3s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,28,,-1" data-trust="0,75,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="卓越" data-sortid="122" data-subprofession="链术师" data-nation="炎" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，且会在<span style="color:#00B0FF;">4</span>
+                                个敌人间跳跃，每次跳跃伤害降低15%并造成短暂
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                                (0.5s)
+                            </div>
+                            <div data-zh="慑砂" data-profession="狙击" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="瓦伊凡" data-en="Sesa" data-ja="シェーシャ" data-id="R158" data-hp="1655" data-atk="833" data-def="123" data-res="0" data-re_deploy="70s" data-cost="24→26→28" data-block="1" data-interval="2.8s" data-sex="男" data-position="远程位" data-tag="群攻 削弱" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,33,,-1" data-trust="0,85,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="127" data-subprofession="炮手" data-nation="萨尔贡" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体物理伤害</span>
+                            </div>
+                            <div data-zh="慕斯" data-profession="近卫" data-rarity="3" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Mousse" data-ja="ムース" data-id="VC04" data-hp="2345" data-atk="644" data-def="357" data-res="15" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="1.25s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="0,35,35" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="33" data-subprofession="术战者" data-nation="维多利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="战车" data-profession="近卫" data-rarity="4" data-logo="彩虹小队" data-birth_place="未知" data-team="彩虹小队" data-race="未知" data-en="Tachanka" data-ja="Tachanka" data-id="RS04" data-hp="2626" data-atk="621" data-def="309" data-res="0" data-re_deploy="80s" data-cost="20→22→24" data-block="2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="爆发 输出" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,40,40" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="183" data-subprofession="剑豪" data-nation="" data-group="">
+                                普通攻击连续造成<span style="color:#00B0FF;">两次</span>
+                                伤害
+                            </div>
+                            <div data-zh="截云" data-profession="狙击" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="阿纳萨" data-en="Jieyun" data-ja="ジエユン" data-id="YD15" data-hp="1650" data-atk="835" data-def="115" data-res="0" data-re_deploy="80s" data-cost="26→28→30" data-block="1" data-interval="2.8s" data-sex="女" data-position="远程位" data-tag="群攻 减速" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,85,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="265" data-subprofession="炮手" data-nation="炎" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体物理伤害</span>
+                            </div>
+                            <div data-zh="戴菲恩" data-profession="术师" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Delphine" data-ja="デルフィーン" data-id="VC23" data-hp="1532" data-atk="1240" data-def="128" data-res="20" data-re_deploy="80s" data-cost="24→26" data-block="1" data-interval="3.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="主线剧情" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,130,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="298" data-subprofession="秘术师" data-nation="维多利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，在找不到攻击目标时可以将攻击能量<span style="color:#00B0FF;">储存</span>
+                                起来之后一齐发射（最多3个）
+                            </div>
+                            <div data-zh="承曦格雷伊" data-profession="狙击" data-rarity="4" data-logo="罗德岛" data-birth_place="玻利瓦尔" data-team="" data-race="佩洛" data-en="Greyy the Lightningbearer" data-ja="承曦グレイ" data-id="RF23" data-hp="1730" data-atk="628" data-def="240" data-res="15" data-re_deploy="70s" data-cost="22→24" data-block="1" data-interval="2.1s" data-sex="男" data-position="远程位" data-tag="输出 减速" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,32,-6,-1" data-trust="150,60,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="242" data-subprofession="投掷手" data-nation="罗德岛" data-group="">
+                                攻击对小范围的<span style="color:#00B0FF;">地面</span>
+                                敌人造成<span style="color:#00B0FF;">两次</span>
+                                物理伤害（第二次为余震，伤害降低至攻击力的一半）
+                            </div>
+                            <div data-zh="折光" data-profession="术师" data-rarity="4" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="卡普里尼" data-en="Diamante" data-ja="ディアマンテ" data-id="LN21" data-hp="1309" data-atk="578" data-def="111" data-res="15" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="1.6s" data-sex="男" data-position="远程位" data-tag="元素 输出" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,65,0" data-phy="普通" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="普通" data-adapt="标准" data-sortid="302" data-subprofession="本源术师" data-nation="莱塔尼亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以造成<span style="color:#00B0FF;">元素伤害</span>
+                            </div>
+                            <div data-zh="拉普兰德" data-profession="近卫" data-rarity="4" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="鲁珀" data-en="Lappland" data-ja="ラップランド" data-id="SR01" data-hp="2350" data-atk="685" data-def="365" data-res="15" data-re_deploy="70s" data-cost="17→19" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="输出 削弱" data-obtain_method="中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,75,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="卓越" data-adapt="优良" data-sortid="50" data-subprofession="领主" data-nation="叙拉古" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="拜松" data-profession="重装" data-rarity="4" data-logo="炎-龙门" data-birth_place="龙门" data-team="" data-race="丰蹄" data-en="Bison" data-ja="バイソン" data-id="LM15" data-hp="3456" data-atk="375" data-def="701" data-res="0" data-re_deploy="80s" data-cost="20→22→24" data-block="3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="防护" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,0,80" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="110" data-subprofession="铁卫" data-nation="炎-龙门" data-group="">能够阻挡三个敌人</div>
+                            <div data-zh="掠风" data-profession="辅助" data-rarity="4" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="佩洛" data-en="Windflit" data-ja="ウインドフリット" data-id="CB19" data-hp="2600" data-atk="565" data-def="425" data-res="0" data-re_deploy="70s" data-cost="14→16→18" data-block="2" data-interval="1.5s" data-sex="男" data-position="近战位" data-tag="输出 支援" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,40,40" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="233" data-subprofession="工匠" data-nation="哥伦比亚" data-group="">能够阻挡两个敌人，使用 &lt;支援装置 &gt;协助作战</div>
+                            <div data-zh="推进之王" data-profession="先锋" data-rarity="5" data-logo="格拉斯哥帮" data-birth_place="维多利亚" data-team="" data-race="阿斯兰" data-en="Siege" data-ja="シージ" data-id="GG01" data-hp="2251" data-atk="515" data-def="384" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,60,25" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="74" data-subprofession="尖兵" data-nation="维多利亚" data-group="格拉斯哥帮">能够阻挡两个敌人</div>
+                            <div data-zh="提丰" data-profession="狙击" data-rarity="5" data-logo="萨米" data-birth_place="萨米" data-team="" data-race="萨卡兹" data-en="Typhon" data-ja="ティフォン" data-id="SI07" data-hp="1702" data-atk="1045" data-def="113" data-res="0" data-re_deploy="70s" data-cost="22→24" data-block="1" data-interval="2.4s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,34,,-1" data-trust="0,110,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="288" data-subprofession="攻城手" data-nation="萨米" data-group="">优先攻击重量最重的敌人</div>
+                            <div data-zh="摩根" data-profession="近卫" data-rarity="4" data-logo="格拉斯哥帮" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Morgan" data-ja="モーガン" data-id="GG02" data-hp="3810" data-atk="905" data-def="243" data-res="0" data-re_deploy="80s" data-cost="18→20" data-block="1" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="主线剧情" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,75,25" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="普通" data-sortid="276" data-subprofession="无畏者" data-nation="维多利亚" data-group="格拉斯哥帮">能够阻挡一个敌人</div>
+                            <div data-zh="斑点" data-profession="重装" data-rarity="2" data-logo="行动预备组A6" data-birth_place="萨尔贡" data-team="行动预备组A6" data-race="瑞柏巴" data-en="Spot" data-ja="スポット" data-id="PA64" data-hp="1833" data-atk="320" data-def="442" data-res="10" data-re_deploy="70s" data-cost="15→17" data-block="2→3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="防护 治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,24,,-1" data-trust="0,30,30" data-phy="标准" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="91" data-subprofession="守护者" data-nation="罗德岛" data-group="">技能可以治疗友方单位</div>
+                            <div data-zh="斥罪" data-profession="重装" data-rarity="5" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="鲁珀" data-en="Penance" data-ja="ペナンス" data-id="SR35" data-hp="4055" data-atk="876" data-def="616" data-res="10" data-re_deploy="70s" data-cost="32→34→36" data-block="2→3→3" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="生存 输出" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,28,,-1" data-trust="600,40,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="260" data-subprofession="不屈者" data-nation="叙拉古" data-group="">
+                                <span style="color:#00B0FF;">无法</span>
+                                被友方角色治疗
+                            </div>
+                            <div data-zh="断崖" data-profession="近卫" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯" data-en="Ayerscarpe" data-ja="エアースカーペ" data-id="RB04" data-hp="2420" data-atk="670" data-def="375" data-res="10" data-re_deploy="70s" data-cost="17→19" data-block="2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="输出 群攻" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="0,75,0" data-phy="标准" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="146" data-subprofession="领主" data-nation="雷姆必拓" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="断罪者" data-profession="近卫" data-rarity="3" data-logo="米诺斯" data-birth_place="米诺斯" data-team="" data-race="未知（疑似黎博利）" data-en="Conviction" data-ja="コンビクション" data-id="MN01" data-hp="3483" data-atk="929" data-def="166" data-res="0" data-re_deploy="70s" data-cost="14→16" data-block="1" data-interval="1.5s" data-sex="断罪" data-position="近战位" data-tag="输出 生存 控场 爆发" data-obtain_method="活动获得" data-potential="`" data-trust="222,22,22" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="129" data-subprofession="无畏者" data-nation="米诺斯" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="斯卡蒂" data-profession="近卫" data-rarity="5" data-logo="深海猎人" data-birth_place="阿戈尔" data-team="" data-race="未公开" data-en="Skadi" data-ja="スカジ" data-id="AA01" data-hp="3866" data-atk="1015" data-def="263" data-res="0" data-re_deploy="70s" data-cost="17→19" data-block="1" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,33,,-1" data-trust="0,80,40" data-phy="■■" data-flex="标准" data-tolerance="卓越" data-plan="标准" data-skill="优良" data-adapt="缺陷" data-sortid="89" data-subprofession="无畏者" data-nation="阿戈尔" data-group="深海猎人">能够阻挡一个敌人</div>
+                            <div data-zh="早露" data-profession="狙击" data-rarity="5" data-logo="乌萨斯学生自治团" data-birth_place="乌萨斯" data-team="乌萨斯学生自治团" data-race="乌萨斯" data-en="Роса" data-ja="ロサ" data-id="USS4" data-hp="1755" data-atk="1032" data-def="122" data-res="0" data-re_deploy="70s" data-cost="22→24" data-block="1" data-interval="2.4s" data-sex="女" data-position="远程位" data-tag="输出 控场" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,34,,-1" data-trust="0,110,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="143" data-subprofession="攻城手" data-nation="乌萨斯" data-group="">优先攻击重量最重的敌人</div>
+                            <div data-zh="明椒" data-profession="医疗" data-rarity="4" data-logo="罗德岛" data-birth_place="哥伦比亚" data-team="" data-race="萨卡兹" data-en="Paprika" data-ja="パプリカ" data-id="R175" data-hp="1666" data-atk="439" data-def="171" data-res="0" data-re_deploy="70s" data-cost="16→18" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="200,50,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="254" data-subprofession="链愈师" data-nation="罗德岛" data-group="">
+                                恢复友方单位生命，且会在<span style="color:#00B0FF;">3</span>
+                                个友方单位间跳跃，每次跳跃治疗量降低25%
+                            </div>
+                            <div data-zh="星极" data-profession="近卫" data-rarity="4" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Astesia" data-ja="アステシア" data-id="RR01" data-hp="2523" data-atk="660" data-def="393" data-res="15" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.25s" data-sex="女" data-position="近战位" data-tag="输出 防护" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,re_deploy,cost`-1,-4,23,-6,-1" data-trust="0,30,55" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="100" data-subprofession="术战者" data-nation="哥伦比亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="星源" data-profession="术师" data-rarity="4" data-logo="莱茵生命" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Astgenne" data-ja="アステジーニ" data-id="RL08" data-hp="1440" data-atk="630" data-def="122" data-res="20" data-re_deploy="80s" data-cost="31→34" data-block="1" data-interval="2.3s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,atk,cost`-1,-10,-1,28,-1" data-trust="0,75,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="241" data-subprofession="链术师" data-nation="哥伦比亚" data-group="莱茵生命">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，且会在<span style="color:#00B0FF;">4</span>
+                                个敌人间跳跃，每次跳跃伤害降低15%并造成短暂
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="星熊" data-profession="重装" data-rarity="5" data-logo="龙门近卫局" data-birth_place="东国" data-team="" data-race="鬼" data-en="Hoshiguma" data-ja="ホシグマ" data-id="LM05" data-hp="3850" data-atk="430" data-def="723" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,,def,cost,`-1,,30,-1," data-trust="0,60,60" data-phy="优良" data-flex="标准" data-tolerance="卓越" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="80" data-subprofession="铁卫" data-nation="炎-龙门" data-group="龙门近卫局">能够阻挡三个敌人</div>
+                            <div data-zh="晓歌" data-profession="先锋" data-rarity="4" data-logo="罗德岛" data-birth_place="玻利瓦尔" data-team="" data-race="黎博利" data-en="Cantabile" data-ja="カンタービレ" data-id="R143" data-hp="1917" data-atk="560" data-def="267" data-res="0" data-re_deploy="35s" data-cost="8→10" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="费用回复 快速复活" data-obtain_method="标准寻访" data-potential="cost,re_deploy,interval,,cost`-1,-4,5,,-1" data-trust="0,30,30" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="245" data-subprofession="情报官" data-nation="罗德岛" data-group="">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，可使用远程攻击
+                            </div>
+                            <div data-zh="普罗旺斯" data-profession="狙击" data-rarity="4" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="鲁珀" data-en="Provence" data-ja="プロヴァンス" data-id="SR03" data-hp="1680" data-atk="781" data-def="215" data-res="0" data-re_deploy="70s" data-cost="15→17→19" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,30,,-1" data-trust="0,90,0" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="65" data-subprofession="重射手" data-nation="叙拉古" data-group="">高精度的近距离射击</div>
+                            <div data-zh="暗索" data-profession="特种" data-rarity="3" data-logo="炎-龙门" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯" data-en="Rope" data-ja="ロープ" data-id="RB02" data-hp="1720" data-atk="728" data-def="325" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="2" data-interval="1.8s" data-sex="女" data-position="近战位" data-tag="位移" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,22,,-1" data-trust="0,0,60" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="35" data-subprofession="钩索师" data-nation="炎-龙门" data-group="">
+                                技能可以使敌人产生<span style="color:#00B0FF;">位移</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="暮落" data-profession="重装" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="斐迪亚" data-en="Shalem" data-ja="シャレム" data-id="VC07" data-hp="3090" data-atk="649" data-def="550" data-res="15" data-re_deploy="70s" data-cost="21→23→25" data-block="3" data-interval="1.6s" data-sex="男" data-position="近战位" data-tag="输出 防护" data-obtain_method="活动获得" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,80,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="218" data-subprofession="驭法铁卫" data-nation="维多利亚" data-group="">技能开启时普通攻击会造成法术伤害</div>
+                            <div data-zh="暴行" data-profession="近卫" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯" data-en="Savage" data-ja="サベージ" data-id="RB01" data-hp="2430" data-atk="705" data-def="320" data-res="0" data-re_deploy="70s" data-cost="18→20→22" data-block="2→2→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="群攻 爆发" data-obtain_method="预约奖励, 周年奖励" data-potential="atk,hp,def,interval,res`35,250,35,8,8" data-trust="0,0,40" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="83" data-subprofession="强攻手" data-nation="雷姆必拓" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="暴雨" data-profession="重装" data-rarity="4" data-logo="罗德岛" data-birth_place="萨尔贡" data-team="" data-race="库兰塔" data-en="Heavyrain" data-ja="ヘビーレイン" data-id="R164" data-hp="3380" data-atk="378" data-def="721" data-res="0" data-re_deploy="80s" data-cost="20→22→24" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 支援" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="350,0,35" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="187" data-subprofession="铁卫" data-nation="罗德岛" data-group="">能够阻挡三个敌人</div>
+                            <div data-zh="月禾" data-profession="辅助" data-rarity="4" data-logo="东" data-birth_place="东国" data-team="" data-race="埃拉菲亚" data-en="Tsukinogi" data-ja="ツキノギ" data-id="R129" data-hp="1720" data-atk="445" data-def="175" data-res="25" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="支援 生存" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,160,,-1" data-trust="300,40,0" data-phy="普通" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="139" data-subprofession="护佑者" data-nation="东" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，技能开启后改为治疗友方单位（治疗量相当于<span style="color:#00B0FF;">75%</span>
+                                攻击力）
+                            </div>
+                            <div data-zh="月见夜" data-profession="近卫" data-rarity="2" data-logo="行动预备组A6" data-birth_place="东国" data-team="行动预备组A6" data-race="萨卡兹" data-en="Midnight" data-ja="ミッドナイト" data-id="PA62" data-hp="1653" data-atk="497" data-def="282" data-res="10" data-re_deploy="70s" data-cost="14→16" data-block="2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,22,,-1" data-trust="0,50,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="85" data-subprofession="领主" data-nation="罗德岛" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="末药" data-profession="医疗" data-rarity="3" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="沃尔珀" data-en="Myrrh" data-ja="ミルラ" data-id="R104" data-hp="1420" data-atk="465" data-def="131" data-res="0" data-re_deploy="70s" data-cost="16→18" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,60,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="36" data-subprofession="医师" data-nation="罗德岛" data-group="">恢复友方单位生命</div>
+                            <div data-zh="杏仁" data-profession="特种" data-rarity="4" data-logo="黑钢国际" data-birth_place="哥伦比亚" data-team="" data-race="佩洛" data-en="Almond" data-ja="アーモンド" data-id="BS05" data-hp="2130" data-atk="695" data-def="410" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="2" data-interval="1.8s" data-sex="女" data-position="近战位" data-tag="位移" data-obtain_method="标准寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,20,,-1" data-trust="200,0,45" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="295" data-subprofession="钩索师" data-nation="哥伦比亚" data-group="黑钢国际">
+                                技能可以使敌人产生<span style="color:#00B0FF;">位移</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="杜宾" data-profession="近卫" data-rarity="3" data-logo="罗德岛" data-birth_place="玻利瓦尔" data-team="" data-race="佩洛" data-en="Dobermann" data-ja="ドーベルマン" data-id="R100" data-hp="2024" data-atk="602" data-def="382" data-res="0" data-re_deploy="70s" data-cost="13→15" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="输出 支援" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,150,,-1" data-trust="0,30,30" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="29" data-subprofession="教官" data-nation="罗德岛" data-group="">
+                                可以攻击到<span style="color:#00B0FF;">较远敌人</span>
+                                ，攻击自身未阻挡的敌人时攻击力提升至120%
+                            </div>
+                            <div data-zh="杜林" data-profession="术师" data-rarity="1" data-logo="行动组A4" data-birth_place="未公开" data-team="行动组A4" data-race="杜林" data-en="Durin" data-ja="ドゥリン" data-id="A44" data-hp="952" data-atk="340" data-def="62" data-res="10" data-re_deploy="70s" data-cost="12" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="新手" data-obtain_method="公开招募, 主线剧情" data-potential="cost,hp,re_deploy,hp,cost`-1,50,-5,50,-1" data-trust="0,30,0" data-phy="缺陷" data-flex="普通" data-tolerance="缺陷" data-plan="普通" data-skill="普通" data-adapt="优良" data-sortid="6" data-subprofession="中坚术师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="杰克" data-profession="近卫" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="佩洛" data-en="Jackie" data-ja="ジャッキー" data-id="R166" data-hp="2378" data-atk="529" data-def="308" data-res="0" data-re_deploy="70s" data-cost="7→9" data-block="1" data-interval="0.78s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,21,,-1" data-trust="0,60,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="166" data-subprofession="斗士" data-nation="哥伦比亚" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="杰西卡" data-profession="狙击" data-rarity="3" data-logo="黑钢国际" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Jessica" data-ja="ジェシカ" data-id="BS03" data-hp="1320" data-atk="475" data-def="154" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出 生存" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,24,-6,-1" data-trust="0,65,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="23" data-subprofession="速射手" data-nation="哥伦比亚" data-group="黑钢国际">优先攻击空中单位</div>
+                            <div data-zh="松果" data-profession="狙击" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Pinecone" data-ja="パインコーン" data-id="CB09" data-hp="2200" data-atk="667" data-def="167" data-res="0" data-re_deploy="70s" data-cost="27→30" data-block="1" data-interval="2.3s" data-sex="女" data-position="远程位" data-tag="群攻 输出" data-obtain_method="标准寻访, 中坚寻访, 公开招募" data-potential="cost,re_deploy,atk,,cost`-1,-4,28,,-1" data-trust="0,55,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="171" data-subprofession="散射手" data-nation="哥伦比亚" data-group="">
+                                攻击范围内的<span style="color:#00B0FF;">所有敌人</span>
+                                ，对自己前方一横排的敌人攻击力提升至150%
+                            </div>
+                            <div data-zh="极光" data-profession="重装" data-rarity="4" data-logo="喀兰贸易" data-birth_place="谢拉格" data-team="" data-race="乌萨斯" data-en="Aurora" data-ja="オーロラ" data-id="JC09" data-hp="4027" data-atk="901" data-def="640" data-res="0" data-re_deploy="70s" data-cost="28→30→32" data-block="1" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="输出 防护" data-obtain_method="标准寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,27,,-1" data-trust="0,55,55" data-phy="标准" data-flex="普通" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="216" data-subprofession="决战者" data-nation="谢拉格" data-group="喀兰贸易">只有阻挡敌人时才能够回复技力</div>
+                            <div data-zh="极境" data-profession="先锋" data-rarity="4" data-logo="罗德岛" data-birth_place="伊比利亚" data-team="" data-race="黎博利" data-en="Elysium" data-ja="エリジウム" data-id="R131" data-hp="1669" data-atk="533" data-def="335" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="费用回复 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,23,,-1" data-trust="0,0,60" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="135" data-subprofession="执旗手" data-nation="罗德岛" data-group="">技能发动期间阻挡数变为0</div>
+                            <div data-zh="林" data-profession="术师" data-rarity="5" data-logo="炎-龙门" data-birth_place="龙门" data-team="" data-race="札拉克" data-en="Lin" data-ja="リン" data-id="LM21" data-hp="2048" data-atk="849" data-def="242" data-res="15" data-re_deploy="70s" data-cost="22→24" data-block="1" data-interval="2.0s" data-sex="女" data-position="远程位" data-tag="群攻 防护" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,34,,-1" data-trust="0,70,40" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="卓越" data-sortid="267" data-subprofession="阵法术师" data-nation="炎-龙门" data-group="">
+                                通常时<span style="color:#00B0FF;">不攻击</span>
+                                且防御力和法术抗性大幅度<span style="color:#00B0FF;">提升</span>
+                                ，技能开启时攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="柏喙" data-profession="近卫" data-rarity="4" data-logo="萨米" data-birth_place="萨米" data-team="" data-race="黎博利" data-en="Bibeak" data-ja="バイビーク" data-id="R138" data-hp="2550" data-atk="602" data-def="332" data-res="0" data-re_deploy="70s" data-cost="18→20→22" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="爆发 输出" data-obtain_method="活动获得, 凭证交易所(高级/通用)" data-potential="cost,re_deploy,atk,,cost`-1,-4,22,,-1" data-trust="0,80,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="126" data-subprofession="剑豪" data-nation="萨米" data-group="">
+                                普通攻击连续造成<span style="color:#00B0FF;">两次</span>
+                                伤害
+                            </div>
+                            <div data-zh="格劳克斯" data-profession="辅助" data-rarity="4" data-logo="伊比利亚" data-birth_place="阿戈尔地区" data-team="" data-race="未公开" data-en="Glaucus" data-ja="グラウコス" data-id="R128" data-hp="1267" data-atk="505" data-def="100" data-res="20" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="减速 控场" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="300,35,0" data-phy="普通" data-flex="普通" data-tolerance="优良" data-plan="优良" data-skill="标准" data-adapt="普通" data-sortid="97" data-subprofession="凝滞师" data-nation="伊比利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="格拉尼" data-profession="先锋" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="库兰塔" data-en="Grani" data-ja="グラニ" data-id="VC05" data-hp="2235" data-atk="552" data-def="367" data-res="0" data-re_deploy="80s" data-cost="12→14" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="费用回复 防护" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,0,70" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="88" data-subprofession="冲锋手" data-nation="维多利亚" data-group="">击杀敌人后获得1点部署费用，撤退时返还初始部署费用</div>
+                            <div data-zh="格雷伊" data-profession="术师" data-rarity="3" data-logo="玻利瓦尔" data-birth_place="玻利瓦尔" data-team="" data-race="佩洛" data-en="Greyy" data-ja="グレイ" data-id="R119" data-hp="1537" data-atk="699" data-def="130" data-res="20" data-re_deploy="70s" data-cost="29→32" data-block="1" data-interval="2.9s" data-sex="男" data-position="远程位" data-tag="群攻 减速" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,interval,re_deploy,cost`-1,-4,6,-6,-1" data-trust="300,0,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="92" data-subprofession="扩散术师" data-nation="玻利瓦尔" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="桃金娘" data-profession="先锋" data-rarity="3" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="杜林" data-en="Myrtle" data-ja="テンニンカ" data-id="R108" data-hp="1565" data-atk="520" data-def="300" data-res="0" data-re_deploy="70s" data-cost="8→10" data-block="1" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="费用回复 治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,22,,-1" data-trust="0,0,50" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="99" data-subprofession="执旗手" data-nation="罗德岛" data-group="">技能发动期间阻挡数变为0</div>
+                            <div data-zh="桑葚" data-profession="医疗" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="黎博利" data-en="Mulberry" data-ja="マルベリー" data-id="YD03" data-hp="1367" data-atk="388" data-def="99" data-res="10" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,19,,-1" data-trust="150,35,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="204" data-subprofession="行医" data-nation="炎" data-group="">
+                                恢复友方单位生命，并回复相当于攻击力<span style="color:#00B0FF;">50%</span>
+                                的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                （可以回复未受伤友方单位的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                ）
+                            </div>
+                            <div data-zh="梅" data-profession="狙击" data-rarity="3" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="黎博利" data-en="May" data-ja="メイ" data-id="VC01" data-hp="1632" data-atk="478" data-def="105" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出 减速" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,65,0" data-phy="标准" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="普通" data-sortid="109" data-subprofession="速射手" data-nation="维多利亚" data-group="">优先攻击空中单位</div>
+                            <div data-zh="梅尔" data-profession="辅助" data-rarity="4" data-logo="莱茵生命" data-birth_place="哥伦比亚" data-team="" data-race="阿纳缇" data-en="Mayer" data-ja="メイヤー" data-id="RL05" data-hp="1068" data-atk="443" data-def="130" data-res="20" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="召唤 控场" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,res,re_deploy,cost`-1,-4,8,-6,-1" data-trust="200,35,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="普通" data-sortid="57" data-subprofession="召唤师" data-nation="哥伦比亚" data-group="莱茵生命">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>
+                                可以使用<span style="color:#00B0FF;">召唤物</span>
+                                协助作战
+                            </div>
+                            <div data-zh="梓兰" data-profession="辅助" data-rarity="2" data-logo="行动预备组A6" data-birth_place="哥伦比亚" data-team="行动预备组A6" data-race="黎博利" data-en="Orchid" data-ja="オーキッド" data-id="PA61" data-hp="935" data-atk="378" data-def="83" data-res="15" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="减速" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,19,-6,-1" data-trust="0,40,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="20" data-subprofession="凝滞师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="棘刺" data-profession="近卫" data-rarity="5" data-logo="伊比利亚" data-birth_place="伊比利亚" data-team="" data-race="阿戈尔" data-en="Thorns" data-ja="ソーンズ" data-id="II01" data-hp="2612" data-atk="711" data-def="402" data-res="10" data-re_deploy="70s" data-cost="18→20" data-block="2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="输出 防护" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,,atk,,cost`-1,,26,,-1" data-trust="0,30,70" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="153" data-subprofession="领主" data-nation="伊比利亚" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="森蚺" data-profession="重装" data-rarity="5" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="斐迪亚" data-en="Eunectes" data-ja="ユーネクテス" data-id="SG03" data-hp="4468" data-atk="1007" data-def="615" data-res="0" data-re_deploy="70s" data-cost="29→31→33" data-block="1" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="输出 生存 防护" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,27,,-1" data-trust="0,70,70" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="157" data-subprofession="决战者" data-nation="萨尔贡" data-group="">只有阻挡敌人时才能够回复技力</div>
+                            <div data-zh="森西" data-profession="重装" data-rarity="4" data-logo="莱欧斯小队" data-birth_place="伊兹甘达（自称）" data-team="莱欧斯小队" data-race="矮人（自称）" data-en="Senshi" data-ja="" data-id="DD04" data-hp="2770" data-atk="470" data-def="580" data-res="10" data-re_deploy="80s" data-cost="19→21→23" data-block="2→3→3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="防护 治疗" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,def,cost`-1,-10,-1,25,-1" data-trust="0,40,40" data-phy="标准" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="普通" data-adapt="■■" data-sortid="341" data-subprofession="守护者" data-nation="" data-group="">技能可以治疗友方单位</div>
+                            <div data-zh="槐琥" data-profession="特种" data-rarity="4" data-logo="鲤氏侦探事务所" data-birth_place="炎" data-team="鲤氏侦探事务所" data-race="菲林" data-en="Waai Fu" data-ja="ワイフー" data-id="LM12" data-hp="1455" data-atk="536" data-def="304" data-res="0" data-re_deploy="18s" data-cost="7→9" data-block="1" data-interval="0.93s" data-sex="女" data-position="近战位" data-tag="快速复活 削弱" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,def,re_deploy,,cost`-1,19,-2,,-1" data-trust="0,50,30" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="111" data-subprofession="处决者" data-nation="炎-龙门" data-group="">
+                                再部署时间大幅度<span style="color:#00B0FF;">减少</span>
+                            </div>
+                            <div data-zh="歌蕾蒂娅" data-profession="特种" data-rarity="5" data-logo="深海猎人" data-birth_place="阿戈尔" data-team="" data-race="未公开" data-en="Gladiia" data-ja="グレイディーア" data-id="AA05" data-hp="2309" data-atk="801" data-def="331" data-res="0" data-re_deploy="80s" data-cost="14→16" data-block="2" data-interval="1.8s" data-sex="女" data-position="近战位" data-tag="位移 输出 控场" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,50,50" data-phy="卓越" data-flex="■■" data-tolerance="卓越" data-plan="优良" data-skill="卓越" data-adapt="缺陷" data-sortid="191" data-subprofession="钩索师" data-nation="阿戈尔" data-group="深海猎人">
+                                技能可以使敌人产生<span style="color:#00B0FF;">位移</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="止颂" data-profession="近卫" data-rarity="5" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="卡普里尼" data-en="Lessing" data-ja="レッシング" data-id="LN07" data-hp="3682" data-atk="1044" data-def="277" data-res="0" data-re_deploy="80s" data-cost="19→21" data-block="1" data-interval="1.5s" data-sex="男" data-position="近战位" data-tag="输出" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="200,85,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="304" data-subprofession="无畏者" data-nation="莱塔尼亚" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="正义骑士号" data-profession="狙击" data-rarity="0" data-logo="红松骑士团" data-birth_place="" data-team="" data-race="" data-en="&quot;Justice Knight&quot;" data-ja="ジャスティスナイト" data-id="KZ15" data-hp="495" data-atk="172" data-def="41" data-res="0" data-re_deploy="200s" data-cost="3" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="支援机械 支援" data-obtain_method="公开招募, 活动获得" data-potential="`" data-trust="100,45,0" data-phy="" data-flex="" data-tolerance="" data-plan="" data-skill="" data-adapt="" data-sortid="208" data-subprofession="速射手" data-nation="卡西米尔" data-group="红松骑士团">
+                                优先攻击空中单位，且不受<span style="color:#00B0FF;">部署数量</span>
+                                限制，但再部署时间极长
+                            </div>
+                            <div data-zh="死芒" data-profession="术师" data-rarity="5" data-logo="塔拉" data-birth_place="维多利亚" data-team="" data-race="德拉克" data-en="Necrass" data-ja="" data-id="DB01" data-hp="1924" data-atk="633" data-def="133" data-res="20" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="召唤 输出" data-obtain_method="标准寻访" data-potential="cost,,atk,re_deploy,cost`-1,,27,-6,-1" data-trust="0,45,45" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="365" data-subprofession="塑灵术师" data-nation="维多利亚" data-group="塔拉">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以通过击倒敌人生成<span style="color:#00B0FF;">召唤物</span>
+                                ，可攻击到自身<span style="color:#00B0FF;">召唤物</span>
+                                阻挡的敌人
+                            </div>
+                            <div data-zh="水月" data-profession="特种" data-rarity="5" data-logo="东" data-birth_place="东国" data-team="" data-race="阿戈尔" data-en="Mizuki" data-ja="ミヅキ" data-id="HK07" data-hp="1758" data-atk="865" data-def="356" data-res="30" data-re_deploy="70s" data-cost="19→21" data-block="0" data-interval="3.5s" data-sex="男" data-position="近战位" data-tag="输出 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,32,,-1" data-trust="0,110,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="缺陷" data-sortid="201" data-subprofession="伏击客" data-nation="东" data-group="">
+                                对攻击范围内<span style="color:#00B0FF;">所有敌人</span>
+                                造成伤害<br/>
+                                拥有50%的物理和法术闪避且不容易成为敌人的<span style="color:#00B0FF;">攻击目标</span>
+                            </div>
+                            <div data-zh="水灯心" data-profession="狙击" data-rarity="4" data-logo="塔拉" data-birth_place="维多利亚" data-team="" data-race="佩洛" data-en="Brigid" data-ja="" data-id="DB04" data-hp="2350" data-atk="640" data-def="165" data-res="0" data-re_deploy="80s" data-cost="15→17" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,75,0" data-phy="普通" data-flex="优良" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="363" data-subprofession="回环射手" data-nation="维多利亚" data-group="塔拉">
+                                持有<span style="color:#00B0FF;">回旋投射物</span>
+                                时才能够攻击（投射物需要时间回收）
+                            </div>
+                            <div data-zh="泡普卡" data-profession="近卫" data-rarity="2" data-logo="行动预备组A6" data-birth_place="雷姆必拓" data-team="行动预备组A6" data-race="卡特斯" data-en="Popukar" data-ja="ポプカル" data-id="PA65" data-hp="1858" data-atk="495" data-def="245" data-res="0" data-re_deploy="70s" data-cost="17→19" data-block="2" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="群攻 生存" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,50,0" data-phy="优良" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="90" data-subprofession="强攻手" data-nation="罗德岛" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="泡泡" data-profession="重装" data-rarity="3" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="塞拉托" data-en="Bubble" data-ja="バブル" data-id="R146" data-hp="3416" data-atk="370" data-def="645" data-res="0" data-re_deploy="70s" data-cost="17→19→21" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,def,re_deploy,cost`-1,-4,25,-6,-1" data-trust="0,0,75" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="缺陷" data-adapt="标准" data-sortid="162" data-subprofession="铁卫" data-nation="萨尔贡" data-group="">能够阻挡三个敌人</div>
+                            <div data-zh="波卜" data-profession="辅助" data-rarity="4" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="佩洛" data-en="Bobbing" data-ja="" data-id="CB32" data-hp="1305" data-atk="446" data-def="68" data-res="15" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="1.6s" data-sex="男" data-position="远程位" data-tag="元素" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,21,,-1" data-trust="0,40,40" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="346" data-subprofession="巫役" data-nation="哥伦比亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以造成<span style="color:#00B0FF;">元素损伤</span>
+                            </div>
+                            <div data-zh="波登可" data-profession="辅助" data-rarity="3" data-logo="罗德岛" data-birth_place="玻利瓦尔" data-team="" data-race="佩洛" data-en="Podenco" data-ja="ポデンコ" data-id="R157" data-hp="1163" data-atk="492" data-def="96" data-res="20" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="减速 治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,21,,-1" data-trust="0,50,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="普通" data-sortid="140" data-subprofession="凝滞师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="泥岩" data-profession="重装" data-rarity="5" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Mudrock" data-ja="マドロック" data-id="R159" data-hp="3928" data-atk="882" data-def="602" data-res="10" data-re_deploy="70s" data-cost="32→34→36" data-block="2→3→3" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="生存 防护 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,29,,-1" data-trust="500,0,60" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="168" data-subprofession="不屈者" data-nation="罗德岛" data-group="">
+                                <span style="color:#00B0FF;">无法</span>
+                                被友方角色治疗
+                            </div>
+                            <div data-zh="泰拉大陆调查团" data-profession="狙击" data-rarity="0" data-logo="罗德岛" data-birth_place="未知" data-team="" data-race="未公开" data-en="Terra Research Commission" data-ja="テラ大陸調査団" data-id="MH01" data-hp="518" data-atk="276" data-def="51" data-res="0" data-re_deploy="200s" data-cost="3" data-block="1" data-interval="2.1s" data-sex="未知" data-position="远程位" data-tag="控场" data-obtain_method="活动获得" data-potential="`" data-trust="100,30,0" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="■■" data-sortid="271" data-subprofession="投掷手" data-nation="罗德岛" data-group="">
+                                攻击对小范围的<span style="color:#00B0FF;">地面</span>
+                                敌人造成<span style="color:#00B0FF;">两次</span>
+                                物理伤害（第二次为余震，伤害降低至攻击力的一半），且不受<span style="color:#00B0FF;">部署数量</span>
+                                限制，但再部署时间极长
+                            </div>
+                            <div data-zh="洋灰" data-profession="重装" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="札拉克" data-en="Cement" data-ja="セメント" data-id="RB11" data-hp="3642" data-atk="1002" data-def="628" data-res="0" data-re_deploy="70s" data-cost="28→30→32" data-block="1" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="防护" data-obtain_method="标准寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,27,,-1" data-trust="0,40,60" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="277" data-subprofession="决战者" data-nation="雷姆必拓" data-group="">只有阻挡敌人时才能够回复技力</div>
+                            <div data-zh="洛洛" data-profession="术师" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Rockrock" data-ja="ロックロック" data-id="VC18" data-hp="1468" data-atk="320" data-def="123" data-res="20" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,60,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="231" data-subprofession="驭械术师" data-nation="维多利亚" data-group="">
+                                操作<span style="color:#00B0FF;">浮游单元</span>
+                                造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>单元攻击同一敌人伤害提升（最高造成干员110%攻击力的伤害）
+                            </div>
+                            <div data-zh="流明" data-profession="医疗" data-rarity="5" data-logo="伊比利亚" data-birth_place="伊比利亚" data-team="" data-race="阿戈尔" data-en="Lumen" data-ja="ルーメン" data-id="II09" data-hp="1825" data-atk="540" data-def="111" data-res="10" data-re_deploy="80s" data-cost="21→23" data-block="1" data-interval="2.85s" data-sex="男" data-position="远程位" data-tag="治疗 支援" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,45,30" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="普通" data-sortid="234" data-subprofession="疗养师" data-nation="伊比利亚" data-group="">
+                                拥有较大治疗范围，但在治疗较远目标时治疗量变为<span style="color:#00B0FF;">80%</span>
+                            </div>
+                            <div data-zh="流星" data-profession="狙击" data-rarity="3" data-logo="卡西米尔" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Meteor" data-ja="メテオ" data-id="ST02" data-hp="1370" data-atk="465" data-def="165" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出 削弱" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,65,0" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="24" data-subprofession="速射手" data-nation="卡西米尔" data-group="">优先攻击空中单位</div>
+                            <div data-zh="浊心斯卡蒂" data-profession="辅助" data-rarity="5" data-logo="阿戈尔" data-birth_place="阿戈尔" data-team="" data-race="未公开" data-en="Skadi the Corrupting Heart" data-ja="濁心スカジ" data-id="CR01" data-hp="1603" data-atk="368" data-def="233" data-res="0" data-re_deploy="70s" data-cost="6→8" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="支援 生存 输出" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-6,27,,-1" data-trust="0,50,30" data-phy="优良" data-flex="优良" data-tolerance="卓越" data-plan="——" data-skill="——" data-adapt="缺陷" data-sortid="193" data-subprofession="吟游者" data-nation="阿戈尔" data-group="">
+                                不攻击，持续恢复范围内所有友军<span style="color:#00B0FF;">生命</span>
+                                （每秒相当于自身攻击力<span style="color:#00B0FF;">10%</span>
+                                的生命），自身不受
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">鼓舞</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 鼓舞</strong>
+                                        <br/>
+                                        获得额外附加的基础属性加成（同类属性取最高）<br/>
+                                        ※给予他人鼓舞效果的角色会将自身的鼓舞BUFF重写后适用于受益者（先最终乘算计算加成数值后，重写为最终加算，再将鼓舞赋予受益者）<br/>※同类效果取倍率最高（非最终数值）生效
+                                    </span>
+                                </span>
+                                影响
+                            </div>
+                            <div data-zh="海沫" data-profession="近卫" data-rarity="4" data-logo="伊比利亚" data-birth_place="伊比利亚" data-team="" data-race="阿戈尔" data-en="Highmore" data-ja="ハイモア" data-id="II10" data-hp="2120" data-atk="670" data-def="454" data-res="0" data-re_deploy="70s" data-cost="19→20→22" data-block="1→2→2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="活动获得" data-potential="cost,re_deploy,hp,,cost`-1,-4,160,,-1" data-trust="250,40,0" data-phy="优良" data-flex="标准" data-tolerance="卓越" data-plan="普通" data-skill="标准" data-adapt="缺陷" data-sortid="251" data-subprofession="收割者" data-nation="伊比利亚" data-group="">
+                                无法被友方角色治疗，攻击造成<span style="color:#00B0FF;">群体伤害</span>
+                                ，每攻击到一个敌人回复自身<span style="color:#00B0FF;">50</span>
+                                生命，最大生效数等于阻挡数
+                            </div>
+                            <div data-zh="海蒂" data-profession="辅助" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Heidi" data-ja="ハイディ" data-id="VC19" data-hp="1260" data-atk="320" data-def="268" data-res="0" data-re_deploy="80s" data-cost="7→9" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="支援 治疗" data-obtain_method="主线剧情" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="250,40,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="优良" data-skill="普通" data-adapt="普通" data-sortid="230" data-subprofession="吟游者" data-nation="维多利亚" data-group="">
+                                不攻击，持续恢复范围内所有友军<span style="color:#00B0FF;">生命</span>
+                                （每秒相当于自身攻击力<span style="color:#00B0FF;">10%</span>
+                                的生命），自身不受
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">鼓舞</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 鼓舞</strong>
+                                        <br/>
+                                        获得额外附加的基础属性加成（同类属性取最高）<br/>
+                                        ※给予他人鼓舞效果的角色会将自身的鼓舞BUFF重写后适用于受益者（先最终乘算计算加成数值后，重写为最终加算，再将鼓舞赋予受益者）<br/>※同类效果取倍率最高（非最终数值）生效
+                                    </span>
+                                </span>
+                                影响
+                            </div>
+                            <div data-zh="海霓" data-profession="辅助" data-rarity="4" data-logo="阿戈尔" data-birth_place="阿戈尔" data-team="" data-race="阿戈尔" data-en="Lucilla" data-ja="ルシーラ" data-id="AE05" data-hp="1625" data-atk="440" data-def="103" data-res="25" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="削弱" data-obtain_method="标准寻访" data-potential="cost,re_deploy,res,,cost`-1,-4,8,,-1" data-trust="0,65,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="缺陷" data-sortid="332" data-subprofession="削弱者" data-nation="阿戈尔" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="涤火杰西卡" data-profession="重装" data-rarity="5" data-logo="黑钢国际" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Jessica the Liberated" data-ja="滌火ジェシカ" data-id="BS30" data-hp="3608" data-atk="522" data-def="716" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 生存 输出" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,28,,-1" data-trust="0,60,60" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="296" data-subprofession="哨戒铁卫" data-nation="哥伦比亚" data-group="黑钢国际">能够阻挡三个敌人，可以进行远程攻击</div>
+                            <div data-zh="淬羽赫默" data-profession="辅助" data-rarity="5" data-logo="莱茵生命" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Silence the Paradigmatic" data-ja="淬羽サイレンス" data-id="RL10" data-hp="1927" data-atk="467" data-def="184" data-res="25" data-re_deploy="80s" data-cost="13→15" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="支援 生存 治疗" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="350,55,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="280" data-subprofession="护佑者" data-nation="哥伦比亚" data-group="莱茵生命">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，技能开启后改为治疗友方单位（治疗量相当于<span style="color:#00B0FF;">75%</span>
+                                攻击力）
+                            </div>
+                            <div data-zh="深巡" data-profession="重装" data-rarity="4" data-logo="阿戈尔" data-birth_place="阿戈尔" data-team="" data-race="阿戈尔" data-en="Underflow" data-ja="アンダーフロー" data-id="AE03" data-hp="3253" data-atk="439" data-def="696" data-res="0" data-re_deploy="80s" data-cost="20→22→24" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 输出 减速" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,45,45" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="优良" data-skill="标准" data-adapt="缺陷" data-sortid="331" data-subprofession="哨戒铁卫" data-nation="阿戈尔" data-group="">能够阻挡三个敌人，可以进行远程攻击</div>
+                            <div data-zh="深律" data-profession="重装" data-rarity="4" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="鲁珀" data-en="Bassline" data-ja="ベースライン" data-id="LN13" data-hp="2770" data-atk="473" data-def="570" data-res="10" data-re_deploy="70s" data-cost="17→19→21" data-block="2→3→3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="防护 治疗" data-obtain_method="标准寻访" data-potential="cost,re_deploy,def,hp,cost`-1,-4,25,200,-1" data-trust="0,50,30" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="303" data-subprofession="守护者" data-nation="莱塔尼亚" data-group="">技能可以治疗友方单位</div>
+                            <div data-zh="深海色" data-profession="辅助" data-rarity="3" data-logo="阿戈尔" data-birth_place="未公开" data-team="" data-race="未公开" data-en="Deepcolor" data-ja="ディピカ" data-id="AA04" data-hp="1050" data-atk="403" data-def="125" data-res="15" data-re_deploy="70s" data-cost="8→10" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="召唤" data-obtain_method="标准寻访, 中坚寻访" data-potential="cost,re_deploy,interval,re_deploy,cost`-1,-4,8,-6,-1" data-trust="300,0,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="42" data-subprofession="召唤师" data-nation="阿戈尔" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>
+                                可以使用<span style="color:#00B0FF;">召唤物</span>
+                                协助作战
+                            </div>
+                            <div data-zh="深靛" data-profession="术师" data-rarity="3" data-logo="伊比利亚" data-birth_place="伊比利亚" data-team="" data-race="斐迪亚" data-en="Indigo" data-ja="インディゴ" data-id="II05" data-hp="1435" data-atk="1116" data-def="117" data-res="20" data-re_deploy="70s" data-cost="21→23" data-block="1" data-interval="3.0s" data-sex="女" data-position="远程位" data-tag="输出 控场" data-obtain_method="标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,36,,-1" data-trust="0,100,0" data-phy="标准" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="194" data-subprofession="秘术师" data-nation="伊比利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，在找不到攻击目标时可以将攻击能量<span style="color:#00B0FF;">储存</span>
+                                起来之后一齐发射（最多3个）
+                            </div>
+                            <div data-zh="清流" data-profession="医疗" data-rarity="3" data-logo="炎" data-birth_place="炎" data-team="" data-race="阿戈尔" data-en="Purestream" data-ja="セイリュウ" data-id="R160" data-hp="1365" data-atk="454" data-def="118" data-res="10" data-re_deploy="80s" data-cost="17→19" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗 支援" data-obtain_method="限时礼包, 公开招募" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,23,-6,-1" data-trust="150,35,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="优良" data-sortid="124" data-subprofession="疗养师" data-nation="炎" data-group="">
+                                拥有较大治疗范围，但在治疗较远目标时治疗量变为<span style="color:#00B0FF;">80%</span>
+                            </div>
+                            <div data-zh="清道夫" data-profession="先锋" data-rarity="3" data-logo="S.W.E.E.P." data-birth_place="未公开" data-team="" data-race="札拉克" data-en="Scavenger" data-ja="スカベンジャー" data-id="SW02" data-hp="1835" data-atk="470" data-def="310" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,60,0" data-phy="优良" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="27" data-subprofession="尖兵" data-nation="罗德岛" data-group="S.W.E.E.P.">能够阻挡两个敌人</div>
+                            <div data-zh="渡桥" data-profession="先锋" data-rarity="4" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Mitm" data-ja="" data-id="R184" data-hp="1370" data-atk="495" data-def="122" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="1.0s" data-sex="男" data-position="远程位" data-tag="费用回复 爆发" data-obtain_method="标准寻访" data-potential="cost,re_deploy,interval,re_deploy,cost`-1,-4,8,-6,-1" data-trust="0,60,0" data-phy="标准" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="334" data-subprofession="战术家" data-nation="罗德岛" data-group="">
+                                可以在攻击范围内选择一次<span style="color:#00B0FF;">战术点</span>
+                                来召唤援军，自身攻击援军阻挡的敌人时攻击力提升至150%
+                            </div>
+                            <div data-zh="温米" data-profession="术师" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯" data-en="Warmy" data-ja="ウォーミー" data-id="RB14" data-hp="1358" data-atk="581" data-def="106" data-res="15" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="元素 爆发" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,65,0" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="310" data-subprofession="本源术师" data-nation="雷姆必拓" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以造成<span style="color:#00B0FF;">元素伤害</span>
+                            </div>
+                            <div data-zh="温蒂" data-profession="特种" data-rarity="5" data-logo="罗德岛" data-birth_place="伊比利亚" data-team="" data-race="阿戈尔" data-en="Weedy" data-ja="ウィーディ" data-id="R117" data-hp="2133" data-atk="677" data-def="394" data-res="0" data-re_deploy="70s" data-cost="19→21" data-block="2" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="位移 输出 控场" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,interval,hp,cost`-1,-4,8,140,-1" data-trust="0,45,45" data-phy="标准" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="136" data-subprofession="推击手" data-nation="罗德岛" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="澄闪" data-profession="术师" data-rarity="5" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Goldenglow" data-ja="ゴールデングロー" data-id="VC09" data-hp="1480" data-atk="331" data-def="125" data-res="20" data-re_deploy="70s" data-cost="20→22" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,,atk,cost,`-1,,25,-1," data-trust="0,60,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="优良" data-sortid="225" data-subprofession="驭械术师" data-nation="维多利亚" data-group="">
+                                操作<span style="color:#00B0FF;">浮游单元</span>
+                                造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>单元攻击同一敌人伤害提升（最高造成干员110%攻击力的伤害）
+                            </div>
+                            <div data-zh="濯尘芙蓉" data-profession="医疗" data-rarity="4" data-logo="罗德岛" data-birth_place="维多利亚" data-team="" data-race="萨卡兹" data-en="Hibiscus the Purifier" data-ja="濯塵ハイビスカス" data-id="RF03" data-hp="1508" data-atk="511" data-def="109" data-res="20" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,22,,-1" data-trust="0,60,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="普通" data-adapt="优良" data-sortid="239" data-subprofession="咒愈师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，攻击敌人时为攻击范围内一名友方干员治疗相当于<span style="color:#00B0FF;">50%</span>
+                                伤害的生命值
+                            </div>
+                            <div data-zh="火哨" data-profession="重装" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="黎博利" data-en="Firewhistle" data-ja="ファイヤーホイッスル" data-id="RB09" data-hp="2983" data-atk="882" data-def="568" data-res="0" data-re_deploy="70s" data-cost="23→25→27" data-block="2→3→3" data-interval="2.8s" data-sex="女" data-position="近战位" data-tag="输出 防护" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,32,,-1" data-trust="0,50,50" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="普通" data-sortid="266" data-subprofession="要塞" data-nation="雷姆必拓" data-group="">
+                                不阻挡敌人时优先<span style="color:#00B0FF;">远程群体</span>
+                                物理攻击
+                            </div>
+                            <div data-zh="火神" data-profession="重装" data-rarity="4" data-logo="米诺斯" data-birth_place="米诺斯" data-team="" data-race="丰蹄" data-en="Vulcan" data-ja="ヴァルカン" data-id="MN02" data-hp="3688" data-atk="820" data-def="585" data-res="10" data-re_deploy="70s" data-cost="31→33→35" data-block="2→3→3" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="生存 防护 输出" data-obtain_method="公开招募" data-potential="cost,re_deploy,hp,,cost`-1,-4,250,,-1" data-trust="400,50,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="64" data-subprofession="不屈者" data-nation="米诺斯" data-group="">
+                                <span style="color:#00B0FF;">无法</span>
+                                被友方角色治疗
+                            </div>
+                            <div data-zh="火龙S黑角" data-profession="近卫" data-rarity="4" data-logo="行动组A4" data-birth_place="东国" data-team="行动组A4" data-race="鬼" data-en="Rathalos S Noir Corne" data-ja="レウスSノイルホーン" data-id="MH03" data-hp="3518" data-atk="726" data-def="351" data-res="0" data-re_deploy="70s" data-cost="21→23→25" data-block="1" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="生存 输出" data-obtain_method="限定寻访" data-potential="cost,re_deploy,interval,re_deploy,cost`-1,-4,5,-6,-1" data-trust="0,40,40" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="272" data-subprofession="武者" data-nation="罗德岛" data-group="">
+                                不成为其他角色的治疗目标，每次攻击到敌人后回复自身<span style="color:#00B0FF;">70</span>
+                                生命
+                            </div>
+                            <div data-zh="灰喉" data-profession="狙击" data-rarity="4" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="黎博利" data-en="GreyThroat" data-ja="グレースロート" data-id="R110" data-hp="1493" data-atk="513" data-def="152" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,23,-6,-1" data-trust="0,75,0" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="116" data-subprofession="速射手" data-nation="罗德岛" data-group="">优先攻击空中单位</div>
+                            <div data-zh="灰毫" data-profession="重装" data-rarity="4" data-logo="红松骑士团" data-birth_place="卡西米尔" data-team="" data-race="札拉克" data-en="Ashlock" data-ja="アッシュロック" data-id="KZ12" data-hp="3207" data-atk="865" data-def="541" data-res="0" data-re_deploy="70s" data-cost="23→25→27" data-block="2→3→3" data-interval="2.8s" data-sex="女" data-position="近战位" data-tag="输出 防护" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,32,,-1" data-trust="0,50,50" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="206" data-subprofession="要塞" data-nation="卡西米尔" data-group="红松骑士团">
+                                不阻挡敌人时优先<span style="color:#00B0FF;">远程群体</span>
+                                物理攻击
+                            </div>
+                            <div data-zh="灰烬" data-profession="狙击" data-rarity="5" data-logo="彩虹小队" data-birth_place="未知" data-team="彩虹小队" data-race="未知" data-en="Ash" data-ja="Ash" data-id="RS01" data-hp="1689" data-atk="534" data-def="169" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,90,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="186" data-subprofession="速射手" data-nation="" data-group="">优先攻击空中单位</div>
+                            <div data-zh="灵知" data-profession="辅助" data-rarity="5" data-logo="喀兰贸易" data-birth_place="谢拉格" data-team="" data-race="黎博利" data-en="Gnosis" data-ja="ノーシス" data-id="JC02" data-hp="2035" data-atk="455" data-def="132" data-res="25" data-re_deploy="70s" data-cost="11→13" data-block="1" data-interval="1.6s" data-sex="男" data-position="远程位" data-tag="削弱" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,33,,-1" data-trust="0,80,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="217" data-subprofession="削弱者" data-nation="谢拉格" data-group="喀兰贸易">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="炎客" data-profession="近卫" data-rarity="4" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Flamebringer" data-ja="エンカク" data-id="R137" data-hp="3907" data-atk="918" data-def="195" data-res="0" data-re_deploy="80s" data-cost="18→20" data-block="1" data-interval="1.5s" data-sex="男" data-position="近战位" data-tag="输出 生存" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="400,45,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="104" data-subprofession="无畏者" data-nation="罗德岛" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="炎熔" data-profession="术师" data-rarity="2" data-logo="行动预备组A1" data-birth_place="维多利亚" data-team="行动预备组A1" data-race="萨卡兹" data-en="Lava" data-ja="ラヴァ" data-id="PA15" data-hp="1141" data-atk="582" data-def="95" data-res="15" data-re_deploy="70s" data-cost="27→30" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,interval,,cost`-1,-4,8,,-1" data-trust="0,60,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="16" data-subprofession="扩散术师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="炎狱炎熔" data-profession="术师" data-rarity="4" data-logo="罗德岛" data-birth_place="维多利亚" data-team="" data-race="萨卡兹" data-en="Lava the Purgatory" data-ja="炎獄ラヴァ" data-id="RF01" data-hp="1543" data-atk="798" data-def="115" data-res="20" data-re_deploy="80s" data-cost="32→35" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,90,0" data-phy="标准" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="179" data-subprofession="扩散术师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="烈夏" data-profession="近卫" data-rarity="4" data-logo="乌萨斯学生自治团" data-birth_place="乌萨斯" data-team="乌萨斯学生自治团" data-race="乌萨斯" data-en="Лето" data-ja="リェータ" data-id="USS5" data-hp="2280" data-atk="680" data-def="375" data-res="10" data-re_deploy="70s" data-cost="17→19" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="输出 支援" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="210,40,0" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="308" data-subprofession="领主" data-nation="乌萨斯" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="烛煌" data-profession="术师" data-rarity="5" data-logo="罗德岛-精英干员" data-birth_place="炎" data-team="" data-race="菲林" data-en="Blaze the Igniting Spark" data-ja="" data-id="REX1" data-hp="1608" data-atk="662" data-def="131" data-res="15" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="元素 输出 群攻" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,31,,-1" data-trust="0,90,0" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="359" data-subprofession="本源术师" data-nation="罗德岛" data-group="罗德岛-精英干员">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以造成<span style="color:#00B0FF;">元素伤害</span>
+                            </div>
+                            <div data-zh="焰尾" data-profession="先锋" data-rarity="5" data-logo="红松骑士团" data-birth_place="卡西米尔" data-team="" data-race="札拉克" data-en="Flametail" data-ja="フレイムテイル" data-id="KZ11" data-hp="2138" data-atk="526" data-def="392" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 生存" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,85,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="213" data-subprofession="尖兵" data-nation="卡西米尔" data-group="红松骑士团">能够阻挡两个敌人</div>
+                            <div data-zh="焰影苇草" data-profession="医疗" data-rarity="5" data-logo="深池" data-birth_place="维多利亚" data-team="" data-race="德拉克" data-en="Reed The Flame Shadow" data-ja="焔影リード" data-id="DB02" data-hp="1583" data-atk="550" data-def="84" data-res="20" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="治疗 输出 削弱" data-obtain_method="标准寻访" data-potential="cost,,atk,cost,`-1,,26,-1," data-trust="0,50,30" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="卓越" data-sortid="264" data-subprofession="咒愈师" data-nation="维多利亚" data-group="深池">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，攻击敌人时为攻击范围内一名友方干员治疗相当于<span style="color:#00B0FF;">50%</span>
+                                伤害的生命值
+                            </div>
+                            <div data-zh="煌" data-profession="近卫" data-rarity="5" data-logo="罗德岛-精英干员" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Blaze" data-ja="ブレイズ" data-id="RE41" data-hp="2821" data-atk="765" data-def="370" data-res="0" data-re_deploy="70s" data-cost="20→22→24" data-block="2→2→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,,atk,,cost`-1,,28,,-1" data-trust="0,60,45" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="117" data-subprofession="强攻手" data-nation="罗德岛" data-group="罗德岛-精英干员">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="熔泉" data-profession="狙击" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="瓦伊凡" data-en="Toddifons" data-ja="トギフォンス" data-id="VC11" data-hp="1667" data-atk="954" data-def="123" data-res="0" data-re_deploy="70s" data-cost="21→23" data-block="1" data-interval="2.4s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,34,,-1" data-trust="0,95,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="188" data-subprofession="攻城手" data-nation="维多利亚" data-group="">优先攻击重量最重的敌人</div>
+                            <div data-zh="燧石" data-profession="近卫" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="黎博利" data-en="Flint" data-ja="フリント" data-id="SG06" data-hp="2495" data-atk="545" data-def="334" data-res="0" data-re_deploy="70s" data-cost="8→10" data-block="1" data-interval="0.78s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,75,0" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="156" data-subprofession="斗士" data-nation="萨尔贡" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="爱丽丝" data-profession="术师" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Iris" data-ja="アイリス" data-id="VC12" data-hp="1535" data-atk="1259" data-def="125" data-res="20" data-re_deploy="70s" data-cost="22→24" data-block="1" data-interval="3.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="中坚寻访, 公开招募" data-potential="cost,re_deploy,atk,,cost`-1,-4,45,,-1" data-trust="0,130,0" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="176" data-subprofession="秘术师" data-nation="维多利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，在找不到攻击目标时可以将攻击能量<span style="color:#00B0FF;">储存</span>
+                                起来之后一齐发射（最多3个）
+                            </div>
+                            <div data-zh="特克诺" data-profession="术师" data-rarity="4" data-logo="玻利瓦尔" data-birth_place="玻利瓦尔" data-team="" data-race="杜林" data-en="Tecno" data-ja="" data-id="BV23" data-hp="1655" data-atk="519" data-def="70" data-res="20" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="召唤" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,25,-6,-1" data-trust="200,0,35" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="355" data-subprofession="塑灵术师" data-nation="玻利瓦尔" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，可以通过击倒敌人生成<span style="color:#00B0FF;">召唤物</span>
+                                ，可攻击到自身<span style="color:#00B0FF;">召唤物</span>
+                                阻挡的敌人
+                            </div>
+                            <div data-zh="特米米" data-profession="术师" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="阿达克利斯" data-en="Tomimi" data-ja="トミミ" data-id="SG05" data-hp="1920" data-atk="600" data-def="119" data-res="20" data-re_deploy="80s" data-cost="20→22" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出 生存" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="200,35,0" data-phy="优良" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="155" data-subprofession="中坚术师" data-nation="萨尔贡" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="狮蝎" data-profession="特种" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="曼提柯" data-en="Manticore" data-ja="マンティコア" data-id="SG01" data-hp="1630" data-atk="811" data-def="343" data-res="30" data-re_deploy="70s" data-cost="18→20" data-block="0" data-interval="3.5s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,30,,-1" data-trust="0,60,30" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="71" data-subprofession="伏击客" data-nation="萨尔贡" data-group="">
+                                对攻击范围内<span style="color:#00B0FF;">所有敌人</span>
+                                造成伤害<br/>
+                                拥有50%的物理和法术闪避且不容易成为敌人的<span style="color:#00B0FF;">攻击目标</span>
+                            </div>
+                            <div data-zh="猎蜂" data-profession="近卫" data-rarity="3" data-logo="乌萨斯" data-birth_place="乌萨斯" data-team="" data-race="乌萨斯" data-en="Beehunter" data-ja="ビーハンター" data-id="US10" data-hp="2435" data-atk="513" data-def="312" data-res="0" data-re_deploy="70s" data-cost="7→9" data-block="1" data-interval="0.78s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,180,,-1" data-trust="0,60,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="86" data-subprofession="斗士" data-nation="乌萨斯" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="玛恩纳" data-profession="近卫" data-rarity="5" data-logo="卡西米尔" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Młynar" data-ja="ムリナール" data-id="KZ08" data-hp="3906" data-atk="355" data-def="502" data-res="15" data-re_deploy="70s" data-cost="10→12" data-block="2→2→3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="输出 爆发" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,25,,-1" data-trust="360,30,0" data-phy="优良" data-flex="卓越" data-tolerance="优良" data-plan="标准" data-skill="卓越" data-adapt="优良" data-sortid="249" data-subprofession="解放者" data-nation="卡西米尔" data-group="">
+                                通常不攻击且阻挡数为0，技能未开启时<span style="color:#00B0FF;">40</span>
+                                秒内攻击力逐渐提升至最高<span style="color:#00B0FF;">+200%</span>
+                                且技能结束时重置攻击力
+                            </div>
+                            <div data-zh="玛露西尔" data-profession="术师" data-rarity="5" data-logo="莱欧斯小队" data-birth_place="北方大陆（自称）" data-team="莱欧斯小队" data-race="精灵" data-en="Marcille" data-ja="" data-id="DD02" data-hp="1805" data-atk="914" data-def="130" data-res="20" data-re_deploy="70s" data-cost="31→34" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻 治疗 控场" data-obtain_method="限定寻访" data-potential="cost,,atk,re_deploy,cost`-1,,34,-6,-1" data-trust="0,110,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="■■" data-sortid="344" data-subprofession="扩散术师" data-nation="" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="玫兰莎" data-profession="近卫" data-rarity="2" data-logo="行动预备组A4" data-birth_place="维多利亚" data-team="行动预备组A4" data-race="菲林" data-en="Melantha" data-ja="メランサ" data-id="PA41" data-hp="2745" data-atk="738" data-def="155" data-res="0" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,25,-6,-1" data-trust="0,65,0" data-phy="优良" data-flex="优良" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="11" data-subprofession="无畏者" data-nation="罗德岛" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="玫拉" data-profession="狙击" data-rarity="4" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="斐迪亚" data-en="Melanite" data-ja="メラナイト" data-id="CB22" data-hp="1664" data-atk="792" data-def="210" data-res="0" data-re_deploy="70s" data-cost="15→17→19" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出 爆发" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,30,,-1" data-trust="0,90,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="279" data-subprofession="重射手" data-nation="哥伦比亚" data-group="">高精度的近距离射击</div>
+                            <div data-zh="琳琅诗怀雅" data-profession="特种" data-rarity="5" data-logo="炎-龙门" data-birth_place="龙门" data-team="" data-race="菲林" data-en="Swire the Elegant Wit" data-ja="琳琅スワイヤー" data-id="LM22" data-hp="2360" data-atk="810" data-def="457" data-res="0" data-re_deploy="25s" data-cost="7→9" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="快速复活 爆发" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,30,,-1" data-trust="300,55,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="292" data-subprofession="行商" data-nation="炎-龙门" data-group="">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，撤退时不返还<span style="color:#00B0FF;">部署费用</span>
+                                ，在场时每3秒<span style="color:#00B0FF;">消耗</span>
+                                3点部署费用（不足时自动撤退）
+                            </div>
+                            <div data-zh="琴柳" data-profession="先锋" data-rarity="5" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="瓦伊凡" data-en="Saileach" data-ja="サイラッハ" data-id="VC10" data-hp="1835" data-atk="546" data-def="367" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="费用回复 支援" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,40,40" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="205" data-subprofession="执旗手" data-nation="维多利亚" data-group="">技能发动期间阻挡数变为0</div>
+                            <div data-zh="瑕光" data-profession="重装" data-rarity="5" data-logo="卡西米尔" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Blemishine" data-ja="ブレミシャイン" data-id="KZ09" data-hp="3242" data-atk="491" data-def="581" data-res="10" data-re_deploy="70s" data-cost="18→20→22" data-block="2→3→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 治疗 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="0,90,20" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="165" data-subprofession="守护者" data-nation="卡西米尔" data-group="">技能可以治疗友方单位</div>
+                            <div data-zh="瑰盐" data-profession="医疗" data-rarity="4" data-logo="伊比利亚" data-birth_place="伊比利亚" data-team="" data-race="斐迪亚" data-en="Rose Salt" data-ja="" data-id="II11" data-hp="1675" data-atk="330" data-def="151" data-res="0" data-re_deploy="80s" data-cost="17→19" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗 支援" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="200,30,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="354" data-subprofession="群愈师" data-nation="伊比利亚" data-group="">同时恢复三个友方单位的生命</div>
+                            <div data-zh="白金" data-profession="狙击" data-rarity="4" data-logo="卡西米尔" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Platinum" data-ja="プラチナ" data-id="KZ03" data-hp="1550" data-atk="505" data-def="165" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,75,0" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="53" data-subprofession="速射手" data-nation="卡西米尔" data-group="">优先攻击空中单位</div>
+                            <div data-zh="白铁" data-profession="辅助" data-rarity="5" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Stainless" data-ja="ステインレス" data-id="VC17" data-hp="2723" data-atk="593" data-def="421" data-res="0" data-re_deploy="70s" data-cost="15→17→19" data-block="2" data-interval="1.5s" data-sex="男" data-position="近战位" data-tag="支援 输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-6,25,,-1" data-trust="0,40,40" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="255" data-subprofession="工匠" data-nation="维多利亚" data-group="">能够阻挡两个敌人，使用 &lt;支援装置 &gt;协助作战</div>
+                            <div data-zh="白雪" data-profession="狙击" data-rarity="3" data-logo="东" data-birth_place="东国" data-team="" data-race="阿纳缇" data-en="ShiraYuki" data-ja="シラユキ" data-id="LM10" data-hp="1630" data-atk="797" data-def="100" data-res="0" data-re_deploy="70s" data-cost="23→25→27" data-block="1" data-interval="2.8s" data-sex="女" data-position="远程位" data-tag="群攻 减速" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,30,-6,-1" data-trust="0,70,0" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="25" data-subprofession="炮手" data-nation="东" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体物理伤害</span>
+                            </div>
+                            <div data-zh="白面鸮" data-profession="医疗" data-rarity="4" data-logo="莱茵生命" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Ptilopsis" data-ja="フィリオプシス" data-id="RL04" data-hp="1610" data-atk="335" data-def="150" data-res="0" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,21,-6,-1" data-trust="0,55,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="45" data-subprofession="群愈师" data-nation="哥伦比亚" data-group="莱茵生命">同时恢复三个友方单位的生命</div>
+                            <div data-zh="百炼嘉维尔" data-profession="近卫" data-rarity="5" data-logo="罗德岛" data-birth_place="萨尔贡" data-team="" data-race="阿达克利斯" data-en="Gavial the Invincible" data-ja="百錬ガヴィル" data-id="RF22" data-hp="2906" data-atk="766" data-def="391" data-res="0" data-re_deploy="70s" data-cost="20→22→24" data-block="2→2→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="爆发 输出 生存" data-obtain_method="限定寻访" data-potential="cost,,atk,,cost`-1,,28,,-1" data-trust="0,50,60" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="247" data-subprofession="强攻手" data-nation="罗德岛" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="真理" data-profession="辅助" data-rarity="4" data-logo="乌萨斯学生自治团" data-birth_place="乌萨斯" data-team="乌萨斯学生自治团" data-race="乌萨斯" data-en="Истина" data-ja="イースチナ" data-id="USS2" data-hp="1280" data-atk="518" data-def="104" data-res="20" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="减速 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,65,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="优良" data-skill="优良" data-adapt="优良" data-sortid="69" data-subprofession="凝滞师" data-nation="乌萨斯" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="石棉" data-profession="重装" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="萨弗拉" data-en="Asbestos" data-ja="アスベストス" data-id="RB05" data-hp="3135" data-atk="633" data-def="555" data-res="15" data-re_deploy="70s" data-cost="21→23→25" data-block="3" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="防护 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,hp,re_deploy,cost`-1,-4,210,-6,-1" data-trust="0,40,40" data-phy="标准" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="138" data-subprofession="驭法铁卫" data-nation="雷姆必拓" data-group="">技能开启时普通攻击会造成法术伤害</div>
+                            <div data-zh="石英" data-profession="近卫" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="鲁珀" data-en="Quartz" data-ja="クォーツ" data-id="CB18" data-hp="5432" data-atk="1387" data-def="0" data-res="0" data-re_deploy="70s" data-cost="18→20→22" data-block="2" data-interval="2.5s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,,cost`-1,-4,35,,-1" data-trust="300,50,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="256" data-subprofession="重剑手" data-nation="哥伦比亚" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="砾" data-profession="特种" data-rarity="3" data-logo="卡西米尔" data-birth_place="卡西米尔" data-team="" data-race="札拉克" data-en="Gravel" data-ja="グラベル" data-id="KZ04" data-hp="1420" data-atk="452" data-def="335" data-res="0" data-re_deploy="18s" data-cost="6→8" data-block="1" data-interval="0.93s" data-sex="女" data-position="近战位" data-tag="快速复活 防护" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,hp,re_deploy,,cost`-1,160,-2,,-1" data-trust="300,0,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="34" data-subprofession="处决者" data-nation="卡西米尔" data-group="">
+                                再部署时间大幅度<span style="color:#00B0FF;">减少</span>
+                            </div>
+                            <div data-zh="稀音" data-profession="辅助" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="皮洛萨" data-en="Scene" data-ja="シーン" data-id="R162" data-hp="1105" data-atk="432" data-def="155" data-res="20" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="召唤 支援" data-obtain_method="活动获得, 凭证交易所(高级/通用)" data-potential="cost,re_deploy,res,re_deploy,cost`-1,-4,8,-6,-1" data-trust="200,0,35" data-phy="普通" data-flex="缺陷" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="优良" data-sortid="148" data-subprofession="召唤师" data-nation="萨尔贡" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>
+                                可以使用<span style="color:#00B0FF;">召唤物</span>
+                                协助作战
+                            </div>
+                            <div data-zh="空" data-profession="辅助" data-rarity="4" data-logo="企鹅物流" data-birth_place="因经纪公司要求不公开" data-team="" data-race="因经纪公司要求不公开" data-en="Sora" data-ja="ソラ" data-id="PL05" data-hp="1356" data-atk="335" data-def="238" data-res="0" data-re_deploy="70s" data-cost="5→7" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="支援 治疗" data-obtain_method="中坚寻访" data-potential="cost,re_deploy,hp,re_deploy,cost`-1,-4,140,-6,-1" data-trust="0,50,20" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="70" data-subprofession="吟游者" data-nation="炎-龙门" data-group="企鹅物流">
+                                不攻击，持续恢复范围内所有友军<span style="color:#00B0FF;">生命</span>
+                                （每秒相当于自身攻击力<span style="color:#00B0FF;">10%</span>
+                                的生命），自身不受
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">鼓舞</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 鼓舞</strong>
+                                        <br/>
+                                        获得额外附加的基础属性加成（同类属性取最高）<br/>
+                                        ※给予他人鼓舞效果的角色会将自身的鼓舞BUFF重写后适用于受益者（先最终乘算计算加成数值后，重写为最终加算，再将鼓舞赋予受益者）<br/>※同类效果取倍率最高（非最终数值）生效
+                                    </span>
+                                </span>
+                                影响
+                            </div>
+                            <div data-zh="空弦" data-profession="狙击" data-rarity="5" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="黎博利" data-en="Archetto" data-ja="アルケット" data-id="LT08" data-hp="1705" data-atk="528" data-def="172" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="中坚寻访, 公开招募" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,90,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="177" data-subprofession="速射手" data-nation="拉特兰" data-group="">优先攻击空中单位</div>
+                            <div data-zh="空构" data-profession="特种" data-rarity="4" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Spuria" data-ja="スプリア" data-id="LT12" data-hp="1893" data-atk="662" data-def="138" data-res="10" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="支援 输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,24,-6,-1" data-trust="200,45,0" data-phy="普通" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="285" data-subprofession="怪杰" data-nation="拉特兰" data-group="">自身生命会不断流失</div>
+                            <div data-zh="空爆" data-profession="狙击" data-rarity="2" data-logo="行动预备组A6" data-birth_place="卡西米尔" data-team="行动预备组A6" data-race="库兰塔" data-en="Catapult" data-ja="カタパルト" data-id="PA63" data-hp="1150" data-atk="617" data-def="85" data-res="0" data-re_deploy="70s" data-cost="21→23" data-block="1" data-interval="2.8s" data-sex="女" data-position="远程位" data-tag="群攻" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,27,-6,-1" data-trust="0,55,0" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="84" data-subprofession="炮手" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体物理伤害</span>
+                            </div>
+                            <div data-zh="米格鲁" data-profession="重装" data-rarity="2" data-logo="行动预备组A1" data-birth_place="玻利瓦尔" data-team="行动预备组A1" data-race="佩洛" data-en="Beagle" data-ja="ビーグル" data-id="PA14" data-hp="2035" data-atk="295" data-def="490" data-res="0" data-re_deploy="70s" data-cost="16→18" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,def,re_deploy,cost`-1,-4,28,-6,-1" data-trust="0,0,60" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="13" data-subprofession="铁卫" data-nation="罗德岛" data-group="">能够阻挡三个敌人</div>
+                            <div data-zh="絮雨" data-profession="医疗" data-rarity="4" data-logo="伊比利亚" data-birth_place="伊比利亚" data-team="" data-race="阿戈尔" data-en="Whisperain" data-ja="ウィスパーレイン" data-id="R163" data-hp="1432" data-atk="492" data-def="119" data-res="10" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="200,40,0" data-phy="普通" data-flex="普通" data-tolerance="缺陷" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="167" data-subprofession="疗养师" data-nation="伊比利亚" data-group="">
+                                拥有较大治疗范围，但在治疗较远目标时治疗量变为<span style="color:#00B0FF;">80%</span>
+                            </div>
+                            <div data-zh="红" data-profession="特种" data-rarity="4" data-logo="S.W.E.E.P." data-birth_place="未公开" data-team="" data-race="鲁珀" data-en="Projekt Red" data-ja="レッド" data-id="SW01" data-hp="1505" data-atk="530" data-def="302" data-res="0" data-re_deploy="18s" data-cost="7→9" data-block="1" data-interval="0.93s" data-sex="女" data-position="近战位" data-tag="快速复活 控场" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,atk,re_deploy,,cost`-1,20,-2,,-1" data-trust="0,75,0" data-phy="标准" data-flex="卓越" data-tolerance="标准" data-plan="普通" data-skill="卓越" data-adapt="普通" data-sortid="61" data-subprofession="处决者" data-nation="罗德岛" data-group="S.W.E.E.P.">
+                                再部署时间大幅度<span style="color:#00B0FF;">减少</span>
+                            </div>
+                            <div data-zh="红云" data-profession="狙击" data-rarity="3" data-logo="叙拉古" data-birth_place="不明" data-team="" data-race="沃尔珀" data-en="Vermeil" data-ja="ヴァーミル" data-id="R122" data-hp="1230" data-atk="485" data-def="162" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,24,-6,-1" data-trust="0,65,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="103" data-subprofession="速射手" data-nation="叙拉古" data-group="">优先攻击空中单位</div>
+                            <div data-zh="红豆" data-profession="先锋" data-rarity="3" data-logo="哥伦比亚" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Vigna" data-ja="ヴィグナ" data-id="R105" data-hp="1845" data-atk="558" data-def="351" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="输出 费用回复" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,60,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="28" data-subprofession="冲锋手" data-nation="哥伦比亚" data-group="">击杀敌人后获得1点部署费用，撤退时返还初始部署费用</div>
+                            <div data-zh="红隼" data-profession="先锋" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="黎博利" data-en="Kestrel" data-ja="ケストレル" data-id="SG12" data-hp="1960" data-atk="514" data-def="342" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="活动获得" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,50,20" data-phy="标准" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="316" data-subprofession="尖兵" data-nation="萨尔贡" data-group="">能够阻挡两个敌人</div>
+                            <div data-zh="纯烬艾雅法拉" data-profession="医疗" data-rarity="5" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="卡普里尼" data-en="Eyjafjalla the Hvít Aska" data-ja="純燼エイヤフィヤトラ" data-id="LN10" data-hp="1439" data-atk="424" data-def="109" data-res="10" data-re_deploy="70s" data-cost="14→16" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="200,45,0" data-phy="普通" data-flex="普通" data-tolerance="缺陷" data-plan="普通" data-skill="普通" data-adapt="卓越" data-sortid="293" data-subprofession="行医" data-nation="莱塔尼亚" data-group="">
+                                恢复友方单位生命，并回复相当于攻击力<span style="color:#00B0FF;">50%</span>
+                                的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                （可以回复未受伤友方单位的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                ）
+                            </div>
+                            <div data-zh="绮良" data-profession="特种" data-rarity="4" data-logo="东" data-birth_place="东国" data-team="" data-race="阿戈尔" data-en="Kirara" data-ja="キララ" data-id="HK05" data-hp="1780" data-atk="798" data-def="340" data-res="30" data-re_deploy="70s" data-cost="18→20" data-block="0" data-interval="3.5s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,30,,-1" data-trust="200,60,0" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="普通" data-adapt="普通" data-sortid="196" data-subprofession="伏击客" data-nation="东" data-group="">
+                                对攻击范围内<span style="color:#00B0FF;">所有敌人</span>
+                                造成伤害<br/>
+                                拥有50%的物理和法术闪避且不容易成为敌人的<span style="color:#00B0FF;">攻击目标</span>
+                            </div>
+                            <div data-zh="维什戴尔" data-profession="狙击" data-rarity="5" data-logo="巴别塔" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Wiš&#39;adel" data-ja="ウィシャデル" data-id="B00W" data-hp="1888" data-atk="687" data-def="256" data-res="15" data-re_deploy="70s" data-cost="23→25" data-block="1" data-interval="2.1s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,32,,-1" data-trust="0,90,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="卓越" data-skill="优良" data-adapt="标准" data-sortid="329" data-subprofession="投掷手" data-nation="" data-group="巴别塔">
+                                攻击对小范围的<span style="color:#00B0FF;">地面</span>
+                                敌人造成<span style="color:#00B0FF;">两次</span>
+                                物理伤害（第二次为余震，伤害降低至攻击力的一半）
+                            </div>
+                            <div data-zh="维娜·维多利亚" data-profession="近卫" data-rarity="5" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="阿斯兰" data-en="Vina Victoria" data-ja="" data-id="VC00" data-hp="2895" data-atk="675" data-def="420" data-res="15" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.25s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,28,,-1" data-trust="0,70,30" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="卓越" data-skill="优良" data-adapt="标准" data-sortid="347" data-subprofession="术战者" data-nation="维多利亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="维荻" data-profession="特种" data-rarity="3" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="斐迪亚" data-en="Verdant" data-ja="ヴァーダント" data-id="VC25" data-hp="2266" data-atk="672" data-def="259" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="2" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="生存 快速复活" data-obtain_method="标准寻访, 中坚寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,160,,-1" data-trust="100,60,0" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="297" data-subprofession="傀儡师" data-nation="维多利亚" data-group="">受到致命伤时不撤退，切换成 &lt;替身 &gt;作战（替身阻挡数为0），持续20秒后自身再次替换 &lt;替身 &gt;</div>
+                            <div data-zh="缄默德克萨斯" data-profession="特种" data-rarity="5" data-logo="企鹅物流" data-birth_place="哥伦比亚" data-team="" data-race="鲁珀" data-en="Texas the Omertosa" data-ja="血掟テキサス" data-id="PL07" data-hp="1598" data-atk="569" data-def="320" data-res="0" data-re_deploy="18s" data-cost="8→10" data-block="1" data-interval="0.93s" data-sex="女" data-position="近战位" data-tag="快速复活 输出" data-obtain_method="限定寻访" data-potential="cost,atk,re_deploy,,cost`-1,22,-2,,-1" data-trust="0,90,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="优良" data-sortid="261" data-subprofession="处决者" data-nation="炎-龙门" data-group="企鹅物流">
+                                再部署时间大幅度<span style="color:#00B0FF;">减少</span>
+                            </div>
+                            <div data-zh="缠丸" data-profession="近卫" data-rarity="3" data-logo="东" data-birth_place="东国" data-team="" data-race="鬼" data-en="Matoimaru" data-ja="マトイマル" data-id="HK01" data-hp="3640" data-atk="916" data-def="156" data-res="0" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="生存 输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,180,,-1" data-trust="450,0,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="30" data-subprofession="无畏者" data-nation="东" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="缪尔赛思" data-profession="先锋" data-rarity="5" data-logo="莱茵生命" data-birth_place="未公开" data-team="" data-race="精灵" data-en="Muelsyse" data-ja="ミュルジス" data-id="RL09" data-hp="1813" data-atk="497" data-def="117" data-res="0" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="费用回复 控场" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,40,40" data-phy="普通" data-flex="卓越" data-tolerance="普通" data-plan="优良" data-skill="优良" data-adapt="缺陷" data-sortid="282" data-subprofession="战术家" data-nation="哥伦比亚" data-group="莱茵生命">
+                                可以在攻击范围内选择一次<span style="color:#00B0FF;">战术点</span>
+                                来召唤援军，自身攻击援军阻挡的敌人时攻击力提升至150%
+                            </div>
+                            <div data-zh="罗宾" data-profession="特种" data-rarity="4" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="阿纳缇" data-en="Robin" data-ja="ロビン" data-id="CB08" data-hp="1442" data-atk="513" data-def="166" data-res="0" data-re_deploy="80s" data-cost="11→13" data-block="1" data-interval="0.85s" data-sex="女" data-position="远程位" data-tag="召唤 位移" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="200,40,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="172" data-subprofession="陷阱师" data-nation="哥伦比亚" data-group="">
+                                可以使用陷阱来协助作战，但陷阱无法放置于<span style="color:#00B0FF;">敌人已在</span>
+                                的格子中
+                            </div>
+                            <div data-zh="罗小黑" data-profession="近卫" data-rarity="3" data-logo="炎" data-birth_place="未知" data-team="" data-race="菲林" data-en="Luo Xiaohei" data-ja="羅小黒" data-id="R161" data-hp="2040" data-atk="698" data-def="325" data-res="10" data-re_deploy="70s" data-cost="15→17" data-block="2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="输出" data-obtain_method="活动获得" data-potential="`" data-trust="0,30,25" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="■■" data-sortid="250" data-subprofession="领主" data-nation="炎" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="罗比菈塔" data-profession="辅助" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="阿纳缇" data-en="Roberta" data-ja="ロベルタ" data-id="CB11" data-hp="2470" data-atk="535" data-def="415" data-res="0" data-re_deploy="70s" data-cost="13→15→17" data-block="2" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="防护 支援" data-obtain_method="标准寻访, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,35,,-1" data-trust="0,35,35" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="203" data-subprofession="工匠" data-nation="哥伦比亚" data-group="">能够阻挡两个敌人，使用 &lt;支援装置 &gt;协助作战</div>
+                            <div data-zh="羽毛笔" data-profession="近卫" data-rarity="4" data-logo="玻利瓦尔" data-birth_place="玻利瓦尔" data-team="" data-race="黎博利" data-en="La Pluma" data-ja="ラ・プルマ" data-id="BV13" data-hp="2250" data-atk="650" data-def="452" data-res="0" data-re_deploy="70s" data-cost="19→20→22" data-block="1→2→2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,def,re_deploy,cost`-1,-4,25,-6,-1" data-trust="0,75,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="200" data-subprofession="收割者" data-nation="玻利瓦尔" data-group="">
+                                无法被友方角色治疗，攻击造成<span style="color:#00B0FF;">群体伤害</span>
+                                ，每攻击到一个敌人回复自身<span style="color:#00B0FF;">50</span>
+                                生命，最大生效数等于阻挡数
+                            </div>
+                            <div data-zh="翎羽" data-profession="先锋" data-rarity="2" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="黎博利" data-en="Plume" data-ja="プリュム" data-id="LT05" data-hp="1226" data-atk="445" data-def="279" data-res="0" data-re_deploy="70s" data-cost="8→10" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="输出 费用回复" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,21,-6,-1" data-trust="0,50,0" data-phy="标准" data-flex="优良" data-tolerance="普通" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="10" data-subprofession="冲锋手" data-nation="拉特兰" data-group="">击杀敌人后获得1点部署费用，撤退时返还初始部署费用</div>
+                            <div data-zh="耀骑士临光" data-profession="近卫" data-rarity="5" data-logo="卡西米尔" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Nearl the Radiant Knight" data-ja="耀騎士ニアール" data-id="KZ01" data-hp="3550" data-atk="1064" data-def="295" data-res="0" data-re_deploy="70s" data-cost="17→19" data-block="1" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,35,,-1" data-trust="200,85,0" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="优良" data-skill="卓越" data-adapt="优良" data-sortid="214" data-subprofession="无畏者" data-nation="卡西米尔" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="老鲤" data-profession="特种" data-rarity="5" data-logo="鲤氏侦探事务所" data-birth_place="炎" data-team="鲤氏侦探事务所" data-race="龙" data-en="Lee" data-ja="リー" data-id="LM18" data-hp="2427" data-atk="789" data-def="465" data-res="0" data-re_deploy="25s" data-cost="7→9" data-block="1" data-interval="1.0s" data-sex="男" data-position="近战位" data-tag="快速复活 生存 输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,30,,-1" data-trust="300,55,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="优良" data-sortid="222" data-subprofession="行商" data-nation="炎-龙门" data-group="">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，撤退时不返还<span style="color:#00B0FF;">部署费用</span>
+                                ，在场时每3秒<span style="color:#00B0FF;">消耗</span>
+                                3点部署费用（不足时自动撤退）
+                            </div>
+                            <div data-zh="耶拉" data-profession="术师" data-rarity="4" data-logo="喀兰贸易" data-birth_place="谢拉格" data-team="" data-race="未公开" data-en="Kjera" data-ja="イェラ" data-id="JC00" data-hp="1475" data-atk="294" data-def="121" data-res="20" data-re_deploy="80s" data-cost="21→23" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="输出 控场" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,60,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="缺陷" data-sortid="215" data-subprofession="驭械术师" data-nation="谢拉格" data-group="喀兰贸易">
+                                操作<span style="color:#00B0FF;">浮游单元</span>
+                                造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>单元攻击同一敌人伤害提升（最高造成干员110%攻击力的伤害）
+                            </div>
+                            <div data-zh="能天使" data-profession="狙击" data-rarity="5" data-logo="企鹅物流" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Exusiai" data-ja="エクシア" data-id="PL03" data-hp="1673" data-atk="540" data-def="161" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,,atk,cost,`-1,,27,-1," data-trust="0,90,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="73" data-subprofession="速射手" data-nation="炎-龙门" data-group="企鹅物流">优先攻击空中单位</div>
+                            <div data-zh="至简" data-profession="术师" data-rarity="4" data-logo="萨尔贡" data-birth_place="杜林" data-team="" data-race="杜林" data-en="Minimalist" data-ja="ミニマリスト" data-id="SG09" data-hp="1400" data-atk="320" data-def="120" data-res="20" data-re_deploy="80s" data-cost="21→23" data-block="1" data-interval="1.3s" data-sex="男" data-position="远程位" data-tag="输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="100,40,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="244" data-subprofession="驭械术师" data-nation="萨尔贡" data-group="">
+                                操作<span style="color:#00B0FF;">浮游单元</span>
+                                造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>单元攻击同一敌人伤害提升（最高造成干员110%攻击力的伤害）
+                            </div>
+                            <div data-zh="艾丝黛尔" data-profession="近卫" data-rarity="3" data-logo="萨尔贡" data-birth_place="未公开" data-team="" data-race="阿达克利斯" data-en="Estelle" data-ja="エステル" data-id="IU04" data-hp="2500" data-atk="690" data-def="315" data-res="0" data-re_deploy="70s" data-cost="18→20→22" data-block="2→2→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="群攻 生存" data-obtain_method="公开招募" data-potential="cost,re_deploy,hp,,cost`-1,-4,200,,-1" data-trust="350,0,0" data-phy="优良" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="32" data-subprofession="强攻手" data-nation="萨尔贡" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="艾丽妮" data-profession="近卫" data-rarity="5" data-logo="伊比利亚" data-birth_place="伊比利亚" data-team="" data-race="黎博利" data-en="Irene" data-ja="アイリーニ" data-id="II07" data-hp="2935" data-atk="621" data-def="349" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="爆发 输出 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,80,20" data-phy="普通" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="235" data-subprofession="剑豪" data-nation="伊比利亚" data-group="">
+                                普通攻击连续造成<span style="color:#00B0FF;">两次</span>
+                                伤害
+                            </div>
+                            <div data-zh="艾拉" data-profession="特种" data-rarity="5" data-logo="彩虹小队" data-birth_place="未知" data-team="彩虹小队" data-race="未知" data-en="Ela" data-ja="Ela" data-id="RS05" data-hp="1468" data-atk="588" data-def="173" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="0.85s" data-sex="女" data-position="远程位" data-tag="召唤 控场 输出" data-obtain_method="限定寻访" data-potential="cost,,atk,,cost`-1,,27,,-1" data-trust="0,80,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="320" data-subprofession="陷阱师" data-nation="" data-group="">
+                                可以使用陷阱来协助作战，但陷阱无法放置于<span style="color:#00B0FF;">敌人已在</span>
+                                的格子中
+                            </div>
+                            <div data-zh="艾雅法拉" data-profession="术师" data-rarity="5" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="卡普里尼" data-en="Eyjafjalla" data-ja="エイヤフィヤトラ" data-id="LN02" data-hp="1743" data-atk="645" data-def="122" data-res="20" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出 削弱" data-obtain_method="中坚寻访" data-potential="cost,,atk,cost,`-1,,27,-1," data-trust="0,90,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="卓越" data-sortid="76" data-subprofession="中坚术师" data-nation="莱塔尼亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="芙兰卡" data-profession="近卫" data-rarity="4" data-logo="黑钢国际" data-birth_place="哥伦比亚" data-team="" data-race="沃尔珀" data-en="Franka" data-ja="フランカ" data-id="BS01" data-hp="3768" data-atk="936" data-def="235" data-res="0" data-re_deploy="70s" data-cost="16→18" data-block="1" data-interval="1.5s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,30,-6,-1" data-trust="0,75,25" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="优良" data-sortid="48" data-subprofession="无畏者" data-nation="哥伦比亚" data-group="黑钢国际">能够阻挡一个敌人</div>
+                            <div data-zh="芙蓉" data-profession="医疗" data-rarity="2" data-logo="行动预备组A1" data-birth_place="维多利亚" data-team="行动预备组A1" data-race="萨卡兹" data-en="Hibiscus" data-ja="ハイビスカス" data-id="PA13" data-hp="1220" data-atk="345" data-def="110" data-res="0" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,18,-6,-1" data-trust="0,45,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="17" data-subprofession="医师" data-nation="罗德岛" data-group="">恢复友方单位生命</div>
+                            <div data-zh="芬" data-profession="先锋" data-rarity="2" data-logo="行动预备组A1" data-birth_place="卡西米尔" data-team="行动预备组A1" data-race="库兰塔" data-en="Fang" data-ja="フェン" data-id="PA11" data-hp="1325" data-atk="325" data-def="260" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,def,re_deploy,cost`-1,-4,20,-6,-1" data-trust="0,0,50" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="8" data-subprofession="尖兵" data-nation="罗德岛" data-group="">能够阻挡两个敌人</div>
+                            <div data-zh="芳汀" data-profession="近卫" data-rarity="3" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Arene" data-ja="アレーン" data-id="LT06" data-hp="2250" data-atk="640" data-def="340" data-res="10" data-re_deploy="70s" data-cost="16→18" data-block="2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,18,,-1" data-trust="0,55,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="优良" data-skill="普通" data-adapt="优良" data-sortid="158" data-subprofession="领主" data-nation="拉特兰" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="苇草" data-profession="先锋" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="德拉克" data-en="Reed" data-ja="リード" data-id="HT03" data-hp="2215" data-atk="562" data-def="364" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,25,-6,-1" data-trust="0,70,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="卓越" data-sortid="113" data-subprofession="冲锋手" data-nation="维多利亚" data-group="">击杀敌人后获得1点部署费用，撤退时返还初始部署费用</div>
+                            <div data-zh="苍苔" data-profession="近卫" data-rarity="4" data-logo="汐斯塔" data-birth_place="汐斯塔" data-team="" data-race="黎博利" data-en="Bryophyta" data-ja="ブライオファイタ" data-id="SS03" data-hp="1900" data-atk="650" data-def="421" data-res="0" data-re_deploy="80s" data-cost="16→18" data-block="2" data-interval="1.05s" data-sex="男" data-position="近战位" data-tag="输出 支援" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,35,35" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="290" data-subprofession="教官" data-nation="哥伦比亚" data-group="汐斯塔">
+                                可以攻击到<span style="color:#00B0FF;">较远敌人</span>
+                                ，攻击自身未阻挡的敌人时攻击力提升至120%
+                            </div>
+                            <div data-zh="苏苏洛" data-profession="医疗" data-rarity="3" data-logo="罗德岛" data-birth_place="叙拉古" data-team="" data-race="沃尔珀" data-en="Sussurro" data-ja="ススーロ" data-id="R107" data-hp="1345" data-atk="488" data-def="122" data-res="0" data-re_deploy="70s" data-cost="16→18" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,60,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="95" data-subprofession="医师" data-nation="罗德岛" data-group="">恢复友方单位生命</div>
+                            <div data-zh="苦艾" data-profession="术师" data-rarity="4" data-logo="乌萨斯" data-birth_place="乌萨斯" data-team="" data-race="乌萨斯" data-en="Absinthe" data-ja="アブサント" data-id="US11" data-hp="1420" data-atk="633" data-def="124" data-res="20" data-re_deploy="80s" data-cost="20→22" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,70,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="优良" data-sortid="141" data-subprofession="中坚术师" data-nation="乌萨斯" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="荒芜拉普兰德" data-profession="术师" data-rarity="5" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="鲁珀" data-en="Lappland the Decadenza" data-ja="" data-id="SR04" data-hp="1503" data-atk="342" data-def="117" data-res="20" data-re_deploy="70s" data-cost="20→22" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="输出 削弱" data-obtain_method="限定寻访" data-potential="cost,,atk,cost,`-1,,25,-1," data-trust="0,60,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="卓越" data-adapt="优良" data-sortid="353" data-subprofession="驭械术师" data-nation="叙拉古" data-group="">
+                                操作<span style="color:#00B0FF;">浮游单元</span>
+                                造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>单元攻击同一敌人伤害提升（最高造成干员110%攻击力的伤害）
+                            </div>
+                            <div data-zh="莎草" data-profession="医疗" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="菲林" data-en="Papyrus" data-ja="パピルス" data-id="SG19" data-hp="1715" data-atk="440" data-def="160" data-res="0" data-re_deploy="80s" data-cost="18→20" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="150,60,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="337" data-subprofession="链愈师" data-nation="萨尔贡" data-group="">
+                                恢复友方单位生命，且会在<span style="color:#00B0FF;">3</span>
+                                个友方单位间跳跃，每次跳跃治疗量降低25%
+                            </div>
+                            <div data-zh="莫斯提马" data-profession="术师" data-rarity="5" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="未公开" data-en="Mostima" data-ja="モスティマ" data-id="LT77" data-hp="1831" data-atk="834" data-def="132" data-res="20" data-re_deploy="70s" data-cost="31→34" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻 支援 控场" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,34,,-1" data-trust="0,105,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="卓越" data-sortid="112" data-subprofession="扩散术师" data-nation="拉特兰" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="莱伊" data-profession="狙击" data-rarity="5" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯" data-en="Ray" data-ja="レイ" data-id="RB15" data-hp="1933" data-atk="1072" data-def="228" data-res="0" data-re_deploy="70s" data-cost="17→19→21" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,37,,-1" data-trust="0,120,0" data-phy="标准" data-flex="优良" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="311" data-subprofession="猎手" data-nation="雷姆必拓" data-group="">
+                                攻击时需要消耗子弹且攻击力提升至<span style="color:#00B0FF;">120%</span>
+                                ，不攻击时会缓慢地装填子弹（最多8发）
+                            </div>
+                            <div data-zh="莱恩哈特" data-profession="术师" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯" data-en="Leonhardt" data-ja="レオンハルト" data-id="RB03" data-hp="1637" data-atk="773" data-def="120" data-res="20" data-re_deploy="70s" data-cost="30→33" data-block="1" data-interval="2.9s" data-sex="男" data-position="远程位" data-tag="群攻 爆发" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,32,,-1" data-trust="0,90,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="142" data-subprofession="扩散术师" data-nation="雷姆必拓" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="莱欧斯" data-profession="近卫" data-rarity="4" data-logo="莱欧斯小队" data-birth_place="北方大陆（自称）" data-team="莱欧斯小队" data-race="长身人（自称）" data-en="Laios" data-ja="" data-id="DD01" data-hp="3868" data-atk="900" data-def="256" data-res="0" data-re_deploy="70s" data-cost="16→18" data-block="1" data-interval="1.5s" data-sex="男" data-position="近战位" data-tag="输出 控场" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,32,-6,-1" data-trust="0,75,25" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="■■" data-sortid="343" data-subprofession="无畏者" data-nation="" data-group="">能够阻挡一个敌人</div>
+                            <div data-zh="菲亚梅塔" data-profession="狙击" data-rarity="5" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="黎博利" data-en="Fiammetta" data-ja="フィアメッタ" data-id="LT11" data-hp="1926" data-atk="861" data-def="156" data-res="0" data-re_deploy="70s" data-cost="25→27→29" data-block="1" data-interval="2.8s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,35,,-1" data-trust="0,100,0" data-phy="标准" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="228" data-subprofession="炮手" data-nation="拉特兰" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体物理伤害</span>
+                            </div>
+                            <div data-zh="菲莱" data-profession="重装" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="萨卡兹" data-en="Philae" data-ja="" data-id="SG10" data-hp="3227" data-atk="603" data-def="544" data-res="10" data-re_deploy="70s" data-cost="21→23→25" data-block="3" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="元素 防护" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,40,40" data-phy="标准" data-flex="普通" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="349" data-subprofession="本源铁卫" data-nation="萨尔贡" data-group="">能够阻挡三个敌人，可以造成元素损伤</div>
+                            <div data-zh="蓝毒" data-profession="狙击" data-rarity="4" data-logo="伊比利亚" data-birth_place="未公开" data-team="" data-race="安努拉" data-en="Blue Poison" data-ja="アズリウス" data-id="AA03" data-hp="1230" data-atk="535" data-def="130" data-res="5" data-re_deploy="70s" data-cost="11→13" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,75,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="优良" data-adapt="普通" data-sortid="52" data-subprofession="速射手" data-nation="伊比利亚" data-group="">优先攻击空中单位</div>
+                            <div data-zh="薄绿" data-profession="术师" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Mint" data-ja="ミント" data-id="VC08" data-hp="1945" data-atk="732" data-def="196" data-res="15" data-re_deploy="80s" data-cost="23→25" data-block="1" data-interval="2.0s" data-sex="女" data-position="远程位" data-tag="群攻 控场" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,75,15" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="159" data-subprofession="阵法术师" data-nation="维多利亚" data-group="">
+                                通常时<span style="color:#00B0FF;">不攻击</span>
+                                且防御力和法术抗性大幅度<span style="color:#00B0FF;">提升</span>
+                                ，技能开启时攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="薇薇安娜" data-profession="近卫" data-rarity="5" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="埃拉菲亚" data-en="Viviana" data-ja="ヴィヴィアナ" data-id="LN11" data-hp="2920" data-atk="646" data-def="447" data-res="15" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.25s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,28,,-1" data-trust="0,100,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="卓越" data-sortid="305" data-subprofession="术战者" data-nation="莱塔尼亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="蚀清" data-profession="术师" data-rarity="4" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="斐迪亚" data-en="Corroserum" data-ja="コロセラム" data-id="CB12" data-hp="1572" data-atk="760" data-def="120" data-res="20" data-re_deploy="70s" data-cost="30→33" data-block="1" data-interval="2.9s" data-sex="男" data-position="远程位" data-tag="群攻 削弱" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,33,,-1" data-trust="0,90,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="212" data-subprofession="轰击术师" data-nation="哥伦比亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">超远距离的群体法术伤害</span>
+                            </div>
+                            <div data-zh="蛇屠箱" data-profession="重装" data-rarity="3" data-logo="哥伦比亚" data-birth_place="未公开" data-team="" data-race="匹特拉姆" data-en="Cuora" data-ja="クオーラ" data-id="IU05" data-hp="3105" data-atk="365" data-def="690" data-res="0" data-re_deploy="70s" data-cost="17→19→21" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,def,re_deploy,cost`-1,-4,27,-6,-1" data-trust="0,0,75" data-phy="普通" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="40" data-subprofession="铁卫" data-nation="哥伦比亚" data-group="">能够阻挡三个敌人</div>
+                            <div data-zh="蜜莓" data-profession="医疗" data-rarity="4" data-logo="雷姆必拓" data-birth_place="雷姆必拓" data-team="" data-race="札拉克" data-en="Honeyberry" data-ja="ハニーベリー" data-id="RB06" data-hp="1458" data-atk="375" data-def="107" data-res="10" data-re_deploy="70s" data-cost="13→15" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,,cost`-1,-4,19,,-1" data-trust="150,35,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="210" data-subprofession="行医" data-nation="雷姆必拓" data-group="">
+                                恢复友方单位生命，并回复相当于攻击力<span style="color:#00B0FF;">50%</span>
+                                的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                （可以回复未受伤友方单位的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                ）
+                            </div>
+                            <div data-zh="蜜蜡" data-profession="术师" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="卡普里尼" data-en="Beeswax" data-ja="ビーズワクス" data-id="R147" data-hp="2005" data-atk="735" data-def="205" data-res="15" data-re_deploy="70s" data-cost="21→23" data-block="1" data-interval="2.0s" data-sex="女" data-position="远程位" data-tag="群攻 防护" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,30,-6,-1" data-trust="0,70,20" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="149" data-subprofession="阵法术师" data-nation="萨尔贡" data-group="">
+                                通常时<span style="color:#00B0FF;">不攻击</span>
+                                且防御力和法术抗性大幅度<span style="color:#00B0FF;">提升</span>
+                                ，技能开启时攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="行箸" data-profession="辅助" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="菲林" data-en="Xingzhu" data-ja="" data-id="YD18" data-hp="1746" data-atk="423" data-def="181" data-res="25" data-re_deploy="80s" data-cost="11→12→13" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="支援 生存" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,50,50" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="357" data-subprofession="护佑者" data-nation="炎" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，技能开启后改为治疗友方单位（治疗量相当于<span style="color:#00B0FF;">75%</span>
+                                攻击力）
+                            </div>
+                            <div data-zh="衡沙" data-profession="辅助" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="黎博利" data-en="Sand Reckoner" data-ja="サンドレコナー" data-id="SG23" data-hp="1031" data-atk="450" data-def="160" data-res="20" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="1.6s" data-sex="男" data-position="远程位" data-tag="召唤 减速" data-obtain_method="标准寻访" data-potential="cost,re_deploy,res,re_deploy,cost`-1,-4,8,-6,-1" data-trust="200,35,0" data-phy="标准" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="338" data-subprofession="召唤师" data-nation="萨尔贡" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>
+                                可以使用<span style="color:#00B0FF;">召唤物</span>
+                                协助作战
+                            </div>
+                            <div data-zh="裁度" data-profession="特种" data-rarity="4" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="鲁珀" data-en="Figurino" data-ja="" data-id="SR41" data-hp="2393" data-atk="741" data-def="391" data-res="0" data-re_deploy="25s" data-cost="6→8" data-block="1" data-interval="1.0s" data-sex="男" data-position="近战位" data-tag="快速复活 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-3,25,,-1" data-trust="200,25,20" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="350" data-subprofession="行商" data-nation="叙拉古" data-group="">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，撤退时不返还<span style="color:#00B0FF;">部署费用</span>
+                                ，在场时每3秒<span style="color:#00B0FF;">消耗</span>
+                                3点部署费用（不足时自动撤退）
+                            </div>
+                            <div data-zh="褐果" data-profession="医疗" data-rarity="3" data-logo="罗德岛" data-birth_place="未公开" data-team="" data-race="杜林" data-en="Chestnut" data-ja="チェストナット" data-id="R134" data-hp="1137" data-atk="389" data-def="101" data-res="10" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="2.85s" data-sex="男" data-position="远程位" data-tag="治疗" data-obtain_method="标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,15,,-1" data-trust="100,35,0" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="229" data-subprofession="行医" data-nation="罗德岛" data-group="">
+                                恢复友方单位生命，并回复相当于攻击力<span style="color:#00B0FF;">50%</span>
+                                的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                （可以回复未受伤友方单位的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">元素损伤</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 元素损伤</strong>
+                                        <br/>
+                                        包括<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">神经损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">侵蚀损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">灼燃损伤</span>
+                                        、<span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">凋亡损伤</span>
+                                        <br/>※最大元素值默认为1000，受到附加元素损伤的伤害时先结算伤害后结算元素损伤
+                                    </span>
+                                </span>
+                                ）
+                            </div>
+                            <div data-zh="见行者" data-profession="特种" data-rarity="4" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Enforcer" data-ja="エンフォーサー" data-id="LT10" data-hp="1937" data-atk="653" data-def="381" data-res="0" data-re_deploy="80s" data-cost="20→22" data-block="2" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="位移 控场" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="350,0,35" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="226" data-subprofession="推击手" data-nation="拉特兰" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="角峰" data-profession="重装" data-rarity="3" data-logo="喀兰贸易" data-birth_place="谢拉格" data-team="" data-race="丰蹄" data-en="Matterhorn" data-ja="マッターホルン" data-id="JC03" data-hp="3235" data-atk="375" data-def="670" data-res="5" data-re_deploy="70s" data-cost="17→19→21" data-block="3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="防护" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,hp,re_deploy,cost`-1,-4,250,-6,-1" data-trust="385,0,0" data-phy="优良" data-flex="普通" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="缺陷" data-sortid="39" data-subprofession="铁卫" data-nation="谢拉格" data-group="喀兰贸易">能够阻挡三个敌人</div>
+                            <div data-zh="讯使" data-profession="先锋" data-rarity="3" data-logo="喀兰贸易" data-birth_place="谢拉格" data-team="" data-race="依特拉" data-en="Courier" data-ja="クーリエ" data-id="JC04" data-hp="1985" data-atk="435" data-def="322" data-res="0" data-re_deploy="70s" data-cost="10→12" data-block="2" data-interval="1.05s" data-sex="男" data-position="近战位" data-tag="费用回复 防护" data-obtain_method="信用交易所" data-potential="cost,re_deploy,def,,cost`-1,-4,23,,-1" data-trust="0,0,60" data-phy="标准" data-flex="优良" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="26" data-subprofession="尖兵" data-nation="谢拉格" data-group="喀兰贸易">能够阻挡两个敌人</div>
+                            <div data-zh="诗怀雅" data-profession="近卫" data-rarity="4" data-logo="龙门近卫局" data-birth_place="龙门" data-team="" data-race="菲林" data-en="Swire" data-ja="スワイヤー" data-id="LM08" data-hp="1914" data-atk="656" data-def="413" data-res="0" data-re_deploy="70s" data-cost="14→16" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="输出 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="0,40,30" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="93" data-subprofession="教官" data-nation="炎-龙门" data-group="龙门近卫局">
+                                可以攻击到<span style="color:#00B0FF;">较远敌人</span>
+                                ，攻击自身未阻挡的敌人时攻击力提升至120%
+                            </div>
+                            <div data-zh="诺威尔" data-profession="医疗" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="沃尔珀" data-en="Nowell" data-ja="" data-id="VC29" data-hp="1367" data-atk="516" data-def="108" data-res="10" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="2.85s" data-sex="男" data-position="远程位" data-tag="治疗" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="200,40,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="普通" data-sortid="361" data-subprofession="疗养师" data-nation="维多利亚" data-group="">
+                                拥有较大治疗范围，但在治疗较远目标时治疗量变为<span style="color:#00B0FF;">80%</span>
+                            </div>
+                            <div data-zh="调香师" data-profession="医疗" data-rarity="3" data-logo="罗德岛" data-birth_place="米诺斯" data-team="" data-race="沃尔珀" data-en="Perfumer" data-ja="パフューマー" data-id="MN03" data-hp="1560" data-atk="320" data-def="145" data-res="0" data-re_deploy="70s" data-cost="14→16" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,19,,-1" data-trust="150,25,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="38" data-subprofession="群愈师" data-nation="罗德岛" data-group="">同时恢复三个友方单位的生命</div>
+                            <div data-zh="谜图" data-profession="先锋" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="瓦伊凡" data-en="Puzzle" data-ja="パズル" data-id="VC21" data-hp="1860" data-atk="566" data-def="244" data-res="0" data-re_deploy="35s" data-cost="10→12" data-block="1" data-interval="1.0s" data-sex="男" data-position="近战位" data-tag="费用回复 快速复活" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,interval,cost,,cost`-1,5,-1,,-1" data-trust="0,40,20" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="262" data-subprofession="情报官" data-nation="维多利亚" data-group="">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，可使用远程攻击
+                            </div>
+                            <div data-zh="豆苗" data-profession="先锋" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="瑞柏巴" data-en="Beanstalk" data-ja="ビーンストーク" data-id="CB16" data-hp="1569" data-atk="405" data-def="125" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="费用回复 召唤" data-obtain_method="标准寻访, 中坚寻访, 公开招募" data-potential="cost,re_deploy,interval,re_deploy,cost`-1,-4,8,-6,-1" data-trust="0,50,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="普通" data-adapt="普通" data-sortid="175" data-subprofession="战术家" data-nation="哥伦比亚" data-group="">
+                                可以在攻击范围内选择一次<span style="color:#00B0FF;">战术点</span>
+                                来召唤援军，自身攻击援军阻挡的敌人时攻击力提升至150%
+                            </div>
+                            <div data-zh="贝娜" data-profession="特种" data-rarity="4" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="卡普里尼" data-en="Bena" data-ja="ベナ" data-id="VC14" data-hp="2435" data-atk="682" data-def="315" data-res="0" data-re_deploy="80s" data-cost="15→17" data-block="2" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="输出 快速复活" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="100,60,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="优良" data-sortid="195" data-subprofession="傀儡师" data-nation="维多利亚" data-group="">受到致命伤时不撤退，切换成 &lt;替身 &gt;作战（替身阻挡数为0），持续20s后自身再次替换 &lt;替身 &gt;</div>
+                            <div data-zh="贾维" data-profession="先锋" data-rarity="4" data-logo="贾维团伙" data-birth_place="叙拉古" data-team="贾维团伙" data-race="沃尔珀" data-en="Chiave" data-ja="キアーベ" data-id="SR26" data-hp="1824" data-atk="522" data-def="342" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="2" data-interval="1.05s" data-sex="男" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,70,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="150" data-subprofession="尖兵" data-nation="叙拉古" data-group="">能够阻挡两个敌人</div>
+                            <div data-zh="赤冬" data-profession="近卫" data-rarity="4" data-logo="东" data-birth_place="东国" data-team="" data-race="阿戈尔" data-en="Akafuyu" data-ja="アカフユ" data-id="HK04" data-hp="3635" data-atk="728" data-def="328" data-res="0" data-re_deploy="70s" data-cost="21→23→25" data-block="1" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="生存 输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,def,re_deploy,cost`-1,-4,23,-6,-1" data-trust="0,30,55" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="190" data-subprofession="武者" data-nation="东" data-group="">
+                                不成为其他角色的治疗目标，每次攻击到敌人后回复自身<span style="color:#00B0FF;">70</span>
+                                生命
+                            </div>
+                            <div data-zh="赫德雷" data-profession="近卫" data-rarity="5" data-logo="巴别塔" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Hoederer" data-ja="ヘドリー" data-id="B216" data-hp="5988" data-atk="1576" data-def="0" data-res="0" data-re_deploy="70s" data-cost="20→22→24" data-block="2" data-interval="2.5s" data-sex="男" data-position="近战位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,hp,atk,,cost`-1,250,45,,-1" data-trust="500,80,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="优良" data-sortid="300" data-subprofession="重剑手" data-nation="" data-group="巴别塔">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="赫拉格" data-profession="近卫" data-rarity="5" data-logo="乌萨斯" data-birth_place="乌萨斯" data-team="" data-race="黎博利" data-en="Hellagur" data-ja="ヘラグ" data-id="AZ01" data-hp="3825" data-atk="762" data-def="334" data-res="0" data-re_deploy="70s" data-cost="22→24→26" data-block="1" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="输出 生存" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="400,70,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="卓越" data-adapt="标准" data-sortid="101" data-subprofession="武者" data-nation="乌萨斯" data-group="">
+                                不成为其他角色的治疗目标，每次攻击到敌人后回复自身<span style="color:#00B0FF;">70</span>
+                                生命
+                            </div>
+                            <div data-zh="赫默" data-profession="医疗" data-rarity="4" data-logo="莱茵生命" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Silence" data-ja="サイレンス" data-id="RL01" data-hp="1595" data-atk="482" data-def="142" data-res="0" data-re_deploy="70s" data-cost="17→19" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,75,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="58" data-subprofession="医师" data-nation="哥伦比亚" data-group="莱茵生命">恢复友方单位生命</div>
+                            <div data-zh="跃跃" data-profession="狙击" data-rarity="3" data-logo="玻利瓦尔" data-birth_place="玻利瓦尔" data-team="" data-race="卡特斯" data-en="Caper" data-ja="ケイパー" data-id="BV32" data-hp="2200" data-atk="600" data-def="160" data-res="0" data-re_deploy="70s" data-cost="12→14" data-block="1" data-interval="1.0s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,65,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="301" data-subprofession="回环射手" data-nation="玻利瓦尔" data-group="">
+                                持有<span style="color:#00B0FF;">回旋投射物</span>
+                                时才能够攻击（投射物需要时间回收）
+                            </div>
+                            <div data-zh="车尔尼" data-profession="重装" data-rarity="4" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="埃拉菲亚" data-en="Czerny" data-ja="ツェルニー" data-id="LN06" data-hp="3122" data-atk="625" data-def="577" data-res="15" data-re_deploy="80s" data-cost="23→25→27" data-block="3" data-interval="1.6s" data-sex="男" data-position="近战位" data-tag="防护 输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="200,40,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="238" data-subprofession="驭法铁卫" data-nation="莱塔尼亚" data-group="">技能开启时普通攻击会造成法术伤害</div>
+                            <div data-zh="达格达" data-profession="近卫" data-rarity="4" data-logo="格拉斯哥帮" data-birth_place="维多利亚" data-team="" data-race="菲林" data-en="Dagda" data-ja="ダグザ" data-id="GG04" data-hp="2506" data-atk="574" data-def="310" data-res="0" data-re_deploy="80s" data-cost="10→12" data-block="1" data-interval="0.78s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="主线剧情" data-potential="cost,re_deploy,cost,atk,cost`-1,-10,-1,24,-1" data-trust="0,40,35" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="253" data-subprofession="斗士" data-nation="维多利亚" data-group="格拉斯哥帮">能够阻挡一个敌人</div>
+                            <div data-zh="远山" data-profession="术师" data-rarity="3" data-logo="萨米" data-birth_place="萨米" data-team="" data-race="埃拉菲亚" data-en="Gitano" data-ja="ギターノ" data-id="SI01" data-hp="1598" data-atk="715" data-def="118" data-res="20" data-re_deploy="70s" data-cost="29→32" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,70,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="22" data-subprofession="扩散术师" data-nation="萨米" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体法术伤害</span>
+                            </div>
+                            <div data-zh="远牙" data-profession="狙击" data-rarity="5" data-logo="红松骑士团" data-birth_place="卡西米尔" data-team="" data-race="黎博利" data-en="Fartooth" data-ja="ファートゥース" data-id="KZ13" data-hp="1522" data-atk="1196" data-def="163" data-res="0" data-re_deploy="70s" data-cost="20→22" data-block="1" data-interval="2.7s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,40,,-1" data-trust="0,100,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="207" data-subprofession="神射手" data-nation="卡西米尔" data-group="红松骑士团">
+                                优先攻击攻击范围内<span style="color:#00B0FF;">防御力最低</span>
+                                的敌方单位
+                            </div>
+                            <div data-zh="迷迭香" data-profession="狙击" data-rarity="5" data-logo="罗德岛-精英干员" data-birth_place="哥伦比亚" data-team="" data-race="菲林" data-en="Rosmontis" data-ja="ロスモンティス" data-id="RE45" data-hp="1944" data-atk="688" data-def="245" data-res="15" data-re_deploy="70s" data-cost="23→25" data-block="1" data-interval="2.1s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,32,,-1" data-trust="0,60,30" data-phy="普通/■■" data-flex="标准/优良" data-tolerance="普通/卓越" data-plan="标准/——" data-skill="普通/标准" data-adapt="卓越/——" data-sortid="169" data-subprofession="投掷手" data-nation="罗德岛" data-group="罗德岛-精英干员">
+                                攻击对小范围的<span style="color:#00B0FF;">地面</span>
+                                敌人造成<span style="color:#00B0FF;">两次</span>
+                                物理伤害（第二次为余震，伤害降低至攻击力的一半）
+                            </div>
+                            <div data-zh="送葬人" data-profession="狙击" data-rarity="4" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Executor" data-ja="イグゼキュター" data-id="LT01" data-hp="2330" data-atk="720" data-def="185" data-res="0" data-re_deploy="70s" data-cost="28→31" data-block="1" data-interval="2.3s" data-sex="男" data-position="远程位" data-tag="群攻" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,29,,-1" data-trust="0,65,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="105" data-subprofession="散射手" data-nation="拉特兰" data-group="">
+                                攻击范围内的<span style="color:#00B0FF;">所有敌人</span>
+                                ，对自己前方一横排的敌人攻击力提升至150%
+                            </div>
+                            <div data-zh="逻各斯" data-profession="术师" data-rarity="5" data-logo="罗德岛-精英干员" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Logos" data-ja="ロゴス" data-id="RE03" data-hp="1663" data-atk="671" data-def="119" data-res="20" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.6s" data-sex="男" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,27,,-1" data-trust="0,90,0" data-phy="标准" data-flex="卓越" data-tolerance="标准" data-plan="优良" data-skill="卓越" data-adapt="■■" data-sortid="328" data-subprofession="中坚术师" data-nation="罗德岛" data-group="罗德岛-精英干员">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="酸糖" data-profession="狙击" data-rarity="3" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Aciddrop" data-ja="アシッドドロップ" data-id="R139" data-hp="1576" data-atk="735" data-def="209" data-res="0" data-re_deploy="70s" data-cost="14→16→18" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,30,-4,-1" data-trust="0,80,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="154" data-subprofession="重射手" data-nation="哥伦比亚" data-group="">高精度的近距离射击</div>
+                            <div data-zh="重岳" data-profession="近卫" data-rarity="5" data-logo="炎-岁" data-birth_place="炎" data-team="" data-race="未公开" data-en="Chongyue" data-ja="チョンユエ" data-id="NM04" data-hp="2635" data-atk="590" data-def="363" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="0.78s" data-sex="男" data-position="近战位" data-tag="爆发" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,24,,-1" data-trust="0,60,30" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="卓越" data-skill="■■" data-adapt="缺陷" data-sortid="268" data-subprofession="斗士" data-nation="炎" data-group="炎-岁">能够阻挡一个敌人</div>
+                            <div data-zh="野鬃" data-profession="先锋" data-rarity="4" data-logo="红松骑士团" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Wild Mane" data-ja="ワイルドメイン" data-id="KZ14" data-hp="2225" data-atk="558" data-def="372" data-res="0" data-re_deploy="80s" data-cost="12→14" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,re_deploy,cost`-1,-10,-1,-10,-1" data-trust="0,70,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="211" data-subprofession="冲锋手" data-nation="卡西米尔" data-group="红松骑士团">击杀敌人后获得1点部署费用，撤退时返还初始部署费用</div>
+                            <div data-zh="钼铅" data-profession="特种" data-rarity="4" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="斐迪亚" data-en="Wulfenite" data-ja="" data-id="SG27" data-hp="1450" data-atk="520" data-def="160" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="0.85s" data-sex="女" data-position="远程位" data-tag="召唤 削弱" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="200,40,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="364" data-subprofession="陷阱师" data-nation="萨尔贡" data-group="">
+                                可以使用陷阱来协助作战，但陷阱无法放置于<span style="color:#00B0FF;">敌人已在</span>
+                                的格子中
+                            </div>
+                            <div data-zh="铃兰" data-profession="辅助" data-rarity="5" data-logo="叙拉古" data-birth_place="东国" data-team="" data-race="沃尔珀" data-en="Suzuran" data-ja="スズラン" data-id="R172" data-hp="1480" data-atk="521" data-def="128" data-res="25" data-re_deploy="70s" data-cost="14→16" data-block="1" data-interval="1.9s" data-sex="女" data-position="远程位" data-tag="减速 支援 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,75,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="147" data-subprofession="凝滞师" data-nation="叙拉古" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，并对敌人造成短暂的
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">停顿</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 停顿</strong>
+                                        <br/>移动速度降低80%
+                                    </span>
+                                </span>
+                            </div>
+                            <div data-zh="铅踝" data-profession="狙击" data-rarity="3" data-logo="萨尔贡" data-birth_place="萨尔贡" data-team="" data-race="黎博利" data-en="Totter" data-ja="トター" data-id="SG11" data-hp="1550" data-atk="920" data-def="105" data-res="0" data-re_deploy="70s" data-cost="20→22" data-block="1" data-interval="2.4s" data-sex="男" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,32,,-1" data-trust="0,50,40" data-phy="普通" data-flex="缺陷" data-tolerance="标准" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="252" data-subprofession="攻城手" data-nation="萨尔贡" data-group="">优先攻击重量最重的敌人</div>
+                            <div data-zh="铎铃" data-profession="近卫" data-rarity="4" data-logo="炎" data-birth_place="炎" data-team="" data-race="丰蹄" data-en="Wind Chimes" data-ja="ウィンドチャイム" data-id="YD17" data-hp="5669" data-atk="1438" data-def="0" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="2" data-interval="2.5s" data-sex="女" data-position="近战位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,40,,-1" data-trust="350,70,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="标准" data-sortid="269" data-subprofession="重剑手" data-nation="炎" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                            </div>
+                            <div data-zh="银灰" data-profession="近卫" data-rarity="5" data-logo="喀兰贸易" data-birth_place="谢拉格" data-team="" data-race="菲林" data-en="SilverAsh" data-ja="シルバーアッシュ" data-id="JC01" data-hp="2560" data-atk="713" data-def="397" data-res="10" data-re_deploy="70s" data-cost="18→20" data-block="2" data-interval="1.3s" data-sex="男" data-position="近战位" data-tag="输出 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="0,50,50" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="卓越" data-skill="优良" data-adapt="标准" data-sortid="82" data-subprofession="领主" data-nation="谢拉格" data-group="喀兰贸易">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="铸铁" data-profession="近卫" data-rarity="4" data-logo="米诺斯" data-birth_place="米诺斯" data-team="" data-race="丰蹄" data-en="Sideroca" data-ja="シデロカ" data-id="R126" data-hp="2845" data-atk="620" data-def="369" data-res="15" data-re_deploy="80s" data-cost="21→23" data-block="1" data-interval="1.25s" data-sex="女" data-position="近战位" data-tag="生存 输出" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="500,0,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="普通" data-sortid="131" data-subprofession="术战者" data-nation="米诺斯" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="锏" data-profession="近卫" data-rarity="5" data-logo="喀兰贸易" data-birth_place="莱塔尼亚" data-team="" data-race="卡普里尼" data-en="Degenbrecher" data-ja="デーゲンブレヒャー" data-id="JC07" data-hp="2891" data-atk="635" data-def="339" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="爆发 输出 削弱" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,23,,-1" data-trust="0,50,50" data-phy="卓越" data-flex="优良" data-tolerance="卓越" data-plan="优良" data-skill="卓越" data-adapt="缺陷" data-sortid="309" data-subprofession="剑豪" data-nation="谢拉格" data-group="喀兰贸易">
+                                普通攻击连续造成<span style="color:#00B0FF;">两次</span>
+                                伤害
+                            </div>
+                            <div data-zh="锡人" data-profession="特种" data-rarity="4" data-logo="哥伦比亚" data-birth_place="未公开" data-team="" data-race="未公开" data-en="Tin Man" data-ja="" data-id="CB30" data-hp="1114" data-atk="469" data-def="99" data-res="30" data-re_deploy="70s" data-cost="13→15→17" data-block="1" data-interval="1.5s" data-sex="男" data-position="远程位" data-tag="削弱 支援" data-obtain_method="活动获得" data-potential="cost,,res,,cost`-1,,8,,-1" data-trust="200,30,0" data-phy="标准" data-flex="优良" data-tolerance="■■" data-plan="优良" data-skill="优良" data-adapt="缺陷" data-sortid="336" data-subprofession="炼金师" data-nation="哥伦比亚" data-group="">
+                                可以投掷<span style="color:#00B0FF;">炼金单元</span>
+                                协助作战
+                            </div>
+                            <div data-zh="锡兰" data-profession="医疗" data-rarity="4" data-logo="汐斯塔" data-birth_place="汐斯塔（独立城邦）" data-team="" data-race="黎博利" data-en="Ceylon" data-ja="セイロン" data-id="SS01" data-hp="1455" data-atk="468" data-def="126" data-res="10" data-re_deploy="80s" data-cost="20→22" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="200,40,0" data-phy="普通" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="优良" data-sortid="96" data-subprofession="疗养师" data-nation="哥伦比亚" data-group="汐斯塔">
+                                拥有较大治疗范围，但在治疗较远目标时治疗量变为<span style="color:#00B0FF;">80%</span>
+                            </div>
+                            <div data-zh="闪击" data-profession="重装" data-rarity="4" data-logo="彩虹小队" data-birth_place="未知" data-team="彩虹小队" data-race="未知" data-en="Blitz" data-ja="Blitz" data-id="RS02" data-hp="3213" data-atk="445" data-def="676" data-res="0" data-re_deploy="70s" data-cost="18→20→22" data-block="3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="防护 输出" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,25,,-1" data-trust="0,45,45" data-phy="普通" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="184" data-subprofession="哨戒铁卫" data-nation="" data-group="">能够阻挡三个敌人，可以进行远程攻击</div>
+                            <div data-zh="闪灵" data-profession="医疗" data-rarity="5" data-logo="使徒" data-birth_place="卡兹戴尔" data-team="使徒" data-race="萨卡兹" data-en="Shining" data-ja="シャイニング" data-id="FO01" data-hp="1613" data-atk="530" data-def="138" data-res="0" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="2.85s" data-sex="女" data-position="远程位" data-tag="治疗 支援" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,,def,cost,`-1,,25,-1," data-trust="0,80,20" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="卓越" data-sortid="78" data-subprofession="医师" data-nation="" data-group="">恢复友方单位生命</div>
+                            <div data-zh="阿" data-profession="特种" data-rarity="5" data-logo="鲤氏侦探事务所" data-birth_place="龙门" data-team="鲤氏侦探事务所" data-race="菲林" data-en="Aak" data-ja="ア" data-id="LM20" data-hp="2034" data-atk="703" data-def="152" data-res="10" data-re_deploy="70s" data-cost="11→13" data-block="1" data-interval="1.3s" data-sex="男" data-position="远程位" data-tag="支援 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,150,,-1" data-trust="300,50,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="120" data-subprofession="怪杰" data-nation="炎-龙门" data-group="">自身生命会不断流失</div>
+                            <div data-zh="阿斯卡纶" data-profession="特种" data-rarity="5" data-logo="S.W.E.E.P." data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Ascalon" data-ja="アスカロン" data-id="SW00" data-hp="1623" data-atk="954" data-def="333" data-res="30" data-re_deploy="70s" data-cost="19→21" data-block="0" data-interval="3.5s" data-sex="女" data-position="近战位" data-tag="减速 输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,hp,,cost`-1,-4,160,,-1" data-trust="200,0,40" data-phy="优良" data-flex="卓越" data-tolerance="标准" data-plan="标准" data-skill="卓越" data-adapt="卓越" data-sortid="324" data-subprofession="伏击客" data-nation="罗德岛" data-group="S.W.E.E.P.">
+                                对攻击范围内<span style="color:#00B0FF;">所有敌人</span>
+                                造成伤害<br/>
+                                拥有50%的物理和法术闪避且不容易成为敌人的<span style="color:#00B0FF;">攻击目标</span>
+                            </div>
+                            <div data-zh="阿消" data-profession="特种" data-rarity="3" data-logo="炎-龙门" data-birth_place="龙门" data-team="" data-race="札拉克" data-en="Shaw" data-ja="ショウ" data-id="LM11" data-hp="1785" data-atk="580" data-def="365" data-res="0" data-re_deploy="70s" data-cost="17→19" data-block="2" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="位移" data-obtain_method="公开招募, 标准寻访, 中坚寻访, 主线剧情" data-potential="cost,re_deploy,hp,re_deploy,cost`-1,-4,140,-6,-1" data-trust="200,35,0" data-phy="普通" data-flex="优良" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="普通" data-sortid="44" data-subprofession="推击手" data-nation="炎-龙门" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="阿米娅" data-profession="术师" data-rarity="4" data-logo="罗德岛" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯/奇美拉" data-en="Amiya" data-ja="アーミヤ" data-id="R001" data-hp="1480" data-atk="612" data-def="121" data-res="20" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="主线剧情" data-potential="hp,cost,atk,cost,`200,-1,30,-1," data-trust="200,70,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="■■" data-sortid="55" data-subprofession="中坚术师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="阿米娅(医疗)" data-profession="医疗" data-rarity="4" data-logo="罗德岛" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯/奇美拉" data-en="Amiya" data-ja="" data-id="R001" data-hp="1416" data-atk="532" data-def="106" data-res="20" data-re_deploy="70s" data-cost="15→17" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="治疗 输出" data-obtain_method="主线剧情" data-potential="hp,cost,atk,cost,res`200,-1,22,-1,8" data-trust="120,45,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="■■" data-sortid="330" data-subprofession="咒愈师" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，攻击敌人时为攻击范围内一名友方干员治疗相当于<span style="color:#00B0FF;">50%</span>
+                                伤害的生命值
+                            </div>
+                            <div data-zh="阿米娅(近卫)" data-profession="近卫" data-rarity="4" data-logo="罗德岛" data-birth_place="雷姆必拓" data-team="" data-race="卡特斯/奇美拉" data-en="Amiya" data-ja="アーミヤ" data-id="R001" data-hp="2629" data-atk="657" data-def="376" data-res="20" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.25s" data-sex="女" data-position="近战位" data-tag="输出 支援" data-obtain_method="主线剧情" data-potential="hp,cost,atk,cost,def`200,-1,28,-1,22" data-trust="0,45,45" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="■■" data-sortid="170" data-subprofession="术战者" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="阿罗玛" data-profession="术师" data-rarity="4" data-logo="叙拉古" data-birth_place="叙拉古" data-team="" data-race="鲁珀" data-en="Aroma" data-ja="アロマ" data-id="SR39" data-hp="1591" data-atk="760" data-def="115" data-res="20" data-re_deploy="70s" data-cost="30→33" data-block="1" data-interval="2.9s" data-sex="女" data-position="远程位" data-tag="群攻 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,33,,-1" data-trust="60,80,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="323" data-subprofession="轰击术师" data-nation="叙拉古" data-group="">
+                                攻击造成<span style="color:#00B0FF;">超远距离的群体法术伤害</span>
+                            </div>
+                            <div data-zh="陈" data-profession="近卫" data-rarity="5" data-logo="龙门近卫局" data-birth_place="龙门" data-team="" data-race="龙" data-en="Ch&#39;en" data-ja="チェン" data-id="LM04" data-hp="2880" data-atk="610" data-def="352" data-res="0" data-re_deploy="70s" data-cost="19→21→23" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="爆发 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="0,50,50" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="优良" data-skill="卓越" data-adapt="标准" data-sortid="94" data-subprofession="剑豪" data-nation="炎-龙门" data-group="龙门近卫局">
+                                普通攻击连续造成<span style="color:#00B0FF;">两次</span>
+                                伤害
+                            </div>
+                            <div data-zh="陨星" data-profession="狙击" data-rarity="4" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Meteorite" data-ja="メテオリーテ" data-id="ST03" data-hp="1505" data-atk="865" data-def="116" data-res="0" data-re_deploy="70s" data-cost="24→26→28" data-block="1" data-interval="2.8s" data-sex="女" data-position="远程位" data-tag="群攻 削弱" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,35,-6,-1" data-trust="0,85,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="54" data-subprofession="炮手" data-nation="罗德岛" data-group="">
+                                攻击造成<span style="color:#00B0FF;">群体物理伤害</span>
+                            </div>
+                            <div data-zh="隐德来希" data-profession="近卫" data-rarity="5" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="萨卡兹" data-en="Entelechia" data-ja="" data-id="R169" data-hp="2580" data-atk="700" data-def="452" data-res="0" data-re_deploy="70s" data-cost="20→21→23" data-block="1→2→2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="输出 生存" data-obtain_method="标准寻访" data-potential="cost,,atk,,cost`-1,,30,,-1" data-trust="0,50,50" data-phy="优良" data-flex="优良" data-tolerance="优良" data-plan="卓越" data-skill="优良" data-adapt="优良" data-sortid="362" data-subprofession="收割者" data-nation="罗德岛" data-group="">
+                                无法被友方角色治疗，攻击造成<span style="color:#00B0FF;">群体伤害</span>
+                                ，每攻击到一个敌人回复自身<span style="color:#00B0FF;">50</span>
+                                生命，最大生效数等于阻挡数
+                            </div>
+                            <div data-zh="隐现" data-profession="狙击" data-rarity="4" data-logo="拉特兰" data-birth_place="拉特兰" data-team="" data-race="萨科塔" data-en="Insider" data-ja="インサイダー" data-id="LT13" data-hp="1440" data-atk="522" data-def="178" data-res="0" data-re_deploy="80s" data-cost="13→15" data-block="1" data-interval="1.0s" data-sex="男" data-position="远程位" data-tag="输出" data-obtain_method="活动获得" data-potential="cost,re_deploy,cost,atk,cost`-1,-10,-1,23,-1" data-trust="0,75,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="284" data-subprofession="速射手" data-nation="拉特兰" data-group="">优先攻击空中单位</div>
+                            <div data-zh="雪绒" data-profession="术师" data-rarity="4" data-logo="萨米" data-birth_place="萨米" data-team="" data-race="沃尔珀" data-en="Qanipalaat" data-ja="カニパラート" data-id="SI03" data-hp="1500" data-atk="625" data-def="119" data-res="20" data-re_deploy="70s" data-cost="18→20" data-block="1" data-interval="1.6s" data-sex="男" data-position="远程位" data-tag="输出 控场" data-obtain_method="凭证交易所(采购)" data-potential="cost,re_deploy,atk,,cost`-1,-4,26,,-1" data-trust="0,70,0" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="优良" data-sortid="257" data-subprofession="中坚术师" data-nation="萨米" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="雪雉" data-profession="特种" data-rarity="4" data-logo="炎-龙门" data-birth_place="龙门" data-team="" data-race="黎博利" data-en="Snowsant" data-ja="スノーズント" data-id="LM16" data-hp="1835" data-atk="745" data-def="355" data-res="0" data-re_deploy="80s" data-cost="13→15" data-block="2" data-interval="1.8s" data-sex="女" data-position="近战位" data-tag="位移 减速" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="300,0,40" data-phy="普通" data-flex="标准" data-tolerance="标准" data-plan="标准" data-skill="普通" data-adapt="标准" data-sortid="118" data-subprofession="钩索师" data-nation="炎-龙门" data-group="">
+                                技能可以使敌人产生<span style="color:#00B0FF;">位移</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="雷蛇" data-profession="重装" data-rarity="4" data-logo="黑钢国际" data-birth_place="瓦伊凡" data-team="" data-race="瓦伊凡" data-en="Liskarm" data-ja="リスカム" data-id="BS02" data-hp="3240" data-atk="425" data-def="710" data-res="0" data-re_deploy="70s" data-cost="18→20→22" data-block="3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,27,,-1" data-trust="0,45,45" data-phy="标准" data-flex="普通" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="优良" data-sortid="62" data-subprofession="哨戒铁卫" data-nation="哥伦比亚" data-group="黑钢国际">能够阻挡三个敌人，可以进行远程攻击</div>
+                            <div data-zh="霍尔海雅" data-profession="术师" data-rarity="5" data-logo="哥伦比亚" data-birth_place="哥伦比亚" data-team="" data-race="未公开" data-en="Ho&#39;olheyak" data-ja="ホルハイヤ" data-id="CB88" data-hp="1770" data-atk="633" data-def="130" data-res="20" data-re_deploy="70s" data-cost="19→21" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出 控场" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,90,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="卓越" data-adapt="优良" data-sortid="281" data-subprofession="中坚术师" data-nation="哥伦比亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                            </div>
+                            <div data-zh="霜华" data-profession="特种" data-rarity="4" data-logo="彩虹小队" data-birth_place="未知" data-team="彩虹小队" data-race="未知" data-en="Frost" data-ja="Frost" data-id="RS03" data-hp="1359" data-atk="529" data-def="157" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="1" data-interval="0.85s" data-sex="女" data-position="远程位" data-tag="召唤 控场" data-obtain_method="限定寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="200,40,0" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="优良" data-adapt="■■" data-sortid="185" data-subprofession="陷阱师" data-nation="" data-group="">
+                                可以使用陷阱来协助作战，但陷阱无法放置于<span style="color:#00B0FF;">敌人已在</span>
+                                的格子中
+                            </div>
+                            <div data-zh="霜叶" data-profession="近卫" data-rarity="3" data-logo="罗德岛" data-birth_place="哥伦比亚" data-team="" data-race="沃尔珀" data-en="Frostleaf" data-ja="フロストリーフ" data-id="R123" data-hp="2260" data-atk="660" data-def="323" data-res="10" data-re_deploy="70s" data-cost="16→18" data-block="2" data-interval="1.3s" data-sex="女" data-position="近战位" data-tag="减速 输出" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,interval,re_deploy,cost`-1,-4,8,-6,-1" data-trust="0,0,55" data-phy="普通" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="31" data-subprofession="领主" data-nation="罗德岛" data-group="">
+                                可以进行<span style="color:#00B0FF;">远程攻击</span>
+                                ，但此时攻击力降低至80%
+                            </div>
+                            <div data-zh="露托" data-profession="重装" data-rarity="3" data-logo="玻利瓦尔" data-birth_place="玻利瓦尔" data-team="" data-race="札拉克" data-en="Lutonada" data-ja="ルトナダ" data-id="BV33" data-hp="3550" data-atk="790" data-def="495" data-res="10" data-re_deploy="70s" data-cost="30→32→34" data-block="2→3→3" data-interval="1.6s" data-sex="女" data-position="近战位" data-tag="生存 防护" data-obtain_method="标准寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,25,,-1" data-trust="400,0,50" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="标准" data-adapt="标准" data-sortid="321" data-subprofession="不屈者" data-nation="玻利瓦尔" data-group="">
+                                <span style="color:#00B0FF;">无法</span>
+                                被友方角色治疗
+                            </div>
+                            <div data-zh="青枳" data-profession="先锋" data-rarity="4" data-logo="汐斯塔" data-birth_place="汐斯塔" data-team="" data-race="黎博利" data-en="Poncirus" data-ja="ポンシラス" data-id="SS04" data-hp="2215" data-atk="455" data-def="360" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复 防护" data-obtain_method="标准寻访" data-potential="cost,re_deploy,def,,cost`-1,-4,24,,-1" data-trust="0,20,50" data-phy="标准" data-flex="普通" data-tolerance="普通" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="291" data-subprofession="尖兵" data-nation="哥伦比亚" data-group="汐斯塔">能够阻挡两个敌人</div>
+                            <div data-zh="鞭刃" data-profession="近卫" data-rarity="4" data-logo="卡西米尔" data-birth_place="卡西米尔" data-team="" data-race="库兰塔" data-en="Whislash" data-ja="ウィスラッシュ" data-id="KZ07" data-hp="1932" data-atk="645" data-def="420" data-res="0" data-re_deploy="80s" data-cost="16→18" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="输出 支援" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="0,30,40" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="163" data-subprofession="教官" data-nation="卡西米尔" data-group="">
+                                可以攻击到<span style="color:#00B0FF;">较远敌人</span>
+                                ，攻击自身未阻挡的敌人时攻击力提升至120%
+                            </div>
+                            <div data-zh="风丸" data-profession="特种" data-rarity="4" data-logo="东" data-birth_place="东国" data-team="" data-race="菲林" data-en="Kazemaru" data-ja="カゼマル" data-id="HK09" data-hp="2372" data-atk="692" data-def="318" data-res="0" data-re_deploy="70s" data-cost="13→15" data-block="2" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="输出 快速复活" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,27,,-1" data-trust="0,80,0" data-phy="标准" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="227" data-subprofession="傀儡师" data-nation="东" data-group="">受到致命伤时不撤退，切换成 &lt;替身 &gt;作战（替身阻挡数为0），持续20s后自身再次替换 &lt;替身 &gt;</div>
+                            <div data-zh="风笛" data-profession="先锋" data-rarity="5" data-logo="维多利亚" data-birth_place="维多利亚" data-team="" data-race="瓦伊凡" data-en="Bagpipe" data-ja="バグパイプ" data-id="RV02" data-hp="2484" data-atk="586" data-def="382" data-res="0" data-re_deploy="70s" data-cost="11→13" data-block="1" data-interval="1.0s" data-sex="女" data-position="近战位" data-tag="费用回复 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,,atk,,cost`-1,,25,,-1" data-trust="0,85,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="128" data-subprofession="冲锋手" data-nation="维多利亚" data-group="">击杀敌人后获得1点部署费用，撤退时返还初始部署费用</div>
+                            <div data-zh="食铁兽" data-profession="特种" data-rarity="4" data-logo="炎-龙门" data-birth_place="炎" data-team="" data-race="乌萨斯" data-en="FEater" data-ja="エフイーター" data-id="YD01" data-hp="1845" data-atk="640" data-def="382" data-res="0" data-re_deploy="70s" data-cost="18→20" data-block="2" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="位移 减速" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,interval,,cost`-1,-4,8,,-1" data-trust="300,45,0" data-phy="优良" data-flex="标准" data-tolerance="标准" data-plan="普通" data-skill="优良" data-adapt="标准" data-sortid="72" data-subprofession="推击手" data-nation="炎-龙门" data-group="">
+                                同时攻击阻挡的<span style="color:#00B0FF;">所有敌人</span>
+                                <br/>可以放置于远程位
+                            </div>
+                            <div data-zh="香草" data-profession="先锋" data-rarity="2" data-logo="黑钢国际" data-birth_place="瓦伊凡" data-team="" data-race="瓦伊凡" data-en="Vanilla" data-ja="バニラ" data-id="BS04" data-hp="1270" data-atk="355" data-def="240" data-res="0" data-re_deploy="70s" data-cost="9→11" data-block="2" data-interval="1.05s" data-sex="女" data-position="近战位" data-tag="费用回复" data-obtain_method="公开招募, 标准寻访, 中坚寻访" data-potential="cost,re_deploy,atk,re_deploy,cost`-1,-4,20,-6,-1" data-trust="0,50,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="普通" data-skill="标准" data-adapt="普通" data-sortid="9" data-subprofession="尖兵" data-nation="哥伦比亚" data-group="黑钢国际">能够阻挡两个敌人</div>
+                            <div data-zh="魔王" data-profession="辅助" data-rarity="5" data-logo="罗德岛" data-birth_place="卡兹戴尔" data-team="" data-race="未公开" data-en="Civilight Eterna" data-ja="シヴィライト・エテルナ" data-id="DWDB" data-hp="1628" data-atk="369" data-def="236" data-res="0" data-re_deploy="80s" data-cost="8→10" data-block="1" data-interval="1.3s" data-sex="女" data-position="远程位" data-tag="支援 生存 输出" data-obtain_method="主线剧情" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="300,30,0" data-phy="优良" data-flex="标准" data-tolerance="优良" data-plan="卓越" data-skill="优良" data-adapt="卓越" data-sortid="327" data-subprofession="吟游者" data-nation="罗德岛" data-group="">
+                                不攻击，持续恢复范围内所有友军<span style="color:#00B0FF;">生命</span>
+                                （每秒相当于自身攻击力<span style="color:#00B0FF;">10%</span>
+                                的生命），自身不受
+                                <span class="mc-tooltips">
+                                    <span class="term" style="text-decoration:underline ;white-space:nowrap;text-shadow: 0 0 1px;color:inherit;cursor:help;">鼓舞</span>
+                                    <span style="display:none" data-size="350">
+                                        <strong>术语: 鼓舞</strong>
+                                        <br/>
+                                        获得额外附加的基础属性加成（同类属性取最高）<br/>
+                                        ※给予他人鼓舞效果的角色会将自身的鼓舞BUFF重写后适用于受益者（先最终乘算计算加成数值后，重写为最终加算，再将鼓舞赋予受益者）<br/>※同类效果取倍率最高（非最终数值）生效
+                                    </span>
+                                </span>
+                                影响
+                            </div>
+                            <div data-zh="鸿雪" data-profession="狙击" data-rarity="5" data-logo="罗德岛" data-birth_place="乌萨斯" data-team="" data-race="鲁珀" data-en="Позёмка" data-ja="パゼオンカ" data-id="R145" data-hp="1802" data-atk="876" data-def="193" data-res="0" data-re_deploy="70s" data-cost="16→18→20" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,30,,-1" data-trust="0,70,30" data-phy="标准" data-flex="普通" data-tolerance="标准" data-plan="优良" data-skill="标准" data-adapt="标准" data-sortid="246" data-subprofession="重射手" data-nation="罗德岛" data-group="">高精度的近距离射击</div>
+                            <div data-zh="麒麟R夜刀" data-profession="特种" data-rarity="5" data-logo="行动组A4" data-birth_place="东国" data-team="行动组A4" data-race="鬼" data-en="Kirin R Yato" data-ja="キリンRヤトウ" data-id="MH02" data-hp="1629" data-atk="565" data-def="318" data-res="0" data-re_deploy="18s" data-cost="8→10" data-block="1" data-interval="0.93s" data-sex="女" data-position="近战位" data-tag="快速复活 爆发" data-obtain_method="限定寻访" data-potential="cost,atk,re_deploy,,cost`-1,22,-2,,-1" data-trust="0,90,0" data-phy="优良" data-flex="优良" data-tolerance="标准" data-plan="标准" data-skill="优良" data-adapt="标准" data-sortid="273" data-subprofession="处决者" data-nation="罗德岛" data-group="">
+                                再部署时间大幅度<span style="color:#00B0FF;">减少</span>
+                            </div>
+                            <div data-zh="麦哲伦" data-profession="辅助" data-rarity="5" data-logo="莱茵生命" data-birth_place="哥伦比亚" data-team="" data-race="黎博利" data-en="Magallan" data-ja="マゼラン" data-id="RL06" data-hp="1103" data-atk="469" data-def="140" data-res="20" data-re_deploy="70s" data-cost="10→12" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="支援 减速 输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,23,,-1" data-trust="300,40,0" data-phy="标准" data-flex="标准" data-tolerance="优良" data-plan="优良" data-skill="普通" data-adapt="标准" data-sortid="106" data-subprofession="召唤师" data-nation="哥伦比亚" data-group="莱茵生命">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                <br/>
+                                可以使用<span style="color:#00B0FF;">召唤物</span>
+                                协助作战
+                            </div>
+                            <div data-zh="黍" data-profession="重装" data-rarity="5" data-logo="炎-岁" data-birth_place="炎" data-team="" data-race="未公开" data-en="Shu" data-ja="シュウ" data-id="NM05" data-hp="3213" data-atk="479" data-def="602" data-res="10" data-re_deploy="70s" data-cost="18→20→22" data-block="2→3→3" data-interval="1.2s" data-sex="女" data-position="近战位" data-tag="防护 治疗 支援" data-obtain_method="限定寻访" data-potential="cost,hp,atk,,cost`-1,200,25,,-1" data-trust="0,50,60" data-phy="标准" data-flex="标准" data-tolerance="■■" data-plan="普通" data-skill="普通" data-adapt="缺陷" data-sortid="315" data-subprofession="守护者" data-nation="炎" data-group="炎-岁">技能可以治疗友方单位</div>
+                            <div data-zh="黑" data-profession="狙击" data-rarity="5" data-logo="汐斯塔" data-birth_place="雷姆必拓" data-team="" data-race="菲林" data-en="Schwarz" data-ja="シュヴァルツ" data-id="SS02" data-hp="1833" data-atk="840" data-def="225" data-res="0" data-re_deploy="70s" data-cost="16→18→20" data-block="1" data-interval="1.6s" data-sex="女" data-position="远程位" data-tag="输出" data-obtain_method="公开招募, 中坚寻访" data-potential="cost,re_deploy,atk,cost,`-1,-4,30,-1," data-trust="0,100,0" data-phy="标准" data-flex="优良" data-tolerance="标准" data-plan="优良" data-skill="优良" data-adapt="标准" data-sortid="98" data-subprofession="重射手" data-nation="哥伦比亚" data-group="汐斯塔">高精度的近距离射击</div>
+                            <div data-zh="黑角" data-profession="重装" data-rarity="1" data-logo="行动组A4" data-birth_place="东国" data-team="行动组A4" data-race="鬼" data-en="Noir Corne" data-ja="ノイルホーン" data-id="A43" data-hp="1670" data-atk="240" data-def="315" data-res="0" data-re_deploy="70s" data-cost="14" data-block="3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="新手" data-obtain_method="公开招募" data-potential="cost,hp,re_deploy,hp,cost`-1,45,-5,45,-1" data-trust="0,0,40" data-phy="标准" data-flex="普通" data-tolerance="优良" data-plan="普通" data-skill="普通" data-adapt="标准" data-sortid="4" data-subprofession="铁卫" data-nation="罗德岛" data-group="">能够阻挡三个敌人</div>
+                            <div data-zh="黑键" data-profession="术师" data-rarity="5" data-logo="莱塔尼亚" data-birth_place="莱塔尼亚" data-team="" data-race="卡普里尼" data-en="Ebenholz" data-ja="エーベンホルツ" data-id="LN05" data-hp="1678" data-atk="1400" data-def="135" data-res="20" data-re_deploy="70s" data-cost="23→25" data-block="1" data-interval="3.0s" data-sex="男" data-position="远程位" data-tag="输出" data-obtain_method="标准寻访" data-potential="cost,re_deploy,atk,,cost`-1,-4,52,,-1" data-trust="0,150,0" data-phy="标准" data-flex="普通" data-tolerance="普通" data-plan="标准" data-skill="标准" data-adapt="卓越" data-sortid="240" data-subprofession="秘术师" data-nation="莱塔尼亚" data-group="">
+                                攻击造成<span style="color:#00B0FF;">法术伤害</span>
+                                ，在找不到攻击目标时可以将攻击能量<span style="color:#00B0FF;">储存</span>
+                                起来之后一齐发射（最多3个）
+                            </div>
+                            <div data-zh="齐尔查克" data-profession="先锋" data-rarity="4" data-logo="莱欧斯小队" data-birth_place="东方大陆（自称）" data-team="莱欧斯小队" data-race="半身人（自称）" data-en="Chilchuck" data-ja="" data-id="DD03" data-hp="1880" data-atk="560" data-def="277" data-res="0" data-re_deploy="35s" data-cost="8→10" data-block="1" data-interval="1.0s" data-sex="男" data-position="近战位" data-tag="费用回复 快速复活" data-obtain_method="限定寻访" data-potential="cost,re_deploy,interval,,cost`-1,-4,5,,-1" data-trust="100,0,40" data-phy="缺陷" data-flex="标准" data-tolerance="普通" data-plan="标准" data-skill="缺陷" data-adapt="■■" data-sortid="342" data-subprofession="情报官" data-nation="" data-group="">
+                                再部署时间<span style="color:#00B0FF;">减少</span>
+                                ，可使用远程攻击
+                            </div>
+                            <div data-zh="龙舌兰" data-profession="近卫" data-rarity="4" data-logo="玻利瓦尔" data-birth_place="玻利瓦尔" data-team="" data-race="佩洛" data-en="Tequila" data-ja="テキーラ" data-id="BV12" data-hp="3757" data-atk="302" data-def="501" data-res="15" data-re_deploy="80s" data-cost="11→13" data-block="2→2→3" data-interval="1.2s" data-sex="男" data-position="近战位" data-tag="爆发" data-obtain_method="活动获得, 记录修复奖励" data-potential="cost,re_deploy,cost,,cost`-1,-10,-1,,-1" data-trust="230,50,0" data-phy="标准" data-flex="标准" data-tolerance="普通" data-plan="优良" data-skill="标准" data-adapt="普通" data-sortid="199" data-subprofession="解放者" data-nation="玻利瓦尔" data-group="">
+                                通常不攻击且阻挡数为0，技能未开启时<span style="color:#00B0FF;">40</span>
+                                秒内攻击力逐渐提升至最高<span style="color:#00B0FF;">+200%</span>
+                                且技能结束时重置攻击力
+                            </div>
+                        </div>
+                        <div id="filter-filter" style="display:none">{
+    "filters": [
+        {
+            "title": "筛选",
+            "filter": [
+                {
+                    "title": "职业",
+                    "cbt": [
+                        "先锋",
+                        "近卫",
+                        "狙击",
+                        "重装",
+                        "医疗",
+                        "辅助",
+                        "术师",
+                        "特种"
+                    ],
+                    "both": false,
+                    "field": "profession"
+                },
+                {
+                    "title": "分支",
+                    "cbt": [
+                        "冲锋手",
+                        "尖兵",
+                        "情报官",
+                        "战术家",
+                        "执旗手",
+                        "剑豪",
+                        "强攻手",
+                        "收割者",
+                        "教官",
+                        "斗士",
+                        "无畏者",
+                        "术战者",
+                        "武者",
+                        "解放者",
+                        "重剑手",
+                        "领主",
+                        "撼地者",
+                        "不屈者",
+                        "决战者",
+                        "哨戒铁卫",
+                        "守护者",
+                        "要塞",
+                        "铁卫",
+                        "驭法铁卫",
+                        "本源铁卫",
+                        "投掷手",
+                        "攻城手",
+                        "散射手",
+                        "炮手",
+                        "神射手",
+                        "速射手",
+                        "重射手",
+                        "猎手",
+                        "回环射手",
+                        "中坚术师",
+                        "扩散术师",
+                        "秘术师",
+                        "轰击术师",
+                        "链术师",
+                        "阵法术师",
+                        "驭械术师",
+                        "本源术师",
+                        "塑灵术师",
+                        "医师",
+                        "咒愈师",
+                        "疗养师",
+                        "群愈师",
+                        "行医",
+                        "链愈师",
+                        "凝滞师",
+                        "削弱者",
+                        "召唤师",
+                        "吟游者",
+                        "工匠",
+                        "护佑者",
+                        "巫役",
+                        "伏击客",
+                        "傀儡师",
+                        "处决者",
+                        "怪杰",
+                        "推击手",
+                        "行商",
+                        "钩索师",
+                        "陷阱师",
+                        "炼金师",
+                        "巡空者"
+                    ],
+                    "both": false,
+                    "field": "subProfession"
+                },
+                {
+                    "title": "稀有度",
+                    "cbt": [
+                        "★1",
+                        "★2",
+                        "★3",
+                        "★4",
+                        "★5",
+                        "★6"
+                    ],
+                    "both": false,
+                    "field": "rarity"
+                },
+                {
+                    "title": "位置",
+                    "cbt": [
+                        "近战位",
+                        "远程位"
+                    ],
+                    "both": false,
+                    "field": "position"
+                },
+                {
+                    "title": "性别",
+                    "cbt": [
+                        "男性",
+                        "女性",
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "sex"
+                },
+                {
+                    "title": "获取途径",
+                    "cbt": [
+                        "公开招募",
+                        "标准寻访",
+                        "限定寻访",
+                        "中坚寻访",
+                        {
+                            "label": "活动获得",
+                            "value": [
+                                "活动获得",
+                                "记录修复奖励"
+                            ]
+                        },
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "obtainMethod"
+                },
+                {
+                    "title": "词缀",
+                    "cbt": [
+                        "治疗",
+                        "支援",
+                        "输出",
+                        "群攻",
+                        "减速",
+                        "生存",
+                        "防护",
+                        "削弱",
+                        "位移",
+                        "控场",
+                        "爆发",
+                        "召唤",
+                        "快速复活",
+                        "费用回复",
+                        "支援机械",
+                        "元素",
+                        "高空"
+                    ],
+                    "both": true,
+                    "field": "tag"
+                }
+            ]
+        },
+        {
+            "title": "六维筛选",
+            "filter": [
+                {
+                    "title": "物理强度",
+                    "cbt": [
+                        "卓越",
+                        "优良",
+                        "标准",
+                        "普通",
+                        "缺陷",
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "phy"
+                },
+                {
+                    "title": "战场机动",
+                    "cbt": [
+                        "卓越",
+                        "优良",
+                        "标准",
+                        "普通",
+                        "缺陷",
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "flex"
+                },
+                {
+                    "title": "生理耐受",
+                    "cbt": [
+                        "卓越",
+                        "优良",
+                        "标准",
+                        "普通",
+                        "缺陷",
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "tolerance"
+                },
+                {
+                    "title": "战术规划",
+                    "cbt": [
+                        "卓越",
+                        "优良",
+                        "标准",
+                        "普通",
+                        "缺陷",
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "plan"
+                },
+                {
+                    "title": "战斗技巧",
+                    "cbt": [
+                        "卓越",
+                        "优良",
+                        "标准",
+                        "普通",
+                        "缺陷",
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "skill"
+                },
+                {
+                    "title": "源石技艺适应性",
+                    "cbt": [
+                        "卓越",
+                        "优良",
+                        "标准",
+                        "普通",
+                        "缺陷",
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "adapt"
+                }
+            ]
+        },
+        {
+            "title": "势力/出身地/种族筛选",
+            "filter": [
+                {
+                    "title": "势力",
+                    "cbt": [
+                        "罗德岛",
+                        "炎",
+                        "炎-龙门",
+                        "阿戈尔",
+                        "哥伦比亚",
+                        "东",
+                        "伊比利亚",
+                        "卡西米尔",
+                        "谢拉格",
+                        "拉特兰",
+                        "莱塔尼亚",
+                        "米诺斯",
+                        "雷姆必拓",
+                        "萨米",
+                        "萨尔贡",
+                        "叙拉古",
+                        "乌萨斯",
+                        "维多利亚",
+                        "玻利瓦尔",
+                        "罗德岛-精英干员",
+                        "S.W.E.E.P.",
+                        "巴别塔",
+                        "深海猎人",
+                        "黑钢国际",
+                        "格拉斯哥帮",
+                        "喀兰贸易",
+                        "龙门近卫局",
+                        "企鹅物流",
+                        "莱茵生命",
+                        "汐斯塔",
+                        "炎-岁",
+                        "行动组A4",
+                        "行动预备组A1",
+                        "行动预备组A4",
+                        "行动预备组A6",
+                        "贾维团伙",
+                        "使徒",
+                        "红松骑士团",
+                        "鲤氏侦探事务所",
+                        "彩虹小队",
+                        "乌萨斯学生自治团"
+                    ],
+                    "both": false,
+                    "field": "force"
+                },
+                {
+                    "title": "出身地",
+                    "cbt": [
+                        "龙门",
+                        "雷姆必拓",
+                        "阿戈尔",
+                        "谢拉格",
+                        "萨米",
+                        "萨尔贡",
+                        "莱塔尼亚",
+                        "罗德岛",
+                        "维多利亚",
+                        "米诺斯",
+                        "瓦伊凡",
+                        "玻利瓦尔",
+                        "炎",
+                        {
+                            "label": "汐斯塔",
+                            "value": [
+                                "汐斯塔",
+                                "汐斯塔（独立城邦）"
+                            ]
+                        },
+                        "拉特兰",
+                        "哥伦比亚",
+                        "叙拉古",
+                        "卡西米尔",
+                        "卡兹戴尔",
+                        {
+                            "label": "伊比利亚",
+                            "value": [
+                                "阿戈尔地区",
+                                "伊比利亚"
+                            ]
+                        },
+                        "乌萨斯",
+                        {
+                            "label": "东",
+                            "value": [
+                                "东",
+                                "东国"
+                            ]
+                        },
+                        "杜林",
+                        {
+                            "label": "未公开/不公开",
+                            "value": [
+                                "未公开",
+                                "因经纪公司要求不公开"
+                            ]
+                        },
+                        {
+                            "label": "未知",
+                            "value": [
+                                "不明",
+                                "未知"
+                            ]
+                        },
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "birthPlace"
+                },
+                {
+                    "title": "种族",
+                    "cbt": [
+                        "龙",
+                        "黎博利",
+                        "麒麟",
+                        "鲁珀",
+                        "鬼",
+                        "阿达克利斯",
+                        "阿纳萨",
+                        "阿纳缇",
+                        "阿斯兰",
+                        "阿戈尔",
+                        "萨科塔",
+                        "萨弗拉",
+                        "萨卡兹",
+                        "菲林",
+                        "皮洛萨",
+                        "瓦伊凡",
+                        "瑞柏巴",
+                        "沃尔珀",
+                        "杜林",
+                        "札拉克",
+                        "曼提柯",
+                        "斐迪亚",
+                        "德拉克",
+                        "库兰塔",
+                        "安努拉",
+                        "奇美拉",
+                        "塞拉托",
+                        "埃拉菲亚",
+                        "卡特斯",
+                        "卡普里尼",
+                        "匹特拉姆",
+                        "依特拉",
+                        "佩洛",
+                        "乌萨斯",
+                        "丰蹄",
+                        "精灵",
+                        {
+                            "label": "未公开/不公开",
+                            "value": [
+                                "未公开",
+                                "因经纪公司要求不公开"
+                            ]
+                        },
+                        {
+                            "label": "未知",
+                            "value": [
+                                "未知",
+                                "不明",
+                                "未知（疑似黎博利）"
+                            ]
+                        },
+                        "其他"
+                    ],
+                    "both": false,
+                    "field": "race"
+                }
+            ]
+        }
+    ]
+}</div>
+                        <p>
+                        <div id="root"></div>
+                        <script type="module" crossorigin src="https://static.prts.wiki/widgets/production/polyfills.D0sls5r_.js"></script>
+                        <script type="module" crossorigin src="https://static.prts.wiki/widgets/production/CharList.CwWUUe7Y.js"></script>
+                        <link rel="modulepreload" crossorigin href="https://static.prts.wiki/widgets/production/modulepreload-polyfill.Dqv5PPZA.js">
+                        <link rel="modulepreload" crossorigin href="https://static.prts.wiki/widgets/production/vendor.CIZ283B5.js">
+                        <link rel="modulepreload" crossorigin href="https://static.prts.wiki/widgets/production/naive-ui.DEMMw6PC.js">
+                        <link rel="modulepreload" crossorigin href="https://static.prts.wiki/widgets/production/common.DVESeVyA.js">
+                        <link rel="stylesheet" crossorigin href="https://static.prts.wiki/widgets/production/style.Bx40GL3X.css">
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20250308013716
+Cache expiry: 86400
+Reduced expiry: false
+Complications: []
+[SMW] In‐text annotation parser time: 0.003 seconds
+CPU time usage: 1.115 seconds
+Real time usage: 1.240 seconds
+Preprocessor visited node count: 43653/1000000
+Post‐expand include size: 988589/4194304 bytes
+Template argument size: 140815/4194304 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+ExtLoops count: 0/800
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  955.732      1 -total
+ 99.00%  946.205      1 模板:干员筛选
+ 34.52%  329.943    365 模板:干员筛选数据/4
+  1.02%    9.730      2 模板:参阅
+  0.81%    7.763      2 模板:Cbox2
+  0.67%    6.408      2 模板:Cbox2/core
+  0.23%    2.176      4 模板:Mdi
+  0.10%    0.983      1 模板:Ads/normal
+  0.10%    0.973      1 模板:Ads/mobile
+-->
+<!-- Saved in parser cache with key ak-ak:pcache:idhash:1831-0!canonical and timestamp 20250308013715 and revision id 335492.
+ -->
+</div>
+<div id="MenuSidebar" style="display:none">
+    <ul>
+        <li>
+            <a href="/w/%E9%A6%96%E9%A1%B5" title="首页">首页</a>
+        </li>
+        <li>
+            <a class='copyUrl' data-clipboard-text="https://prts.wiki/id/1831">复制短链接</a>
+        </li>
+        <li>
+            <a href="/w/PRTS:%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E6%88%91%E4%BB%AC%E5%AE%8C%E5%96%84%E7%BD%91%E7%AB%99#资助我们改善访问质量" title="PRTS:如何帮助我们完善网站">支持我们</a>
+        </li>
+        <li>
+            <a href="/w/PRTS:%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E6%88%91%E4%BB%AC%E5%AE%8C%E5%96%84%E7%BD%91%E7%AB%99#赞助者公示" title="PRTS:如何帮助我们完善网站">赞助者一览</a>
+        </li>
+        <li>
+            <a href="/w/PRTS:%E5%8F%8D%E9%A6%88%E4%B8%8E%E5%BB%BA%E8%AE%AE" title="PRTS:反馈与建议">反馈与建议</a>
+        </li>
+    </ul>
+    <p>热门页面
+</p>
+    <ul>
+        <li class="mw-empty-elt"></li>
+        <li>
+            <b>当前活动</b>
+            <ul>
+                <li>
+                    <a href="/w/%E6%8C%BD%E6%AD%8C%E7%87%83%E7%83%A7%E6%AE%86%E5%B0%BD" title="挽歌燃烧殆尽">SideStory「挽歌燃烧殆尽」</a>
+                </li>
+                <li>
+                    <a href="/w/%E8%90%A8%E5%8D%A1%E5%85%B9%E7%9A%84%E6%97%A0%E7%BB%88%E5%A5%87%E8%AF%AD" title="萨卡兹的无终奇语">集成战略 #5「萨卡兹的无终奇语」</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>
+                新增干员
+                <span style="padding-left:10px;">
+                    <span style="font-size:10px;color: #ffffff;background-color:red;padding-right: 4px;padding-left: 4px;border-radius: 3px;text-shadow: 0 0 2px rgb(0 0 0 / 40%);font-weight:bold">NEW</span>
+                </span>
+            </b>
+            <ul>
+                <li>
+                    <a href="/w/%E6%AD%BB%E8%8A%92" title="死芒">死芒</a>
+                </li>
+                <li>
+                    <a href="/w/%E9%92%BC%E9%93%85" title="钼铅">钼铅</a>
+                </li>
+                <li>
+                    <a href="/w/%E6%B0%B4%E7%81%AF%E5%BF%83" title="水灯心">水灯心</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="mw-selflink selflink">干员一览</a>
+        </li>
+    </ul>
+    <p>菜单
+</p>
+    <ul>
+        <li>
+            <b>通用</b>
+            <ul>
+                <li>
+                    <a class="mw-selflink selflink">干员一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E6%95%8C%E4%BA%BA%E4%B8%80%E8%A7%88" title="敌人一览">敌人一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E9%81%93%E5%85%B7%E4%B8%80%E8%A7%88" title="道具一览">道具一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%90%8E%E5%8B%A4%E6%8A%80%E8%83%BD%E4%B8%80%E8%A7%88" title="后勤技能一览">后勤技能</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%85%B3%E5%8D%A1%E4%B8%80%E8%A7%88" title="关卡一览">关卡一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%89%A7%E6%83%85%E4%B8%80%E8%A7%88" title="剧情一览">剧情记录</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%AE%B6%E5%85%B7%E4%B8%80%E8%A7%88" title="家具一览">家具一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E6%97%B6%E8%A3%85%E5%9B%9E%E5%BB%8A" title="时装回廊">时装回廊</a>
+                </li>
+                <li>
+                    <a href="/w/%E9%87%87%E8%B4%AD%E4%B8%AD%E5%BF%83" title="采购中心">采购中心</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%8D%A1%E6%B1%A0%E4%B8%80%E8%A7%88" title="卡池一览">卡池一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88" title="活动一览">活动一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%85%AC%E6%8B%9B%E8%AE%A1%E7%AE%97" title="公招计算">公招计算</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>档案</b>
+            <ul>
+                <li>
+                    <a href="/w/%E7%94%BB%E5%B8%88%E4%B8%80%E8%A7%88" title="画师一览">画师一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E9%85%8D%E9%9F%B3%E4%B8%80%E8%A7%88" title="配音一览">配音一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%88%86%E6%94%AF%E4%B8%80%E8%A7%88" title="分支一览">分支一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%B9%B2%E5%91%98%E5%AF%86%E5%BD%95%E4%B8%80%E8%A7%88" title="干员密录一览">干员密录</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%B9%B2%E5%91%98%E6%A8%A1%E7%BB%84%E4%B8%80%E8%A7%88" title="干员模组一览">干员模组</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%B9%B2%E5%91%98%E7%BC%96%E5%8F%B7%E4%B8%80%E8%A7%88" title="干员编号一览">干员编号</a>
+                </li>
+                <li>
+                    <a href="/w/%E8%A7%92%E8%89%B2%E7%9C%9F%E5%90%8D" title="角色真名">角色真名</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%B9%B2%E5%91%98%E9%A2%84%E5%91%8A" title="干员预告">干员预告</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%B9%B2%E5%91%98%E4%B8%93%E7%B2%BE" title="干员专精">干员专精</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%B9%B2%E5%91%98%E5%89%A7%E6%83%85%E4%B8%80%E8%A7%88" title="干员剧情一览">干员剧情一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E6%A1%A3%E6%A1%88%E4%BF%A1%E6%81%AF%E4%B8%80%E8%A7%88" title="档案信息一览">档案信息一览</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>玩法</b>
+            <ul>
+                <li>
+                    <a href="/w/%E5%8D%B1%E6%9C%BA%E5%90%88%E7%BA%A6" title="危机合约">危机合约</a>
+                </li>
+                <li>
+                    <a href="/w/%E9%9B%86%E6%88%90%E6%88%98%E7%95%A5" title="集成战略">集成战略</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%A4%9A%E7%BB%B4%E5%90%88%E4%BD%9C" title="多维合作">多维合作</a>
+                </li>
+                <li>
+                    <a href="/w/%E8%8D%B7%E8%B0%9F%E4%BC%8A%E6%99%BA%E5%A2%83" title="荷谟伊智境">联锁竞赛</a>
+                </li>
+                <li>
+                    <a href="/w/%E4%BF%9D%E5%85%A8%E6%B4%BE%E9%A9%BB" title="保全派驻">保全派驻</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%BC%95%E8%88%AA%E8%80%85%E8%AF%95%E7%82%BC" title="引航者试炼">引航者试炼</a>
+                </li>
+                <li>
+                    <a href="/w/%E7%94%9F%E6%81%AF%E6%BC%94%E7%AE%97" title="生息演算">生息演算</a>
+                </li>
+                <li>
+                    <a href="/w/%E7%BA%B7%E4%BA%89%E6%BC%94%E7%BB%8E" title="纷争演绎">纷争演绎</a>
+                </li>
+                <li>
+                    <a href="/w/%E7%BD%97%E5%BE%B7%E5%B2%9B%E4%BF%83%E8%9E%8D%E5%85%B1%E7%AB%9E" title="罗德岛促融共竞">罗德岛促融共竞</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%8D%AB%E6%88%8D%E5%8D%8F%E8%AE%AE" title="卫戍协议">卫戍协议</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>系统</b>
+            <ul>
+                <li>
+                    <a href="/w/%E7%BD%97%E5%BE%B7%E5%B2%9B%E5%9F%BA%E5%BB%BA" title="罗德岛基建">基建</a>
+                </li>
+                <li>
+                    <a href="/w/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8" title="任务列表">任务列表</a>
+                </li>
+                <li>
+                    <a href="/w/%E9%82%AE%E4%BB%B6%E8%AE%B0%E5%BD%95" title="邮件记录">邮件记录</a>
+                </li>
+                <li>
+                    <a href="/w/%E9%A6%96%E9%A1%B5%E5%9C%BA%E6%99%AF%E4%B8%80%E8%A7%88" title="首页场景一览">首页场景</a>
+                </li>
+                <li>
+                    <a href="/w/%E7%95%8C%E9%9D%A2%E4%B8%BB%E9%A2%98%E4%B8%80%E8%A7%88" title="界面主题一览">界面主题</a>
+                </li>
+                <li>
+                    <a href="/w/%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%89%87%E5%A4%B4%E5%83%8F%E4%B8%80%E8%A7%88" title="个人名片头像一览">名片头像</a>
+                </li>
+                <li>
+                    <a href="/w/%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%89%87%E4%B8%BB%E9%A2%98%E4%B8%80%E8%A7%88" title="个人名片主题一览">名片主题</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%85%89%E8%8D%A3%E4%B9%8B%E8%B7%AF" title="光荣之路">光荣之路</a>
+                </li>
+                <li>
+                    <a href="/w/%E6%83%85%E6%8A%A5%E5%A4%84%E7%90%86%E5%AE%A4" title="情报处理室">情报处理室</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>扩展</b>
+            <ul>
+                <li>
+                    <a href="/w/%E6%B8%B8%E6%88%8F%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80" title="游戏数据基础">基础数据</a>
+                </li>
+                <li>
+                    <a href="/w/%E4%BD%9C%E6%88%98%E6%9C%BA%E5%88%B6" title="作战机制">作战机制</a>
+                </li>
+                <li>
+                    <a href="/w/%E6%96%B0%E4%BA%BA%E5%85%A5%E9%97%A8" title="新人入门">新人入门</a>
+                </li>
+                <li>
+                    <a href="/w/%E8%B4%B4%E5%A3%AB%E4%B8%80%E8%A7%88" title="贴士一览">贴士一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E8%AF%8D%E6%B1%87%E4%B8%80%E8%A7%88" class="mw-redirect" title="词汇一览">词汇一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%88%B6%E4%BD%9C%E7%BB%84%E9%80%9A%E8%AE%AF" title="制作组通讯">制作组通讯</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%89%A7%E6%83%85%E8%A7%92%E8%89%B2%E4%B8%80%E8%A7%88" title="剧情角色一览">剧情角色一览</a>
+                </li>
+                <li>
+                    <a href="/w/%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9%E5%89%8D%E7%9E%BB" title="游戏内容前瞻">游戏内容前瞻</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%89%A7%E6%83%85%E8%B5%84%E6%BA%90%E6%A6%82%E8%A7%88" title="剧情资源概览">剧情资源概览</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%88%86%E7%B1%BB:%E6%B1%87%E6%80%BB" title="分类:汇总">各类信息汇总</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>趣味</b>
+            <ul>
+                <li>
+                    <a href="/w/%E6%B3%B0%E6%8B%89%E5%A4%A7%E5%85%B8:Index" title="泰拉大典:Index">泰拉大典</a>
+                </li>
+                <li>
+                    <a href="/w/%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F" title="音乐鉴赏">音乐鉴赏</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%88%86%E7%B1%BB:%E5%AF%BB%E8%AE%BF%E6%A8%A1%E6%8B%9F" title="分类:寻访模拟">寻访模拟</a>
+                </li>
+                <li>
+                    <a href="/w/%E8%A1%8D%E7%94%9F%E4%BD%9C%E5%93%81" title="衍生作品">衍生作品</a>
+                </li>
+                <li>
+                    <a href="/w/%E5%85%89%E8%8D%A3%E4%B9%8B%E8%B7%AF%E6%A8%A1%E6%8B%9F%E5%99%A8" title="光荣之路模拟器">光荣之路模拟器</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/w/%E7%89%B9%E6%AE%8A:%E9%9A%8F%E6%9C%BA" title="特殊:随机">随机页面</a>
+        </li>
+    </ul>
+    <p>探索
+</p>
+    <ul class="mooncell-link">
+        <li>
+            <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://fgo.wiki">Mooncell主站</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <b>官方网站</b>
+            <ul>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://ak.hypergryph.com">明日方舟简中服官网</a>
+                </li>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://monster-siren.hypergryph.com/">塞壬唱片</a>
+                </li>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://terra-historicus.hypergryph.com/">泰拉记事社</a>
+                </li>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.arknights.jp">明日方舟日服官网</a>
+                </li>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.arknights.global">明日方舟美服官网</a>
+                </li>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://ak.txwy.tw/">明日方舟台服官网</a>
+                </li>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://www.arknights.kr">明日方舟韩服官网</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>友情链接</b>
+            <ul>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="http://riesa.cn">拖把日记</a>
+                </li>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="http://www.gfwiki.org">少前百科GFwiki</a>
+                </li>
+                <li>
+                    <a target="_blank" rel="nofollow noreferrer noopener" class="external text" href="https://penguin-stats.cn">企鹅物流数据统计</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p>管理与编辑
+</p>
+    <ul>
+        <li>
+            <a href="/w/%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E6%9B%B4%E6%94%B9" title="特殊:最近更改">最近更改</a>
+        </li>
+        <li>
+            <a href="/w/PRTS:%E7%BC%96%E8%BE%91%E6%8C%87%E5%8D%97" class="mw-redirect" title="PRTS:编辑指南">编辑指南</a>
+        </li>
+        <li>
+            <a href="/w/PRTS:%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81" title="PRTS:常用代码">常用代码</a>
+        </li>
+        <li>
+            <a href="/w/%E5%88%86%E7%B1%BB:PRTS%E6%A8%A1%E6%9D%BF" title="分类:PRTS模板">模板一览</a>
+        </li>
+        <li>
+            <a href="/w/%E7%89%B9%E6%AE%8A:%E8%B4%A1%E7%8C%AE%E5%BE%97%E5%88%86" title="特殊:贡献得分">贡献分数</a>
+        </li>
+        <li>
+            <a href="/w/PRTS:%E6%94%B6%E6%94%AF%E4%B8%80%E8%A7%88" title="PRTS:收支一览">收支一览</a>
+        </li>
+        <li>
+            <a href="/w/PRTS:%E7%89%B9%E6%AE%8A%E8%B4%A1%E7%8C%AE" title="PRTS:特殊贡献">特殊贡献</a>
+        </li>
+    </ul>
+    <p>Languages
+</p>
+    <ul>
+        <li>
+            <script src="https://s2.pstatp.com/cdn/expire-1-M/js-cookie/2.2.0/js.cookie.min.js" type="application/javascript"></script>
+            <script>
+                function changeUserLang(langCode) {
+                    var params = {
+                        action: 'options',
+                        change: 'language=' + langCode,
+                        format: 'json'
+                    };
+                    api = new mw.Api();
+                    api.postWithToken('csrf', params).done(function(data) {
+                        window.location.reload();
+                    });
+                }
+
+                function changeAnonLang(langCode) {
+                    Cookies.set('ak_aklanguage', langCode);
+                    window.location.reload();
+                }
+
+                function changeLang(langCode) {
+                    var username = mw.config.get("wgUserName");
+                    if (!!username) {
+                        changeUserLang(langCode);
+                    } else {
+                        changeAnonLang(langCode);
+                    }
+                }
+            </script>
+            <a id="switcher-ja" onclick="changeLang('ja')">日本語</a>
+        </li>
+        <li>
+            <a id="switcher-en" onclick="changeLang('en')">English</a>
+        </li>
+        <li>
+            <a id="switcher-zh-cn" onclick="changeLang('zh-cn')">中文</a>
+        </li>
+    </ul>
+    <p id="vmsTB">工具</p>
+    <ul id="MSToolbox"></ul>
+    <div></div>
+</div>
+<script>
+    window.addEventListener("DOMContentLoaded", (function() {
+        document.querySelector("#MSToolbox").innerHTML = document.querySelector("#p-tb ul").innerHTML,
+        document.querySelectorAll("#mw-panel > *:not(#p-logo)").forEach((function(e) {
+            return e.remove()
+        }
+        ));
+        for (var e = document.querySelectorAll("#MenuSidebar li>ul"), n = 0; n < e.length; n++)
+            e[n].parentElement.classList.add("child");
+        e = document.querySelectorAll("#MenuSidebar > ul#MSToolbox > li");
+        for (var o = 0; o < e.length; o++)
+            "" === e[o].innerHTML && e[o].parentNode.removeChild(e[o]);
+        var r = document.querySelector("#MenuSidebar");
+        r.setAttribute("style", ""),
+        document.querySelector("#mw-panel").appendChild(r)
+    }
+    ));
+</script>
+<div class="printfooter" data-nosnippet="">
+    取自“<a dir="ltr" href="https://prts.wiki/index.php?title=干员一览&amp;oldid=335492">https://prts.wiki/index.php?title=干员一览 &amp;oldid=335492</a>
+    ”
+</div>
+</div><div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+</div></div>
+<div id="mw-navigation">
+    <h2>导航菜单</h2>
+    <div id="mw-head">
+        <nav id="p-personal" class="vector-menu mw-portlet mw-portlet-personal vector-user-menu-legacy" aria-labelledby="p-personal-label" role="navigation">
+            <h3 id="p-personal-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">个人工具</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list">
+                    <li id="pt-uls" class="mw-list-item active">
+                        <a class="uls-trigger" href="#">
+                            <span>中文（中国大陆）</span>
+                        </a>
+                    </li>
+                    <li id="pt-createaccount" class="mw-list-item">
+                        <a href="/index.php?title=%E7%89%B9%E6%AE%8A:%E5%88%9B%E5%BB%BA%E8%B4%A6%E6%88%B7&amp;returnto=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" title="我们推荐您创建账号并登录，但这不是强制性的">
+                            <span>创建账号</span>
+                        </a>
+                    </li>
+                    <li id="pt-login" class="mw-list-item">
+                        <a href="/index.php?title=%E7%89%B9%E6%AE%8A:%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95&amp;returnto=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" title="我们推荐您登录，但这不是强制性的[o]" accesskey="o">
+                            <span>登录</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="left-navigation">
+            <nav id="p-namespaces" class="vector-menu mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-namespaces-label" role="navigation">
+                <h3 id="p-namespaces-label" class="vector-menu-heading ">
+                    <span class="vector-menu-heading-label">命名空间</span>
+                </h3>
+                <div class="vector-menu-content">
+                    <ul class="vector-menu-content-list">
+                        <li id="ca-nstab-main" class="selected mw-list-item">
+                            <a href="/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" title="查看内容页面[c]" accesskey="c">
+                                <span>页面</span>
+                            </a>
+                        </li>
+                        <li id="ca-talk" class="mw-list-item">
+                            <a href="/w/%E8%AE%A8%E8%AE%BA:%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" rel="discussion" title="关于内容页面的讨论[t]" accesskey="t">
+                                <span>讨论</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav id="p-variants" class="vector-menu mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown" aria-labelledby="p-variants-label" role="navigation">
+                <input type="checkbox" id="p-variants-checkbox" role="button" aria-haspopup="true" data-event-name="ui.dropdown-p-variants" class="vector-menu-checkbox" aria-labelledby="p-variants-label"/>
+                <label id="p-variants-label" aria-label="更改语言变体" class="vector-menu-heading ">
+                    <span class="vector-menu-heading-label">大陆简体</span>
+                </label>
+                <div class="vector-menu-content">
+                    <ul class="vector-menu-content-list"></ul>
+                </div>
+            </nav>
+        </div>
+        <div id="right-navigation">
+            <nav id="p-views" class="vector-menu mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy" aria-labelledby="p-views-label" role="navigation">
+                <h3 id="p-views-label" class="vector-menu-heading ">
+                    <span class="vector-menu-heading-label">查看</span>
+                </h3>
+                <div class="vector-menu-content">
+                    <ul class="vector-menu-content-list">
+                        <li id="ca-view" class="selected mw-list-item">
+                            <a href="/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88">
+                                <span>阅读</span>
+                            </a>
+                        </li>
+                        <li id="ca-viewsource" class="mw-list-item">
+                            <a href="/index.php?title=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88&amp;action=edit" title="本页面受到保护。&#10;您可以查看其源代码[e]" accesskey="e">
+                                <span>查看源代码</span>
+                            </a>
+                        </li>
+                        <li id="ca-history" class="mw-list-item">
+                            <a href="/index.php?title=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88&amp;action=history" title="本页面过去的版本[h]" accesskey="h">
+                                <span>查看历史</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav id="p-cactions" class="vector-menu mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown" aria-labelledby="p-cactions-label" role="navigation" title="更多选项">
+                <input type="checkbox" id="p-cactions-checkbox" role="button" aria-haspopup="true" data-event-name="ui.dropdown-p-cactions" class="vector-menu-checkbox" aria-labelledby="p-cactions-label"/>
+                <label id="p-cactions-label" class="vector-menu-heading ">
+                    <span class="vector-menu-heading-label">更多</span>
+                </label>
+                <div class="vector-menu-content">
+                    <ul class="vector-menu-content-list"></ul>
+                </div>
+            </nav>
+            <div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+                <div>
+                    <h3>
+                        <label for="searchInput">搜索</label>
+                    </h3>
+                    <form action="/index.php" id="searchform" class="vector-search-box-form">
+                        <div id="simpleSearch" class="vector-search-box-inner" data-search-loc="header-navigation">
+                            <input class="vector-search-box-input" type="search" name="search" placeholder="在PRTS搜索" aria-label="在PRTS搜索" autocapitalize="sentences" title="在PRTS搜索[f]" accesskey="f" id="searchInput">
+                            <input type="hidden" name="title" value="特殊:搜索">
+                            <input id="mw-searchButton" class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="搜索含这些文字的页面" value="搜索">
+                            <input id="searchButton" class="searchButton" type="submit" name="go" title="若相同标题存在，则直接前往该页面" value="前往">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mw-panel">
+        <div id="p-logo" role="banner">
+            <a class="mw-wiki-logo" href="/w/%E9%A6%96%E9%A1%B5" title="访问首页"></a>
+        </div>
+        <nav id="p-{{#ifeq:{{FULLPAGENAME}}|首页|{{#tsl:zh|{{#Widget:CopyURL|title=复制短链接|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:ja|{{#Widget:CopyURL|title=短縮URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:nozhja|{{#Widget:CopyURL|title=Short_URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}|{{#ifeq:{{NAMESPACENUMBER}}|-1|{{#tsl:zh|[[首页]]}}{{#tsl:ja|[[首页|メインページ]]}}{{#tsl:nozhja|[[首页|Main_page]]}}|{{#tsl:zh|[[首页]]}}{{#tsl:ja|[[首页|メインページ]]}}{{#tsl:nozhja|[[首页|Main_page]]}}" class="vector-menu mw-portlet mw-portlet-_ifeq_FULLPAGENAME_首页_tsl_zh_Widget_CopyURL_title_复制短链接_id_sidebar_url_https_prts_wiki_id_PAGEID_tsl_ja_Widget_CopyURL_title_短縮URL_id_sidebar_url_https_prts_wiki_id_PAGEID_tsl_nozhja_Widget_CopyURL_title_Short_URL_id_sidebar_url_https_prts_wiki_id_PAGEID_ifeq_NAMESPACENUMBER_-1_tsl_zh_首页_tsl_ja_首页_メインページ_tsl_nozhja_首页_Main_page_tsl_zh_首页_tsl_ja_首页_メインページ_tsl_nozhja_首页_Main_page emptyPortlet vector-menu-portal portal" aria-labelledby="p-{{#ifeq:{{FULLPAGENAME}}|首页|{{#tsl:zh|{{#Widget:CopyURL|title=复制短链接|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:ja|{{#Widget:CopyURL|title=短縮URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:nozhja|{{#Widget:CopyURL|title=Short_URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}|{{#ifeq:{{NAMESPACENUMBER}}|-1|{{#tsl:zh|[[首页]]}}{{#tsl:ja|[[首页|メインページ]]}}{{#tsl:nozhja|[[首页|Main_page]]}}|{{#tsl:zh|[[首页]]}}{{#tsl:ja|[[首页|メインページ]]}}{{#tsl:nozhja|[[首页|Main_page]]}}-label" role="navigation">
+            <h3 id="p-{{#ifeq:{{FULLPAGENAME}}|首页|{{#tsl:zh|{{#Widget:CopyURL|title=复制短链接|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:ja|{{#Widget:CopyURL|title=短縮URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:nozhja|{{#Widget:CopyURL|title=Short_URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}|{{#ifeq:{{NAMESPACENUMBER}}|-1|{{#tsl:zh|[[首页]]}}{{#tsl:ja|[[首页|メインページ]]}}{{#tsl:nozhja|[[首页|Main_page]]}}|{{#tsl:zh|[[首页]]}}{{#tsl:ja|[[首页|メインページ]]}}{{#tsl:nozhja|[[首页|Main_page]]}}-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">{{#ifeq:{{FULLPAGENAME}}|首页|{{#tsl:zh|{{#Widget:CopyURL|title=复制短链接|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:ja|{{#Widget:CopyURL|title=短縮URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:nozhja|{{#Widget:CopyURL|title=Short URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}|{{#ifeq:{{NAMESPACENUMBER}}|-1|{{#tsl:zh|[[首页]]}}{{#tsl:ja|[[首页|メインページ]]}}{{#tsl:nozhja|[[首页|Main page]]}}|{{#tsl:zh|[[首页]]}}{{#tsl:ja|[[首页|メインページ]]}}{{#tsl:nozhja|[[首页|Main page]]}}</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-{{#tsl:zh|{{#Widget:CopyURL|title=复制短链接|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:ja|{{#Widget:CopyURL|title=短縮URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:nozhja|{{#Widget:CopyURL|title=Short_URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}}}}}" class="vector-menu mw-portlet mw-portlet-_tsl_zh_Widget_CopyURL_title_复制短链接_id_sidebar_url_https_prts_wiki_id_PAGEID_tsl_ja_Widget_CopyURL_title_短縮URL_id_sidebar_url_https_prts_wiki_id_PAGEID_tsl_nozhja_Widget_CopyURL_title_Short_URL_id_sidebar_url_https_prts_wiki_id_PAGEID emptyPortlet vector-menu-portal portal" aria-labelledby="p-{{#tsl:zh|{{#Widget:CopyURL|title=复制短链接|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:ja|{{#Widget:CopyURL|title=短縮URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:nozhja|{{#Widget:CopyURL|title=Short_URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}}}}}-label" role="navigation">
+            <h3 id="p-{{#tsl:zh|{{#Widget:CopyURL|title=复制短链接|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:ja|{{#Widget:CopyURL|title=短縮URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:nozhja|{{#Widget:CopyURL|title=Short_URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}}}}}-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">{{#tsl:zh|{{#Widget:CopyURL|title=复制短链接|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:ja|{{#Widget:CopyURL|title=短縮URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}{{#tsl:nozhja|{{#Widget:CopyURL|title=Short URL|id=sidebar|url=https://prts.wiki/id/{{PAGEID}}}}}}}}}}</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-{{#tsl:zh|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|支持我们]]}}{{#tsl:ja|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|Support_us]]}}{{#tsl:nozhja|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|Support_us]]}}" class="vector-menu mw-portlet mw-portlet-_tsl_zh_PRTS_如何帮助我们完善网站_资助我们改善访问质量_支持我们_tsl_ja_PRTS_如何帮助我们完善网站_资助我们改善访问质量_Support_us_tsl_nozhja_PRTS_如何帮助我们完善网站_资助我们改善访问质量_Support_us emptyPortlet vector-menu-portal portal" aria-labelledby="p-{{#tsl:zh|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|支持我们]]}}{{#tsl:ja|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|Support_us]]}}{{#tsl:nozhja|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|Support_us]]}}-label" role="navigation">
+            <h3 id="p-{{#tsl:zh|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|支持我们]]}}{{#tsl:ja|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|Support_us]]}}{{#tsl:nozhja|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|Support_us]]}}-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">{{#tsl:zh|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|支持我们]]}}{{#tsl:ja|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|Support us]]}}{{#tsl:nozhja|[[PRTS:如何帮助我们完善网站#资助我们改善访问质量|Support us]]}}</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-{{#tsl:zh|[[PRTS:反馈与建议|反馈与建议]]}}{{#tsl:ja|[[PRTS:反馈与建议|報告·質問掲示板]]}}{{#tsl:nozhja|[[PRTS:反馈与建议|Help_and_advice]]}}" class="vector-menu mw-portlet mw-portlet-_tsl_zh_PRTS_反馈与建议_反馈与建议_tsl_ja_PRTS_反馈与建议_報告·質問掲示板_tsl_nozhja_PRTS_反馈与建议_Help_and_advice emptyPortlet vector-menu-portal portal" aria-labelledby="p-{{#tsl:zh|[[PRTS:反馈与建议|反馈与建议]]}}{{#tsl:ja|[[PRTS:反馈与建议|報告·質問掲示板]]}}{{#tsl:nozhja|[[PRTS:反馈与建议|Help_and_advice]]}}-label" role="navigation">
+            <h3 id="p-{{#tsl:zh|[[PRTS:反馈与建议|反馈与建议]]}}{{#tsl:ja|[[PRTS:反馈与建议|報告·質問掲示板]]}}{{#tsl:nozhja|[[PRTS:反馈与建议|Help_and_advice]]}}-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">{{#tsl:zh|[[PRTS:反馈与建议|反馈与建议]]}}{{#tsl:ja|[[PRTS:反馈与建议|報告·質問掲示板]]}}{{#tsl:nozhja|[[PRTS:反馈与建议|Help and advice]]}}</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-{{MenuSidebarAutoEvents}}" class="vector-menu mw-portlet mw-portlet-_MenuSidebarAutoEvents emptyPortlet vector-menu-portal portal" aria-labelledby="p-{{MenuSidebarAutoEvents}}-label" role="navigation">
+            <h3 id="p-{{MenuSidebarAutoEvents}}-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">{{MenuSidebarAutoEvents}}</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|新增干员}}{{#tsl:ja|新オペレーター}}{{#tsl:nozhja|New_Operators}}&lt;span_style=&quot;padding-left:10px;&quot;&gt;&lt;span_style=&quot;font-size:10px;color:_#ffffff;background-color:red;padding-right:_4px;padding-left:_4px;border-radius:_3px;text-shadow:_0_0_2px_rgb(0_0_0_/_40%);font-weight:bold&quot;&gt;NEW&lt;/span&gt;&lt;/span&gt;&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_新增干员_tsl_ja_新オペレーター_tsl_nozhja_New_Operators_span_style_padding-left_10px_span_style_font-size_10px_color_ffffff_background-color_red_padding-right_4px_padding-left_4px_border-radius_3px_text-shadow_0_0_2px_rgb_0_0_0_40_font-weight_bold_NEW_span_span emptyPortlet vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|新增干员}}{{#tsl:ja|新オペレーター}}{{#tsl:nozhja|New_Operators}}&lt;span_style=&quot;padding-left:10px;&quot;&gt;&lt;span_style=&quot;font-size:10px;color:_#ffffff;background-color:red;padding-right:_4px;padding-left:_4px;border-radius:_3px;text-shadow:_0_0_2px_rgb(0_0_0_/_40%);font-weight:bold&quot;&gt;NEW&lt;/span&gt;&lt;/span&gt;&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|新增干员}}{{#tsl:ja|新オペレーター}}{{#tsl:nozhja|New_Operators}}&lt;span_style=&quot;padding-left:10px;&quot;&gt;&lt;span_style=&quot;font-size:10px;color:_#ffffff;background-color:red;padding-right:_4px;padding-left:_4px;border-radius:_3px;text-shadow:_0_0_2px_rgb(0_0_0_/_40%);font-weight:bold&quot;&gt;NEW&lt;/span&gt;&lt;/span&gt;&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|新增干员}}{{#tsl:ja|新オペレーター}}{{#tsl:nozhja|New Operators}}&lt;span style=&quot;padding-left:10px;&quot;&gt;&lt;span style=&quot;font-size:10px;color: #ffffff;background-color:red;padding-right: 4px;padding-left: 4px;border-radius: 3px;text-shadow: 0 0 2px rgb(0 0 0 / 40%);font-weight:bold &quot;&gt;NEW &lt;/span &gt;&lt;/span &gt;&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-[[干员一览|{{#tsl:zh|干员一览}}{{#tsl:ja|オペレーター一覧}}{{#tsl:nozhja|Operators}}]]" class="vector-menu mw-portlet mw-portlet-_干员一览_tsl_zh_干员一览_tsl_ja_オペレーター一覧_tsl_nozhja_Operators emptyPortlet vector-menu-portal portal" aria-labelledby="p-[[干员一览|{{#tsl:zh|干员一览}}{{#tsl:ja|オペレーター一覧}}{{#tsl:nozhja|Operators}}]]-label" role="navigation">
+            <h3 id="p-[[干员一览|{{#tsl:zh|干员一览}}{{#tsl:ja|オペレーター一覧}}{{#tsl:nozhja|Operators}}]]-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">[[干员一览|{{#tsl:zh|干员一览}}{{#tsl:ja|オペレーター一覧}}{{#tsl:nozhja|Operators}}]]</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|通用}}{{#tsl:ja|基礎}}{{#tsl:nozhja|General}}&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_通用_tsl_ja_基礎_tsl_nozhja_General vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|通用}}{{#tsl:ja|基礎}}{{#tsl:nozhja|General}}&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|通用}}{{#tsl:ja|基礎}}{{#tsl:nozhja|General}}&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|通用}}{{#tsl:ja|基礎}}{{#tsl:nozhja|General}}&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list">
+                    <li id="n-干员一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>干员一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-敌人一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>敌人一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-道具一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>道具一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-后勤技能]]" class="mw-list-item">
+                        <a href="">
+                            <span>后勤技能]]</span>
+                        </a>
+                    </li>
+                    <li id="n-关卡一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>关卡一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-剧情记录]]" class="mw-list-item">
+                        <a href="">
+                            <span>剧情记录]]</span>
+                        </a>
+                    </li>
+                    <li id="n-家具一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>家具一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-时装回廊]]" class="mw-list-item">
+                        <a href="">
+                            <span>时装回廊]]</span>
+                        </a>
+                    </li>
+                    <li id="n-采购中心]]" class="mw-list-item">
+                        <a href="">
+                            <span>采购中心]]</span>
+                        </a>
+                    </li>
+                    <li id="n-卡池一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>卡池一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-活动一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>活动一览]]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|档案}}{{#tsl:ja|資料}}{{#tsl:nozhja|Information}}&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_档案_tsl_ja_資料_tsl_nozhja_Information vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|档案}}{{#tsl:ja|資料}}{{#tsl:nozhja|Information}}&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|档案}}{{#tsl:ja|資料}}{{#tsl:nozhja|Information}}&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|档案}}{{#tsl:ja|資料}}{{#tsl:nozhja|Information}}&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list">
+                    <li id="n-画师一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>画师一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-配音一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>配音一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-分支一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>分支一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-干员密录]]" class="mw-list-item">
+                        <a href="">
+                            <span>干员密录]]</span>
+                        </a>
+                    </li>
+                    <li id="n-干员模组]]" class="mw-list-item">
+                        <a href="">
+                            <span>干员模组]]</span>
+                        </a>
+                    </li>
+                    <li id="n-干员编号]]" class="mw-list-item">
+                        <a href="">
+                            <span>干员编号]]</span>
+                        </a>
+                    </li>
+                    <li id="n-角色真名]]" class="mw-list-item">
+                        <a href="">
+                            <span>角色真名]]</span>
+                        </a>
+                    </li>
+                    <li id="n-干员预告]]" class="mw-list-item">
+                        <a href="">
+                            <span>干员预告]]</span>
+                        </a>
+                    </li>
+                    <li id="n-干员专精]]" class="mw-list-item">
+                        <a href="">
+                            <span>干员专精]]</span>
+                        </a>
+                    </li>
+                    <li id="n-干员剧情一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>干员剧情一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-档案信息一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>档案信息一览]]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|玩法}}{{#tsl:ja|ゲームモード}}{{#tsl:nozhja|Game_Mode}}&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_玩法_tsl_ja_ゲームモード_tsl_nozhja_Game_Mode vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|玩法}}{{#tsl:ja|ゲームモード}}{{#tsl:nozhja|Game_Mode}}&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|玩法}}{{#tsl:ja|ゲームモード}}{{#tsl:nozhja|Game_Mode}}&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|玩法}}{{#tsl:ja|ゲームモード}}{{#tsl:nozhja|Game Mode}}&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list">
+                    <li id="n-危机合约]]" class="mw-list-item">
+                        <a href="">
+                            <span>危机合约]]</span>
+                        </a>
+                    </li>
+                    <li id="n-集成战略]]" class="mw-list-item">
+                        <a href="">
+                            <span>集成战略]]</span>
+                        </a>
+                    </li>
+                    <li id="n-多维合作]]" class="mw-list-item">
+                        <a href="">
+                            <span>多维合作]]</span>
+                        </a>
+                    </li>
+                    <li id="n-联锁竞赛]]" class="mw-list-item">
+                        <a href="">
+                            <span>联锁竞赛]]</span>
+                        </a>
+                    </li>
+                    <li id="n-保全派驻]]" class="mw-list-item">
+                        <a href="">
+                            <span>保全派驻]]</span>
+                        </a>
+                    </li>
+                    <li id="n-引航者试炼]]" class="mw-list-item">
+                        <a href="">
+                            <span>引航者试炼]]</span>
+                        </a>
+                    </li>
+                    <li id="n-生息演算]]" class="mw-list-item">
+                        <a href="">
+                            <span>生息演算]]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|系统}}{{#tsl:ja|システム}}{{#tsl:nozhja|System}}&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_系统_tsl_ja_システム_tsl_nozhja_System vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|系统}}{{#tsl:ja|システム}}{{#tsl:nozhja|System}}&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|系统}}{{#tsl:ja|システム}}{{#tsl:nozhja|System}}&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|系统}}{{#tsl:ja|システム}}{{#tsl:nozhja|System}}&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list">
+                    <li id="n-基建]]" class="mw-list-item">
+                        <a href="">
+                            <span>基建]]</span>
+                        </a>
+                    </li>
+                    <li id="n-任务列表]]" class="mw-list-item">
+                        <a href="">
+                            <span>任务列表]]</span>
+                        </a>
+                    </li>
+                    <li id="n-邮件记录]]" class="mw-list-item">
+                        <a href="">
+                            <span>邮件记录]]</span>
+                        </a>
+                    </li>
+                    <li id="n-首页场景]]" class="mw-list-item">
+                        <a href="">
+                            <span>首页场景]]</span>
+                        </a>
+                    </li>
+                    <li id="n-名片头像]]" class="mw-list-item">
+                        <a href="">
+                            <span>名片头像]]</span>
+                        </a>
+                    </li>
+                    <li id="n-光荣之路]]" class="mw-list-item">
+                        <a href="">
+                            <span>光荣之路]]</span>
+                        </a>
+                    </li>
+                    <li id="n-情报处理室]]" class="mw-list-item">
+                        <a href="">
+                            <span>情报处理室]]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|扩展}}{{#tsl:ja|詳細}}{{#tsl:nozhja|Expansion}}&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_扩展_tsl_ja_詳細_tsl_nozhja_Expansion vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|扩展}}{{#tsl:ja|詳細}}{{#tsl:nozhja|Expansion}}&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|扩展}}{{#tsl:ja|詳細}}{{#tsl:nozhja|Expansion}}&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|扩展}}{{#tsl:ja|詳細}}{{#tsl:nozhja|Expansion}}&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list">
+                    <li id="n-基础数据]]" class="mw-list-item">
+                        <a href="">
+                            <span>基础数据]]</span>
+                        </a>
+                    </li>
+                    <li id="n-作战机制]]" class="mw-list-item">
+                        <a href="">
+                            <span>作战机制]]</span>
+                        </a>
+                    </li>
+                    <li id="n-新人入门]]" class="mw-list-item">
+                        <a href="">
+                            <span>新人入门]]</span>
+                        </a>
+                    </li>
+                    <li id="n-贴士一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>贴士一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-词汇一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>词汇一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-制作组通讯]]" class="mw-list-item">
+                        <a href="">
+                            <span>制作组通讯]]</span>
+                        </a>
+                    </li>
+                    <li id="n-剧情角色一览]]" class="mw-list-item">
+                        <a href="">
+                            <span>剧情角色一览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-游戏内容前瞻]]" class="mw-list-item">
+                        <a href="">
+                            <span>游戏内容前瞻]]</span>
+                        </a>
+                    </li>
+                    <li id="n-剧情资源概览]]" class="mw-list-item">
+                        <a href="">
+                            <span>剧情资源概览]]</span>
+                        </a>
+                    </li>
+                    <li id="n-各类信息汇总]]" class="mw-list-item">
+                        <a href="">
+                            <span>各类信息汇总]]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|趣味}}{{#tsl:ja|その他}}{{#tsl:nozhja|Funny}}&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_趣味_tsl_ja_その他_tsl_nozhja_Funny vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|趣味}}{{#tsl:ja|その他}}{{#tsl:nozhja|Funny}}&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|趣味}}{{#tsl:ja|その他}}{{#tsl:nozhja|Funny}}&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|趣味}}{{#tsl:ja|その他}}{{#tsl:nozhja|Funny}}&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list">
+                    <li id="n-泰拉大典]]" class="mw-list-item">
+                        <a href="">
+                            <span>泰拉大典]]</span>
+                        </a>
+                    </li>
+                    <li id="n-音乐鉴赏]]" class="mw-list-item">
+                        <a href="">
+                            <span>音乐鉴赏]]</span>
+                        </a>
+                    </li>
+                    <li id="n-寻访模拟]]" class="mw-list-item">
+                        <a href="">
+                            <span>寻访模拟]]</span>
+                        </a>
+                    </li>
+                    <li id="n-衍生作品]]" class="mw-list-item">
+                        <a href="">
+                            <span>衍生作品]]</span>
+                        </a>
+                    </li>
+                    <li id="n-光荣之路模拟器]]" class="mw-list-item">
+                        <a href="">
+                            <span>光荣之路模拟器]]</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav id="p-[[特殊:随机|{{#tsl:zh|随机页面}}{{#tsl:ja|おまかせ表示}}{{#tsl:nozhja|Random_Page}}]]" class="vector-menu mw-portlet mw-portlet-_特殊_随机_tsl_zh_随机页面_tsl_ja_おまかせ表示_tsl_nozhja_Random_Page emptyPortlet vector-menu-portal portal" aria-labelledby="p-[[特殊:随机|{{#tsl:zh|随机页面}}{{#tsl:ja|おまかせ表示}}{{#tsl:nozhja|Random_Page}}]]-label" role="navigation">
+            <h3 id="p-[[特殊:随机|{{#tsl:zh|随机页面}}{{#tsl:ja|おまかせ表示}}{{#tsl:nozhja|Random_Page}}]]-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">[[特殊:随机|{{#tsl:zh|随机页面}}{{#tsl:ja|おまかせ表示}}{{#tsl:nozhja|Random Page}}]]</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|官方网站}}{{#tsl:ja|公式サイト}}{{#tsl:nozhja|Offical_Website}}&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_官方网站_tsl_ja_公式サイト_tsl_nozhja_Offical_Website emptyPortlet vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|官方网站}}{{#tsl:ja|公式サイト}}{{#tsl:nozhja|Offical_Website}}&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|官方网站}}{{#tsl:ja|公式サイト}}{{#tsl:nozhja|Offical_Website}}&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|官方网站}}{{#tsl:ja|公式サイト}}{{#tsl:nozhja|Offical Website}}&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-&#039;&#039;&#039;{{#tsl:zh|友情链接}}{{#tsl:ja|相互リンク}}{{#tsl:nozhja|Link_Exchange}}&#039;&#039;&#039;" class="vector-menu mw-portlet mw-portlet-_tsl_zh_友情链接_tsl_ja_相互リンク_tsl_nozhja_Link_Exchange emptyPortlet vector-menu-portal portal" aria-labelledby="p-&#039;&#039;&#039;{{#tsl:zh|友情链接}}{{#tsl:ja|相互リンク}}{{#tsl:nozhja|Link_Exchange}}&#039;&#039;&#039;-label" role="navigation">
+            <h3 id="p-&#039;&#039;&#039;{{#tsl:zh|友情链接}}{{#tsl:ja|相互リンク}}{{#tsl:nozhja|Link_Exchange}}&#039;&#039;&#039;-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">&#039;&#039;&#039;{{#tsl:zh|友情链接}}{{#tsl:ja|相互リンク}}{{#tsl:nozhja|Link Exchange}}&#039;&#039;&#039;</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-[[特殊:最近更改|{{#tsl:zh|最近更改}}{{#tsl:ja|最近の更新}}{{#tsl:nozhja|Recent_Changes}}]]" class="vector-menu mw-portlet mw-portlet-_特殊_最近更改_tsl_zh_最近更改_tsl_ja_最近の更新_tsl_nozhja_Recent_Changes emptyPortlet vector-menu-portal portal" aria-labelledby="p-[[特殊:最近更改|{{#tsl:zh|最近更改}}{{#tsl:ja|最近の更新}}{{#tsl:nozhja|Recent_Changes}}]]-label" role="navigation">
+            <h3 id="p-[[特殊:最近更改|{{#tsl:zh|最近更改}}{{#tsl:ja|最近の更新}}{{#tsl:nozhja|Recent_Changes}}]]-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">[[特殊:最近更改|{{#tsl:zh|最近更改}}{{#tsl:ja|最近の更新}}{{#tsl:nozhja|Recent Changes}}]]</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-[[PRTS:编辑指南|{{#tsl:zh|编辑指南}}{{#tsl:ja|編集のガイドライン}}{{#tsl:nozhja|Edit_Guideline}}]]" class="vector-menu mw-portlet mw-portlet-_PRTS_编辑指南_tsl_zh_编辑指南_tsl_ja_編集のガイドライン_tsl_nozhja_Edit_Guideline emptyPortlet vector-menu-portal portal" aria-labelledby="p-[[PRTS:编辑指南|{{#tsl:zh|编辑指南}}{{#tsl:ja|編集のガイドライン}}{{#tsl:nozhja|Edit_Guideline}}]]-label" role="navigation">
+            <h3 id="p-[[PRTS:编辑指南|{{#tsl:zh|编辑指南}}{{#tsl:ja|編集のガイドライン}}{{#tsl:nozhja|Edit_Guideline}}]]-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">[[PRTS:编辑指南|{{#tsl:zh|编辑指南}}{{#tsl:ja|編集のガイドライン}}{{#tsl:nozhja|Edit Guideline}}]]</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-[[PRTS:常用代码|{{#tsl:zh|常用代码}}{{#tsl:ja|マークアップ早見表}}{{#tsl:nozhja|Useful_Codes}}]]" class="vector-menu mw-portlet mw-portlet-_PRTS_常用代码_tsl_zh_常用代码_tsl_ja_マークアップ早見表_tsl_nozhja_Useful_Codes emptyPortlet vector-menu-portal portal" aria-labelledby="p-[[PRTS:常用代码|{{#tsl:zh|常用代码}}{{#tsl:ja|マークアップ早見表}}{{#tsl:nozhja|Useful_Codes}}]]-label" role="navigation">
+            <h3 id="p-[[PRTS:常用代码|{{#tsl:zh|常用代码}}{{#tsl:ja|マークアップ早見表}}{{#tsl:nozhja|Useful_Codes}}]]-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">[[PRTS:常用代码|{{#tsl:zh|常用代码}}{{#tsl:ja|マークアップ早見表}}{{#tsl:nozhja|Useful Codes}}]]</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-[[:分类:PRTS模板|{{#tsl:zh|模板一览}}{{#tsl:ja|テンプレート一覧}}{{#tsl:nozhja|Templates_Overview}}]]" class="vector-menu mw-portlet mw-portlet-_分类_PRTS模板_tsl_zh_模板一览_tsl_ja_テンプレート一覧_tsl_nozhja_Templates_Overview emptyPortlet vector-menu-portal portal" aria-labelledby="p-[[:分类:PRTS模板|{{#tsl:zh|模板一览}}{{#tsl:ja|テンプレート一覧}}{{#tsl:nozhja|Templates_Overview}}]]-label" role="navigation">
+            <h3 id="p-[[:分类:PRTS模板|{{#tsl:zh|模板一览}}{{#tsl:ja|テンプレート一覧}}{{#tsl:nozhja|Templates_Overview}}]]-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">[[:分类:PRTS模板|{{#tsl:zh|模板一览}}{{#tsl:ja|テンプレート一覧}}{{#tsl:nozhja|Templates Overview}}]]</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-[[特殊:贡献得分|{{#tsl:zh|贡献分数}}{{#tsl:ja|貢献得点}}{{#tsl:nozhja|Contribution_Scores}}]]" class="vector-menu mw-portlet mw-portlet-_特殊_贡献得分_tsl_zh_贡献分数_tsl_ja_貢献得点_tsl_nozhja_Contribution_Scores emptyPortlet vector-menu-portal portal" aria-labelledby="p-[[特殊:贡献得分|{{#tsl:zh|贡献分数}}{{#tsl:ja|貢献得点}}{{#tsl:nozhja|Contribution_Scores}}]]-label" role="navigation">
+            <h3 id="p-[[特殊:贡献得分|{{#tsl:zh|贡献分数}}{{#tsl:ja|貢献得点}}{{#tsl:nozhja|Contribution_Scores}}]]-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">[[特殊:贡献得分|{{#tsl:zh|贡献分数}}{{#tsl:ja|貢献得点}}{{#tsl:nozhja|Contribution Scores}}]]</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-[[PRTS:收支一览|{{#tsl:zh|收支一览}}{{#tsl:ja|収支報告}}{{#tsl:nozhja|Balance_Overview}}]]" class="vector-menu mw-portlet mw-portlet-_PRTS_收支一览_tsl_zh_收支一览_tsl_ja_収支報告_tsl_nozhja_Balance_Overview emptyPortlet vector-menu-portal portal" aria-labelledby="p-[[PRTS:收支一览|{{#tsl:zh|收支一览}}{{#tsl:ja|収支報告}}{{#tsl:nozhja|Balance_Overview}}]]-label" role="navigation">
+            <h3 id="p-[[PRTS:收支一览|{{#tsl:zh|收支一览}}{{#tsl:ja|収支報告}}{{#tsl:nozhja|Balance_Overview}}]]-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">[[PRTS:收支一览|{{#tsl:zh|收支一览}}{{#tsl:ja|収支報告}}{{#tsl:nozhja|Balance Overview}}]]</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-{{#Widget:LangSwitcher|langCode=ja|lang=日本語}}" class="vector-menu mw-portlet mw-portlet-_Widget_LangSwitcher_langCode_ja_lang_日本語 emptyPortlet vector-menu-portal portal" aria-labelledby="p-{{#Widget:LangSwitcher|langCode=ja|lang=日本語}}-label" role="navigation">
+            <h3 id="p-{{#Widget:LangSwitcher|langCode=ja|lang=日本語}}-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">{{#Widget:LangSwitcher|langCode=ja|lang=日本語}}</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-{{#Widget:LangSwitcher|langCode=en|lang=English}}" class="vector-menu mw-portlet mw-portlet-_Widget_LangSwitcher_langCode_en_lang_English emptyPortlet vector-menu-portal portal" aria-labelledby="p-{{#Widget:LangSwitcher|langCode=en|lang=English}}-label" role="navigation">
+            <h3 id="p-{{#Widget:LangSwitcher|langCode=en|lang=English}}-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">{{#Widget:LangSwitcher|langCode=en|lang=English}}</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-{{#Widget:LangSwitcher|langCode=zh-cn|lang=中文}}" class="vector-menu mw-portlet mw-portlet-_Widget_LangSwitcher_langCode_zh-cn_lang_中文 emptyPortlet vector-menu-portal portal" aria-labelledby="p-{{#Widget:LangSwitcher|langCode=zh-cn|lang=中文}}-label" role="navigation">
+            <h3 id="p-{{#Widget:LangSwitcher|langCode=zh-cn|lang=中文}}-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">{{#Widget:LangSwitcher|langCode=zh-cn|lang=中文}}</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list"></ul>
+            </div>
+        </nav>
+        <nav id="p-tb" class="vector-menu mw-portlet mw-portlet-tb vector-menu-portal portal" aria-labelledby="p-tb-label" role="navigation">
+            <h3 id="p-tb-label" class="vector-menu-heading ">
+                <span class="vector-menu-heading-label">工具</span>
+            </h3>
+            <div class="vector-menu-content">
+                <ul class="vector-menu-content-list">
+                    <li id="t-whatlinkshere" class="mw-list-item">
+                        <a href="/w/%E7%89%B9%E6%AE%8A:%E9%93%BE%E5%85%A5%E9%A1%B5%E9%9D%A2/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" title="所有链接至本页面的wiki页面列表[j]" accesskey="j">
+                            <span>链入页面</span>
+                        </a>
+                    </li>
+                    <li id="t-recentchangeslinked" class="mw-list-item">
+                        <a href="/w/%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E9%93%BE%E5%87%BA%E6%9B%B4%E6%94%B9/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" rel="nofollow" title="链自本页的页面的最近更改[k]" accesskey="k">
+                            <span>相关更改</span>
+                        </a>
+                    </li>
+                    <li id="t-specialpages" class="mw-list-item">
+                        <a href="/w/%E7%89%B9%E6%AE%8A:%E7%89%B9%E6%AE%8A%E9%A1%B5%E9%9D%A2" title="所有特殊页面的列表[q]" accesskey="q">
+                            <span>特殊页面</span>
+                        </a>
+                    </li>
+                    <li id="t-print" class="mw-list-item">
+                        <a href="javascript:print();" rel="alternate" title="本页面的可打印版本[p]" accesskey="p">
+                            <span>可打印版</span>
+                        </a>
+                    </li>
+                    <li id="t-permalink" class="mw-list-item">
+                        <a href="/index.php?title=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88&amp;oldid=335492" title="此页面该修订版本的固定链接">
+                            <span>固定链接</span>
+                        </a>
+                    </li>
+                    <li id="t-info" class="mw-list-item">
+                        <a href="/index.php?title=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88&amp;action=info" title="关于此页面的更多信息">
+                            <span>页面信息</span>
+                        </a>
+                    </li>
+                    <li id="t-cargopagevalueslink" class="mw-list-item">
+                        <a href="/index.php?title=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88&amp;action=pagevalues" rel="cargo-pagevalues">
+                            <span>页面值</span>
+                        </a>
+                    </li>
+                    <li id="t-smwbrowselink" class="mw-list-item">
+                        <a href="/w/%E7%89%B9%E6%AE%8A:%E6%B5%8F%E8%A7%88/:%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" rel="search">
+                            <span>浏览属性</span>
+                        </a>
+                    </li>
+                    <li id="t-cite" class="mw-list-item">
+                        <a href="/index.php?title=%E7%89%B9%E6%AE%8A:%E5%BC%95%E7%94%A8%E6%AD%A4%E9%A1%B5%E9%9D%A2&amp;page=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88&amp;id=335492&amp;wpFormIdentifier=titleform" title="关于如何引用本页的信息">
+                            <span>引用本页</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<footer id="footer" class="mw-footer" role="contentinfo">
+    <ul id="footer-info">
+        <li id="footer-info-lastmod">此页面最后编辑于2025年3月1日 (星期六) 00:06。</li>
+        <li id="footer-info-copyright">
+            本网站是由《明日方舟》游戏爱好者，使用免费开源的 MediaWiki 程序制作。网站所涉及的公司名称、商标、产品等均为其各自所有者的资产，仅供识别。<br>
+            网站内使用的游戏图片、动画、音频、文本原文，仅用于更好地表现游戏资料，其版权属于 Arknights/上海鹰角网络科技有限公司。<br>
+            除非另有声明，网站其他内容采用<a class="external" rel="nofollow" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享</a>
+            授权。
+        </li>
+    </ul>
+    <ul id="footer-places">
+        <li id="footer-places-privacy">
+            <a href="/w/PRTS:%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96">隐私政策</a>
+        </li>
+        <li id="footer-places-about">
+            <a href="/w/PRTS:%E5%85%B3%E4%BA%8E">关于PRTS</a>
+        </li>
+        <li id="footer-places-disclaimer">
+            <a href="/w/PRTS:%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E">免责声明</a>
+        </li>
+        <li id="footer-places-icp">
+            <a href="https://beian.miit.gov.cn/" rel="noreferrer noopener">京ICP备20024624号-1</a>
+        </li>
+        <li id="footer-places-mobileview">
+            <a href="//m.prts.wiki/index.php?title=%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">手机版视图</a>
+        </li>
+    </ul>
+    <ul id="footer-icons" class="noprint">
+        <li id="footer-copyrightico">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+                <img src="/resources/assets/licenses/cc-by-nc-sa.png" alt="知识共享署名-非商业性使用-相同方式共享" width="88" height="31" loading="lazy"/>
+            </a>
+        </li>
+        <li id="footer-poweredbyico">
+            <a href="https://www.mediawiki.org/" target="_blank">
+                <img src="/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/>
+            </a>
+            <a href="//project.mooncell.wiki" target="_blank">
+                <img src="//project.mooncell.wiki/project1.png" alt="a Mooncell project" height="31" width="88" loading="lazy"/>
+            </a>
+            <a href="https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki" target="_blank">
+                <img src="/extensions/SemanticMediaWiki/res/smw/logo_footer.png" alt="Powered by Semantic MediaWiki" class="smw-footer" width="88" height="31" loading="lazy"/>
+            </a>
+        </li>
+    </ul>
+</footer>
+<script>
+    (RLQ = window.RLQ || []).push(function() {
+        mw.config.set({
+            "wgPageParseReport": {
+                "smw": {
+                    "limitreport-intext-parsertime": 0.003
+                },
+                "limitreport": {
+                    "cputime": "1.115",
+                    "walltime": "1.240",
+                    "ppvisitednodes": {
+                        "value": 43653,
+                        "limit": 1000000
+                    },
+                    "postexpandincludesize": {
+                        "value": 988589,
+                        "limit": 4194304
+                    },
+                    "templateargumentsize": {
+                        "value": 140815,
+                        "limit": 4194304
+                    },
+                    "expansiondepth": {
+                        "value": 11,
+                        "limit": 100
+                    },
+                    "expensivefunctioncount": {
+                        "value": 0,
+                        "limit": 100
+                    },
+                    "unstrip-depth": {
+                        "value": 0,
+                        "limit": 20
+                    },
+                    "unstrip-size": {
+                        "value": 0,
+                        "limit": 5000000
+                    },
+                    "timingprofile": ["100.00%  955.732      1 -total", " 99.00%  946.205      1 模板:干员筛选", " 34.52%  329.943    365 模板:干员筛选数据/4", "  1.02%    9.730      2 模板:参阅", "  0.81%    7.763      2 模板:Cbox2", "  0.67%    6.408      2 模板:Cbox2/core", "  0.23%    2.176      4 模板:Mdi", "  0.10%    0.983      1 模板:Ads/normal", "  0.10%    0.973      1 模板:Ads/mobile"]
+                },
+                "loops": {
+                    "limitreport-count-limited": {
+                        "value": 0,
+                        "limit": 800
+                    }
+                },
+                "cachereport": {
+                    "timestamp": "20250308013716",
+                    "ttl": 86400,
+                    "transientcontent": false
+                }
+            }
+        });
+        mw.config.set({
+            "wgBackendResponseTime": 401
+        });
+    });
+</script>
+</body></html>
+
+"""
+
+import re
+# 提取filter-data部分内容
+filter_data_match = re.search(r'<div style="display:none" id="filter-data">(.*?)<div id="filter-filter" style="display:none">', html, re.DOTALL)
+if not filter_data_match:
+    raise ValueError("未找到filter-data内容")
+
+# 提取所有干员div元素
+operator_divs = re.findall(r'<div\b[^>]*data-zh="[^"]+"[^>]*>', filter_data_match.group(1))
+
+result = {}
+
+for div in operator_divs:
+    # 提取各属性
+    zh = re.search(r'data-zh="([^"]+)"', div).group(1)
+    en = re.search(r'data-en="([^"]+)"', div).group(1)
+    star = re.search(r'data-rarity="([^"]+)"', div).group(1)
+    profession = re.search(r'data-profession="([^"]+)"', div).group(1)
+    position = re.search(r'data-position="([^"]+)"', div).group(1)
+    tags = re.search(r'data-tag="([^"]*)"', div).group(1)
+    subprofession = re.search(r'data-subprofession="([^"]+)"', div).group(1)
+
+    # 构建tag列表
+    tag_list = [f"{profession}干员", position]
+    if tags:
+        tag_list.extend(tags.split())
+    
+    # 构建结果字典
+    result[zh] = {
+        'en': en,
+        'star': star,
+        'tag': tag_list,
+        'subprofession': subprofession
+    }
+
+# 打印结果
+print("d = {")
+for name, info in result.items():
+    print(f"'{name}': {{'en': '{info['en']}', 'star': '{info['star']}', 'tag': {info['tag']}, 'subprofession': '{info['subprofession']}'}},")
+print("}")

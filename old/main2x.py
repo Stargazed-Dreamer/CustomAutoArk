@@ -14,13 +14,13 @@ import winreg
 import cv2
 import numpy as np
 import os
-from paddleocr import PaddleOCR
+#from paddleocr import PaddleOCR
 #==============================
 ADB_PATH = "D:\\YXArkNights-12.0\\shell\\adb.exe"
 region_tag = (0.30,0.47,0.66,0.70)
 region_agent = (0.45, 0.67, 0.87, 0.85)
 #==============================
-from data import l_tag1, l_tag2, l_tag3, l_tagSpecial, d_agents
+#from data import l_tag1, l_tag2, l_tag3, l_tagSpecial, d_agents
 #==============================
 class CantFindNameError(Exception):
     pass
@@ -80,7 +80,7 @@ class Log:
     def critical(self, log):
         self.logger.critical(log)
 
-log = Log()
+#log = Log()
 #==============================
 class Tool:
     def __init__(self):
@@ -97,7 +97,7 @@ class Tool:
         try:
             # 首先尝试使用GPU
             self.ocr_ch = PaddleOCR(use_gpu=True)
-            log.debug("使用GPU模式初始化OCR")
+            print("使用GPU模式初始化OCR")
         except RuntimeError as e:
             if "cudnn64_8.dll" in str(e):
                 # CUDA/CUDNN加载失败，切换到CPU模式
@@ -113,10 +113,11 @@ class Tool:
         self.ocrUseable = True
 
     def init_data(self):
+        pass
         # l_agents -> [(zh, en), (zh, en), ...]
-        self.l_agents = [(zh, d_agents[zh]["en"]) for zh in d_agents]
+        #self.l_agents = [(zh, d_agents[zh]["en"]) for zh in d_agents]
         # l_tags -> ["支援", "辅助干员", ...]
-        self.l_tags = l_tag1 + l_tag2 + l_tag3 + l_tagSpecial
+        #self.l_tags = l_tag1 + l_tag2 + l_tag3 + l_tagSpecial
 
     def ocr(self, cvImg):
         if not self.ocrUseable:
@@ -127,7 +128,7 @@ class Tool:
             if l is None:
                 continue
             for x in l:
-                log.debug(f"ocr结果: {x}")
+                print(f"ocr结果: {x}")
         #"""
         return result
 
@@ -246,7 +247,7 @@ class Tool:
         scaled_w = int(w * self.scaling_factor)
         scaled_h = int(h * self.scaling_factor)
         """
-        log.debug(f"裁剪区域: {x}, {y}, {w}, {h}")
+        print(f"裁剪区域: {x}, {y}, {w}, {h}")
         log.img(cvImg[y:h, x:w])
         return cvImg[y:h, x:w]
 
@@ -276,11 +277,11 @@ class Tool:
         norm1 = sum(a * a for a in v1) ** 0.5
         norm2 = sum(b * b for b in v2) ** 0.5
         result = dot_product / (norm1 * norm2) if norm1 * norm2 > 0 else 0.0
-        #log.debug(f"余弦相似度: {s1}, {s2}, {result}")
+        #print(f"余弦相似度: {s1}, {s2}, {result}")
         return result
 
     def find_centerOnResult(self, result):
-        log.debug(f"找中心: {result}")
+        print(f"找中心: {result}")
         if result is None:
             raise CantFindNameError(f"找不到None的中心!")
         l_coordinate = result[0]
@@ -364,7 +365,7 @@ class Tool:
         #"""不优化的版本
         img = self.cropping(img, region_tag, mode="percent")
         l_buttons = self.find_smallRegionsOnImg(img)
-        #log.debug(f"找到的按钮: {len(l_buttons)}个")
+        #print(f"找到的按钮: {len(l_buttons)}个")
         l_tags = []
         for img in l_buttons:
             l_result = self.ocr(img)
@@ -400,7 +401,7 @@ class Tool:
                 if similarity > maxSimilarity:
                     maxSimilarity = similarity
                     bestResult = t_agent
-        log.info(f"最大相似度: {maxSimilarity}, 最佳结果: {bestResult}")
+        print(f"最大相似度: {maxSimilarity}, 最佳结果: {bestResult}")
         if maxSimilarity > 0.5 and bestResult is not None:
             l_zh = [t_name[0] for t_name in self.l_agents]
             l_en = [t_name[1] for t_name in self.l_agents]
@@ -459,9 +460,10 @@ class Simulator:
         查找adb路径
         :return: adb路径或None
         """
+        """
         try:
             # 1. 首先尝试从MUMU模拟器注册表项查找
-            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\NetEase\MuMuPlayer") as key:
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\\NetEase\\MuMuPlayer") as key:
                 mumu_path = winreg.QueryValueEx(key, "InstallDir")[0]
                 adb_path = os.path.join(mumu_path, "emulator", "nemu", "vmonitor", "bin", "adb.exe")
                 if os.path.exists(adb_path):
@@ -472,7 +474,7 @@ class Simulator:
             
         try:
             # 2. 尝试从Android SDK注册表项查找
-            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\Android SDK Tools") as key:
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\\Android SDK Tools") as key:
                 sdk_path = winreg.QueryValueEx(key, "Path")[0]
                 adb_path = os.path.join(sdk_path, "platform-tools", "adb.exe")
                 if os.path.exists(adb_path):
@@ -490,19 +492,19 @@ class Simulator:
                 
         # 4. 尝试常见安装路径
         common_paths = [
-            r"C:\Program Files\Microvirt\MEmu\adb.exe",  # MEmu
-            r"C:\Program Files\Nox\bin\nox_adb.exe",     # Nox
-            r"C:\Program Files\BlueStacks_nxt\HD-Adb.exe",  # BlueStacks
-            r"D:\Program Files\Microvirt\MEmu\adb.exe",
-            r"D:\Program Files\Nox\bin\nox_adb.exe",
-            r"D:\Program Files\BlueStacks_nxt\HD-Adb.exe",
+            r"C:\\Program Files\\Microvirt\\MEmu\\adb.exe",  # MEmu
+            r"C:\\Program Files\\Nox\\bin\\nox_adb.exe",     # Nox
+            r"C:\\Program Files\\BlueStacks_nxt\\HD-Adb.exe",  # BlueStacks
+            r"D:\\Program Files\\Microvirt\\MEmu\\adb.exe",
+            r"D:\\Program Files\\Nox\\bin\\nox_adb.exe",
+            r"D:\\Program Files\\BlueStacks_nxt\\HD-Adb.exe",
         ]
         
         for path in common_paths:
             if os.path.exists(path):
                 self.logger.info(f"在常见路径中找到adb: {path}")
                 return path
-                
+        """
         self.logger.error("未找到adb路径")
         return None
         
@@ -521,6 +523,7 @@ class Simulator:
                 
             # 启动adb server
             self.logger.info("启动adb server")
+            #subprocess.run([self.adb_path, "kill-server"], check=True)
             subprocess.run([self.adb_path, "start-server"], check=True)
             
             # 连接设备
@@ -549,7 +552,7 @@ class Simulator:
             self.orientation = 0  # 默认为0度
             if "SurfaceOrientation" in result.stdout:
                 self.orientation = int(result.stdout.strip().split()[-1])
-            self.logger.info(f"屏幕方向: {self.orientation}度")
+            self.logger.info(f"屏幕方向: {self.orientation*90}度")
             
             # 获取CPU架构
             result = subprocess.run(
@@ -571,11 +574,11 @@ class Simulator:
                 
             try:
                 # 推送minitouch到设备
+                #"""
                 subprocess.run([
                     self.adb_path, "-s", self.device_addr, "push",
                     minitouch_path, "/data/local/tmp/"
                 ], check=True)
-                
                 # 设置权限
                 subprocess.run([
                     self.adb_path, "-s", self.device_addr, "shell",
@@ -588,13 +591,14 @@ class Simulator:
                     "forward", "tcp:1111", "localabstract:minitouch"
                 ], check=True)
                 
+                #"""
                 # 启动minitouch
                 self.minitouch_proc = subprocess.Popen([
                     self.adb_path, "-s", self.device_addr, "shell",
                     "/data/local/tmp/minitouch"
                 ])
                 
-                time.sleep(1)  # 等待minitouch启动
+                #time.sleep(1)  # 等待minitouch启动
                 
                 if self.minitouch_proc.poll() is not None:
                     self.logger.error("minitouch启动失败")
@@ -623,14 +627,14 @@ class Simulator:
             return x, y
             
         if self.orientation == 0:  # 0度
-            return x, y
+            a, b = x, y
         elif self.orientation == 1:  # 90度
-            return self.screen_size[1] - y, x
+            a, b = self.screen_size[0] - y, x
         elif self.orientation == 2:  # 180度
-            return self.screen_size[0] - x, self.screen_size[1] - y
+            a, b = self.screen_size[1] - x, self.screen_size[0] - y
         elif self.orientation == 3:  # 270度
-            return y, self.screen_size[0] - x
-        return x, y
+            a, b = y, self.screen_size[1] - x
+        return int(a), int(b)
             
     def click(self, x: int, y: int, press_time: int = 50) -> bool:
         """
@@ -645,17 +649,14 @@ class Simulator:
             conv_x, conv_y = self._convert_coordinates(x, y)
             self.logger.debug(f"点击坐标: ({x}, {y}) -> ({conv_x}, {conv_y}), 按下时间: {press_time}ms")
             
-            if self.minitouch_proc and self.minitouch_proc.poll() is None:
+            if self.minitouch_proc and self.minitouch_proc.poll() is None and True:
                 # 使用minitouch进行点击
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     s.connect(('127.0.0.1', 1111))
                     # 按下
-                    s.sendall(f"d 0 {conv_x} {conv_y} 50\nc\n".encode())
-                    time.sleep(press_time / 1000)  # 转换为秒
-                    # 抬起
-                    s.sendall("u 0\nc\n".encode())
+                    s.sendall(f"d 0 {conv_x} {conv_y} 50\nw {press_time}\nu 0\nc\n".encode())
                     # 额外延迟
-                    time.sleep(0.05)  # 50ms额外延迟
+                    #time.sleep(0.5)  # 额外延迟
                     return True
             else:
                 # 回退到input命令
@@ -686,7 +687,7 @@ class Simulator:
             conv_end_x, conv_end_y = self._convert_coordinates(end_x, end_y)
             self.logger.debug(f"滑动: ({start_x}, {start_y}) -> ({end_x}, {end_y}) => ({conv_start_x}, {conv_start_y}) -> ({conv_end_x}, {conv_end_y}), 持续时间: {duration}ms")
             
-            if self.minitouch_proc and self.minitouch_proc.poll() is None:
+            if self.minitouch_proc and self.minitouch_proc.poll() is None and True:
                 # 使用minitouch进行滑动
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     s.connect(('127.0.0.1', 1111))
@@ -711,8 +712,8 @@ class Simulator:
                         time.sleep(step_duration / 1000)  # 每步延迟
                     
                     # 移动到终点
-                    s.sendall(f"m 0 {conv_end_x} {conv_end_y} 50\nc\n".encode())
-                    time.sleep(0.05)  # 终点停留50ms
+                    #s.sendall(f"m 0 {conv_end_x} {conv_end_y} 50\nc\n".encode())
+                    #time.sleep(0.05)  # 终点停留50ms
                     
                     # 抬起
                     s.sendall("u 0\nc\n".encode())
@@ -775,26 +776,41 @@ class Simulator:
     def cleanup(self):
         """清理资源"""
         try:
-            if self.minitouch_socket:
+            # 关闭socket连接
+            if hasattr(self, "minitouch_socket") and self.minitouch_socket:
                 self.minitouch_socket.close()
-                self.minitouch_socket = None
+                print("minitouch_socket已关闭")
             
-            if self.minitouch_proc:
+            # 终止子进程
+            if hasattr(self, "minitouch_proc") and self.minitouch_proc:
                 self.minitouch_proc.terminate()
-                self.minitouch_proc = None
+                self.minitouch_proc.wait()
+                print("minitouch_proc已终止")
             
-            if self.device_addr:
-                # 忽略清理错误，因为可能本来就不存在
-                subprocess.run(
-                    [self.adb_path, "-s", self.device_addr, "forward", "--remove", "tcp:1111"],
-                    capture_output=True
-                )
-                subprocess.run(
-                    [self.adb_path, "-s", self.device_addr, "shell", "rm", "/data/local/tmp/minitouch"],
-                    capture_output=True
-                )
+            # 移除端口转发
+            if hasattr(self, "device_addr") and self.device_addr:
+                try:
+                    subprocess.run(
+                        [self.adb_path, "-s", self.device_addr, "forward", "--remove", "tcp:1111"],
+                        capture_output=True,
+                        check=True
+                    )
+                    print("端口转发已移除")
+                except Exception as e:
+                    print(f"移除端口转发时发生错误: {str(e)}")
+                    
+                # 删除推送的文件
+                try:
+                    subprocess.run(
+                        [self.adb_path, "-s", self.device_addr, "shell", "rm", "/data/local/tmp/minitouch"],
+                        capture_output=True,
+                        check=True
+                    )
+                    print("推送的minitouch文件已删除")
+                except Exception as e:
+                    print(f"删除推送的minitouch文件时发生错误: {str(e)}")
         except Exception as e:
-            self.logger.debug(f"清理时发生错误: {e}")
+            print(f"清理时发生错误: {str(e)}")
 
     def __del__(self):
         """析构函数"""
@@ -815,7 +831,7 @@ class MUMU(Simulator):
         :param name: 要查找的文字
         :return: OCR识别结果
         """
-        log.info(f"在窗口内查找: {name}")
+        print(f"在窗口内查找: {name}")
         img = self.screenshot()
         # 使用MAA的OCR功能
         results = tool.ocr(img)
@@ -833,7 +849,7 @@ class MUMU(Simulator):
         :param name: 要点击的文字
         :param retry: 重试次数
         """
-        log.debug(f"点击: {name}, 剩余重试次数: {retry}")
+        print(f"点击: {name}, 剩余重试次数: {retry}")
         try:
             if name == "开始招募":
                 r1 = self.find_nameOnScreen("可获得的干员")
@@ -868,23 +884,19 @@ class MUMU(Simulator):
     
     def to_rightPage(self):
         """向右翻页"""
-        log.debug(f"向右翻页")
-        left, top, right, bottom = self.screen_size
-        x = right - left
-        y = bottom - top
-        x1 = x/3
+        print(f"向右翻页")
+        y, x = self.screen_size
+        x1 = x/7
         y_2 = y/2
-        self.swipe(x1*2, y_2, x1, y_2)
+        self.swipe(x1*6, y_2, x1, y_2)
     
     def to_leftPage(self):
         """向左翻页"""
-        log.debug(f"向左翻页")
-        left, top, right, bottom = self.screen_size
-        x = right - left
-        y = bottom - top
-        x1 = x/3
+        print(f"向左翻页")
+        y, x = self.screen_size
+        x1 = x/7
         y_2 = y/2
-        self.swipe(x1, y_2, x1*2, y_2)
+        self.swipe(x1, y_2, x1*6, y_2)
 
     def getTag(self):
         #截屏
@@ -899,7 +911,7 @@ class MUMU(Simulator):
             admit = input(f"请确认:{l_tags} 任意输入取消,Enter确认:")
             if admit == "":
                 break
-        log.info(f"找到的tag: {l_tags}")
+        print(f"找到的tag: {l_tags}")
         return l_tags
 
     def getAgent(self):
@@ -914,7 +926,7 @@ class MUMU(Simulator):
             admit = input(f"请确认:{name} 任意输入取消,Enter确认:")
             if admit == "":
                 break
-        log.info(f"找到的干员: {name}")
+        print(f"找到的干员: {name}")
         return name
 #==============================
 class Main:
@@ -922,7 +934,7 @@ class Main:
         self.mumu = MUMU()
 
     def record(self, item, file=None):
-        log.debug(f"录入: {item}")
+        print(f"录入: {item}")
         if file is None:
             file = "#record.txt"
         if not CreatPath(file).exists():
@@ -946,12 +958,12 @@ class Main:
                 l_output.append(record.split("!"))
             else:
                 l_output.append(record)
-        log.debug(f"加载结果: {l_output}")
+        print(f"加载结果: {l_output}")
         return l_output
 
     #招募
     def recruit(self):
-        log.debug(f"招募一次开始")
+        print(f"招募一次开始")
         # 点击加号
         self.mumu.click("开始招募干员")
         # 收集数据
@@ -966,12 +978,12 @@ class Main:
         # 再次点击停止招募
         self.mumu.click("停止招募")
         time.sleep(0.5)
-        log.debug(f"招募一次结束")
+        print(f"招募一次结束")
         return l_tag
 
     #寻访
     def draw(self):
-        log.debug(f"寻访一次开始")
+        print(f"寻访一次开始")
         # 点击单抽
         time.sleep(0.7)
         self.mumu.click("寻访一次")
@@ -987,7 +999,7 @@ class Main:
         time.sleep(1)
         # 点击任意位置回到抽卡界面
         self.mumu.click("凭证")
-        log.debug(f"寻访一次结束")
+        print(f"寻访一次结束")
         return agent
 
     #垫卡模式
@@ -1007,19 +1019,19 @@ class Main:
         """
 
     def mode_recruit(self):
-        log.debug(f"招募模式开始")
+        print(f"招募模式开始")
         while True:
             l_tag = self.recruit()
             self.record(l_tag)
 
     def mode_draw(self):
-        log.debug(f"抽卡模式开始")
+        print(f"抽卡模式开始")
         while True:
             agent = self.draw()
             self.record(agent)
 
     def record_fromDir(self, dir, func_sortKey=None):
-        log.debug(f"从目录{dir}中录入")
+        print(f"从目录{dir}中录入")
         if func_sortKey is None:
             def func_sortKey(x):
                 s_output = "".join([char for char in x.stem if char.isdigit()])
@@ -1033,13 +1045,13 @@ class Main:
                 try:
                     img = cv2.imread(str(file))
                 except Exception as e:
-                    log.info(f"文件{file}既不是json也不是图片！")
-                    log.info(e)
+                    print(f"文件{file}既不是json也不是图片！")
+                    print(e)
                     continue
                 self.record_fromImage(img, str(file))
 
     def record_fromImage(self, img, file):
-        log.debug(f"从图片{file}中录入")
+        print(f"从图片{file}中录入")
         #log.img(img)
         l_tags = tool.getTag(img)
         agent = tool.getAgent(img)
@@ -1048,10 +1060,10 @@ class Main:
         elif len(l_tags) == 5:
             self.record(l_tags)
         else:
-            log.info(f"图片{file}无法匹配！")
+            print(f"图片{file}无法匹配！")
 
     def record_fromJson(self, jsonFile):
-        log.debug(f"从json文件{jsonFile}中录入")
+        print(f"从json文件{jsonFile}中录入")
         with open(jsonFile, 'r', encoding='utf-8') as f:
             data = json.load(f)
         l_agents = []
@@ -1082,7 +1094,7 @@ class Main:
 tool = Tool()
 #tool = Tool(b_ocr=False)
 
-main = Main()
+#main = Main()
 #main.record_fromDir("0")
 print("到底了")
 #main.main()
@@ -1093,3 +1105,18 @@ print("到底了")
 img = cv2.imread("v.png")
 cropedImg = tool.cropping(img, (0.47, 0.67, 0.87, 0.85), mode="percent")
 #"""
+mumu = MUMU()
+time.sleep(1)
+mumu.click(1767, 603)
+'''
+time.sleep(1)
+mumu.click(1450,975)
+time.sleep(1)
+mumu.to_rightPage()
+time.sleep(1)
+mumu.to_rightPage()
+time.sleep(1)
+mumu.to_leftPage()
+time.sleep(1)
+mumu.to_leftPage()
+#'''

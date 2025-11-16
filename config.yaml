@@ -5,11 +5,10 @@ data:
   auto_save_interval: 10
   data_file: '#record.txt'
 log:
-  cleanup_days: 30
   console_enabled: true
-  console_level: 20
+  console_level: 30
   file_enabled: false
-  file_level: 10
+  file_level: 20
   image_enabled: false
   log_dir: log
 log_path: log
@@ -22,5 +21,5 @@ plot:
 record_path: '#record.txt'
 save_interval: 3000
 simulator:
-  adb_path: D:\YXArkNights-12.0\shell\adb.exe
+  adb_path: F:\ProgramFiles\YXArkNights-12.0\shell\adb.exe
   port: 7555

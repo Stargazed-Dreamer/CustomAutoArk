@@ -33,9 +33,10 @@
 类型提示：
 所有方法都提供了类型提示，支持静态类型检查
 """
+from typing import List, Tuple, Optional
 
 import numpy as np
-from typing import List, Tuple, Optional
+
 from data import data as DATA
 from log import log_manager
 
@@ -49,8 +50,8 @@ class DataManager:
         """加载数据文件"""
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
-                self.real_data = [x for x in f.read().split("\n") if x != ""]
-            self.data = self.data_convert(self.real_data)
+                self.real_data += [x for x in f.read().split("\n") if x != ""]
+            self.data += self.data_convert(self.real_data)
             self.file_path = file_path
             return True
         except Exception as e:
@@ -85,32 +86,46 @@ class DataManager:
             elif data in DATA.d_agent:
                 #TODO:(!！暂时直接放的干员星级！!)
                 output.append(int(DATA.d_agent[data]['star']))
-            elif data.isdigit():
-                output.append(int(data))
+            elif data.replace("#", "").replace("?", "").replace("？", "").isdigit():
+                output.append(int(data.replace("#", "").replace("?", "").replace("？", "")))
             else:
                 raise ValueError(f"无效数据: {data}")
         return output
 
-    def update_data(self, new_data):
+    def set_data(self, new_data):
         if isinstance(new_data, str):
-            if "\n" in new_data:
-                self.update_data(new_data.split("\n"))
+            if new_data == "":
+                self._set_data([])
+            elif "\n" in new_data:
+                self._set_data(new_data.strip("\n").split("\n"))
             else:
-                self._update_data(new_data)
+                self._set_data([new_data])
         elif isinstance(new_data, list):
-            self.real_data = new_data
-            self.data = self.data_convert(self.real_data)
+            self._set_data(new_data)
         else:
             raise ValueError("无效数据")
 
-    def _update_data(self, new_data: str) -> None:
-        """更新数据"""
-        self.real_data.append(new_data)
-        self.data = self.data_convert(self.real_data)
-
-    def set_data(self, new_data: list) -> None:
+    def _set_data(self, new_data: list) -> None:
         """设置新的原始数据"""
         self.real_data = new_data
+        self.data = self.data_convert(self.real_data)
+
+    def update_data(self, new_data):
+        if isinstance(new_data, str):
+            if new_data == "":
+                return
+            elif "\n" in new_data:
+                self._update_data(new_data.strip("\n").split("\n"))
+            else:
+                self._update_data([new_data])
+        elif isinstance(new_data, list):
+            self._update_data(new_data)
+        else:
+            raise ValueError("无效数据")
+
+    def _update_data(self, new_data: list) -> None:
+        """更新数据"""
+        self.real_data += new_data
         self.data = self.data_convert(self.real_data)
 
     def export_png(self, file_path: str) -> bool:
