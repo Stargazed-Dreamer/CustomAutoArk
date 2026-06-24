@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QTabWidget, QWidget, QVBoxLayout, QPlainTextEdit, QPushButton, QLabel
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QTabWidget, QWidget, QVBoxLayout, QPlainTextEdit, QPushButton, QLabel, QTextEdit
 from PySide6.QtGui import QFont, QTextCursor, QTextCharFormat, QColor
 from PySide6.QtCore import Signal
 
