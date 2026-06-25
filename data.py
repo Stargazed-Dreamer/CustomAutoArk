@@ -1,4 +1,4 @@
-class Data:
+﻿class Data:
     def __init__(self):
         self.init_data()
         # l_agents -> [(zh, en), (zh, en), ...]
@@ -9,7 +9,16 @@ class Data:
             self.l_tag += self.d_tag[num]
 
     def is_special(self, tag):
-        if tag in self.d_tag[4]:
+        """检查给定的标签是否特殊。
+
+        参数:
+            self: 实例本身
+            tag: 要检查的标签
+
+        返回:
+            bool: 如果标签特殊则返回True，否则返回False
+        """
+        if tag in self.d_tag[4]:  # 检查标签是否在特殊标签列表中
             return True
         return False
 

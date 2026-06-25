@@ -1,4 +1,4 @@
-"""
+﻿"""
 数据管理器 (DataManager)
 这个模块提供了数据的管理、分析和持久化功能。
 
@@ -41,9 +41,18 @@ from log import log_manager
 
 class DataManager:
     def __init__(self):
+        """
+        初始化方法，设置实例的初始属性。
+
+        参数:
+            self (object): 实例对象本身。
+
+        返回值:
+            None
+        """
         self.real_data = []  # 原始数据（干员/tag字符串列表）
         self.data = []       # 转换后的数值数据
-        self.file_path = None
+        self.file_path = None  # 文件路径
         
     def load_data(self, file_path: str) -> bool:
         """加载数据文件"""
@@ -92,16 +101,31 @@ class DataManager:
         return output
 
     def update_data(self, new_data):
-        if isinstance(new_data, str):
-            if "\n" in new_data:
-                self.update_data(new_data.split("\n"))
+        """更新数据，根据输入的数据类型进行相应处理。
+    
+        该方法会检查输入数据的类型，并根据类型采取不同的更新策略。
+        对于字符串类型，会检查是否包含换行符，如果是则拆分成列表后递归处理；
+        对于列表类型，直接存储原始数据并进行转换；其他类型会引发异常。
+    
+        参数:
+            new_data (str 或 list): 待更新的数据。可以是字符串或列表类型。
+        
+        返回值:
+            无
+        
+        异常:
+            ValueError: 当输入数据类型既不是字符串也不是列表时抛出。
+        """
+        if isinstance(new_data, str):  # 检查输入是否为字符串类型
+            if "\n" in new_data:  # 检查字符串中是否包含换行符
+                self.update_data(new_data.split("\n"))  # 包含换行符时，按换行符拆分并递归调用自身处理列表
             else:
-                self._update_data(new_data)
-        elif isinstance(new_data, list):
-            self.real_data = new_data
-            self.data = self.data_convert(self.real_data)
+                self._update_data(new_data)  # 不包含换行符时，直接调用内部方法更新单个字符串
+        elif isinstance(new_data, list):  # 检查输入是否为列表类型
+            self.real_data = new_data  # 将原始数据存储到实例变量real_data中
+            self.data = self.data_convert(self.real_data)  # 对原始数据进行格式转换并存储到data变量
         else:
-            raise ValueError("无效数据")
+            raise ValueError("无效数据")  # 输入数据类型不符合要求时，抛出异常
 
     def _update_data(self, new_data: str) -> None:
         """更新数据"""

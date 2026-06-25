@@ -1,12 +1,18 @@
-class Data:
+﻿class Data:
     def __init__(self):
-        self.init_data()
+        """
+        初始化实例，完成数据加载并生成干员列表和标签列表。
+
+        参数：无（除self外）
+        返回值：无（构造函数）
+        """
+        self.init_data()  # 调用数据初始化方法，加载外部数据
         # l_agents -> [(zh, en), (zh, en), ...]
-        self.l_agent = [(zh, self.d_agent[zh]["en"]) for zh in self.d_agent]
+        self.l_agent = [(zh, self.d_agent[zh]["en"]) for zh in self.d_agent]  # 生成干员列表，每个元素为(中文名, 英文名)元组
         # l_tags -> ["支援", "辅助干员", ...]
-        self.l_tag = []
-        for num in self.d_tag:
-            self.l_tag += self.d_tag[num]
+        self.l_tag = []  # 初始化空列表用于存储所有标签
+        for num in self.d_tag:  # 遍历标签字典，合并所有标签列表
+            self.l_tag += self.d_tag[num]  # 将每个数字对应的标签列表追加到总列表中
 
     def is_special(self, tag):
         if tag in self.d_tag[4]:
@@ -14,10 +20,25 @@ class Data:
         return False
 
     def getTagPriority(self, tag):
-        for num in self.d_tag:
-            if tag in self.d_tag[num]:
-                return num
-        raise ValueError(f"{tag}不是合法的值")
+        """
+        获取标签的优先级。
+
+        遍历self.d_tag字典，查找指定标签所在的键（优先级），并返回该键。
+        如果标签不在任何键中，抛出ValueError异常。
+
+        参数:
+            tag (str): 要查找的标签。
+
+        返回:
+            int: 标签对应的优先级（键值）。
+
+        异常:
+            ValueError: 如果标签不是合法的值（不在self.d_tag中）。
+        """
+        for num in self.d_tag:  # 遍历self.d_tag字典的键，这些键代表优先级
+            if tag in self.d_tag[num]:  # 检查当前优先级num对应的值列表中是否包含标签tag
+                return num  # 如果找到，返回优先级num
+        raise ValueError(f"{tag}不是合法的值")  # 如果遍历完所有优先级都没有找到标签，抛出异常
 
     def init_data(self):
         self.d_tag = {

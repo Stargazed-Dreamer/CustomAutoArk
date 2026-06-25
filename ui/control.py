@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QVBoxLayout, QPushButton, QLabel, QGridLayout, QComboBox, QSpinBox, QCheckBox, QHBoxLayout, QMessageBox, QScrollArea, QGroupBox, QDoubleSpinBox, QLineEdit
+﻿from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QVBoxLayout, QPushButton, QLabel, QGridLayout, QComboBox, QSpinBox, QCheckBox, QHBoxLayout, QMessageBox, QScrollArea, QGroupBox, QDoubleSpinBox, QLineEdit
 from PySide6.QtCore import Qt
 
 from .global_state import g
@@ -10,164 +10,186 @@ from core.task import Task
 
 class ControlWidget(QWidget):
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.game_manager = None
-        self.initUI()
+        """初始化类的实例。
+
+    设置父组件，调用父类初始化方法，初始化游戏管理器为None，并调用initUI方法初始化用户界面。
+
+    参数:
+        parent: 父组件，默认为None。
+
+    返回:
+        None
+    """
+        super().__init__(parent)  # 调用父类的构造函数，传入parent参数
+        self.game_manager = None  # 初始化游戏管理器属性为None
+        self.initUI()  # 调用initUI方法初始化用户界面
 
     def initUI(self):
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(5, 5, 5, 5)
-        layout.setSpacing(5)
+        """初始化用户界面，创建并布局所有控件。
+    
+        功能：
+            设置主窗口的界面布局，包括设备连接区域、模式设置区域和循环操作区域。
+            为所有按钮、输入框等控件绑定相应的事件处理函数。
         
+        参数：
+            self: 类实例，用于访问实例属性和方法。
+        
+        返回值：
+            无。
+        """
+        layout = QVBoxLayout(self)  # 创建垂直布局管理器
+        layout.setContentsMargins(5, 5, 5, 5)  # 设置布局内边距
+        layout.setSpacing(5)  # 设置控件之间的间距
+    
         # 设备连接区域
-        device_group = QFrame()
-        device_group.setFrameStyle(QFrame.Panel | QFrame.Raised)
-        device_layout = QVBoxLayout(device_group)
-        
+        device_group = QFrame()  # 创建分组框
+        device_group.setFrameStyle(QFrame.Panel | QFrame.Raised)  # 设置边框样式为凸起面板
+        device_layout = QVBoxLayout(device_group)  # 为分组框创建垂直布局
+    
         # 小面板按钮
-        self.btn_mini_panel = QPushButton("打开小面板")
-        self.btn_mini_panel.clicked.connect(self.show_mini_panel)
-        self.btn_mini_panel.setEnabled(False)
-        device_layout.addWidget(self.btn_mini_panel)
-        
+        self.btn_mini_panel = QPushButton("打开小面板")  # 创建按钮
+        self.btn_mini_panel.clicked.connect(self.show_mini_panel)  # 绑定点击信号到显示小面板的方法
+        self.btn_mini_panel.setEnabled(False)  # 初始状态为禁用
+        device_layout.addWidget(self.btn_mini_panel)  # 将按钮添加到布局
+    
         # 连接按钮
-        self.btn_connect = QPushButton("连接设备")
-        self.btn_connect.clicked.connect(self.on_connect_clicked)
-        device_layout.addWidget(self.btn_connect)
-        
+        self.btn_connect = QPushButton("连接设备")  # 创建连接设备按钮
+        self.btn_connect.clicked.connect(self.on_connect_clicked)  # 绑定点击信号到连接处理函数
+        device_layout.addWidget(self.btn_connect)  # 将按钮添加到布局
+    
         # 记录画面按钮
-        self.btn_record = QPushButton("记录画面")
-        font = self.btn_record.font()
-        font.setPointSize(9)
-        self.btn_record.setFont(font)
-        self.btn_record.clicked.connect(self.do_record_screen)
-        self.btn_record.setEnabled(False)
-        device_layout.addWidget(self.btn_record)
-        
-        layout.addWidget(device_group)
-        
+        self.btn_record = QPushButton("记录画面")  # 创建记录画面按钮
+        font = self.btn_record.font()  # 获取按钮字体
+        font.setPointSize(9)  # 设置字体大小为9磅
+        self.btn_record.setFont(font)  # 应用字体设置
+        self.btn_record.clicked.connect(self.do_record_screen)  # 绑定点击信号到记录屏幕处理函数
+        self.btn_record.setEnabled(False)  # 初始状态为禁用
+        device_layout.addWidget(self.btn_record)  # 将按钮添加到布局
+    
+        layout.addWidget(device_group)  # 将设备连接区域添加到主布局
+    
         # 模式设置区域
-        mode_group = QFrame()
-        mode_group.setFrameStyle(QFrame.Panel | QFrame.Raised)
-        mode_layout = QVBoxLayout(mode_group)
-        mode_layout.addWidget(QLabel("<b>模式设置</b>"))
-        
+        mode_group = QFrame()  # 创建模式设置分组框
+        mode_group.setFrameStyle(QFrame.Panel | QFrame.Raised)  # 设置边框样式
+        mode_layout = QVBoxLayout(mode_group)  # 为分组框创建垂直布局
+        mode_layout.addWidget(QLabel("<b>模式设置</b>"))  # 添加加粗标题标签
+    
         # 公招模式选择
-        recruit_layout = QGridLayout()
-        recruit_layout.addWidget(QLabel("公招模式:"), 0, 0)
-        self.recruit_mode = QComboBox()
-        self.recruit_mode.addItems([mode.value for mode in RecruitMode])
-        self.recruit_mode.setEnabled(False)
-        self.recruit_mode.currentTextChanged.connect(self.on_recruit_mode_changed)
-        recruit_layout.addWidget(self.recruit_mode, 0, 1)
-        
+        recruit_layout = QGridLayout()  # 创建网格布局用于公招模式设置
+        recruit_layout.addWidget(QLabel("公招模式:"), 0, 0)  # 在(0,0)位置添加标签
+        self.recruit_mode = QComboBox()  # 创建下拉框用于选择公招模式
+        self.recruit_mode.addItems([mode.value for mode in RecruitMode])  # 添加所有公招模式选项
+        self.recruit_mode.setEnabled(False)  # 初始状态为禁用
+        self.recruit_mode.currentTextChanged.connect(self.on_recruit_mode_changed)  # 绑定选择变化信号
+        recruit_layout.addWidget(self.recruit_mode, 0, 1)  # 在(0,1)位置添加下拉框
+    
         # 公招栏位选择
-        recruit_layout.addWidget(QLabel("选择栏位:"), 1, 0)
-        self.recruit_slot_select = QSpinBox()
-        self.recruit_slot_select.setRange(1, 4)
-        self.recruit_slot_select.setEnabled(False)
-        self.recruit_slot_select.valueChanged.connect(self.on_recruit_slot_changed)
-        recruit_layout.addWidget(self.recruit_slot_select, 1, 1)
-        mode_layout.addLayout(recruit_layout)
-        
+        recruit_layout.addWidget(QLabel("选择栏位:"), 1, 0)  # 在(1,0)位置添加标签
+        self.recruit_slot_select = QSpinBox()  # 创建数字选择框用于选择栏位
+        self.recruit_slot_select.setRange(1, 4)  # 设置选择范围为1-4
+        self.recruit_slot_select.setEnabled(False)  # 初始状态为禁用
+        self.recruit_slot_select.valueChanged.connect(self.on_recruit_slot_changed)  # 绑定值变化信号
+        recruit_layout.addWidget(self.recruit_slot_select, 1, 1)  # 在(1,1)位置添加数字选择框
+        mode_layout.addLayout(recruit_layout)  # 将公招模式布局添加到模式设置区域
+    
         # 抽卡模式选择
-        gacha_layout = QGridLayout()
-        gacha_layout.addWidget(QLabel("抽卡模式:"), 0, 0)
-        self.gacha_mode = QComboBox()
-        self.gacha_mode.addItems([mode.value for mode in GachaMode])
-        self.gacha_mode.setEnabled(False)
-        self.gacha_mode.currentTextChanged.connect(self.on_gacha_mode_changed)
-        gacha_layout.addWidget(self.gacha_mode, 0, 1)
+        gacha_layout = QGridLayout()  # 创建网格布局用于抽卡模式设置
+        gacha_layout.addWidget(QLabel("抽卡模式:"), 0, 0)  # 在(0,0)位置添加标签
+        self.gacha_mode = QComboBox()  # 创建下拉框用于选择抽卡模式
+        self.gacha_mode.addItems([mode.value for mode in GachaMode])  # 添加所有抽卡模式选项
+        self.gacha_mode.setEnabled(False)  # 初始状态为禁用
+        self.gacha_mode.currentTextChanged.connect(self.on_gacha_mode_changed)  # 绑定选择变化信号
+        gacha_layout.addWidget(self.gacha_mode, 0, 1)  # 在(0,1)位置添加下拉框
 
         # 卡池选择
-        gacha_layout.addWidget(QLabel("选择卡池:"), 1, 0)
-        self.gacha_pool_select = QSpinBox()
-        self.gacha_pool_select.setRange(1, 10)
-        self.gacha_pool_select.setEnabled(False)
-        self.gacha_pool_select.valueChanged.connect(self.on_gacha_pool_changed)
-        gacha_layout.addWidget(self.gacha_pool_select, 1, 1)
+        gacha_layout.addWidget(QLabel("选择卡池:"), 1, 0)  # 在(1,0)位置添加标签
+        self.gacha_pool_select = QSpinBox()  # 创建数字选择框用于选择卡池
+        self.gacha_pool_select.setRange(1, 10)  # 设置选择范围为1-10
+        self.gacha_pool_select.setEnabled(False)  # 初始状态为禁用
+        self.gacha_pool_select.valueChanged.connect(self.on_gacha_pool_changed)  # 绑定值变化信号
+        gacha_layout.addWidget(self.gacha_pool_select, 1, 1)  # 在(1,1)位置添加数字选择框
         # 源石消耗选项
-        self.use_originite = QCheckBox("使用源石")
-        self.use_originite.setEnabled(False)
-        self.use_originite.stateChanged.connect(self.on_use_originite_changed)
-        gacha_layout.addWidget(self.use_originite, 1, 2, 1, 2)
-        
-        mode_layout.addLayout(gacha_layout)
-        
-        layout.addWidget(mode_group)
-        
+        self.use_originite = QCheckBox("使用源石")  # 创建复选框用于源石消耗选项
+        self.use_originite.setEnabled(False)  # 初始状态为禁用
+        self.use_originite.stateChanged.connect(self.on_use_originite_changed)  # 绑定状态变化信号
+        gacha_layout.addWidget(self.use_originite, 1, 2, 1, 2)  # 在(1,2)位置添加复选框，跨越2列
+    
+        mode_layout.addLayout(gacha_layout)  # 将抽卡模式布局添加到模式设置区域
+    
+        layout.addWidget(mode_group)  # 将模式设置区域添加到主布局
+    
         # 循环操作组
-        loop_group = QFrame()
-        loop_group.setFrameStyle(QFrame.Panel | QFrame.Raised)
-        loop_layout = QVBoxLayout(loop_group)
-        
-        loop_layout.addWidget(QLabel("<b>循环操作</b>"))
-        
+        loop_group = QFrame()  # 创建循环操作分组框
+        loop_group.setFrameStyle(QFrame.Panel | QFrame.Raised)  # 设置边框样式
+        loop_layout = QVBoxLayout(loop_group)  # 为分组框创建垂直布局
+    
+        loop_layout.addWidget(QLabel("<b>循环操作</b>"))  # 添加加粗标题标签
+    
         # 模式选择
-        mode_layout = QHBoxLayout()
-        mode_layout.addWidget(QLabel("模式:"))
-        self.mode_combo = QComboBox()
-        self.mode_combo.addItems([mode.value for mode in OperationMode])
-        self.mode_combo.currentIndexChanged.connect(self.on_mode_changed)
-        self.mode_combo.setEnabled(False)
-        mode_layout.addWidget(self.mode_combo)
-        loop_layout.addLayout(mode_layout)
-        
+        mode_layout = QHBoxLayout()  # 创建水平布局用于模式选择（注意：这里重用了变量名，但作用域不同）
+        mode_layout.addWidget(QLabel("模式:"))  # 添加标签
+        self.mode_combo = QComboBox()  # 创建下拉框用于选择操作模式
+        self.mode_combo.addItems([mode.value for mode in OperationMode])  # 添加所有操作模式选项
+        self.mode_combo.currentIndexChanged.connect(self.on_mode_changed)  # 绑定索引变化信号
+        self.mode_combo.setEnabled(False)  # 初始状态为禁用
+        mode_layout.addWidget(self.mode_combo)  # 将下拉框添加到布局
+        loop_layout.addLayout(mode_layout)  # 将模式选择布局添加到循环操作布局
+    
         # 停止条件设置
-        stop_layout = QHBoxLayout()
-        self.stop_condition = QCheckBox()
-        self.stop_condition.setEnabled(False)
-        self.stop_condition.stateChanged.connect(self.on_stop_condition_changed)
-        stop_layout.addWidget(self.stop_condition)
-        self.stop_condition_label = QLabel("在遇见六星干员时停止")  # 默认显示
-        stop_layout.addWidget(self.stop_condition_label)
-        stop_layout.addStretch()
-        loop_layout.addLayout(stop_layout)
-        
+        stop_layout = QHBoxLayout()  # 创建水平布局用于停止条件设置
+        self.stop_condition = QCheckBox()  # 创建复选框用于停止条件
+        self.stop_condition.setEnabled(False)  # 初始状态为禁用
+        self.stop_condition.stateChanged.connect(self.on_stop_condition_changed)  # 绑定状态变化信号
+        stop_layout.addWidget(self.stop_condition)  # 将复选框添加到布局
+        self.stop_condition_label = QLabel("在遇见六星干员时停止")  # 创建标签显示停止条件描述（默认显示）
+        stop_layout.addWidget(self.stop_condition_label)  # 将标签添加到布局
+        stop_layout.addStretch()  # 添加伸缩因子使控件靠左对齐
+        loop_layout.addLayout(stop_layout)  # 将停止条件布局添加到循环操作布局
+    
         # 循环次数设置
-        count_layout = QHBoxLayout()
-        count_layout.addWidget(QLabel("执行次数:"))
-        self.count_input = QSpinBox()
-        self.count_input.setRange(0, 999999)
-        self.count_input.setValue(0)
-        self.count_input.setEnabled(False)
-        count_layout.addWidget(self.count_input)
-        count_layout.addWidget(QLabel("(0表示无限循环)"))
-        count_layout.addStretch()
-        loop_layout.addLayout(count_layout)
-        
+        count_layout = QHBoxLayout()  # 创建水平布局用于循环次数设置
+        count_layout.addWidget(QLabel("执行次数:"))  # 添加标签
+        self.count_input = QSpinBox()  # 创建数字输入框用于输入执行次数
+        self.count_input.setRange(0, 999999)  # 设置输入范围为0-999999
+        self.count_input.setValue(0)  # 设置默认值为0
+        self.count_input.setEnabled(False)  # 初始状态为禁用
+        count_layout.addWidget(self.count_input)  # 将数字输入框添加到布局
+        count_layout.addWidget(QLabel("(0表示无限循环)"))  # 添加说明标签
+        count_layout.addStretch()  # 添加伸缩因子使控件靠左对齐
+        loop_layout.addLayout(count_layout)  # 将循环次数布局添加到循环操作布局
+    
         # 启停控制
-        control_layout = QHBoxLayout()
-        
+        control_layout = QHBoxLayout()  # 创建水平布局用于启停控制按钮
+    
         # 开始/暂停按钮
-        self.btn_start_pause = QPushButton("开始")
-        font = self.btn_start_pause.font()
-        font.setPointSize(14)
-        self.btn_start_pause.setFont(font)
-        self.btn_start_pause.setMinimumHeight(50)
-        self.btn_start_pause.clicked.connect(self.toggle_operation)
-        self.btn_start_pause.setEnabled(False)
-        control_layout.addWidget(self.btn_start_pause)
-        
+        self.btn_start_pause = QPushButton("开始")  # 创建开始/暂停按钮
+        font = self.btn_start_pause.font()  # 获取按钮字体
+        font.setPointSize(14)  # 设置字体大小为14磅
+        self.btn_start_pause.setFont(font)  # 应用字体设置
+        self.btn_start_pause.setMinimumHeight(50)  # 设置按钮最小高度为50像素
+        self.btn_start_pause.clicked.connect(self.toggle_operation)  # 绑定点击信号到切换操作函数
+        self.btn_start_pause.setEnabled(False)  # 初始状态为禁用
+        control_layout.addWidget(self.btn_start_pause)  # 将按钮添加到布局
+    
         # 继续按钮（初始隐藏）
-        self.btn_resume = QPushButton("继续")
-        self.btn_resume.setFont(font)
-        self.btn_resume.setMinimumHeight(50)
-        self.btn_resume.clicked.connect(self.resume_operation)
-        self.btn_resume.hide()
-        control_layout.addWidget(self.btn_resume)
-        
+        self.btn_resume = QPushButton("继续")  # 创建继续按钮
+        self.btn_resume.setFont(font)  # 应用相同的字体设置
+        self.btn_resume.setMinimumHeight(50)  # 设置按钮最小高度
+        self.btn_resume.clicked.connect(self.resume_operation)  # 绑定点击信号到恢复操作函数
+        self.btn_resume.hide()  # 初始状态为隐藏
+        control_layout.addWidget(self.btn_resume)  # 将按钮添加到布局
+    
         # 重置按钮（初始隐藏）
-        self.btn_reset = QPushButton("重置")
-        self.btn_reset.setFont(font)
-        self.btn_reset.setMinimumHeight(50)
-        self.btn_reset.clicked.connect(self.reset_operation)
-        self.btn_reset.hide()
-        control_layout.addWidget(self.btn_reset)
-        
-        loop_layout.addLayout(control_layout)
-        layout.addWidget(loop_group)        
-        layout.addStretch()
+        self.btn_reset = QPushButton("重置")  # 创建重置按钮
+        self.btn_reset.setFont(font)  # 应用相同的字体设置
+        self.btn_reset.setMinimumHeight(50)  # 设置按钮最小高度
+        self.btn_reset.clicked.connect(self.reset_operation)  # 绑定点击信号到重置操作函数
+        self.btn_reset.hide()  # 初始状态为隐藏
+        control_layout.addWidget(self.btn_reset)  # 将按钮添加到布局
+    
+        loop_layout.addLayout(control_layout)  # 将启停控制布局添加到循环操作布局
+        layout.addWidget(loop_group)  # 将循环操作组添加到主布局        
+        layout.addStretch()  # 在布局底部添加伸缩因子，使所有控件靠顶部对齐
     
     def on_recruit_mode_changed(self, mode_text: str):
         """公招模式改变处理"""

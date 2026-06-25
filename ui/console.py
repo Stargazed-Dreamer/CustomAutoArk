@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QTextEdit, QSplitter, QFrame
+﻿from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QTextEdit, QSplitter, QFrame
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QTextCursor
 
@@ -8,8 +8,19 @@ from .global_state import g
 # 控制台组件
 class ConsoleWidget(QWidget):
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.initUI()
+        """初始化方法，用于创建对象实例并设置初始状态。
+
+        调用父类的构造函数，并初始化用户界面。
+
+        参数:
+            parent (QWidget, 可选): 父窗口对象，用于建立控件父子关系。
+                                   默认值为 None，表示没有父窗口。
+
+        返回:
+            None: 此方法不返回任何值，仅执行初始化操作。
+        """
+        super().__init__(parent)  # 调用父类QWidget的构造函数，传入父窗口
+        self.initUI()  # 初始化用户界面，创建并设置窗口内的各种控件
     
     def initUI(self):
         layout = QHBoxLayout(self)

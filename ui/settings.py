@@ -1,4 +1,4 @@
-import logging
+﻿import logging
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QSpinBox, QCheckBox, QFileDialog, QMessageBox, QComboBox
 
 from log import log_manager
@@ -11,143 +11,151 @@ class SettingsWidget(QWidget):
     settings_changed = Signal(dict)
     
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.initUI()
+        """初始化实例，调用父类的构造函数并初始化用户界面。
+
+        参数:
+            parent: 可选，指定父对象，默认为None。
+        返回值:
+            无
+        """
+        super().__init__(parent)  # 调用父类的初始化方法，传递parent参数
+        self.initUI()  # 调用initUI方法，用于初始化用户界面
     
     def initUI(self):
-        layout = QVBoxLayout(self)
-        
+        """初始化用户界面设置。创建模拟器设置、日志设置和数据设置的控件，并连接信号与槽。"""
+        layout = QVBoxLayout(self)  # 创建主垂直布局，用于组织所有UI控件
+    
         # 模拟器设置组
         simulator_group = QGroupBox("模拟器设置")
         simulator_layout = QVBoxLayout()
-        
+    
         # ADB路径设置
         adb_layout = QHBoxLayout()
         adb_layout.addWidget(QLabel("ADB路径:"))
-        self.adb_path = QLineEdit()
+        self.adb_path = QLineEdit()  # 用于输入ADB可执行文件的路径
         self.browse_adb_btn = QPushButton("浏览")
         adb_layout.addWidget(self.adb_path)
         adb_layout.addWidget(self.browse_adb_btn)
         simulator_layout.addLayout(adb_layout)
-        
+    
         # 端口设置
         port_layout = QHBoxLayout()
         port_layout.addWidget(QLabel("监听端口:"))
         self.port = QSpinBox()
-        self.port.setRange(1024, 65535)
-        self.port.setValue(7555)
+        self.port.setRange(1024, 65535)  # 设置端口范围，1024-65535为常用TCP端口区间
+        self.port.setValue(7555)  # 默认端口设置为7555
         port_layout.addWidget(self.port)
         port_layout.addStretch()
         simulator_layout.addLayout(port_layout)
-        
+    
         simulator_group.setLayout(simulator_layout)
         layout.addWidget(simulator_group)
-        
+    
         # 日志设置组
         log_group = QGroupBox("日志设置")
         log_layout = QVBoxLayout()
-        
+    
         # 控制台日志
         console_layout = QHBoxLayout()
         self.console_enabled = QCheckBox("控制台日志")
-        self.console_enabled.setChecked(log_manager.settings['console_enabled'])
+        self.console_enabled.setChecked(log_manager.settings['console_enabled'])  # 从全局设置读取控制台日志启用状态
         self.console_level = QComboBox()
-        self.console_level.addItems(["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"])
+        self.console_level.addItems(["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"])  # 添加日志级别选项，从详细到严重
         self.console_level.setCurrentText(
-            str(logging.getLevelName(log_manager.settings['console_level']))
+            str(logging.getLevelName(log_manager.settings['console_level']))  # 设置当前日志级别，使用logging模块转换
         )
         console_layout.addWidget(self.console_enabled)
         console_layout.addWidget(self.console_level)
         log_layout.addLayout(console_layout)
-        
+    
         # 文件日志
         file_layout = QHBoxLayout()
         self.file_enabled = QCheckBox("文件日志")
-        self.file_enabled.setChecked(log_manager.settings['file_enabled'])
+        self.file_enabled.setChecked(log_manager.settings['file_enabled'])  # 从全局设置读取文件日志启用状态
         self.file_level = QComboBox()
-        self.file_level.addItems(["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"])
+        self.file_level.addItems(["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"])  # 文件日志级别选项，与控制台一致
         self.file_level.setCurrentText(
-            str(logging.getLevelName(log_manager.settings['file_level']))
+            str(logging.getLevelName(log_manager.settings['file_level']))  # 设置文件日志级别
         )
         file_layout.addWidget(self.file_enabled)
         file_layout.addWidget(self.file_level)
         log_layout.addLayout(file_layout)
-        
+    
         # 图片日志
         image_layout = QHBoxLayout()
         self.image_enabled = QCheckBox("图片日志")
-        self.image_enabled.setChecked(log_manager.settings['image_enabled'])
+        self.image_enabled.setChecked(log_manager.settings['image_enabled'])  # 从全局设置读取图片日志启用状态
         image_layout.addWidget(self.image_enabled)
         image_layout.addStretch()
         log_layout.addLayout(image_layout)
-        
+    
         # 日志目录
         dir_layout = QHBoxLayout()
         dir_layout.addWidget(QLabel("日志目录:"))
         self.log_path = QLineEdit()
-        self.log_path.setText(log_manager.settings['log_dir'])
+        self.log_path.setText(log_manager.settings['log_dir'])  # 设置日志存储目录路径，从全局设置读取
         self.browse_log_btn = QPushButton("浏览")
         dir_layout.addWidget(self.log_path)
         dir_layout.addWidget(self.browse_log_btn)
         log_layout.addLayout(dir_layout)
-        
+    
         # 日志清理
         clean_layout = QHBoxLayout()
         self.clean_days = QSpinBox()
-        self.clean_days.setRange(1, 365)
-        self.clean_days.setValue(30)
+        self.clean_days.setRange(1, 365)  # 设置日志保留天数范围为1到365天
+        self.clean_days.setValue(30)  # 默认保留30天日志
         self.clean_btn = QPushButton("清理日志")
         clean_layout.addWidget(QLabel("保留天数:"))
         clean_layout.addWidget(self.clean_days)
         clean_layout.addWidget(self.clean_btn)
         log_layout.addLayout(clean_layout)
-        
+    
         log_group.setLayout(log_layout)
         layout.addWidget(log_group)
-        
+    
         # 数据设置组
         data_group = QGroupBox("数据设置")
         data_layout = QVBoxLayout()
-        
+    
         # 数据文件路径
         data_file_layout = QHBoxLayout()
-        self.data_file = QLineEdit()
+        self.data_file = QLineEdit()  # 用于输入数据文件的路径
         data_file_layout.addWidget(QLabel("数据文件:"))
         data_file_layout.addWidget(self.data_file)
         browse_data_btn = QPushButton("浏览")
-        browse_data_btn.clicked.connect(self.browse_data)
+        browse_data_btn.clicked.connect(self.browse_data)  # 连接浏览按钮点击信号到browse_data方法
         data_file_layout.addWidget(browse_data_btn)
         data_layout.addLayout(data_file_layout)
-        
+    
         # 自动保存设置
         auto_save_layout = QHBoxLayout()
         self.auto_save = QCheckBox("自动保存")
         auto_save_layout.addWidget(self.auto_save)
         auto_save_layout.addWidget(QLabel("间隔:"))
         self.auto_save_interval = QSpinBox()
-        self.auto_save_interval.setRange(1, 60)
-        self.auto_save_interval.setValue(5)
+        self.auto_save_interval.setRange(1, 60)  # 设置自动保存间隔范围为1到60分钟
+        self.auto_save_interval.setValue(5)  # 默认间隔5分钟
         auto_save_layout.addWidget(self.auto_save_interval)
         auto_save_layout.addWidget(QLabel("分钟"))
         data_layout.addLayout(auto_save_layout)
-        
+    
         data_group.setLayout(data_layout)
         layout.addWidget(data_group)
-        
+    
         # 保存按钮
         self.save_btn = QPushButton("保存设置")
         layout.addWidget(self.save_btn)
-        
+    
         # 连接信号
-        self.browse_log_btn.clicked.connect(self.browse_log)
-        self.clean_btn.clicked.connect(self.clean_logs)
-        self.save_btn.clicked.connect(self.save_settings)
-        
+        self.browse_log_btn.clicked.connect(self.browse_log)  # 连接日志目录浏览按钮信号
+        self.clean_btn.clicked.connect(self.clean_logs)  # 连接日志清理按钮信号
+        self.save_btn.clicked.connect(self.save_settings)  # 连接保存按钮信号到save_settings方法
+    
         # 连接日志设置变更信号
-        log_manager.log_settings_changed.connect(self.on_log_settings_changed)
-        
+        log_manager.log_settings_changed.connect(self.on_log_settings_changed)  # 连接全局日志设置变更信号到处理函数
+    
         # 连接模拟器设置变更信号
-        self.browse_adb_btn.clicked.connect(self.browse_adb)
+        self.browse_adb_btn.clicked.connect(self.browse_adb)  # 连接ADB路径浏览按钮信号
     
     def browse_log(self):
         """选择日志目录"""

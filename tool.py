@@ -1,4 +1,4 @@
-import traceback
+﻿import traceback
 
 import cv2
 import numpy as np
@@ -18,7 +18,17 @@ region_agent = (0.45, 0.67, 0.87, 0.85)
 region_history = (0.44, 0.27, 0.71, 0.91)
 
 def _get_filename(path):
-    # 找到最后一个 '/' 或 '\' 的位置
+    """
+    从给定的文件路径中提取文件名。
+
+    参数:
+    path (str): 文件路径字符串。
+
+    返回值:
+    str: 文件名部分，即路径中最后一个分隔符（'/' 或 '\\'）之后的字符串。
+         如果路径中没有分隔符，则返回整个路径。
+    """
+    # 找到最后一个分隔符（'/' 或 '\\'）的位置
     last_slash_pos = -1
     for i in range(len(path)):
         if path[i] == '/' or path[i] == '\\':
@@ -28,19 +38,29 @@ def _get_filename(path):
     if last_slash_pos == -1:
         return path
     
-    # 返回分隔符后面的部分
+    # 返回分隔符后面的部分作为文件名
     return path[last_slash_pos + 1:]
 #========================================
 def error_record(e):
+    """
+    记录错误信息到日志系统。
+
+    参数:
+        e: 异常对象，需要记录的错误实例。
+    
+    返回:
+        None: 此函数无返回值，作用是将错误信息记录到日志。
+    """
     tb = e.__traceback__
     if tb:
-        # extract_tb 列表的最后一个元素就是错误发生的源头
+        # 通过 `extract_tb` 获取错误的回溯信息列表，[-1] 取最后一个元素，即错误发生的最深层源代码位置
         error_frame_summary = traceback.extract_tb(tb)[-1]
         filename = error_frame_summary.filename
         lineno = error_frame_summary.lineno
-        
+        # 使用提取的详细信息（文件名和行号）记录错误
         log.log(str(e), "ERROR", filename, lineno)
     else:
+        # 如果无法获取详细的回溯信息，则仅记录异常本身的信息
         log.log(str(e), "ERROR")
 
 class Tool:
@@ -328,25 +348,46 @@ class Tool:
         cv2.destroyAllWindows()
 
     def cosine_similarity(self, s1, s2):
+        """
+        计算两个字符串的余弦相似度。
+
+        该方法通过统计字符频率，构建字符向量，并计算它们的余弦值来评估相似性。
+        会先将字符串转为小写，并去除可能的"new"前缀。
+
+        参数:
+            s1 (str): 第一个输入字符串。
+            s2 (str): 第二个输入字符串。
+
+        返回:
+            float: 两个字符串的余弦相似度，范围在0到1之间。
+                   如果任一字符串为空，返回0；若字符串完全相同（忽略大小写），返回1。
+        """
         if s1 == "" or s2 == "":
+            # 如果任一字符串为空，则相似度为0
             return 0
+        # 将两个字符串都转换为小写，以忽略大小写差异
         s1 = s1.lower()
         s2 = s2.lower()
         if s1 == s2:
+            # 如果转换后的字符串完全相同，则相似度为1
             return 1
+        # 如果字符串以"new"开头，则去除前缀"new"再进行后续计算
         if s1[:3] == "new":
             s1 = s1[3:]
         if s2[:3] == "new":
             s2 = s2[3:]
-        # 创建字符频率向量
+        # 获取两个字符串中所有不重复的字符，作为向量的维度
         chars = list(set(s1 + s2))
+        # 构建字符串s1和s2在字符列表chars上的频率向量
         v1 = [s1.count(c) for c in chars]
         v2 = [s2.count(c) for c in chars]
-        
-        # 计算点积和向量长度
+    
+        # 计算两个向量的点积
         dot_product = sum(a * b for a, b in zip(v1, v2))
+        # 计算两个向量的L2范数（长度）
         norm1 = sum(a * a for a in v1) ** 0.5
         norm2 = sum(b * b for b in v2) ** 0.5
+        # 计算余弦相似度，若范数之积为0则返回0以避免除零错误
         result = dot_product / (norm1 * norm2) if norm1 * norm2 > 0 else 0.0
         #log.debug(f"余弦相似度: {s1}, {s2}, {result}")
         return result
@@ -447,21 +488,39 @@ class Tool:
         return None
 
     def getTag(self, img):
+        """从输入的图像中识别并提取标签信息。
+
+        本方法首先对图像进行裁剪以聚焦于标签区域，然后在该区域中检测小的连通区域（如按钮），
+        接着对每个区域进行OCR文字识别，并将识别结果与预定义的标签列表进行匹配。
+        最终返回匹配相似度最高的前5个标签。
+
+        参数:
+            img: 输入的原始图像数据。
+
+        返回值:
+            list: 一个包含最多5个匹配标签的列表，按匹配相似度从高到低排序。
+        """
+        # 对图像进行裁剪，获取预定义的标签区域
         img = self.cropping(img, region_tag, mode="percent")
+        # 在裁剪后的图像上寻找小的连通区域（例如按钮）
         l_buttons = self.find_smallRegionsOnImg(img)
         log.debug(f"找到的按钮: {len(l_buttons)}个")
-        l_tag = []
+        l_tag = []  # 用于存储所有匹配成功的结果
+        # 遍历每个找到的区域图像
         for img in l_buttons:
+            # 对单个区域图像进行OCR识别
             l_result = self.ocr(img)
             if l_result is None:
-                continue
+                continue  # 如果识别失败，则跳过当前区域
+            # 将OCR结果与预定义的标签列表进行逐项匹配
             for tag in DATA.l_tag:
+                # 尝试在OCR结果中查找匹配的标签名称
                 t_result = self.find_nameOnResult(l_result, tag, mode="src", sameOnly=False, includeSimilarity=True)
                 if t_result is not None:
                     log.debug(f"{tag}匹配ocr的结果: {l_result} -> {t_result}")
-                    l_tag.append(t_result)
+                    l_tag.append(t_result)  # 将成功匹配的结果（包含相似度）添加到列表中
         log.info(f"所有匹配的ocr结果: {l_tag}")
-        #取相似度最高的5个
+        #对匹配结果按相似度进行降序排序，并取前5个，然后提取标签名称
         return [t_result[0] for t_result in sorted(l_tag, key=lambda x: x[1], reverse=True)[:5]]
 
     def getAgent(self, img):

@@ -1,4 +1,4 @@
-"""
+﻿"""
 数据视图组件 (DataView)
 这个模块提供了一个用于显示和编辑数据的文本编辑器组件。
 
@@ -31,35 +31,68 @@ class DataView(QWidget):
     data_changed = Signal(list)  # 数据修改信号
     
     def __init__(self, parent=None):
+        """
+        初始化类实例。
+
+        参数:
+            self: 类实例自身。
+            parent: 可选的父对象，默认为None。
+
+        返回值:
+            无。
+        """
+        # 调用父类的初始化方法，传入parent参数
         super().__init__(parent)
+        # 初始化用户界面
         self.setup_ui()
+        # 初始化动作
         self.setup_actions()
         
     def setup_ui(self):
+        """初始化用户界面。
+
+        此方法负责设置主窗口的布局、字体，并创建工具栏和文本编辑器。
+
+        参数:
+            self: 类实例本身。
+
+        返回:
+            无返回值。
+        """
+        # 创建一个垂直布局管理器，并应用到窗口
         self.layout = QVBoxLayout(self)
+        # 设置布局的边距为零，使控件紧贴窗口边缘
         self.layout.setContentsMargins(0, 0, 0, 0)
-        
-        # 设置中文字体
+
+        # 根据操作系统类型选择合适的字体
         if platform.system() == 'Windows':
-            font = QFont('Microsoft YaHei', 9)  # 微软雅黑
+            # Windows 系统使用微软雅黑字体
+            font = QFont('Microsoft YaHei', 9)
         elif platform.system() == 'Darwin':
-            font = QFont('PingFang SC', 9)  # macOS 苹方
+            # macOS 系统使用苹方字体
+            font = QFont('PingFang SC', 9)
         else:
-            font = QFont('Sans', 9)  # Linux 默认无衬线字体
-        
-        # 创建工具栏
+            # Linux 及其他系统使用默认的无衬线字体
+            font = QFont('Sans', 9)
+
+        # 创建工具栏实例并应用字体
         self.toolbar = QToolBar()
         self.toolbar.setFont(font)
+        # 将工具栏添加到布局中
         self.layout.addWidget(self.toolbar)
-        
-        # 创建文本编辑器
+
+        # 创建文本编辑器实例
         self.editor = QPlainTextEdit()
-        self.editor.setFont(QFont('Consolas', 9))  # 使用等宽字体
+        # 为编辑器设置等宽字体，便于代码显示
+        self.editor.setFont(QFont('Consolas', 9))
+        # 禁用自动换行，保持代码格式
         self.editor.setLineWrapMode(QPlainTextEdit.NoWrap)
+        # 将编辑器的文本变化信号连接到相应处理方法
         self.editor.textChanged.connect(self.on_text_changed)
+        # 将文本编辑器添加到布局中
         self.layout.addWidget(self.editor)
-        
-        # 保存当前高亮的行
+
+        # 初始化一个列表，用于记录当前被高亮的行号
         self.current_highlights = []
         
     def set_data(self, data):

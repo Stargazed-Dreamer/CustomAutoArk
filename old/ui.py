@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import os
 import yaml
 import cv2
@@ -31,10 +31,26 @@ class WorkerThread(QThread):
         self.kwargs = kwargs
         
     def run(self):
+        """
+        执行当前任务对象中封装的函数。
+
+        此方法为任务的核心执行入口。它会尝试使用预存的参数调用指定函数，
+        并通过信号与外界通信。执行成功会发出 `finished` 信号，若发生异常
+        则发出包含错误信息的 `error` 信号。
+
+        :参数:
+            self: 实例对象本身，包含任务函数 `func`、位置参数 `args` 和关键字参数 `kwargs`。
+        :返回:
+            None (无直接返回值，通过信号进行状态通知)。
+        """
         try:
+            # 尝试安全地执行存储的函数，传入所有预存的参数
             self.func(*self.args, **self.kwargs)
+            # 函数执行成功，发出完成信号
             self.finished.emit()
         except Exception as e:
+            # 捕获执行过程中可能发生的任何异常
+            # 将异常信息转换为字符串，并通过错误信号发送出去
             self.error.emit(str(e))
 
 class MainWindow(QMainWindow):
@@ -300,10 +316,15 @@ class MainWindow(QMainWindow):
             logging.error(f"保存设置失败: {e}")
 
 def main():
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    app.exec()
+    """初始化并运行应用程序的主函数。
+
+    参数：无
+    返回值：无
+    """
+    app = QApplication(sys.argv)  # 创建应用程序实例，并传入命令行参数以初始化应用
+    window = MainWindow()  # 实例化主窗口对象
+    window.show()  # 显示主窗口，使其可见
+    app.exec()  # 启动应用程序的事件循环，处理用户交互和系统事件，直到应用退出
 
 if __name__ == '__main__':
     main()

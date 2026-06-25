@@ -1,17 +1,37 @@
-class Data:
+﻿class Data:
     def __init__(self):
         self.init_data()
 
     def is_special(self, tag):
-        if tag in self.d_tag[4]:
-            return True
-        return False
+        """
+        检查指定标签是否在self.d_tag[4]中。
+
+        参数：
+        self (object): 类实例。
+        tag (str): 要检查的标签。
+
+        返回值：
+        bool: 如果标签在self.d_tag[4]中，返回True；否则返回False。
+        """
+        if tag in self.d_tag[4]:  # 检查tag是否在字典d_tag的第4个元素中
+            return True  # 标签特殊，返回True
+        return False  # 标签不特殊，返回False
 
     def getTagPriority(self, tag):
-        for num in self.d_tag:
-            if tag in self.d_tag[num]:
-                return num
-        raise ValueError(f"{tag}不是合法的值")
+        """从d_tag字典中查找tag的优先级。
+
+        参数:
+        tag (str): 要查找的标签。
+
+        返回:
+        int: tag对应的优先级。
+
+        如果tag不存在，抛出ValueError。
+        """
+        for num in self.d_tag:  # 遍历d_tag字典中的每个键（优先级num）
+            if tag in self.d_tag[num]:  # 检查tag是否存在于当前优先级num对应的值列表中
+                return num  # 找到匹配，立即返回优先级num
+        raise ValueError(f"{tag}不是合法的值")  # 遍历结束后仍未找到tag，抛出异常
 
     def init_data(self):
         self.l_tag = [

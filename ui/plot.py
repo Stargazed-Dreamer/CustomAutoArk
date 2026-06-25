@@ -1,4 +1,4 @@
-import matplotlib
+﻿import matplotlib
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
@@ -36,11 +36,20 @@ class PlotWidget(QWidget):
     hover_point_changed = Signal(int)  # 悬停点变化信号
     
     def __init__(self, parent=None):
-        super().__init__(parent)
+        """初始化方法，用于设置对象的初始状态。
+
+        参数:
+            parent: 可选参数，指定父对象，默认为None。
+
+        返回值:
+            无返回值。
+
+        """
+        super().__init__(parent)  # 调用父类的初始化方法，传递parent参数
         self._updating = False  # 防止循环更新
-        self.initUI()
-        self.setup_plot()
-        self.setup_interactions()
+        self.initUI()  # 初始化用户界面
+        self.setup_plot()  # 设置绘图组件
+        self.setup_interactions()  # 设置交互功能
         
     def initUI(self):
         layout = QVBoxLayout(self)
@@ -108,8 +117,25 @@ class PlotWidget(QWidget):
             self._updating = False
 
     def _update_plot(self):
+        """
+        清除当前图表的所有图形元素并重新绘制数据。
+
+        该方法会：
+        1. 清除所有先前的图形元素引用。
+        2. 检查数据是否为空，若为空则直接返回。
+        3. 计算数据和坐标轴的边界范围及边距。
+        4. 绘制数据主线、可选的数据点、选中的高亮数据点。
+        5. 设置网格、坐标轴范围和标签。
+        6. 刷新画布以显示更新。
+
+        参数:
+            self: 实例对象本身，包含绘图所需的数据和状态。
+
+        返回值:
+            None: 无显式返回值，但通过副作用更新图表显示。
+        """
         self.ax.clear()
-        # 清除所有图形元素的引用
+        # 清除所有图形元素的引用，以避免内存泄漏和绘制重影
         self._safe_remove(self.line)
         self.line = None
         self._safe_remove(self.scatter)
@@ -120,57 +146,62 @@ class PlotWidget(QWidget):
         self.selection_rect = None
         self._safe_remove(self.hover_annotation)
         self.hover_annotation = None
-        
-        # 重新绘制逻辑
+
+        # 重新绘制逻辑：首先检查数据是否存在
         if not self.data:
             return
-        
-        # 计算数据范围
+
+        # 计算数据的最小值和最大值，用于确定Y轴范围
         data_min = min(self.data)
         data_max = max(self.data)
+        # X轴的默认范围基于数据点的索引
         x_min = 0
         x_max = len(self.data) - 1
-        
-        # 设置合适的边距
+
+        # 设置合适的边距，防止数据点紧贴坐标轴边缘
+        # y_margin: 取数据范围的5%和1中的较大值，确保最小间距
         y_margin = max((data_max - data_min) * 0.05, 1)
+        # x_margin: 取数据长度的2%和1中的较大值，确保最小间距
         x_margin = max(len(self.data) * 0.02, 1)
-        
-        # 计算默认视图范围
+
+        # 计算默认视图范围，为数据范围加上边距
         default_xlim = (x_min - x_margin, x_max + x_margin)
         default_ylim = (data_min - y_margin, data_max + y_margin)
-        
-        # 保存当前视图范围
+
+        # 保存当前视图范围，以便在重绘时保持用户的缩放/平移状态
         xlim = self.ax.get_xlim()
         ylim = self.ax.get_ylim()
+        # 如果当前范围是Matplotlib的默认值(0,1)，则使用计算出的默认范围
         if xlim == (0, 1) or ylim == (0, 1):
             xlim = default_xlim
             ylim = default_ylim
-        
-        # 绘制主线
+
+        # 绘制主线，使用连续的实线，线宽为1
         self.line, = self.ax.plot(self.x_data, self.data, '-', lw=1)
-        
-        # 绘制数据点
+
+        # 根据配置决定是否绘制数据点
         if self.show_points:
             self.scatter = self.ax.scatter(self.x_data, self.data, s=20)
-        
-        # 绘制选中的点
+
+        # 如果有选中的数据点，则用红色、较大的点进行高亮显示
         if self.selected_indices:
+            # 从索引列表中提取对应的x和y坐标
             selected_x = [self.x_data[i] for i in self.selected_indices]
             selected_y = [self.data[i] for i in self.selected_indices]
             self.ax.scatter(selected_x, selected_y, color='red', s=50, zorder=3)
-        
-        # 设置网格
+
+        # 设置网格的显示状态和样式
         self.ax.grid(self.grid_on, linestyle='--', alpha=0.7)
-        
-        # 设置范围
+
+        # 设置坐标轴的范围
         self.ax.set_xlim(xlim)
         self.ax.set_ylim(ylim)
-        
-        # 设置标签
+
+        # 设置坐标轴的标签
         self.ax.set_xlabel('时间点')
         self.ax.set_ylabel('数值')
-        
-        # 刷新画布
+
+        # 刷新画布，使所有更改在图形用户界面上可见
         self.canvas.draw()
     
     def _safe_remove(self, artist):
@@ -182,27 +213,51 @@ class PlotWidget(QWidget):
                 pass
 
     def on_mouse_press(self, event):
+        """处理鼠标按下事件，用于选择或平移视图。
+
+        根据鼠标按键（左键或右键）触发不同的交互逻辑：
+        - 左键单击：重置当前选择，并开始框选。
+        - 右键单击：开始平移视图。
+
+        参数:
+            self: 类实例自身。
+            event: 鼠标事件对象，包含点击坐标、所在坐标轴、按键等信息。
+
+        返回值:
+            无。
+        """
+        # 检查鼠标点击是否发生在当前绑定的坐标轴内，如果不是则直接返回，忽略事件
         if event.inaxes != self.ax:
             return
-            
+
+        # 判断鼠标按键
         if event.button == 1:
             # 单击左键时清除已有选择
             self.selected_indices = []
+            # 如果主窗口存在数据视图组件，则清除其高亮显示
             if hasattr(g.mainWindow, 'data_view'):
                 g.mainWindow.data_view.highlight_lines([])
-            
+
+            # 设置状态：正在框选
             self.is_selecting = True
+            # 记录框选的起始坐标点
             self.selection_start = (event.xdata, event.ydata)
-            # 安全移除选择框和悬停标注
+            # 安全移除旧的矩形选择框图形对象
             self._safe_remove(self.selection_rect)
             self.selection_rect = None
+            # 安全移除旧的悬停标注图形对象
             self._safe_remove(self.hover_annotation)
             self.hover_annotation = None
+            # 刷新画布以显示变化
             self.canvas.draw()
         elif event.button == 3:  # 右键
+            # 设置状态：正在平移
             self.is_panning = True
+            # 记录平移操作的起始坐标点
             self.pan_start = (event.xdata, event.ydata)
+            # 导入PySide6的QApplication用于修改光标样式
             from PySide6.QtWidgets import QApplication
+            # 将鼠标光标设置为手型（抓住），表示平移模式
             QApplication.setOverrideCursor(Qt.ClosedHandCursor)
         
     def on_mouse_release(self, event):
@@ -318,8 +373,16 @@ class PlotWidget(QWidget):
         self._update_plot()
     
     def toggle_points(self):
-        self.show_points = not self.show_points
-        self._update_plot()
+        """切换点显示状态并更新绘图。
+
+        参数：
+            self - 当前实例
+
+        返回值：
+            无
+        """
+        self.show_points = not self.show_points  # 切换点显示状态
+        self._update_plot()  # 更新绘图
 
     def loadSettings(self):
         """加载图表设置"""

@@ -1,4 +1,4 @@
-import json
+﻿import json
 import logging
 import os
 import sys
@@ -445,8 +445,17 @@ class MainWindow(QMainWindow):
         self.data_view.set_data(numeric_data=data_manager.data)
 
     def on_data_updated(self):
-        self.plot_widget.set_data(data_manager.data)
-        self.data_view.set_data(numeric_data=data_manager.data, info_data=data_manager.real_data)
+        """
+        当数据更新时调用此方法，用于更新绘图组件和数据视图。
+
+        参数:
+            self: 实例自身，隐式参数。
+
+        返回值:
+            无返回值。
+        """
+        self.plot_widget.set_data(data_manager.data)  # 更新绘图组件的数据
+        self.data_view.set_data(numeric_data=data_manager.data, info_data=data_manager.real_data)  # 更新数据视图的数值数据和信息数据
     
     def save_current_data(self):
         """保存核心数据"""
@@ -506,18 +515,27 @@ class MainWindow(QMainWindow):
         event.acceptProposedAction()
 
     def append_data_from_json(self, jsonPath):
-        log_manager.debug(f"从json文件 {jsonPath} 中录入")
-        with open(jsonPath, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        l_agents = []
-        for entry in data['data']['list']:
-            for char in entry['chars']:
-                l_agents.append(char['name'])
-        data_manager.update_data(l_agents[::-1])
-        self.plot_widget.set_data(data_manager.data)
+        """从指定JSON文件中读取数据，并将提取的代理名称列表追加到数据管理器中。
+
+        参数:
+            self: 类实例本身。
+            jsonPath (str): JSON文件的路径。
+
+        返回值:
+            None: 此方法无返回值，但会更新内部数据状态并刷新界面显示。
+        """
+        log_manager.debug(f"从json文件 {jsonPath} 中录入")  # 记录调试信息，提示开始从JSON文件录入数据
+        with open(jsonPath, 'r', encoding='utf-8') as f:  # 以UTF-8编码打开JSON文件，确保正确处理中文字符
+            data = json.load(f)  # 解析JSON文件内容到Python字典中
+        l_agents = []  # 初始化空列表，用于存储提取的代理名称
+        for entry in data['data']['list']:  # 遍历JSON数据中的列表，每个entry代表一个条目
+            for char in entry['chars']:  # 遍历每个条目中的字符列表
+                l_agents.append(char['name'])  # 将字符名称添加到代理列表中
+        data_manager.update_data(l_agents[::-1])  # 反转列表顺序并更新数据管理器，确保数据对齐
+        self.plot_widget.set_data(data_manager.data)  # 设置绘图部件的数据，用于可视化显示
         self.data_view.set_data(
-            data_manager.data,
-            data_manager.real_data
+            data_manager.data,  # 设置数据视图显示的主要数据
+            data_manager.real_data  # 设置数据视图显示的真实数据或参考数据
         )
 
     def append_data_from_txt(self, txtPath):
@@ -532,29 +550,48 @@ class MainWindow(QMainWindow):
             raise RuntimeError(f"文件 {txtPath} 解析失败")
 
     def append_data_from_img(self, imgPath, refresh = False):
+        """从指定图片路径读取图像，尝试识别其中数据并追加到数据管理器。
+
+        Args:
+            imgPath (str): 要读取的图片文件路径。
+            refresh (bool, optional): 是否在追加数据后刷新界面显示。默认为 False。
+
+        Returns:
+            None: 该方法无返回值，但会修改数据管理器状态并可能抛出异常。
+        """
         log_manager.debug(f"从图片 {imgPath} 中录入")
+        # 获取并检查文件扩展名是否为支持的图片格式
         file_ext = os.path.splitext(imgPath)[1].lower()
         if file_ext in self.img_extension:
             img = cv.imread(imgPath)
         else:
             raise RuntimeError(f"无法将 {imgPath} 读取为图片")
+        # 检查图片是否成功读取（路径错误、文件损坏或含非ASCII字符可能导致失败）
         if img is None:
             raise RuntimeError(f"无法将 {imgPath} 读取为图片，可能是路径有中文？")
-        # 三种识别挨个判定正确的
+        # 按优先级尝试三种识别方法，任意一种成功即更新数据并退出
+        # 方法一：尝试通过工具识别获取标签列表
         l_tag = tool.getTag(img)
         if len(l_tag) == 5:
+            # 如果识别出的标签列表长度为5，视为有效，用"!"连接后更新数据
             data_manager.update_data("!".join(l_tag))
         else:
+            # 方法二：尝试识别干员信息
             agent = tool.getAgent(img)
             if agent is not None:
+                # 成功识别到干员信息，直接更新数据
                 data_manager.update_data(agent)
             else:
+                # 方法三：尝试识别历史记录
                 l_history, b_flag = tool.getHistory(img)
                 if b_flag:
+                    # 历史记录识别成功，用换行符连接成单字符串后更新数据
                     data_manager.update_data("\n".join(l_history))
                 else:
+                    # 所有识别方法均失败，记录详细信息并抛出异常
                     log_manager.debug(f"{imgPath}识别结果: tag={l_tag}, 干员={agent}, 历史={l_history}, 标志={b_flag}")
                     raise RuntimeError(f"无法识别图像 {imgPath}")
+        # 如果需要刷新，则更新图表和数据视图控件
         if refresh:
             self.plot_widget.set_data(data_manager.data)
             self.data_view.set_data(
@@ -563,6 +600,15 @@ class MainWindow(QMainWindow):
             )
 
     def append_data_from_dir(self, dirPath):
+        """
+        从指定目录中读取数据文件并添加到数据管理器中。
+
+        参数：
+            dirPath (str): 要读取的目录路径。
+
+        返回值：
+            None，但如果文件读取出错，会引发RuntimeError异常。
+        """
         log_manager.debug(f"从目录 {dirPath} 中录入")
 
         # 收集所有文件及其创建时间
@@ -590,7 +636,7 @@ class MainWindow(QMainWindow):
                     print(f"无法获取文件 {file_path} 的修改时间: {e}")
                     continue
 
-                l_files.append((file_path, creation_time, file_ext))
+                l_files.append((file_path, creation_time, file_ext))  # 存储文件路径、修改时间和扩展名
 
                 # 判断文件名是否纯数字（无扩展名部分）
                 base_name = os.path.splitext(file)[0]
@@ -599,10 +645,11 @@ class MainWindow(QMainWindow):
 
         # 根据 all_numeric 决定排序键
         if all_numeric and l_files:
+            # 按文件名中的数字部分排序（例如，file123.txt -> 123）
             l_files.sort(key=lambda t: int(os.path.splitext(os.path.basename(t[0]))[0]))
         else:
             # 按创建时间排序（从老到新）
-            l_files.sort(key=lambda t: t[1])
+            l_files.sort(key=lambda t: t[1])  # t[1] 是创建时间
 
         l_error = []
         for file_path, _, file_ext in l_files:

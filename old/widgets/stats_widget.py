@@ -1,4 +1,4 @@
-"""
+﻿"""
 统计信息组件 (StatsWidget)
 这个模块提供了数据统计信息的显示界面。
 
@@ -33,13 +33,31 @@ import platform
 
 class StatsWidget(QWidget):
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setup_ui()
+        """
+        初始化实例，调用父类构造函数并设置用户界面。
+
+        参数:
+            parent: 父对象，默认为None。
+
+        返回:
+            None
+        """
+        super().__init__(parent)  # 调用父类的初始化方法
+        self.setup_ui()  # 设置用户界面
         
     def setup_ui(self):
+        """
+        设置用户界面，包括创建和配置全局统计表格与局部统计表格，并将它们布局到窗口中。
+
+        参数：
+            self (实例): 当前类的实例。
+
+        返回值：
+            None
+        """
         self.layout = QHBoxLayout(self)  # 改为水平布局
         self.layout.setContentsMargins(0, 0, 0, 0)
-        
+    
         # 设置中文字体
         if platform.system() == 'Windows':
             font = QFont('Microsoft YaHei', 9)
@@ -47,11 +65,11 @@ class StatsWidget(QWidget):
             font = QFont('PingFang SC', 9)
         else:
             font = QFont('Sans', 9)
-            
+        
         # 创建左右两个表格
         self.global_table = QTableWidget()
         self.local_table = QTableWidget()
-        
+    
         # 设置表格属性
         for table in [self.global_table, self.local_table]:
             table.setColumnCount(2)
@@ -59,23 +77,23 @@ class StatsWidget(QWidget):
             table.horizontalHeader().setStretchLastSection(True)
             table.setFont(font)
             table.horizontalHeader().setFont(font)
-            
+        
         # 添加标题标签
         self.global_label = QLabel("全局统计")
         self.local_label = QLabel("局部统计")
         self.global_label.setFont(font)
         self.local_label.setFont(font)
-        
+    
         # 创建左右布局
         left_layout = QVBoxLayout()
         right_layout = QVBoxLayout()
-        
+    
         left_layout.addWidget(self.global_label)
         left_layout.addWidget(self.global_table)
-        
+    
         right_layout.addWidget(self.local_label)
         right_layout.addWidget(self.local_table)
-        
+    
         # 添加到主布局
         self.layout.addLayout(left_layout)
         self.layout.addLayout(right_layout)

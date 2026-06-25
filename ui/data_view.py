@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QTabWidget, QWidget, QVBoxLayout, QPlainTextEdit, QPushButton, QLabel, QTextEdit
+﻿from PySide6.QtWidgets import QWidget, QVBoxLayout, QTabWidget, QWidget, QVBoxLayout, QPlainTextEdit, QPushButton, QLabel, QTextEdit
 from PySide6.QtGui import QFont, QTextCursor, QTextCharFormat, QColor
 from PySide6.QtCore import Signal
 
@@ -11,46 +11,73 @@ class DataViewWidget(QWidget):
         self.initUI()
     
     def initUI(self):
+        """初始化用户界面，创建包含数值数据和干员/Tag信息的标签页，并设置相关布局和信号连接。
+
+        该方法构建主界面结构，包括一个标签页控件，分别用于显示数值数据（只读）和编辑干员/Tag信息。
+        同时连接相关信号以响应标签页切换和文本编辑事件。
+
+        Args:
+            self: 实例对象自身。
+
+        Returns:
+            None: 此方法不返回任何值，仅完成界面初始化和信号连接。
+        """
+        # 创建垂直布局管理器，并设置到当前窗口
         layout = QVBoxLayout(self)
+        # 设置布局边距为0，使控件紧贴窗口边缘
         layout.setContentsMargins(0, 0, 0, 0)
-        
-        # 创建标签页
+    
+        # 创建标签页控件，用于容纳多个标签页
         self.tab_widget = QTabWidget()
-        
-        # 数值数据页
+    
+        # 创建数值数据标签页
         numeric_widget = QWidget()
         numeric_layout = QVBoxLayout(numeric_widget)
+        # 创建纯文本编辑器，用于显示数值数据
         self.numeric_editor = QPlainTextEdit()
+        # 设置等宽字体Consolas，便于对齐数值
         self.numeric_editor.setFont(QFont('Consolas', 9))
+        # 禁用自动换行，保持数据原始格式
         self.numeric_editor.setLineWrapMode(QPlainTextEdit.NoWrap)
-        self.numeric_editor.setReadOnly(True)  # 设为只读
+        # 设为只读模式，防止用户误修改数值数据
+        self.numeric_editor.setReadOnly(True)
+        # 将编辑器添加到数值数据页面的布局中
         numeric_layout.addWidget(self.numeric_editor)
+        # 将数值数据页面添加到标签页，并设置标签名称
         self.tab_widget.addTab(numeric_widget, "数值数据")
-        
-        # 干员/tag数据页
+    
+        # 创建干员/Tag信息编辑标签页
         info_widget = QWidget()
         info_layout = QVBoxLayout(info_widget)
+        # 创建纯文本编辑器，用于编辑干员和Tag信息
         self.info_editor = QPlainTextEdit()
+        # 设置中文字体微软雅黑，便于显示中文信息
         self.info_editor.setFont(QFont('Microsoft YaHei', 9))
+        # 将编辑器添加到信息页面的布局中
         info_layout.addWidget(self.info_editor)
-        
-        # 添加保存按钮
+    
+        # 创建保存按钮，用于应用对干员/Tag信息的修改
         self.save_button = QPushButton("应用修改")
+        # 连接按钮的点击信号到保存修改的方法
         self.save_button.clicked.connect(self.save_changes)
+        # 将按钮添加到信息页面的布局中
         info_layout.addWidget(self.save_button)
-        
+    
+        # 将干员/Tag信息页面添加到标签页，并设置标签名称
         self.tab_widget.addTab(info_widget, "干员/Tag信息")
-        
+    
+        # 将标签页控件添加到主布局中
         layout.addWidget(self.tab_widget)
 
-        # 保存当前高亮的行
+        # 初始化当前高亮行列表，用于存储文本高亮信息
         self.current_highlights = []
+        # 默认将数值编辑器设为当前活动编辑器
         self.editor = self.numeric_editor
 
-        # 连接标签页切换信号
+        # 连接标签页切换信号到处理函数，当标签页切换时触发
         self.tab_widget.currentChanged.connect(self.on_tab_changed)
-        
-        # 连接文本编辑信号
+    
+        # 连接文本编辑信号到处理函数，当干员/Tag信息文本改变时触发
         self.info_editor.textChanged.connect(self.on_info_text_changed)
 
     def highlight_lines(self, line_numbers):

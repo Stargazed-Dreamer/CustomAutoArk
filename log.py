@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+﻿from datetime import datetime, timedelta
 import inspect
 import os
 import logging
@@ -14,41 +14,42 @@ class LogManager(QObject):
     log_settings_changed = Signal(dict)  # 日志设置变更信号
     
     def __init__(self):
-        super().__init__()
-        self.logger = logging.getLogger('ArknightsLogger')
-        self.logger.setLevel(logging.DEBUG)
-        
+        """初始化日志配置实例，设置日志记录器、加载配置、配置格式化器和处理器。"""
+        super().__init__()  # 调用父类的初始化方法
+        self.logger = logging.getLogger('ArknightsLogger')  # 获取名为'ArknightsLogger'的日志记录器
+        self.logger.setLevel(logging.DEBUG)  # 设置日志记录器级别为DEBUG
+    
         # 日期分隔符相关
         self.last_date = None
-        
+    
         # 加载配置
-        self.config_file = 'config.yaml'
-        self.settings = self.load_config().get('log', {})
-        if not self.settings:
+        self.config_file = 'config.yaml'  # 指定配置文件路径
+        self.settings = self.load_config().get('log', {})  # 加载配置并获取日志部分，如果不存在则返回空字典
+        if not self.settings:  # 如果日志设置为空，使用默认配置
             self.settings = {
-                'console_enabled': True,
-                'file_enabled': True,
-                'image_enabled': True,
-                'console_level': logging.INFO,
-                'file_level': logging.DEBUG,
-                'log_dir': 'log',
-                'cleanup_days': 30
+                'console_enabled': True,  # 控制台输出启用
+                'file_enabled': True,     # 文件输出启用
+                'image_enabled': True,    # 图像输出启用
+                'console_level': logging.INFO,  # 控制台日志级别
+                'file_level': logging.DEBUG,    # 文件日志级别
+                'log_dir': 'log',         # 日志目录
+                'cleanup_days': 30        # 日志清理天数
             }
-        
+    
         # 设置日志格式化器
         self.formatter = logging.Formatter(
-            '[%(levelname)s][%(asctime)s][%(filename)s:%(lineno)d]%(message)s',
-            datefmt='%Y.%m.%d %H:%M:%S'
+            '[%(levelname)s][%(asctime)s][%(filename)s:%(lineno)d]%(message)s',  # 详细日志格式，包含级别、时间、文件名和行号
+            datefmt='%Y.%m.%d %H:%M:%S'  # 日期时间格式
         )
 
         self.public_formatter = logging.Formatter(
-            '[%(asctime)s]%(message)s',
-            datefmt='%Y.%m.%d %H:%M:%S'
+            '[%(asctime)s]%(message)s',  # 公共日志格式，仅包含时间和消息
+            datefmt='%Y.%m.%d %H:%M:%S'  # 日期时间格式
         )
-        
+    
         # 确保日志目录存在
         self.setup_log_dir()
-        
+    
         # 设置日志处理器
         self.setup_handlers()
     

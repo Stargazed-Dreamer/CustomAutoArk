@@ -1,4 +1,4 @@
-import os
+﻿import os
 import socket
 import subprocess
 import time
@@ -22,22 +22,33 @@ LOCK = threading.Lock()
 
 class Simulator:
     def __init__(self, adb_path = ADB_PATH, type = "mumu", resource_dir = "."):
-        self.adb_path = adb_path
-        self.device_addr = None
-        self.minitouch_proc = None
-        self.minitouch_socket = None
-        self.screen_size = None
-        
-        self.type = type
+        """
+        初始化ADB连接和相关资源。
+
+        参数:
+            adb_path (str): ADB可执行文件的路径，默认为ADB_PATH。
+            type (str): 设备类型，默认为"mumu"。
+            resource_dir (str): 资源目录的路径，默认为当前目录"."。
+
+        返回:
+            无
+        """
+        self.adb_path = adb_path  # 存储ADB路径
+        self.device_addr = None  # 设备地址初始化为None
+        self.minitouch_proc = None  # minitouch进程初始化为None
+        self.minitouch_socket = None  # minitouch套接字初始化为None
+        self.screen_size = None  # 屏幕尺寸初始化为None
+    
+        self.type = type  # 设置设备类型
 
         # 设置资源目录
-        self.resource_dir = resource_dir
-        self._setup_resource_dir()
+        self.resource_dir = resource_dir  # 资源目录路径
+        self._setup_resource_dir()  # 初始化资源目录
 
         # 连接
-        self._connected = False
-        if not self.ensure_connected():
-            raise ConnectionError("无法连接到设备")
+        self._connected = False  # 连接状态初始化为False
+        if not self.ensure_connected():  # 尝试连接设备
+            raise ConnectionError("无法连接到设备")  # 如果连接失败，抛出异常
         
     def _setup_resource_dir(self):
         """设置资源目录结构"""
@@ -140,19 +151,28 @@ class Simulator:
             return False
 
     def reset_server(self, adb_path):
+        """
+        重启 ADB 服务器。
+
+        参数：
+            adb_path (str): ADB 可执行文件的路径。
+
+        返回值：
+            bool: 成功重启返回 True，否则返回 False。
+        """
         try:
-            log.info("尝试重新启动adb server")
-            subprocess.run([self.adb_path, "kill-server"], check=True)
-            subprocess.run([self.adb_path, "start-server"], check=True)
-            return True
+            log.info("尝试重新启动adb server")  # 记录尝试重启日志
+            subprocess.run([self.adb_path, "kill-server"], check=True)  # 终止当前 ADB 服务器
+            subprocess.run([self.adb_path, "start-server"], check=True)  # 重新启动 ADB 服务器
+            return True  # 成功重启，返回 True
         except subprocess.CalledProcessError as e:
-            error_record(e)
-            log.error(f"重启失败:{e.stderr}")
-            return False
+            error_record(e)  # 记录子进程调用错误
+            log.error(f"重启失败:{e.stderr}")  # 记录错误日志，包含标准错误输出
+            return False  # 重启失败，返回 False
         except Exception as e:
-            error_record(e)
-            log.error(f"重启失败:{e}")
-            return False
+            error_record(e)  # 记录其他异常
+            log.error(f"重启失败:{e}")  # 记录错误日志
+            return False  # 重启失败，返回 False
 
     def connect(self, adb_path = None) -> bool:
         """

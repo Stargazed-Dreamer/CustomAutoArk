@@ -1,4 +1,4 @@
-import inspect
+﻿import inspect
 import os
 from typing import Optional
 
@@ -18,10 +18,23 @@ log = log_manager
 
 #==============================================
 def execute_tasks(func):
+    """
+    装饰器：用于为类的方法添加任务执行功能。
+    该装饰器将被装饰函数返回的任务列表自动添加到任务管理器并执行。
+    
+    参数：
+        func (callable): 被装饰的函数，应返回一个任务列表。
+    
+    返回值：
+        callable: 返回包装后的函数wrapper，该函数在执行时会自动处理任务添加和执行。
+    """
     def wrapper(self, *args, **kwargs):
+        # 调用被装饰的函数，获取任务列表
         tasks = func(self, *args, **kwargs)
+        # 将每个任务添加到任务管理器
         for task in tasks:
             self.task_manager.add_task(task)
+        # 执行任务管理器中的所有任务
         self.task_manager.execute_tasks()
     return wrapper
 
@@ -38,24 +51,32 @@ class GameManager(QObject):
     data_updated = Signal()          # 数据更新通知
     
     def __init__(self):
-        super().__init__()
-        self.is_running = False
-        self.is_paused = False
-        self.b_exist_rare_tag = False
-        self.current_mode = None
-        self.execution_limit = 0
-        self.b_special_stop = False
-        self.task_manager = None
-        self.top_item_count = 0
-        self.gacha_mode = GachaMode.SINGLE
-        self.recruit_mode = RecruitMode.BREAK
-        
-        # 操作计数
-        self.operation_count = 0
-        self.recruit_count = 0
-        self.gacha_count = 0
+        """初始化类的实例，设置默认属性和状态。
 
-        self.set_use_originite(False)
+        参数：
+        无
+
+        返回值：
+        无
+        """
+        super().__init__()  # 调用父类的初始化方法
+        self.is_running = False  # 运行状态标志，初始为False
+        self.is_paused = False  # 暂停状态标志，初始为False
+        self.b_exist_rare_tag = False  # 是否存在稀有标签的布尔标志，初始为False
+        self.current_mode = None  # 当前操作模式，初始为None
+        self.execution_limit = 0  # 执行限制次数，初始为0
+        self.b_special_stop = False  # 特殊停止标志，初始为False
+        self.task_manager = None  # 任务管理器实例，初始为None
+        self.top_item_count = 0  # 顶级物品计数，初始为0
+        self.gacha_mode = GachaMode.SINGLE  # 抽卡模式，设置为单抽
+        self.recruit_mode = RecruitMode.BREAK  # 招聘模式，设置为中断模式
+    
+        # 操作计数
+        self.operation_count = 0  # 操作总次数，初始为0
+        self.recruit_count = 0  # 招聘操作次数，初始为0
+        self.gacha_count = 0  # 抽卡操作次数，初始为0
+
+        self.set_use_originite(False)  # 设置使用起源石为False
 
     def record(self, item):
         """记录数据"""
@@ -76,8 +97,19 @@ class GameManager(QObject):
         log_manager.update_step(current_step, next_step)
     
     def update_macro_step(self, level = "INFO", macro_step = None):
-        self.macro_step_updated.emit(macro_step, level)
-        self.log_with_time(level, macro_step)
+        """
+        更新宏步骤并记录日志。
+
+        参数:
+        self -- 方法的实例对象。
+        level (str): 日志级别，默认为 "INFO"。
+        macro_step: 宏步骤的值，默认为 None。
+
+        返回值:
+        无返回值。
+        """
+        self.macro_step_updated.emit(macro_step, level)  # 发射宏步骤更新信号
+        self.log_with_time(level, macro_step)  # 记录带时间的日志
 
     def _log(self, level = "INFO", message = None):
         """记录日志消息"""
@@ -124,12 +156,20 @@ class GameManager(QObject):
             self.device_connected.emit(False)
     
     def break_connection(self):
+        """
+        功能：清理ADB连接，删除Task类的simulator属性和当前实例的task_manager属性。
+        参数：无额外参数。
+        返回值：无返回值。
+        """
         try:
+            # 检查Task类是否有simulator属性，如果有则删除
             if hasattr(Task, "simulator"):
                 del Task.simulator
+            # 检查当前实例是否有task_manager属性，如果有则删除
             if hasattr(self, "task_manager"):
                 del self.task_manager
         except Exception as e:
+            # 捕获异常，记录错误并输出日志
             error_record(e)
             self._log("ERROR", f"adb清理失败: {str(e)}")
 
@@ -388,24 +428,50 @@ class GameManager(QObject):
         ]
     @execute_tasks
     def taskAdd_tenModeEndUp(self):
+        """执行十连抽模式的结束任务流程。
+
+        功能：构建并返回一系列在十连抽模式结束时需要执行的任务列表，包括查看结果、查询记录、记录历史等步骤。
+        参数：无（除 self 外）
+        返回值：list[Task] - 一个包含多个Task对象的列表，按顺序描述了要执行的操作。
+        """
         return [
-            Task(TaskType.CLICK_TEXT, "查看详情", b_reuse=True, description="点击查看详情"),
-            Task(TaskType.CLICK_TEXT, "查询记录", b_reuse=True, description="点击查询记录"),
-            Task(TaskType.RECORD_HISTORY_FLEX, self.gacha_count, pre_wait=0.3, description="记录招募历史"),
-            Task(TaskType.CLICK_IMG, "gachaHistoryButton_exit", b_reuse=True, description="点击×退出"),
-            Task(TaskType.CLICK_TEXT, None, pre_wait=0.3, description="点击任意位置退出"),
-            Task(TaskType.END, None),
+            Task(TaskType.CLICK_TEXT, "查看详情", b_reuse=True, description="点击查看详情"),  # 点击“查看详情”按钮，查看本次抽取结果
+            Task(TaskType.CLICK_TEXT, "查询记录", b_reuse=True, description="点击查询记录"),  # 点击“查询记录”按钮，打开历史记录页面
+            Task(TaskType.RECORD_HISTORY_FLEX, self.gacha_count, pre_wait=0.3, description="记录招募历史"),  # 记录本次招募的历史数据，等待页面稳定
+            Task(TaskType.CLICK_IMG, "gachaHistoryButton_exit", b_reuse=True, description="点击×退出"),  # 点击历史记录页面的“×”关闭按钮
+            Task(TaskType.CLICK_TEXT, None, pre_wait=0.3, description="点击任意位置退出"),  # 点击屏幕任意空白处，确保完全退出历史页面
+            Task(TaskType.END, None),  # 标记整个任务流程结束
         ]
     @execute_tasks
     def taskAdd_endUp(self):
+        """用于生成并返回一个“结束”类型的任务。
+
+        该方法创建一个指定任务类型为 END 的 Task 对象，并将其封装在一个列表中返回。
+        这通常用于标志某个任务序列或流程的终止点。
+
+        参数:
+            self: 表示类的实例本身。
+
+        返回:
+            list: 一个包含单个 Task 对象的列表，该对象的类型为 TaskType.END。
+        """
         return [
-            Task(TaskType.END, None),
+            Task(TaskType.END, None),  # 创建一个类型为 END、无额外参数的任务实例
         ]
     @execute_tasks
     def taskAdd_recordScreen(self):
+        """
+        功能：创建并返回一个任务列表，用于记录屏幕活动。该方法生成一个包含开始记录屏幕和结束任务的序列，通常用于自动化任务流程。
+
+        参数：
+            self: 表示类实例本身，用于访问实例属性和方法。
+
+        返回值：
+            list: 返回一个列表，包含两个Task对象。第一个Task对象的任务类型为RECORD_SCREEN，表示开始记录屏幕；第二个Task对象的任务类型为END，表示结束任务。两个任务的附加参数均为None。
+        """
         return [
-            Task(TaskType.RECORD_SCREEN, None),
-            Task(TaskType.END, None),
+            Task(TaskType.RECORD_SCREEN, None),  # 创建开始记录屏幕的任务对象，参数为None表示无额外设置
+            Task(TaskType.END, None),  # 创建结束任务的任务对象，用于终止任务序列
         ]
     @execute_tasks
     def taskAdd_recruit_enter(self):
@@ -439,35 +505,61 @@ class GameManager(QObject):
         ]
     @execute_tasks
     def taskAdd_gacha_once(self):
+        """生成并返回“进行一次寻访”（即单抽）的完整任务序列。
+
+        功能:
+            该方法编排了一次标准的抽卡（寻访）流程所需的所有自动化操作步骤。
+            流程包括：发起单次寻访、处理可能的原石检查、确认寻访、跳过动画、
+            处理可能出现的凭证（如五星干员）展示画面，以及最终完成任务。
+
+        参数:
+            self: 类实例对象。
+
+        返回值:
+            list[Task]: 一个Task对象的列表，按顺序描述了完成单次寻访所需的全部操作。
+        """
         return ([
             Task(TaskType.CLICK_TEXT, "寻访一次", b_reuse=True, description="点击寻访一次"),
             ] + 
-            self.l_originiteCheckTask + 
+            self.l_originiteCheckTask + # 拼接来自实例变量的任务列表，通常用于检查和处理原石（抽卡资源）
             [
             Task(TaskType.CLICK_TEXT, "确认", b_reuse=True, description="点击确认寻访"),
-            #Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, post_wait=0.3, description="点击SKIP"),
-            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.98, 0.02), pre_wait=0.5, description="点击SKIP"),
-            Task(TaskType.RECORD_AGENT, None),
-            Task(TaskType.WHILE, "isCertificateOnScreen", description="检查是否有凭证可以点击"),
-            [
-                Task(TaskType.CLICK_TEXT, None, description="点击任意处"),
+            #Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, post_wait=0.3, description="点击SKIP"), # 注释掉的另一种SKIP方式
+            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.98, 0.02), pre_wait=0.5, description="点击SKIP"), # 使用相对坐标点击屏幕右上角的SKIP按钮
+            Task(TaskType.RECORD_AGENT, None), # 记录一个Agent操作（可能用于状态跟踪或回放）
+            Task(TaskType.WHILE, "isCertificateOnScreen", description="检查是否有凭证可以点击"), # 循环开始：检查屏幕上是否出现“凭证”（例如获得高星干员时的展示）
+            [   # 循环体：如果凭证出现，则执行以下任务
+                Task(TaskType.CLICK_TEXT, None, description="点击任意处"), # 点击屏幕任意位置以关闭凭证展示
             ],
-            Task(TaskType.STEP_COMPLETED, None),
+            Task(TaskType.STEP_COMPLETED, None), # 标记当前任务步骤（单抽流程）完成
         ])
     @execute_tasks
     def taskAdd_gacha_ten(self):
+        """执行十次寻访（抽卡）的完整任务序列
+    
+        功能：生成一个任务列表，该列表依次包含以下操作：
+        1. 点击“寻访十次”按钮
+        2. 执行必要的源石检查任务
+        3. 点击“确认”按钮进行寻访
+        4. 跳过动画和结果展示
+        5. 标记任务完成
+    
+        参数：无（使用self访问实例属性）
+    
+        返回值：包含多个Task对象的列表，用于自动化执行十次寻访流程
+        """
         return ([
-            Task(TaskType.CLICK_TEXT, "寻访十次", b_reuse=True, description="点击寻访十次"),
+            Task(TaskType.CLICK_TEXT, "寻访十次", b_reuse=True, description="点击寻访十次"),  # 第一步：点击十次寻访按钮
             ] + 
-            self.l_originiteCheckTask + 
+            self.l_originiteCheckTask +  # 第二步：插入源石检查任务（如果需要）
             [
-            Task(TaskType.CLICK_TEXT, "确认", b_reuse=True, description="点击确认寻访"),
-            #Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, description="点击SKIP"),
-            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.98, 0.02), pre_wait=0.5, description="点击SKIP"),
-            Task(TaskType.CLICK_TEXT, None, pre_wait=2.5, description="点击任意位置跳过干员"),
-            #Task(TaskType.CLICK_TEXT, None, pre_wait=0.5, description="点击任意位置跳过信物"),
-            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.5, 0.9), pre_wait=0.5, description="点击屏幕下方"),
-            Task(TaskType.STEP_COMPLETED, None),
+            Task(TaskType.CLICK_TEXT, "确认", b_reuse=True, description="点击确认寻访"),  # 第三步：确认寻访操作
+            #Task(TaskType.CLICK_TEXT, "SKIP", b_reuse=True, description="点击SKIP"),  # 被注释的跳过按钮
+            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.98, 0.02), pre_wait=0.5, description="点击SKIP"),  # 第四步：点击右上角跳过按钮（相对坐标）
+            Task(TaskType.CLICK_TEXT, None, pre_wait=2.5, description="点击任意位置跳过干员"),  # 第五步：等待2.5秒后点击任意位置跳过干员展示
+            #Task(TaskType.CLICK_TEXT, None, pre_wait=0.5, description="点击任意位置跳过信物"),  # 被注释的跳过信物展示
+            Task(TaskType.CLICK_COORDINATE_RELATIVE, (0.5, 0.9), pre_wait=0.5, description="点击屏幕下方"),  # 第六步：点击屏幕下方区域（可能是为了返回主界面）
+            Task(TaskType.STEP_COMPLETED, None),  # 第七步：标记任务步骤完成
         ])
     @execute_tasks
     def taskAdd_gacha_tenWithRecord(self):

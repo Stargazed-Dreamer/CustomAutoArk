@@ -1,39 +1,55 @@
-import json
+﻿import json
 import os
 from typing import Dict, Any
 
 class Config:
     def __init__(self):
-        self.config_file = "config.json"
+        """初始化配置管理器，设置默认配置并加载配置文件。
+    
+        功能：
+            1. 设置配置文件路径
+            2. 定义包含绘图、数据、界面和分析模块的默认配置字典
+            3. 创建配置的浅拷贝作为当前运行配置
+            4. 从配置文件加载配置（覆盖默认值）
+    
+        参数：
+            self: 类实例本身
+    
+        返回值：
+            无（构造函数无返回值）
+        """
+        self.config_file = "config.json"  # 配置文件路径
         self.default_config = {
-            "plot": {
-                "show_grid": True,
-                "show_points": False,
-                "line_width": 1,
-                "line_color": "blue",
-                "point_size": 50,
-                "point_color": "red",
-                "animation_duration": 0.5
+            "plot": {  # 绘图相关配置
+                "show_grid": True,  # 是否显示网格线
+                "show_points": False,  # 是否显示数据点
+                "line_width": 1,  # 线条宽度
+                "line_color": "blue",  # 线条颜色
+                "point_size": 50,  # 数据点大小
+                "point_color": "red",  # 数据点颜色
+                "animation_duration": 0.5  # 动画持续时间（秒）
             },
-            "data": {
-                "auto_save": True,
-                "auto_save_interval": 300,  # 秒
-                "max_history": 100,
-                "default_save_format": "txt"
+            "data": {  # 数据处理相关配置
+                "auto_save": True,  # 是否启用自动保存
+                "auto_save_interval": 300,  # 自动保存间隔时间（秒）
+                "max_history": 100,  # 最大历史记录数
+                "default_save_format": "txt"  # 默认文件保存格式
             },
-            "ui": {
-                "window_width": 1200,
-                "window_height": 800,
-                "splitter_ratio": 0.7,
-                "theme": "light"
+            "ui": {  # 用户界面相关配置
+                "window_width": 1200,  # 窗口宽度（像素）
+                "window_height": 800,  # 窗口高度（像素）
+                "splitter_ratio": 0.7,  # 分割器比例
+                "theme": "light"  # 界面主题（浅色/深色）
             },
-            "analysis": {
-                "peak_threshold": 0.0,
-                "valley_threshold": 0.0,
-                "pattern_similarity_threshold": 0.1
+            "analysis": {  # 数据分析相关配置
+                "peak_threshold": 0.0,  # 波峰检测阈值
+                "valley_threshold": 0.0,  # 波谷检测阈值
+                "pattern_similarity_threshold": 0.1  # 模式相似度阈值
             }
         }
+        # 创建默认配置的浅拷贝作为运行时配置
         self.config = self.default_config.copy()
+        # 从配置文件加载配置，覆盖默认值
         self.load_config()
         
     def load_config(self) -> None:

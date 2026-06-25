@@ -1,4 +1,4 @@
-import os
+﻿import os
 import time
 from datetime import datetime
 
@@ -73,12 +73,40 @@ class Task:
         memIndex       = -1,    # MEM操作指定的index
         **kwargs
     ):
+        """
+        初始化Task类的实例，配置任务的基本参数。
+
+        参数:
+            taskType: 任务类型，通常是一个枚举值，用于定义要执行的具体操作。
+            param: 与任务类型相关的具体参数，其含义由taskType决定。
+            *args: 可变位置参数，将被存储以备后续使用。
+            timeout (int, optional): 任务执行的超时时间，单位为秒。默认为4秒。
+            pre_wait (int, optional): 任务开始前的等待时间，单位为秒。默认为0秒。
+            post_wait (int, optional): 任务完成后的等待时间，单位为秒。默认为0秒。
+            description (str, optional): 任务的文本描述，便于识别和日志记录。如果为None，则自动使用taskType的值。
+            retry_count (int, optional): 任务失败时的最大重试次数。默认为50次。
+            b_reuse (bool, optional): 一个标志，指示任务所使用的坐标是否可以被后续任务复用。默认为False。
+            b_recruitCheck (bool, optional): 一个标志，指示在执行公招相关任务时是否需要对点击位置进行筛选。默认为False。
+            region (tuple, optional): 用于图像识别的感兴趣区域（ROI），格式为(x1, x2, y1, y2)。默认为None，表示使用全图。
+            memIndex (int, optional): 用于指定MEM（内存操作）的索引值。默认为-1。
+            **kwargs: 其他关键字参数，将被存储以备后续使用。
+
+        返回值:
+            无。这是一个构造函数，用于初始化对象状态。
+
+        异常:
+            AttributeError: 如果在调用此方法前，未通过 Task.init_img() 初始化类所需的识别图片。
+        """
+        # 检查类的静态图片资源是否已初始化，这是任务执行的前提条件
         if Task.d_imgs is None:
             raise AttributeError("使用Task实例前必须初始化所有用于识别的图片，请使用'Task.init_img(imgPath = xxx)'完成这件事")
+    
+        # 设置任务描述。如果调用时未提供，则使用任务类型的枚举值作为默认描述
         self.description = description
         if description is None:
             self.description = taskType.value
-        #
+    
+        # 初始化所有实例属性
         self.taskType = taskType
         self.param = param
         self.timeout = timeout
@@ -90,10 +118,14 @@ class Task:
         self.memIndex = memIndex
         self.args = args
         self.kwargs = kwargs
+    
+        # 根据 b_recruitCheck 标志，设置用于验证坐标有效性的检查函数
         if b_recruitCheck:
             self.checkFunc = self.checkCoordinate_recruit
         else:
             self.checkFunc = None
+    
+        # 记录调试日志，输出任务创建的关键信息
         log.debug(f"创建任务: 类型={taskType}, 参数={param}, 描述={description}, 超时={timeout}秒, 重试={retry_count}次, 复用={b_reuse}, 公招检查={b_recruitCheck}, 区域={region}")
 
     def execute(self):
@@ -321,18 +353,37 @@ class Task:
         return True
 
     def isCertificateOnScreen(self, *args, **kwargs):
-        result = self.find_nameOnScreen("凭证")
-        log.debug(f"检查凭证: {'存在' if result else '不存在'}")
-        if result is None:
-            return False
-        return True
+        """检查屏幕上是否存在指定的凭证。
+
+        通过查找包含“凭证”文本来判断屏幕上是否存在相关凭证信息。
+        参数:
+            self: 实例对象自身。
+            *args: 位置参数列表。
+            **kwargs: 关键字参数字典。
+        返回:
+            bool: 如果找到包含“凭证”的元素，返回 True；否则返回 False。
+        """
+        result = self.find_nameOnScreen("凭证")  # 调用查找方法，寻找屏幕上的“凭证”文本
+        log.debug(f"检查凭证: {'存在' if result else '不存在'}")  # 记录调试日志，显示查找结果
+        if result is None:  # 如果查找结果为 None，表示未找到
+            return False  # 返回 False，表示凭证不在屏幕上
+        return True  # 否则返回 True，表示凭证在屏幕上
 
     def isTextOnScreen(self, *args, **kwargs):
-        if "name" not in kwargs:
+        """检查指定文本是否在屏幕上。
+
+        参数:
+            *args: 位置参数，传递给底层查找方法。
+            **kwargs: 关键字参数，必须包含'name'键，指定要查找的文本名称。
+
+        返回:
+            bool: 如果文本在屏幕上则返回True，否则返回False。
+        """
+        if "name" not in kwargs:  # 检查kwargs中是否包含必要的'name'参数
             raise ValueError("调用的isTextOnScreen函数缺少文本'name'参数")
-        result = self.find_nameOnScreen(*args, **kwargs)
-        log.debug(f"文本'{kwargs['name']}': {'存在' if result else '不存在'}于截图")
-        if result is None:
+        result = self.find_nameOnScreen(*args, **kwargs)  # 调用find_nameOnScreen方法查找文本
+        log.debug(f"文本'{kwargs['name']}': {'存在' if result else '不存在'}于截图")  # 记录调试日志，显示文本是否存在
+        if result is None:  # 如果结果为None，表示未找到文本
             return False
         return True
 
@@ -346,29 +397,55 @@ class Task:
         return True
 
     def checkCoordinate_recruit(self, result, screen_size, aim):
+        """
+        检查坐标是否匹配指定的公招池目标。
+
+        参数：
+        - self: 实例对象
+        - result: 坐标结果列表，格式为[[x, y], ...]，其中x和y是坐标值
+        - screen_size: 屏幕尺寸，格式为(高度, 宽度)
+        - aim: 目标公招池，必须是1、2、3或4
+
+        返回值：
+        - True: 如果坐标匹配指定的目标公招池
+        - False: 否则
+        """
+        # 验证aim参数是否在有效范围内
         if aim not in [1, 2, 3, 4]:
             raise ValueError("选择的公招池必须是1~4之一")
 
+        # 解构屏幕尺寸
         height, width = screen_size
+        # 计算屏幕中心的x和y坐标
         half_x = width // 2
         half_y = height // 2
+        # 设置y轴的阈值，用于判断是否接近中心
         y_threshold = height * 0.15
+        # 从结果中提取第一个坐标的x和y值
         x, y = result[0][0]
 
+        # 判断坐标是否在屏幕左半部分
         is_left_half = x < half_x
+        # 判断坐标是否在屏幕右半部分
         is_right_half = x > half_x
+        # 判断坐标是否接近屏幕中心的y轴
         is_near_center_y = abs(y - half_y) < y_threshold
+        # 判断坐标是否远离屏幕中心的y轴
         is_far_from_center_y = abs(y - half_y) > y_threshold
 
+        # 根据aim值定义条件映射
         conditions = {
-            1: is_left_half and is_near_center_y,
-            2: is_right_half and is_near_center_y,
-            3: is_left_half and is_far_from_center_y,
-            4: is_right_half and is_far_from_center_y,
+            1: is_left_half and is_near_center_y,  # 公招池1: 左半部分且接近中心
+            2: is_right_half and is_near_center_y,  # 公招池2: 右半部分且接近中心
+            3: is_left_half and is_far_from_center_y,  # 公招池3: 左半部分且远离中心
+            4: is_right_half and is_far_from_center_y,  # 公招池4: 右半部分且远离中心
         }
+        # 记录调试日志
         log.debug(f"检查公招坐标: 目标={aim}, 坐标=({x}, {y}), 结果={conditions[aim]}")
+        # 如果条件满足，返回True
         if conditions[aim]:
             return True
+        # 否则返回False
         return False
 
     def find_nameOnScreen(self, name, limit = 0.7, b_allGet = False, **kwargs):

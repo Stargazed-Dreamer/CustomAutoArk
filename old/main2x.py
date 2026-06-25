@@ -1,4 +1,4 @@
-#pip install paddlepaddle paddleocr opencv-python numpy pywin32
+﻿#pip install paddlepaddle paddleocr opencv-python numpy pywin32
 # 会在需要时导入  from paddleocr import PaddleOCR
 #==============================
 import time
@@ -257,12 +257,31 @@ class Tool:
         cv2.destroyAllWindows()
 
     def cosine_similarity(self, s1, s2):
+        """计算两个字符串之间的余弦相似度。
+
+        该方法通过构建字符频率向量并计算余弦相似度来衡量两个字符串的相似程度。
+        在处理前会先进行标准化（转为小写），并去除字符串开头的"new"前缀。
+
+        参数:
+            self: 对象实例
+            s1 (str): 第一个输入字符串
+            s2 (str): 第二个输入字符串
+
+        返回值:
+            float: 两个字符串的余弦相似度，取值范围在0.0到1.0之间。
+                   返回0.0的情况包括：任一字符串为空；计算时出现除零错误。
+                   返回1.0的情况包括：标准化且去除前缀后两个字符串完全相同。
+        """
+        # 检查输入字符串是否为空，如果任一为空则直接返回0
         if s1 == "" or s2 == "":
             return 0
+        # 将字符串转为小写以进行大小写不敏感的比较
         s1 = s1.lower()
         s2 = s2.lower()
+        # 如果标准化后两个字符串完全相同，直接返回1
         if s1 == s2:
             return 1
+        # 去除字符串开头的"new"前缀（如果存在）
         if s1[:3] == "new":
             s1 = s1[3:]
         if s2[:3] == "new":
@@ -271,11 +290,12 @@ class Tool:
         chars = list(set(s1 + s2))
         v1 = [s1.count(c) for c in chars]
         v2 = [s2.count(c) for c in chars]
-        
+    
         # 计算点积和向量长度
         dot_product = sum(a * b for a, b in zip(v1, v2))
         norm1 = sum(a * a for a in v1) ** 0.5
         norm2 = sum(b * b for b in v2) ** 0.5
+        # 计算余弦相似度，避免除零错误
         result = dot_product / (norm1 * norm2) if norm1 * norm2 > 0 else 0.0
         #print(f"余弦相似度: {s1}, {s2}, {result}")
         return result
@@ -293,53 +313,91 @@ class Tool:
         return (center_x, center_y)
     
     def find_nameOnResult(self, l_result, t_name, mode="result", sameOnly=False, includeSimilarity=False):
+        """
+        在结果列表中查找与目标名称匹配的结果。
+    
+        功能说明：
+        1. 支持精确匹配和余弦相似度匹配两种模式
+        2. 可返回匹配结果、相似度分数或两者组合
+        3. 支持单个字符串或多个名称（元组）的匹配
+    
+        参数说明：
+        - self: 实例对象自身
+        - l_result: 嵌套的结果列表，每个元素是一个结果子列表
+        - t_name: 要查找的目标名称，可以是字符串或字符串元组
+        - mode: 返回模式，"result"返回结果对象，"name"返回原始目标名称
+        - sameOnly: 是否只进行精确匹配，默认为False
+        - includeSimilarity: 是否在返回结果中包含相似度分数，默认为False
+    
+        返回值：
+        - 匹配的结果对象（根据mode参数）
+        - 如果includeSimilarity为True，返回(结果对象, 相似度)元组
+        - 如果没有匹配结果，返回None
+        """
         def returnResult(result, similarity = 1):
+            """内部函数：根据模式构造返回结果"""
             if mode == "result":
-                output = result
+                output = result  # 返回匹配的结果对象
             else:
-                output = returnItem
+                output = returnItem  # 返回原始目标名称
             if includeSimilarity:
-                output = (output, similarity)
+                output = (output, similarity)  # 包含相似度时打包成元组
             return output
-        #mode : result or name
-        returnItem = t_name
+    
+        # 处理目标名称参数，统一转换为元组格式以便后续处理
+        returnItem = t_name  # 保存原始目标名称
         if isinstance(t_name, str):
-            t_name = (t_name,)
+            t_name = (t_name,)  # 将单个字符串转换为元组
         elif not isinstance(t_name, tuple):
             raise ValueError(f"t_name必须是字符串或元组，当前类型为{type(t_name)}")
-        #全字匹配
+    
+        # 第一阶段：精确匹配（全字匹配）
+        # 遍历结果列表，查找与目标名称完全相同的结果
         for l in l_result:
             if l is None:
-                continue
+                continue  # 跳过空的子列表
             for result in l:
                 for name in t_name:
+                    # 检查结果名称与目标名称是否完全相等
                     if result[1][0] == name:
                         return returnResult(result)
+    
+        # 如果只允许精确匹配，则在此时返回None
         if sameOnly:
             return None
-        #余弦相似匹配
-        maxCosine = -1
-        bestResult = None
+    
+        # 第二阶段：余弦相似度匹配
+        # 使用余弦相似度算法寻找最相似的结果（相似度阈值0.5）
+        maxCosine = -1  # 初始化最大相似度为-1
+        bestResult = None  # 初始化最佳匹配结果
         for l in l_result:
             if l is None:
                 continue
             for result in l:
                 for name in t_name:
+                    # 计算名称之间的余弦相似度
                     similarity = self.cosine_similarity(name, result[1][0])
+                    # 更新最佳匹配结果（相似度需大于当前最大值且超过阈值0.5）
                     if similarity > maxCosine and similarity > 0.5:
                         maxCosine = similarity
                         bestResult = result
-                        returnItem = t_name
+                        returnItem = t_name  # 记录原始目标名称
+        # 如果找到满足条件的相似结果，返回最佳匹配
         if maxCosine > 0.5 and bestResult is not None:
             return returnResult(bestResult, maxCosine)
-        #不完全匹配
+    
+        # 第三阶段：不完全匹配（包含匹配）
+        # 查找目标名称是否是结果名称的子字符串
         for l in l_result:
             if l is None:
                 continue
             for result in l:
                 for name in t_name:
+                    # 检查目标名称是否包含在结果名称中
                     if name in result[1][0]:
-                        return returnResult(result, 0.01)
+                        return returnResult(result, 0.01)  # 返回很低的相似度分数
+    
+        # 所有匹配尝试均失败，返回None
         #raise CantFindNameError(f"找不到{name}")
         return None
 
@@ -380,35 +438,61 @@ class Tool:
         return [t_result[0][1][0] for t_result in sorted(l_tags, key=lambda x: x[1], reverse=True)[:5]]
 
     def getAgent(self, img):
+        """
+        从图像中识别并返回最可能的智能体名称。
+
+        功能：对输入的图像进行区域裁剪和OCR识别，通过与候选智能体列表进行匹配和相似度计算，
+             返回最可能的智能体名称（中文优先）。
+        参数：
+            img: 待处理的图像数据。
+        返回值：
+            str: 识别到的智能体名称（可能是中文或英文），如果未找到符合条件的智能体则返回 None。
+        """
+        # 对图像进行裁剪，只保留智能体区域（使用百分比模式）
         img = self.cropping(img, region_agent, mode="percent")
+        # 对裁剪后的图像执行OCR识别
         l_result = self.ocr(img)
         d_acceptName = {}
+        # 遍历所有候选智能体
         for t_agent in self.l_agents:
+            # 在OCR结果中查找当前智能体的名称
             result = self.find_nameOnResult(l_result, t_agent)
+            # 如果找到匹配项，则在字典中记录该名称出现的次数
             if result is not None:
                 if result[1][0] not in d_acceptName:
                     d_acceptName[result[1][0]] = 1
                 else:
                     d_acceptName[result[1][0]] += 1
+        # 如果没有找到任何匹配的智能体名称，则返回None
         if d_acceptName == {}:
             return None
+        # 获取出现次数最多的名字作为最可能的识别结果
         possibleName = max(d_acceptName, key=d_acceptName.get)
         maxSimilarity = -1
         bestResult = None
+        # 再次遍历所有候选智能体，计算余弦相似度以找到最匹配的智能体
         for t_agent in self.l_agents:
+            # 遍历当前智能体的所有可能名称（可能是中英文名列表）
             for name in t_agent:
+                # 计算可能的名字与当前名字之间的余弦相似度
                 similarity = self.cosine_similarity(possibleName, name)
+                # 记录最大相似度及其对应的智能体
                 if similarity > maxSimilarity:
                     maxSimilarity = similarity
                     bestResult = t_agent
+        # 打印调试信息：最大相似度和最佳结果
         print(f"最大相似度: {maxSimilarity}, 最佳结果: {bestResult}")
+        # 如果最大相似度超过阈值且找到了最佳结果，则进行名称转换和返回
         if maxSimilarity > 0.5 and bestResult is not None:
+            # 构建中文名列表和英文名列表，以便进行名称转换
             l_zh = [t_name[0] for t_name in self.l_agents]
             l_en = [t_name[1] for t_name in self.l_agents]
             name = bestResult[0]
+            # 如果最佳结果中的名字在英文名列表中，则返回对应的中文名；否则直接返回该名字
             if name in l_en:
                 return l_zh[l_en.index(name)]
             return name
+        # 如果相似度不足或未找到有效结果，则返回None
         return None
 #==============================
 class Simulator:
@@ -934,48 +1018,73 @@ class Main:
         self.mumu = MUMU()
 
     def record(self, item, file=None):
-        print(f"录入: {item}")
-        if file is None:
-            file = "#record.txt"
-        if not CreatPath(file).exists():
-            open(file, "w").close()
-        if isinstance(item, list):
-            s_record = "!".join(item)
-        if isinstance(item, str):
-            s_record = item
-        with open(file, 'a', encoding='utf-8') as f:
-            f.write(s_record + "\n")
+        """将项目记录到指定文件中。
+
+        功能：打印录入信息，确保文件存在，将项目转换为字符串后追加到文件。
+        参数：
+            self: 类实例
+            item: 要记录的项目，可以是列表或字符串
+            file: 文件路径，默认为"#record.txt"
+        返回值：无
+        """
+        print(f"录入: {item}")  # 打印录入信息
+        if file is None:  # 如果文件路径未指定
+            file = "#record.txt"  # 使用默认文件"#record.txt"
+        if not CreatPath(file).exists():  # 检查文件是否存在
+            open(file, "w").close()  # 如果不存在，创建空文件
+        if isinstance(item, list):  # 如果item是列表
+            s_record = "!".join(item)  # 用"!"连接列表元素成字符串
+        if isinstance(item, str):  # 如果item是字符串
+            s_record = item  # 直接使用item作为记录字符串
+        with open(file, 'a', encoding='utf-8') as f:  # 以追加模式打开文件，指定UTF-8编码
+            f.write(s_record + "\n")  # 写入记录并添加换行符
     
     def load(self, file=None):
+        """加载记录文件并解析其内容。
+        参数:
+            file (str, optional): 要加载的文件路径。如果未提供，则默认使用"#record.txt"。
+        返回:
+            list: 解析后的记录列表。每条记录根据是否包含"!"会被拆分为列表元素，否则作为一个字符串元素。
+        """
         if file is None:
-            file = "#record.txt"
-        with open(file, 'r', encoding='utf-8') as f:
-            record = f.read()
-        l_record = record.split("\n")
-        l_output = []
-        for record in l_record:
-            if "!" in record:
-                l_output.append(record.split("!"))
+            file = "#record.txt"  # 如果未指定文件路径，则使用默认文件名
+        with open(file, 'r', encoding='utf-8') as f:  # 以读取模式打开文件，指定UTF-8编码
+            record = f.read()  # 读取文件全部内容到字符串
+        l_record = record.split("\n")  # 按换行符分割成记录列表
+        l_output = []  # 初始化用于存储最终结果的列表
+        for record in l_record:  # 遍历每条记录
+            if "!" in record:  # 如果记录中包含感叹号"!"
+                l_output.append(record.split("!"))  # 按"!"分割，并将结果列表添加到输出中
             else:
-                l_output.append(record)
-        print(f"加载结果: {l_output}")
-        return l_output
+                l_output.append(record)  # 否则，将整条记录作为一个字符串元素添加
+        print(f"加载结果: {l_output}")  # 打印加载结果用于调试
+        return l_output  # 返回解析后的列表
 
     #招募
     def recruit(self):
+        """
+        执行一次公开招募操作，获取招募标签并返回。
+
+        该方法模拟游戏中的公开招募流程，包括点击相关按钮、等待页面响应、收集标签数据。
+        所有参数通过实例变量传入（无显式参数）。
+
+        Returns:
+            list: 本次招募获得的干员标签列表。
+        """
         print(f"招募一次开始")
-        # 点击加号
+        # 点击加号按钮，进入招募界面
         self.mumu.click("开始招募干员")
-        # 收集数据
+        # 等待界面加载完成
         time.sleep(0.5)
+        # 获取当前页面的干员标签列表
         l_tag = self.mumu.getTag()
-        # 点击开始公招
+        # 点击开始公招按钮，启动倒计时
         self.mumu.click("开始招募")
         time.sleep(0.5)
-        # 点击停止招募
+        # 点击停止招募按钮，取消本次招募
         self.mumu.click("停止招募")
         time.sleep(0.5)
-        # 再次点击停止招募
+        # 再次点击停止招募以确认取消（可能为二次确认弹窗）
         self.mumu.click("停止招募")
         time.sleep(0.5)
         print(f"招募一次结束")
@@ -1004,7 +1113,15 @@ class Main:
 
     #垫卡模式
     def mode_pad(self):
-        pass
+        """该方法用于执行卡池翻页操作。通过用户输入确定卡池位置，循环执行招募、翻页和抽取。
+
+        参数:
+            self: 当前对象实例
+
+        返回值:
+            无
+        """
+        pass  # 占位符，由于代码逻辑在字符串中，此方法实际上不执行操作
         """
         print('请输入目标卡池为第几个卡池（如：1，2等）并划至公招界面')
         num = int(input('输入：'))
@@ -1019,35 +1136,80 @@ class Main:
         """
 
     def mode_recruit(self):
-        print(f"招募模式开始")
-        while True:
-            l_tag = self.recruit()
-            self.record(l_tag)
+        """开启招募模式，持续进行招募并记录。
+
+        该方法打印开始消息，然后进入无限循环，不断调用招募方法并记录结果。
+
+        参数:
+            self: 类的实例，用于访问其他方法。
+
+        返回:
+            无返回值。
+        """
+        print(f"招募模式开始")  # 打印招募模式开始的消息
+        while True:  # 进入无限循环，持续执行招募和记录操作
+            l_tag = self.recruit()  # 调用招募方法，获取标签
+            self.record(l_tag)  # 记录获取到的标签
 
     def mode_draw(self):
-        print(f"抽卡模式开始")
-        while True:
-            agent = self.draw()
-            self.record(agent)
+        """
+        功能：启动抽卡模式，持续执行抽卡并记录过程。
+        参数：无（除self外）
+        返回值：无
+        """
+        print(f"抽卡模式开始")  # 打印抽卡模式开始的提示信息
+        while True:  # 创建无限循环，持续执行抽卡流程
+            agent = self.draw()  # 调用draw方法进行一次抽卡，获取抽到的代理人对象
+            self.record(agent)  # 调用record方法记录本次抽到的代理人
 
     def record_fromDir(self, dir, func_sortKey=None):
+        """
+        从指定目录中批量读取JSON文件和图片文件，并依次录入记录。
+    
+        功能：
+            遍历给定目录下的所有文件，根据文件类型分别调用相应的录入方法。
+            对于JSON文件调用record_fromJson方法，对于图片文件调用record_fromImage方法。
+            默认会根据文件名中的数字部分进行排序。
+        
+        参数：
+            dir (str): 需要读取的目录路径。
+            func_sortKey (callable, optional): 用于对文件列表排序的函数。默认根据文件名中的数字部分排序。
+        
+        返回值：
+            None: 该方法没有返回值，但会执行录入操作并打印相关信息。
+        """
         print(f"从目录{dir}中录入")
+    
+        # 如果没有提供排序函数，则使用默认的基于文件名数字部分的排序函数
         if func_sortKey is None:
             def func_sortKey(x):
+                # 提取文件名中所有数字字符并组合成字符串
                 s_output = "".join([char for char in x.stem if char.isdigit()])
+                # 将提取的数字字符串转换为整数用于排序
                 return int(s_output)
+    
+        # 获取目录下所有文件，并过滤掉目录只保留文件
         l_file = [file for file in CreatPath(dir).iterdir() if file.is_file()]
+    
+        # 使用指定的排序函数对文件列表进行排序
         l_file.sort(key=func_sortKey)
+    
+        # 遍历排序后的每个文件
         for file in l_file:
+            # 如果是JSON文件，则使用JSON录入方法
             if file.suffix == "json":
                 self.record_fromJson(str(file))
             else:
                 try:
+                    # 尝试将文件作为图片读取
                     img = cv2.imread(str(file))
                 except Exception as e:
+                    # 如果读取失败，打印错误信息并跳过当前文件
                     print(f"文件{file}既不是json也不是图片！")
                     print(e)
                     continue
+            
+                # 使用图片录入方法处理读取到的图片
                 self.record_fromImage(img, str(file))
 
     def record_fromImage(self, img, file):
@@ -1063,15 +1225,23 @@ class Main:
             print(f"图片{file}无法匹配！")
 
     def record_fromJson(self, jsonFile):
-        print(f"从json文件{jsonFile}中录入")
-        with open(jsonFile, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        l_agents = []
-        for entry in data['data']['list']:
-            for char in entry['chars']:
-                l_agents.append(char['name'])
-        for agent in l_agents[::-1]:
-            self.record(agent)
+        """从指定的JSON文件中读取数据，并提取所有代理人（agent）的名字，然后以逆序调用record方法。
+    
+        Args:
+            jsonFile (str): 要读取的JSON文件路径。
+    
+        Returns:
+            None: 该方法不返回任何值，但会调用record方法。
+        """
+        print(f"从json文件{jsonFile}中录入")  # 打印开始从JSON文件录入的信息
+        with open(jsonFile, 'r', encoding='utf-8') as f:  # 以UTF-8编码打开JSON文件
+            data = json.load(f)  # 解析JSON文件内容为Python字典
+        l_agents = []  # 初始化一个空列表，用于存储代理人名称
+        for entry in data['data']['list']:  # 遍历数据中的列表条目
+            for char in entry['chars']:  # 遍历每个条目中的字符（代理人）列表
+                l_agents.append(char['name'])  # 将代理人的名称添加到l_agents列表中
+        for agent in l_agents[::-1]:  # 以逆序遍历代理人名称列表
+            self.record(agent)  # 对每个代理人调用record方法
 
     def main(self):
         print('''请选择模式并输入相应的选项:
