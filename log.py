@@ -1,4 +1,4 @@
-﻿from datetime import datetime, timedelta
+from datetime import datetime, timedelta
 import inspect
 import os
 import logging
@@ -134,8 +134,6 @@ class LogManager(QObject):
         # 格式化消息
         formatted_msg = self.formatter.format(record)
 
-        print(formatted_msg)
-        
         # 处理控制台输出
         if self.settings.get('console_enabled', True) and level >= self.settings.get('console_level', logging.INFO):
             if level >= logging.ERROR:

@@ -1,0 +1,38 @@
+# EditorConfig — https://editorconfig.org
+# 统一缩进 / 编码 / 换行风格，多数 IDE 与编辑器原生支持
+
+root = true
+
+# ==================== 通用默认 ====================
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# ==================== Python ====================
+[*.py]
+indent_size = 4
+max_line_length = 120
+
+# ==================== YAML / 配置 ====================
+[*.{yml,yaml}]
+indent_size = 2
+
+# ==================== Markdown ====================
+[*.md]
+trim_trailing_whitespace = false  # Markdown 末尾两个空格表示换行，保留
+
+# ==================== JSON ====================
+[*.json]
+indent_size = 2
+
+# ==================== TOML ====================
+[*.toml]
+indent_size = 2
+
+# ==================== Makefile（必须用 Tab） ====================
+[Makefile]
+indent_style = tab

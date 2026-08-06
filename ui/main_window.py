@@ -1,13 +1,13 @@
-﻿import json
+import json
 import logging
 import os
 import sys
 
-from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
-                             QHBoxLayout, QLabel, QPushButton, QComboBox, 
+from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
+                             QHBoxLayout, QLabel, QPushButton, QComboBox,
                              QSpinBox, QCheckBox, QTabWidget, QTextEdit,
                              QFileDialog, QMessageBox, QScrollArea, QFrame,
-                             QSplitter, QLineEdit, QPlainTextEdit)
+                             QSplitter, QLineEdit, QPlainTextEdit, QDialog)
 from PySide6.QtCore import Qt, QTimer, Signal, Slot
 from PySide6.QtGui import QAction
 

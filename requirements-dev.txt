@@ -1,0 +1,17 @@
+# 开发与测试依赖
+# 安装：pip install -r requirements-dev.txt
+# 或：pip install -e ".[dev]"（使用 pyproject.toml 中的 optional-dependencies）
+
+# ==================== 测试 ====================
+pytest>=7.0
+pytest-cov>=4.1            # 覆盖率报告
+
+# ==================== 代码格式化 ====================
+black>=24.3                # 格式化
+isort>=5.12                # import 排序
+
+# ==================== Lint ====================
+ruff>=0.4                  # 快速 lint + 格式化（替代 flake8/pylint 的大部分功能）
+
+# ==================== 类型检查（渐进式启用） ====================
+mypy>=1.5

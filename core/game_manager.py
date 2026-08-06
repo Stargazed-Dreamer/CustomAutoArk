@@ -1,4 +1,4 @@
-﻿import inspect
+import inspect
 import os
 from typing import Optional
 
@@ -84,9 +84,11 @@ class GameManager(QObject):
             
         if isinstance(item, list):
             s_record = "!".join(item)
-        if isinstance(item, str):
+        elif isinstance(item, str):
             s_record = item
-        
+        else:
+            s_record = str(item)
+
         data_manager.update_data(s_record)
         self.data_updated.emit()
 
@@ -116,7 +118,7 @@ class GameManager(QObject):
         if message is None:
             return
         # 获取调用栈信息
-        error_record(e)
+        self.log_with_time(level, message)
     
     def log_with_time(self, level: str, message: str, filename: str = None, lineno: int = None):
         """带时间戳的日志记录"""

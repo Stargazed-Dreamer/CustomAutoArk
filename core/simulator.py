@@ -1,4 +1,4 @@
-﻿import os
+import os
 import socket
 import subprocess
 import time
@@ -315,7 +315,7 @@ class Simulator:
         """
         try:
             x, y, press_time = int(x), int(y), int(press_time)
-        except Exception:
+        except Exception as e:
             error_record(e)
             raise ValueError(f"坐标{x}或{y}或按下时间{press_time}不是数字")
         try:
@@ -368,7 +368,7 @@ class Simulator:
             int(end_x)
             int(end_y)
             int(duration)
-        except:
+        except Exception as e:
             error_record(e)
             raise ValueError(f"坐标{start_x}或{start_y}或{end_x}或{end_y}或持续时间{duration}不是数字")
         try:

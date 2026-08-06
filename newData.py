@@ -1,4 +1,4 @@
-﻿class Data:
+class Data:
     def __init__(self):
         self.init_data()
 
@@ -64,7 +64,7 @@
                 '元素',
                 '资深干员',
                 '高级资深干员',
-            ],
+            ]
 
         self.d_agent = {
 '12F': {'obtain_method': 1, 'star': '1', 'tag': ['术师干员', '远程位', '新手']},

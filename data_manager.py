@@ -202,21 +202,24 @@ class DataManager:
         patterns = []
         for i in range(len(self.data) - pattern_length):
             pattern = self.data[i:i+pattern_length]
-            
-            for j in range(i + pattern_length, len(self.data) - pattern_length):
+
+            j = i + pattern_length
+            while j < len(self.data) - pattern_length:
                 compare = self.data[j:j+pattern_length]
-                
+
                 # 计算DTW距离
                 dist = self.dtw_distance(pattern, compare)
-                
+
                 # 将DTW距离转换为相似度分数 (0-1)
                 similarity = 1 / (1 + dist)
-                
+
                 if similarity >= threshold:
                     patterns.append((i, j))
-                    
+
                     # 避免重复添加相邻的模式
                     j += pattern_length
+                else:
+                    j += 1
         
         return patterns
 

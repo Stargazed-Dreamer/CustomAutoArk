@@ -1,10 +1,10 @@
-﻿import matplotlib
+import matplotlib
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QMessageBox
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, Qt
 
 from log import log_manager
 from data_manager import data_manager

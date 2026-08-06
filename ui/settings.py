@@ -1,4 +1,4 @@
-﻿import logging
+import logging
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QGroupBox, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QSpinBox, QCheckBox, QFileDialog, QMessageBox, QComboBox
 
 from log import log_manager
@@ -261,8 +261,8 @@ class SettingsWidget(QWidget):
         self.console_enabled.setChecked(log_settings.get('console_enabled', True))
         self.file_enabled.setChecked(log_settings.get('file_enabled', True))
         self.image_enabled.setChecked(log_settings.get('image_enabled', True))
-        self.console_level.setCurrentText(str(log_settings.get('console_level', 'INFO')))
-        self.file_level.setCurrentText(str(log_settings.get('file_level', 'DEBUG')))
+        self.console_level.setCurrentText(str(logging.getLevelName(log_settings.get('console_level', logging.INFO))))
+        self.file_level.setCurrentText(str(logging.getLevelName(log_settings.get('file_level', logging.DEBUG))))
         self.log_path.setText(log_settings.get('log_dir', 'log'))
         self.clean_days.setValue(log_settings.get('cleanup_days', 30))
         

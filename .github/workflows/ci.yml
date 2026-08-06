@@ -1,0 +1,78 @@
+# CI — 持续集成
+#
+# 在 push / PR 时自动运行 pytest 与 ruff lint，确保测试全绿、代码风格一致。
+#
+# 设计说明：
+# - 项目的正式测试位于 tests/，conftest.py 已 mock 掉 PySide6 / paddleocr / cv2 / log
+#   等重依赖，因此 CI 上无需安装这些包，测试可在轻量环境中快速完成。
+# - 仅安装测试实际需要的轻量依赖：pytest / numpy / PyYAML。
+# - ruff lint 作为代码风格检查，允许失败（continue-on-error），不阻塞合并。
+
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  # 支持手动触发
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test (Python ${{ matrix.python-version }} on ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # 项目要求 Python 3.10，同时在 3.11 上验证兼容性
+        python-version: ["3.10", "3.11"]
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install test dependencies
+        # 仅安装测试实际需要的轻量依赖
+        # conftest.py 已 mock PySide6/paddleocr/cv2/log，无需安装这些重库
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest>=7.0 numpy>=1.24 PyYAML>=6.0
+
+      - name: Run tests
+        run: python -m pytest tests/ -v --tb=short
+
+  lint:
+    name: Lint (ruff)
+    runs-on: ubuntu-latest
+    # lint 不阻塞测试与合并，仅作提示
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - name: Install ruff
+        run: |
+          python -m pip install --upgrade pip
+          pip install "ruff>=0.4"
+
+      - name: Run ruff check
+        run: ruff check .
+
+      - name: Run ruff format check
+        # 检查是否有未格式化的文件，仅提示不阻塞
+        run: ruff format --check .
+        continue-on-error: true

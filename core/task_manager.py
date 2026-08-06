@@ -42,7 +42,7 @@ class TaskManager(QObject):
         """获取下一个任务的描述"""
         if not self.tasks:
             return None
-        return self.tasks[0].description if hasattr(self.tasks, "description") else None
+        return self.tasks[0].description if hasattr(self.tasks[0], "description") else None
     
     def execute_tasks(self):
         """开始执行任务队列"""
@@ -155,7 +155,7 @@ class TaskManager(QObject):
                         self.tasks = l + self.tasks
                     else:
                         self.tasks.pop(0)
-                if self.current_task.taskType == TaskType.WHILE:
+                elif self.current_task.taskType == TaskType.WHILE:
                     if not isinstance(self.tasks[0], list):
                         raise TypeError("WHILE 类型的任务后必须接一个任务列表")
                     if result[2] is True:

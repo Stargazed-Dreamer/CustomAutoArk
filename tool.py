@@ -1,4 +1,4 @@
-﻿import traceback
+import traceback
 
 import cv2
 import numpy as np
@@ -6,6 +6,7 @@ from paddleocr import PaddleOCR
 
 from data import data as DATA
 from log import log_manager as log
+from core.exceptions import CantFindNameError, OcrError
 
 
 
@@ -325,14 +326,14 @@ class Tool:
         elif format == 2 or format == "x1, y1, x2, y2":
             x1, y1, x2, y2 = a, b, c, d
         else:
-            ValueError(f"'{format}'格式不是合法的值")
+            raise ValueError(f"'{format}'格式不是合法的值")
         if mode == "percent":
             shape = cvImg.shape #(height, width, channels)
             x1, y1, x2, y2 = shape[1]*a, shape[0]*b, shape[1]*c, shape[0]*d
         elif mode == "pixel":
             "Good"
         else:
-            ValueError(f"'{mode}'处理模式不是合法的值")
+            raise ValueError(f"'{mode}'处理模式不是合法的值")
         x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
         # 确保裁剪区域有效
         if x1 >= x2 or y1 >= y2:
@@ -573,7 +574,7 @@ class Tool:
             if len(group) == 1:
                 l_result.append(group[0])
                 continue
-            group = group.sort(key=lambda x: x[0][0][0])
+            group.sort(key=lambda x: x[0][0][0])
             # 计算坐标
             top = min([x[0][0][1] for x in group])
             bottom = max([x[0][2][1] for x in group])

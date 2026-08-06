@@ -1,0 +1,174 @@
+# pyproject.toml — 项目级工具配置汇总
+#
+# 本文件集中配置构建系统、代码格式化、lint、类型检查、测试等工具，
+# 与 pytest.ini / requirements.txt 互为补充。
+#
+# 参考文档：
+# - https://packaging.python.org/en/latest/specifications/pyproject-toml/
+# - https://black.readthedocs.io/
+# - https://docs.astral.sh/ruff/
+# - https://mypy.readthedocs.io/
+
+[build-system]
+# 本项目当前以「脚本式运行」为主（python mainUI.py），未发布到 PyPI，
+# 但仍声明构建后端以便未来打包或安装为可执行模块。
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "combine"
+version = "0.1.0"
+description = "明日方舟公招自动化与数据分析工具"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "舟 / combine" }]
+keywords = ["arknights", "automation", "paddleocr", "pyside6", "adb"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Games/Entertainment",
+]
+# 运行时依赖与 requirements.txt 保持一致；此处给出下限约束
+dependencies = [
+    "opencv-python>=4.8",
+    "numpy>=1.24,<2.0",
+    "matplotlib>=3.7",
+    "PySide6>=6.5",
+    "paddlepaddle>=2.5",
+    "paddleocr>=2.7",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+# 开发与测试依赖：pip install -e ".[dev]"
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.1",
+    "ruff>=0.4",
+    "black>=24.3",
+    "isort>=5.12",
+    "mypy>=1.5",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/your-name/combine"
+"Bug Tracker" = "https://github.com/your-name/combine/issues"
+
+# ==================== 工具：setuptools ====================
+[tool.setuptools]
+# 显式声明为脚本式项目，不打包任何模块
+py-modules = []
+
+# ==================== 工具：black（代码格式化） ====================
+[tool.black]
+line-length = 120
+target-version = ["py310", "py311"]
+# extend-exclude 排除无需格式化的目录
+extend-exclude = '''
+/(
+    \.venv
+  | venv
+  | build
+  | dist
+  | old
+  | test
+  | \.pytest_cache
+)/
+'''
+
+# ==================== 工具：isort（import 排序） ====================
+[tool.isort]
+profile = "black"
+line_length = 120
+known_first_party = ["core", "ui"]
+# 项目使用中文文件名（tag统计工具.py），不参与排序检查
+skip_glob = ["old/*", "test/*", "*/__pycache__/*"]
+force_sort_within_sections = true
+
+# ==================== 工具：ruff（lint + 格式化） ====================
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["old", "test", ".venv", "venv", "build", "dist"]
+
+[tool.ruff.lint]
+# 选择规则集：
+# E: pycodestyle errors, W: warnings, F: pyflakes, I: isort
+# B: bugbear, UP: pyupgrade, SIM: simplify, C4: comprehensions
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "C4"]
+ignore = [
+    "E501",   # 行长由 black 控制，ruff 不重复检查
+    "B008",   # 项目在默认参数中使用 MagicMock 等可接受模式
+    "SIM117", # 嵌套 with 有时为可读性而保留
+]
+
+[tool.ruff.lint.per-file-ignores]
+# 测试文件允许使用断言、较长行
+"tests/**" = ["S101", "E501"]
+# 旧版代码不强制 lint
+"old/**" = ["*"]
+
+[tool.ruff.format]
+quote-style = "preserve"
+
+# ==================== 工具：mypy（类型检查，渐进式启用） ====================
+[tool.mypy]
+python_version = "3.10"
+# 项目无类型注解的代码较多，先开启宽松模式，逐步收紧
+ignore_missing_imports = true
+follow_imports = "silent"
+check_untyped_defs = false
+warn_redundant_casts = true
+warn_unused_ignores = true
+# 排除历史归档与临时目录
+exclude = [
+    "^old/",
+    "^test/",
+    "^build/",
+    "^dist/",
+    "^\\.venv/",
+]
+
+# ==================== 工具：pytest（与 pytest.ini 互补） ====================
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+# 控制台输出风格
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+]
+# 注册自定义 marker
+markers = [
+    "slow: 标记跑得较慢的测试",
+    "integration: 需要真实设备/OCR 的集成测试（默认不跑）",
+]
+
+# ==================== 工具：coverage（覆盖率） ====================
+[tool.coverage.run]
+source = ["core", "ui", "tool", "log", "data_manager", "config", "html_parser"]
+omit = [
+    "*/__pycache__/*",
+    "old/*",
+    "test/*",
+    "tests/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+show_missing = true

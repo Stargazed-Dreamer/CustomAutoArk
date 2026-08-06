@@ -1,4 +1,4 @@
-﻿import os
+import os
 import time
 from datetime import datetime
 
@@ -20,21 +20,13 @@ region_history = (0.44, 0.27, 0.71, 0.91)
 region_certificate = (0.776, 0.363, 1, 0.9)
 #==============================
 
-class CantFindNameError(Exception):
-    pass
-
-class MouseMoveError(Exception):
-    pass
-
-class OcrError(Exception):
-    pass
-
-class UserSuspendOperationError(InterruptedError):
-    pass
-
-class StopError(Exception):
-    pass
-
+from .exceptions import (
+    CantFindNameError,
+    MouseMoveError,
+    OcrError,
+    UserSuspendOperationError,
+    StopError,
+)
 from .enums import TaskType
 from .simulator import Simulator
 
@@ -291,13 +283,13 @@ class Task:
                 if not os.path.exists(self.param):
                     os.makedirs(self.param)
                 path = os.path.join(self.param, fileName)
-                img = self.l_MEM.pop(self.memIndex)
+                item = self.l_MEM.pop(self.memIndex)
                 if self.kwargs["mode"] == "png":
-                    cv2.imwrite(path, img)
+                    cv2.imwrite(path, item)
                     log.debug(f"图片已保存: {path}")
                 elif self.kwargs["mode"] == "txt":
                     with open(path, "w") as f:
-                        f.write(self.l_MEM[self.memIndex])
+                        f.write(item)
                     log.debug(f"文本已保存: {path}")
                 else:
                     raise ValueError(f"保存模式{self.kwargs['mode']}未定义")
@@ -500,9 +492,9 @@ class Task:
         screenshot = Task.simulator.screenshot()
         regionOffset = (0,0)
         if self.region is not None:
-            h, w = img.shape[:2]
+            h, w = screenshot.shape[:2]
             regionOffset = (int(self.region[0] * w), int(self.region[1] * h))
-            img = tool.cropping(img, self.region, mode="percent")
+            screenshot = tool.cropping(screenshot, self.region, mode="percent")
             log.debug(f"在区域内查找: {self.region}")
         template = Task.d_imgs[name]
         l_results = tool.find_imgOnImg(screenshot, template, match_threshold = limit, b_needTemplate2GRAY = False)
